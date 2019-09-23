@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -21,11 +23,10 @@ final header = Container(
           topLeft: Radius.circular(3),
           topRight: Radius.circular(3))),
 
-  child: Row(
+    child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
 
-      //nha ini buat tulisan GOPAY
+    children: <Widget>[
       Text(
         "OKKPD JATENG",
         style: TextStyle(
@@ -43,6 +44,185 @@ final header = Container(
 
         },
       ),
+    ],
+  ),
+);
+
+final prima2 = Card(
+  child: new InkWell(
+    onTap: () {
+      print("tapped");
+    },
+    child: Container(
+      width: 114.0,
+      height: 114.0,
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 9.0 / 5.5,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Center(
+                child: new Text(
+                  "Prima 2",
+                  textAlign: TextAlign.center,
+                ),
+              )
+          ),
+        ],
+      ),
+    ),
+  ),
+);
+
+final prima3 = Card(
+  child: new InkWell(
+    onTap: () {
+      print("tapped");
+    },
+    child: Container(
+      width: 114.0,
+      height: 114.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 9.0 / 5.5,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Center(
+                child: new Text(
+                  "Prima 3",
+                  textAlign: TextAlign.center,
+                ),
+              )
+          ),
+        ],
+      ),
+    ),
+  ),
+);
+
+final psat = Card(
+  child: new InkWell(
+    onTap: () {
+      print("tapped");
+    },
+    child: Container(
+      width: 114.0,
+      height: 114.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 9.0 / 5.5,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Center(
+                child: new Text(
+                  "PSAT",
+                  textAlign: TextAlign.center,
+                ),
+              )
+          ),
+        ],
+      ),
+    ),
+  ),
+);
+
+final rumahKemas = Card(
+  child: new InkWell(
+    onTap: () {
+      print("tapped");
+    },
+    child: Container(
+      width: 114.0,
+      height: 114.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 9.0 / 5.5,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Center(
+                child: new Text(
+                  "Rumah Kemas",
+                  textAlign: TextAlign.center,
+                ),
+              )
+          ),
+        ],
+      ),
+    ),
+  ),
+);
+
+
+final hc = Card(
+  child: new InkWell(
+    onTap: () {
+      print("tapped");
+    },
+    child: Container(
+      width: 114.0,
+      height: 114.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 9.0 / 5.5,
+            child: Image.asset('assets/logo.png'),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              child: Center(
+                child: new Text(
+                  "HC",
+                  textAlign: TextAlign.center,
+                ),
+              )
+          ),
+        ],
+      ),
+    ),
+  ),
+);
+
+final layanan = Card(
+  clipBehavior: Clip.antiAlias,
+  child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 12.0),
+          child: Row(
+            children: <Widget>[
+              prima3,
+              prima2,
+              psat,
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 12.0),
+          child: Row(
+            children: <Widget>[
+              rumahKemas,
+              hc,
+            ],
+          ),
+        ),
     ],
   ),
 );
@@ -72,24 +252,23 @@ final informasi = Card(
 );
 
 
-final prima2 = Container(
-  child: FlatButton.icon(
-    icon: Icon(Icons.add_a_photo), //`Icon` to display
-    onPressed: () {
-      //Code to execute when Floating Action Button is clicked
-      //...
-    },
-  ),
-);
+void _portraitModeOnly() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+}
 
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
+    _portraitModeOnly();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             header,
+            layanan,
             informasi,
           ],
         ),

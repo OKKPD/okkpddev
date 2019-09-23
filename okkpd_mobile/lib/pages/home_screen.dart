@@ -6,10 +6,7 @@ import 'package:okkpd_mobile/pages/dashboard_screen.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
-
-
 }
-
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
