@@ -15,14 +15,11 @@ final header = Container(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          Color(0xff3164bd),
-          Color(0xff295cb5)
+          Color(0xdfe6e9),
+          Color(0xdfe6e9)
         ],
       ),
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(3),
-          topRight: Radius.circular(3))),
-
+    ),
     child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
@@ -31,7 +28,7 @@ final header = Container(
         "OKKPD JATENG",
         style: TextStyle(
             fontSize: 18,
-            color: Colors.white,
+            color: Colors.black54,
             fontFamily: "NeoSansBold"),
       ),
 
@@ -234,7 +231,7 @@ final informasi = Card(
     children: <Widget>[
       AspectRatio(
         aspectRatio: 9.0 / 5.5,
-        child: Image.asset('assets/logo.png'),
+        child: Image.asset('assets/user.png'),
       ),
       Padding(
         padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/pages/dashboard_screen.dart';
+import 'package:okkpd_mobile/pages/user_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Text('Activity'),
     Text('Media'),
     Text('Usaha'),
-    Text('User'),
+    UserScreen(),
   ];
 
   @override
