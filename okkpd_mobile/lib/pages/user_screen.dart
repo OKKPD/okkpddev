@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/pages/login_screen.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -81,7 +82,7 @@ class _UserScreenState extends State<UserScreen> {
     );
 
     final SaveButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
           minWidth: 200.0,
@@ -93,24 +94,27 @@ class _UserScreenState extends State<UserScreen> {
             );
           },
           color: Colors.lightBlueAccent,
-          child: Text('Save', style: TextStyle(color: Colors.white)),
+          child: Text('Update Profile', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
 
-    final forgotLabel = FlatButton(
-      child: Text(
-        'Forgot password?',
-        style: TextStyle(color: Colors.black54),
+    final LogoutButton = Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.0),
+      child: Material(
+        child: MaterialButton(
+          minWidth: 200.0,
+          height: 42.0,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
+          },
+          color: Colors.redAccent,
+          child: Text('Logout', style: TextStyle(color: Colors.white)),
+        ),
       ),
-      onPressed: () {},
-    );
-    final signupLabel = FlatButton(
-      child: Text(
-        'Sign Up',
-        style: TextStyle(color: Colors.black54),
-      ),
-      onPressed: () {},
     );
 
     return Scaffold(
@@ -128,8 +132,9 @@ class _UserScreenState extends State<UserScreen> {
             email,
             SizedBox(height: 8.0),
             jabatan,
-            SizedBox(height: 8.0),
+            SizedBox(height: 48.0),
             SaveButton,
+            LogoutButton,
           ],
         ),
       ),
