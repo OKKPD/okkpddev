@@ -133,22 +133,15 @@ class _UserScreenState extends State<UserScreen> {
     );
 
 
-
-//    final password = TextFormField(
-//      autofocus: false,
-//      obscureText: true,
-//      decoration: InputDecoration(
-//        hintText: 'Password',
-//        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-//      ),
-//    );
-
-    final profilButton = Padding(
+    final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
-      child: IconButton(
+      child: Container(
+          transform: Matrix4.translationValues(0.0, -35.0, 0.0),
+          child:IconButton(
         icon: Icon(Icons.add_a_photo),
         color: Colors.lightBlueAccent,
         onPressed: _asyncConfirmDialog,
+      ),
       ),
     );
 
