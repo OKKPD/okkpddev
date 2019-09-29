@@ -24,19 +24,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     _portraitModeOnly();
     final header = Container(
       padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xdfe6e9),
-            Color(0xdfe6e9)
-          ],
-        ),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
         children: <Widget>[
           Text(
             "OKKPD JATENG",
