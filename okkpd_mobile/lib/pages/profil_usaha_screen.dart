@@ -19,7 +19,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
   Color clrKopSurat = Colors.redAccent;
 
   Future getImageKTP() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
       _imageKTP = image;
@@ -28,7 +28,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
   }
 
   Future getImageNPWP() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
       _imageNPWP = image;
@@ -37,7 +37,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
   }
 
   Future getImageKopSurat() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
       _imageKopSurat = image;

@@ -30,13 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Dashboard')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
               icon: Icon(Icons.track_changes), title: Text('Track')),
           BottomNavigationBarItem(
               icon: Icon(Icons.perm_media), title: Text('Media')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance), title: Text('Profil Usaha')),
+              icon: Icon(Icons.account_balance), title: Text('Usaha')),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box), title: Text('User')),
         ],

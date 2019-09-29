@@ -14,7 +14,7 @@ class _UserScreenState extends State<UserScreen> {
   File _image;
 
   Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    File image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
       _image = image;
