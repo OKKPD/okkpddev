@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:okkpd_mobile/pages/psat_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -108,7 +109,12 @@ final prima3 = Card(
 final psat = Card(
   child: new InkWell(
     onTap: () {
-      print("tapped");
+//      Navigator.( Context,
+//        MaterialPageRoute(builder: (context) => Psatscreen()),
+//      );
+
+
+      print("tapped1");
     },
     child: Container(
       width: 114.0,
