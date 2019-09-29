@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'OKKPD',
+      title: 'OKKPS',
       theme: ThemeData(
         fontFamily: 'NeoSans',
         primaryColor: theme.menuBluebird,
