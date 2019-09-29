@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/login_screen.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -11,7 +10,40 @@ class ProfilUsahaScreen extends StatefulWidget {
 }
 
 class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
+  File _imageKTP;
+  File _imageNPWP;
+  File _imageKopSurat;
 
+  Color clrKtp = Colors.redAccent;
+  Color clrNpwp = Colors.redAccent;
+  Color clrKopSurat = Colors.redAccent;
+
+  Future getImageKTP() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _imageKTP = image;
+      clrKtp = Colors.green;
+    });
+  }
+
+  Future getImageNPWP() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _imageNPWP = image;
+      clrNpwp = Colors.green;
+    });
+  }
+
+  Future getImageKopSurat() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _imageKopSurat = image;
+      clrKopSurat = Colors.green;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,8 +176,9 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                   minWidth: 100.0,
                   height: 30.0,
                   onPressed: () {
+                    getImageKTP();
                   },
-                  color: Colors.redAccent,
+                  color: clrKtp,
                   child: Text('Pick File', style: TextStyle(color: Colors.white)),
                 ),
               ),
@@ -183,8 +216,9 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                   minWidth: 100.0,
                   height: 30.0,
                   onPressed: () {
+                    getImageNPWP();
                   },
-                  color: Colors.redAccent,
+                  color: clrNpwp,
                   child: Text('Pick File', style: TextStyle(color: Colors.white)),
                 ),
               ),
@@ -236,6 +270,190 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
     );
 
 
+    final alamatDetail= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 60.0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Text(
+                        "RT",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                            fontFamily: "NeoSansBold"),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText: '',
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+              Container(
+                width: 60.0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Text(
+                        "RW",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                            fontFamily: "NeoSansBold"),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText: '',
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+              Container(
+                width: 180.0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Text(
+                        "Kota",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                            fontFamily: "NeoSansBold"),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText: '',
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+            ],
+          ),
+        ]
+    );
+
+    final informasiDetail= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 150.0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Text(
+                        "No Telfon",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                            fontFamily: "NeoSansBold"),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText: '',
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+              Container(
+                width: 150.0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:<Widget>[
+                      Text(
+                        "No HP",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black54,
+                            fontFamily: "NeoSansBold"),
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          hintText: '',
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+            ],
+          ),
+        ]
+    );
+
+    final kopSurat= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Kop Surat",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Material(
+                child: MaterialButton(
+                  minWidth: 100.0,
+                  height: 30.0,
+                  onPressed: () {
+                    getImageKopSurat();
+                  },
+                  color: clrKopSurat,
+                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ],
+          ),
+        ]
+    );
+
+
 
     final SaveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
@@ -275,6 +493,12 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             namaPerusahaan,
             SizedBox(height: 20.0),
             alamatPerusahaan,
+            SizedBox(height: 20.0),
+            alamatDetail,
+            SizedBox(height: 20.0),
+            kopSurat,
+            SizedBox(height: 20.0),
+            informasiDetail,
             SizedBox(height: 48.0),
             SaveButton,
             SizedBox(height: 48.0),

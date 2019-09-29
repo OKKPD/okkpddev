@@ -34,43 +34,79 @@ class _UserScreenState extends State<UserScreen> {
       ),
     );
 
-    final nama= TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      decoration: InputDecoration(
-        hintText: 'Nama Lengkap',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-      ),
+    final nama= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Nama Lengkap",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+        ]
     );
 
-    final email= TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-      ),
+    final email= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Email",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+        ]
     );
 
-    final jabatan= TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      decoration: InputDecoration(
-        hintText: 'Jabatan',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-      ),
+    final jabatan= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Jabatan",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+        ]
     );
 
 
 
-    final password = TextFormField(
-      autofocus: false,
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-      ),
-    );
+//    final password = TextFormField(
+//      autofocus: false,
+//      obscureText: true,
+//      decoration: InputDecoration(
+//        hintText: 'Password',
+//        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+//      ),
+//    );
 
     final profilButton = Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
