@@ -32,12 +32,16 @@ class _Psatscreen extends State<Psatscreen>{
 
         children: <Widget>[
           Text(
+
             "PENDAFTARAN PSAT",
+            textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
+
+
 
 
           IconButton(
@@ -124,32 +128,13 @@ class _Psatscreen extends State<Psatscreen>{
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-              Material(
-                child: MaterialButton(
-                  minWidth: 100.0,
-                  height: 30.0,
-                  onPressed: () {
-                    //getImageKTP();
-                  },
-                 // color: clrKtp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            ],
-          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          )
         ]
     );
 
@@ -177,17 +162,7 @@ class _Psatscreen extends State<Psatscreen>{
                   ),
                 ),
               ),
-              Material(
-                child: MaterialButton(
-                  minWidth: 100.0,
-                  height: 30.0,
-                  onPressed: () {
-                    //getImageNPWP();
-                  },
-                  //color: clrNpwp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
-                ),
-              ),
+
             ],
           ),
         ]
@@ -215,6 +190,138 @@ class _Psatscreen extends State<Psatscreen>{
     );
 
 
+    final DaftarProduk= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Daftar Produk PSAT",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 18,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+
+        ]
+    );
+
+
+    final namaProdukdagang= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Nama Produk",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+
+        ]
+    );
+
+    final namadagang= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Nama Dagang",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+
+        ]
+    );
+
+
+    final jenisKemasan= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Jenis Kemasan",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 120.0,
+                child: TextFormField(
+                  keyboardType: TextInputType.text,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: '',
+                  ),
+                ),
+              ),
+
+            Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Netto",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                        fontFamily: "NeoSansBold"),
+                  ),
+
+
+                ],
+              )
+
+            ],
+          ),
+        ]
+    );
+
+
+
+
+
+
+
+
+
+    final spasiforjarak= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+
+        ]
+    );
+
 
 
     final SaveButton = Padding(
@@ -230,7 +337,7 @@ class _Psatscreen extends State<Psatscreen>{
             );
           },
           color: Colors.lightBlueAccent,
-          child: Text('Save Profile', style: TextStyle(color: Colors.white)),
+          child: Text('Simpan ', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
@@ -254,15 +361,16 @@ class _Psatscreen extends State<Psatscreen>{
             SizedBox(height: 20.0),
             nomorHpPemohon,
 
-//            SizedBox(height: 20.0),
-//            alamatPerusahaan,
-//            SizedBox(height: 20.0),
-//            alamatDetail,
-//            SizedBox(height: 20.0),
-//            kopSurat,
-//            SizedBox(height: 20.0),
-//            informasiDetail,
-//            SizedBox(height: 48.0),
+            SizedBox(height: 20.0),
+            DaftarProduk,
+            SizedBox(height: 20.0),
+           namaProdukdagang,
+            SizedBox(height: 20.0),
+            namadagang,
+           SizedBox(height: 20.0),
+            jenisKemasan,
+            SizedBox(height: 40.0),
+            spasiforjarak,
             SaveButton,
             SizedBox(height: 48.0),
           ],

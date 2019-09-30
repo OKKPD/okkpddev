@@ -126,32 +126,13 @@ class _Hcscreen extends State<Hcscreen>{
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-              Material(
-                child: MaterialButton(
-                  minWidth: 100.0,
-                  height: 30.0,
-                  onPressed: () {
-                    //getImageKTP();
-                  },
-                  // color: clrKtp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            ],
-          ),
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          )
         ]
     );
 
@@ -166,31 +147,12 @@ class _Hcscreen extends State<Hcscreen>{
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-              Material(
-                child: MaterialButton(
-                  minWidth: 100.0,
-                  height: 30.0,
-                  onPressed: () {
-                    //getImageNPWP();
-                  },
-                  //color: clrNpwp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            ],
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
           ),
         ]
     );
@@ -217,12 +179,46 @@ class _Hcscreen extends State<Hcscreen>{
     );
 
 
+    final namaProdokjenis = Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "row 1",
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              fontSize: 14,
+              color: Colors.black54,
+              fontFamily: "NeoSansBold"),
+        ),
+        Text(
+          " row 2",
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              fontSize: 14,
+              color: Colors.black54,
+              fontFamily: "NeoSansBold"),
+        ),
+      ],
+    );
 
 
 
 
 
+    final spasiforjarak= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
 
+        ]
+    );
 
     final SaveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
@@ -256,20 +252,18 @@ class _Hcscreen extends State<Hcscreen>{
             alamatPerusahaan,
             SizedBox(height: 20.0),
             namaPemohon,
+
             SizedBox(height: 20.0),
             nomorKtpPemohon,
             SizedBox(height: 20.0),
             nomorHpPemohon,
-
-//            SizedBox(height: 20.0),
-//            alamatPerusahaan,
+            SizedBox(height: 20.0),
+            namaProdokjenis,
 //            SizedBox(height: 20.0),
 //            alamatDetail,
 //            SizedBox(height: 20.0),
-//            kopSurat,
-//            SizedBox(height: 20.0),
-//            informasiDetail,
-//            SizedBox(height: 48.0),
+            spasiforjarak,
+            SizedBox(height: 20.0),
             SaveButton,
             SizedBox(height: 48.0),
           ],

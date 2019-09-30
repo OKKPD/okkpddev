@@ -18,51 +18,85 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
   Color clrNpwp = Colors.redAccent;
   Color clrKopSurat = Colors.redAccent;
 
-  Future getImageKTP() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
+  Future getImage(ImageSource source, String fileName) async {
+    File image = await ImagePicker.pickImage(source: source);
 
     setState(() {
-      _imageKTP = image;
-      clrKtp = Colors.green;
+      if(fileName == 'KTP') {
+        _imageKTP = image;
+        print(image);
+        if(image != null) {
+          clrKtp = Colors.green;
+        }else{
+          clrKtp = Colors.redAccent;
+        }
+      }else if(fileName == 'NPWP'){
+        _imageNPWP = image;
+        if(image != null) {
+          clrNpwp = Colors.green;
+        }else{
+          clrNpwp  = Colors.redAccent;
+        }
+      }else{
+        _imageKopSurat = image;
+        if(image != null) {
+          clrKopSurat = Colors.green;
+        }else{
+          clrKopSurat  = Colors.redAccent;
+        }
+      }
     });
   }
 
-  Future getImageNPWP() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      _imageNPWP = image;
-      clrNpwp = Colors.green;
-    });
-  }
-
-  Future getImageKopSurat() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      _imageKopSurat = image;
-      clrKopSurat = Colors.green;
-    });
+  Future _asyncConfirmDialog(String fileName) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: true, // user must tap button for close dialog!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Pick Image'),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('Camera'),
+              onPressed: () {
+                if( fileName == 'KTP') {
+                  getImage(ImageSource.camera,'KTP');
+                }else if(fileName == 'NPWP'){
+                  getImage(ImageSource.camera,'NPWP');
+                }else{
+                  getImage(ImageSource.camera,'KOP');
+                }
+                Navigator.pop(context, '');
+              },
+            ),
+            FlatButton(
+              child: const Text('Gallery'),
+              onPressed: () {
+                if( fileName == 'KTP') {
+                  getImage(ImageSource.gallery,'KTP');
+                }else if(fileName == 'NPWP'){
+                  getImage(ImageSource.gallery,'NPWP');
+                }else{
+                  getImage(ImageSource.gallery,'KOP');
+                }
+                Navigator.pop(context, '');
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
 
     final header = Container(
       padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xdfe6e9),
-            Color(0xdfe6e9)
-          ],
-        ),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
         children: <Widget>[
           Text(
             "PROFIL USAHA",
@@ -162,7 +196,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 220.0,
+                width: queryData.size.width/2,
                 child: TextFormField(
                   keyboardType: TextInputType.text,
                   autofocus: false,
@@ -173,10 +207,10 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
               ),
               Material(
                 child: MaterialButton(
-                  minWidth: 100.0,
+                  minWidth: queryData.size.width/5,
                   height: 30.0,
                   onPressed: () {
-                    getImageKTP();
+                    _asyncConfirmDialog('KTP');
                   },
                   color: clrKtp,
                   child: Text('Pick File', style: TextStyle(color: Colors.white)),
@@ -202,7 +236,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 220.0,
+                width: queryData.size.width/2,
                 child: TextFormField(
                   keyboardType: TextInputType.text,
                   autofocus: false,
@@ -213,10 +247,10 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
               ),
               Material(
                 child: MaterialButton(
-                  minWidth: 100.0,
+                  minWidth: queryData.size.width/6,
                   height: 30.0,
                   onPressed: () {
-                    getImageNPWP();
+                    _asyncConfirmDialog('NPWP');
                   },
                   color: clrNpwp,
                   child: Text('Pick File', style: TextStyle(color: Colors.white)),
@@ -285,7 +319,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 60.0,
+                width: queryData.size.width/6,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:<Widget>[
@@ -308,7 +342,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 ),
               ),
               Container(
-                width: 60.0,
+                width: queryData.size.width/6,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:<Widget>[
@@ -331,7 +365,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 ),
               ),
               Container(
-                width: 180.0,
+                width: queryData.size.width/2,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:<Widget>[
@@ -373,7 +407,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: 150.0,
+                width: queryData.size.width/2.5,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:<Widget>[
@@ -396,7 +430,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 ),
               ),
               Container(
-                width: 150.0,
+                width: queryData.size.width/2.5,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:<Widget>[
@@ -442,7 +476,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                   minWidth: 100.0,
                   height: 30.0,
                   onPressed: () {
-                    getImageKopSurat();
+                    _asyncConfirmDialog('KOP');
                   },
                   color: clrKopSurat,
                   child: Text('Pick File', style: TextStyle(color: Colors.white)),
@@ -459,7 +493,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
-          minWidth: 200.0,
+          minWidth: queryData.size.width/2,
           height: 42.0,
           onPressed: () {
             Navigator.push(
@@ -477,31 +511,37 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             header,
-            jenisUsaha,
-            SizedBox(height: 20.0),
-            namaPemohon,
-            SizedBox(height: 20.0),
-            jabatan,
-            SizedBox(height: 20.0),
-            noKtp,
-            SizedBox(height: 20.0),
-            noNpwp,
-            SizedBox(height: 20.0),
-            namaPerusahaan,
-            SizedBox(height: 20.0),
-            alamatPerusahaan,
-            SizedBox(height: 20.0),
-            alamatDetail,
-            SizedBox(height: 20.0),
-            kopSurat,
-            SizedBox(height: 20.0),
-            informasiDetail,
-            SizedBox(height: 48.0),
-            SaveButton,
-            SizedBox(height: 48.0),
+            SingleChildScrollView(
+              padding: EdgeInsets.only(left: 24.0, right: 24.0),
+              child: Column(
+                children: <Widget>[
+                  jenisUsaha,
+                  SizedBox(height: 20.0),
+                  namaPemohon,
+                  SizedBox(height: 20.0),
+                  jabatan,
+                  SizedBox(height: 20.0),
+                  noKtp,
+                  SizedBox(height: 20.0),
+                  noNpwp,
+                  SizedBox(height: 20.0),
+                  namaPerusahaan,
+                  SizedBox(height: 20.0),
+                  alamatPerusahaan,
+                  SizedBox(height: 20.0),
+                  alamatDetail,
+                  SizedBox(height: 20.0),
+                  kopSurat,
+                  SizedBox(height: 20.0),
+                  informasiDetail,
+                  SizedBox(height: 48.0),
+                  SaveButton,
+                  SizedBox(height: 48.0),
+                ]
+              )
+            ),
           ],
         ),
       ),

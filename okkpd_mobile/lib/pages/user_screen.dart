@@ -13,13 +13,42 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   File _image;
 
-  Future getImage() async {
-    File image = await ImagePicker.pickImage(source: ImageSource.camera);
+  Future getImage(ImageSource source) async {
+    File image = await ImagePicker.pickImage(source: source);
 
     setState(() {
       _image = image;
     });
   }
+
+  Future _asyncConfirmDialog() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: true, // user must tap button for close dialog!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Pick Image'),
+          actions: <Widget>[
+            FlatButton(
+              child: const Text('Camera'),
+              onPressed: () {
+                getImage(ImageSource.camera);
+                Navigator.pop(context, '');
+              },
+            ),
+            FlatButton(
+              child: const Text('Gallery'),
+              onPressed: () {
+                getImage(ImageSource.gallery);
+                Navigator.pop(context, '');
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +56,16 @@ class _UserScreenState extends State<UserScreen> {
       tag: 'hero',
       child: CircleAvatar(
         backgroundColor: Colors.white70,
-        radius: 48.0,
-        child: _image == null
-          ? Text('No image selected.')
-            : Image.file(_image),
+        radius: 55.0,
+        child:ClipOval(
+          child:
+        _image == null
+          ? Text(' No image ')
+            : Image.file(_image,
+            width: 100,
+            height: 100,
+            fit: BoxFit.fill),
+        )
       ),
     );
 
@@ -98,22 +133,15 @@ class _UserScreenState extends State<UserScreen> {
     );
 
 
-
-//    final password = TextFormField(
-//      autofocus: false,
-//      obscureText: true,
-//      decoration: InputDecoration(
-//        hintText: 'Password',
-//        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-//      ),
-//    );
-
-    final profilButton = Padding(
+    final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
-      child: IconButton(
+      child: Container(
+          transform: Matrix4.translationValues(0.0, -35.0, 0.0),
+          child:IconButton(
         icon: Icon(Icons.add_a_photo),
         color: Colors.lightBlueAccent,
-        onPressed: getImage,
+        onPressed: _asyncConfirmDialog,
+      ),
       ),
     );
 
