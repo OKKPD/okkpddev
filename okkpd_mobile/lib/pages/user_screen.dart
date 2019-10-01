@@ -64,7 +64,7 @@ class _UserScreenState extends State<UserScreen> {
             : Image.file(_image,
             width: 100,
             height: 100,
-            fit: BoxFit.fill),
+            fit: BoxFit.cover),
         )
       ),
     );
