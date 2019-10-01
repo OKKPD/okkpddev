@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/pages/dashboard_screen.dart';
 import 'package:okkpd_mobile/pages/user_screen.dart';
 import 'package:okkpd_mobile/pages/profil_usaha_screen.dart';
+import 'package:okkpd_mobile/pages/status_screen.dart';
 
 
 
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   final widgetOptions = [
     DashboardScreen(),
-    Text('Activity'),
+    StatusScreen(),
     Text('Media'),
     ProfilUsahaScreen(),
     UserScreen(),

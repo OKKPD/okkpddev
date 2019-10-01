@@ -493,7 +493,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
-          minWidth: queryData.size.width/2,
+          minWidth: queryData.size.width/1,
           height: 42.0,
           onPressed: () {
             Navigator.push(
