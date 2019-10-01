@@ -53,6 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: new InkWell(
         onTap: () {
           print("tapped");
+          Navigator.of(context).pushNamed('/primaDuascreen');
         },
         child: Container(
           width: queryData.size.width/3.7,
@@ -79,6 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: new InkWell(
         onTap: () {
           print("tapped");
+          Navigator.of(context).pushNamed('/primaTigascreen');
         },
         child: Container(
           width: queryData.size.width/3.7,
@@ -133,6 +135,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: new InkWell(
         onTap: () {
           print("tapped");
+          Navigator.of(context).pushNamed('/rumahKemas');
         },
         child: Container(
           width: queryData.size.width/3.7,
