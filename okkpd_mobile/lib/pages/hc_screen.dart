@@ -33,21 +33,17 @@ class _Hcscreen extends State<Hcscreen>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: <Widget>[
+
           Text(
             "PENDAFTARAN HC",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
-          ),
+          )
 
 
-          IconButton(
-            icon: Icon(Icons.notifications),
-            color: Colors.black54,
-            onPressed: () {
-            },
-          ),
+
         ],
       ),
     );
@@ -179,27 +175,27 @@ class _Hcscreen extends State<Hcscreen>{
     );
 
 
-    final namaProdokjenis = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          "row 1",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-              fontSize: 14,
-              color: Colors.black54,
-              fontFamily: "NeoSansBold"),
-        ),
-        Text(
-          " row 2",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-              fontSize: 14,
-              color: Colors.black54,
-              fontFamily: "NeoSansBold"),
-        ),
-      ],
-    );
+//    final namaProdokjenis = Row(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          "row 1",
+//          textAlign: TextAlign.left,
+//          style: TextStyle(
+//              fontSize: 14,
+//              color: Colors.black54,
+//              fontFamily: "NeoSansBold"),
+//        ),
+//        Text(
+//          " row 2",
+//          textAlign: TextAlign.left,
+//          style: TextStyle(
+//              fontSize: 14,
+//              color: Colors.black54,
+//              fontFamily: "NeoSansBold"),
+//        ),
+//      ],
+//    );
 
 
 
@@ -233,13 +229,16 @@ class _Hcscreen extends State<Hcscreen>{
             );
           },
           color: Colors.lightBlueAccent,
-          child: Text('Save Profile', style: TextStyle(color: Colors.white)),
+          child: Text('Simpan', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+
+      ),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -258,7 +257,7 @@ class _Hcscreen extends State<Hcscreen>{
             SizedBox(height: 20.0),
             nomorHpPemohon,
             SizedBox(height: 20.0),
-            namaProdokjenis,
+            //namaProdokjenis,
 //            SizedBox(height: 20.0),
 //            alamatDetail,
 //            SizedBox(height: 20.0),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart'as theme;
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:okkpd_mobile/pages/login_screen.dart';
-import 'package:okkpd_mobile/pages/dashboard_screen.dart';
+import 'package:okkpd_mobile/pages/primaTiga_screen.dart';
 import 'package:okkpd_mobile/pages/psat_screen.dart';
 import 'package:okkpd_mobile/pages/hc_screen.dart';
+import 'package:okkpd_mobile/pages/primaDua_screen.dart';
+import 'package:okkpd_mobile/pages/rumahKemas_screen.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
@@ -29,7 +31,11 @@ class MyApp extends StatelessWidget {
             '/login': (BuildContext context) => new LoginScreen(),
             '/homescreen' : (BuildContext context) => new HomeScreen(),
             '/hcscreen' : (BuildContext context) => new Hcscreen(),
-            '/psatscreen' : (BuildContext context) => new Psatscreen()
+            '/psatscreen' : (BuildContext context) => new Psatscreen(),
+            '/primaDuascreen' : (BuildContext context) => new PrimaduaScreen(),
+            '/primaTigascreen' : (BuildContext context) => new PrimatigaScreen(),
+            '/rumahKemas' : (BuildContext context) => new Rumahkemas(),
+
           },
 
     );

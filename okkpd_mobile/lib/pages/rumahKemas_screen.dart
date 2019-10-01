@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
 
-class Psatscreen extends StatefulWidget {
+
+class Rumahkemas extends StatefulWidget{
   @override
-  _Psatscreen createState() => _Psatscreen();
 
+  _Rumahkemas createState() => _Rumahkemas();
 }
 
-class _Psatscreen extends State<Psatscreen>{
-
+class _Rumahkemas extends State<Rumahkemas>{
   @override
+
   Widget build(BuildContext context) {
+    // TODO: implement build
+
 
     final header = Container(
       padding: EdgeInsets.all(12),
@@ -31,17 +31,14 @@ class _Psatscreen extends State<Psatscreen>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: <Widget>[
-          Text(
 
-            "PENDAFTARAN PSAT",
-            textAlign: TextAlign.left,
+          Text(
+            "PENDAFTARAN RUMAH KEMAS",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
-          ),
-
-
+          )
 
 
 
@@ -144,21 +141,12 @@ class _Psatscreen extends State<Psatscreen>{
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-
-            ],
+          TextFormField(
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
           ),
         ]
     );
@@ -185,118 +173,27 @@ class _Psatscreen extends State<Psatscreen>{
     );
 
 
-    final DaftarProduk= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Daftar Produk PSAT",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-        ]
-    );
-
-
-    final namaProdukdagang= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Produk",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-    final namadagang= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Dagang",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-
-    final jenisKemasan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Jenis Kemasan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 120.0,
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-
-            Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Netto",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                        fontFamily: "NeoSansBold"),
-                  ),
-
-
-                ],
-              )
-
-            ],
-          ),
-        ]
-    );
-
-
-
-
+//    final namaProdokjenis = Row(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          "row 1",
+//          textAlign: TextAlign.left,
+//          style: TextStyle(
+//              fontSize: 14,
+//              color: Colors.black54,
+//              fontFamily: "NeoSansBold"),
+//        ),
+//        Text(
+//          " row 2",
+//          textAlign: TextAlign.left,
+//          style: TextStyle(
+//              fontSize: 14,
+//              color: Colors.black54,
+//              fontFamily: "NeoSansBold"),
+//        ),
+//      ],
+//    );
 
 
 
@@ -317,8 +214,6 @@ class _Psatscreen extends State<Psatscreen>{
         ]
     );
 
-
-
     final SaveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
@@ -332,7 +227,7 @@ class _Psatscreen extends State<Psatscreen>{
             );
           },
           color: Colors.lightBlueAccent,
-          child: Text('Simpan ', style: TextStyle(color: Colors.white)),
+          child: Text('Simpan', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
@@ -354,21 +249,18 @@ class _Psatscreen extends State<Psatscreen>{
             alamatPerusahaan,
             SizedBox(height: 20.0),
             namaPemohon,
+
             SizedBox(height: 20.0),
             nomorKtpPemohon,
             SizedBox(height: 20.0),
             nomorHpPemohon,
-
             SizedBox(height: 20.0),
-            DaftarProduk,
-            SizedBox(height: 20.0),
-           namaProdukdagang,
-            SizedBox(height: 20.0),
-            namadagang,
-           SizedBox(height: 20.0),
-            jenisKemasan,
-            SizedBox(height: 40.0),
+            //namaProdokjenis,
+//            SizedBox(height: 20.0),
+//            alamatDetail,
+//            SizedBox(height: 20.0),
             spasiforjarak,
+            SizedBox(height: 20.0),
             SaveButton,
             SizedBox(height: 48.0),
           ],
