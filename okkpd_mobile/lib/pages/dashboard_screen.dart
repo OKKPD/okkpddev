@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:okkpd_mobile/pages/psat_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -157,7 +156,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
     );
-
 
     final hc = Card(
       child: new InkWell(

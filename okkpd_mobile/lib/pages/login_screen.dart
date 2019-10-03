@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/login_repo.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -8,8 +11,36 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  // @override
+  // void initState() {
+  //   checkLogin();
+  //   super.initState();
+  // }
+
+  // checkLogin() async{
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     if(prefs.getString("loginFolder") != null){
+        
+  //     }
+  //     return;
+  //   }
+ var _usernameController = TextEditingController();
+    var _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
+    Future loginProcess() async { 
+      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
+      if(await resultLogin == true){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }else{
+      }
+    }
+
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -22,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
+      controller: _usernameController,
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -31,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = TextFormField(
       autofocus: false,
       obscureText: true,
+      controller: _passwordController,
       decoration: InputDecoration(
         hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -44,10 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            loginProcess();
           },
           color: Colors.lightBlueAccent,
           child: Text('Log In', style: TextStyle(color: Colors.white)),

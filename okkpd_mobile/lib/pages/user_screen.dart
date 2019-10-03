@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/login_repo.dart';
+import 'package:okkpd_mobile/model/repository/user_repo.dart';
 import 'package:okkpd_mobile/pages/login_screen.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,7 +23,14 @@ class _UserScreenState extends State<UserScreen> {
     });
   }
 
+  var namaLengkapController = TextEditingController();
+  var emailController = TextEditingController();
+  var jabatanController = TextEditingController();
+
   Future _asyncConfirmDialog() async {
+
+    
+    
     return showDialog(
       context: context,
       barrierDismissible: true, // user must tap button for close dialog!
@@ -49,6 +58,20 @@ class _UserScreenState extends State<UserScreen> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    getProfile();
+  }
+
+  void getProfile() async {
+    var user = await UserRepo().getProfile();
+    if(user != null){
+      namaLengkapController.text = user.namaLengkap;
+      emailController.text = user.username;
+      jabatanController.text = "Pelaku Usaha";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +106,7 @@ class _UserScreenState extends State<UserScreen> {
           TextFormField(
             keyboardType: TextInputType.text,
             autofocus: false,
+            controller: namaLengkapController,
             decoration: InputDecoration(
               hintText: '',
             ),
@@ -104,6 +128,7 @@ class _UserScreenState extends State<UserScreen> {
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             autofocus: false,
+            controller: emailController,
             decoration: InputDecoration(
               hintText: '',
             ),
@@ -125,6 +150,7 @@ class _UserScreenState extends State<UserScreen> {
           TextFormField(
             keyboardType: TextInputType.text,
             autofocus: false,
+            controller: jabatanController,
             decoration: InputDecoration(
               hintText: '',
             ),
@@ -170,6 +196,7 @@ class _UserScreenState extends State<UserScreen> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
+            LoginRepo().logoutProcess();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LoginScreen()),
