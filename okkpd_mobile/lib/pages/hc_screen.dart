@@ -237,13 +237,14 @@ class _Hcscreen extends State<Hcscreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-
+        title: Text("Pendaftaran HC",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            header,
+//            header,
+            SizedBox(height: 20.0),
             jenisPerusahaan,
             SizedBox(height: 20.0),
             namaUsaha,

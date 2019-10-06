@@ -239,7 +239,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            header,
+//            header,
+            SizedBox(height: 10.0),
             layanan,
             informasi,
           ],

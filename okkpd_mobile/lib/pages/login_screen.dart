@@ -31,14 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
 
     Future loginProcess() async { 
-      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
-      if(await resultLogin == true){
+//      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
+//      if(await resultLogin == true){
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
-      }else{
-      }
+//      }else{
+//      }
     }
 
     final logo = Hero(

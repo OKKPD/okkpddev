@@ -512,7 +512,8 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
       body: Center(
         child: ListView(
           children: <Widget>[
-            header,
+//            header,
+            SizedBox(height: 10.0),
             SingleChildScrollView(
               padding: EdgeInsets.only(left: 24.0, right: 24.0),
               child: Column(

@@ -75,6 +75,9 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
@@ -90,6 +93,117 @@ class _UserScreenState extends State<UserScreen> {
             fit: BoxFit.cover),
         )
       ),
+    );
+
+    final informasi = Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: queryData.size.width/3,
+                child:
+                Text(
+                  "Informasi Detail",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      fontFamily: "NeoSansBold"),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios),
+                color: Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    ;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+        new Divider(
+          color: Colors.grey,
+        ),
+      ],
+    );
+
+    final ubahPassword = Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: queryData.size.width/3,
+                child:
+                Text(
+                  "Ubah Password",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      fontFamily: "NeoSansBold"),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios),
+                color: Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    ;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+        new Divider(
+          color: Colors.grey,
+        ),
+      ],
+    );
+
+    final logout = Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: queryData.size.width/3,
+                child:
+                Text(
+                  "Logout",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      fontFamily: "NeoSansBold"),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios),
+                color: Colors.grey,
+                onPressed: () {
+                  setState(() {
+                    ;
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+        new Divider(
+          color: Colors.grey,
+        ),
+      ],
     );
 
     final nama= Column(
@@ -162,12 +276,12 @@ class _UserScreenState extends State<UserScreen> {
     final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
       child: Container(
-          transform: Matrix4.translationValues(0.0, -35.0, 0.0),
+          transform: Matrix4.translationValues(0.0, 0.0, 0.0),
           child:IconButton(
-        icon: Icon(Icons.add_a_photo),
-        color: Colors.lightBlueAccent,
-        onPressed: _asyncConfirmDialog,
-      ),
+            icon: Icon(Icons.add_a_photo),
+            color: Colors.lightBlueAccent,
+            onPressed: _asyncConfirmDialog,
+        ),
       ),
     );
 
@@ -212,20 +326,22 @@ class _UserScreenState extends State<UserScreen> {
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             SizedBox(height: 48.0),
             logo,
             profilButton,
-            SizedBox(height: 48.0),
-            nama,
-            SizedBox(height: 8.0),
-            email,
-            SizedBox(height: 8.0),
-            jabatan,
-            SizedBox(height: 48.0),
-            SaveButton,
-            LogoutButton,
+            informasi,
+            ubahPassword,
+            logout,
+//            SizedBox(height: 48.0),
+//            nama,
+//            SizedBox(height: 8.0),
+//            email,
+//            SizedBox(height: 8.0),
+//            jabatan,
+//            SizedBox(height: 48.0),
+//            SaveButton,
+//            LogoutButton,
           ],
         ),
       ),
