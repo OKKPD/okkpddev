@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 
-class InformasiProfilescreen extends StatefulWidget{
+class GantiPasswordscreen extends StatefulWidget{
   @override
-  _InformasiProfilescreen createState() => _InformasiProfilescreen();
+  _GantiPasswordscreen createState() => _GantiPasswordscreen();
 }
 
-class _InformasiProfilescreen extends State<InformasiProfilescreen>{
+class _GantiPasswordscreen extends State<GantiPasswordscreen>{
 
   @override
 
@@ -32,11 +32,11 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
       ),
     );
 
-    final nama= Column(
+    final passwordLama= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Nama Lengkap",
+            "Password Lama",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
@@ -44,7 +44,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-            keyboardType: TextInputType.text,
+            obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
               hintText: '',
@@ -53,11 +53,11 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
         ]
     );
 
-    final email= Column(
+    final passwordBaru= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Email",
+            "Password Baru",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
@@ -65,7 +65,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
+            obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
               hintText: '',
@@ -74,11 +74,11 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
         ]
     );
 
-    final jabatan= Column(
+    final passwordBaru2= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Jabatan",
+            "Ulangi Password",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
@@ -86,7 +86,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-            keyboardType: TextInputType.text,
+            obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
               hintText: '',
@@ -94,11 +94,13 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
           ),
         ]
     );
+
+
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Informasi Profil",style: TextStyle(color: Colors.white)),
+        title: Text("Ubah Password",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
@@ -106,11 +108,11 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
           children: <Widget>[
 //            header,
             SizedBox(height: 20.0),
-            nama,
+            passwordLama,
             SizedBox(height: 20.0),
-            email,
+            passwordBaru,
             SizedBox(height: 20.0),
-            jabatan,
+            passwordBaru2,
             SizedBox(height: 20.0),
             SaveButton,
           ],

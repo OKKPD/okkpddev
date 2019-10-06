@@ -3,6 +3,7 @@ import 'package:okkpd_mobile/model/repository/login_repo.dart';
 import 'package:okkpd_mobile/model/repository/user_repo.dart';
 import 'package:okkpd_mobile/pages/login_screen.dart';
 import 'package:okkpd_mobile/pages/informasi_profile_screen.dart';
+import 'package:okkpd_mobile/pages/ganti_passwod_screen.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -159,7 +160,7 @@ class _UserScreenState extends State<UserScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => InformasiProfilescreen()),
+                    MaterialPageRoute(builder: (context) => GantiPasswordscreen()),
                   );
                 },
               ),
