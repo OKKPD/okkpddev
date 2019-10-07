@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/repository/login_repo.dart';
 import 'package:okkpd_mobile/model/repository/user_repo.dart';
 import 'package:okkpd_mobile/pages/login_screen.dart';
+import 'package:okkpd_mobile/pages/informasi_profile_screen.dart';
+import 'package:okkpd_mobile/pages/ganti_passwod_screen.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -28,9 +30,6 @@ class _UserScreenState extends State<UserScreen> {
   var jabatanController = TextEditingController();
 
   Future _asyncConfirmDialog() async {
-
-    
-    
     return showDialog(
       context: context,
       barrierDismissible: true, // user must tap button for close dialog!
@@ -72,6 +71,8 @@ class _UserScreenState extends State<UserScreen> {
       jabatanController.text = "Pelaku Usaha";
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +119,10 @@ class _UserScreenState extends State<UserScreen> {
                 icon: Icon(Icons.arrow_forward_ios),
                 color: Colors.grey,
                 onPressed: () {
-                  setState(() {
-                    ;
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => InformasiProfilescreen()),
+                  );
                 },
               ),
             ],
@@ -155,9 +157,10 @@ class _UserScreenState extends State<UserScreen> {
                 icon: Icon(Icons.arrow_forward_ios),
                 color: Colors.grey,
                 onPressed: () {
-                  setState(() {
-                    ;
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GantiPasswordscreen()),
+                  );
                 },
               ),
             ],
@@ -192,9 +195,11 @@ class _UserScreenState extends State<UserScreen> {
                 icon: Icon(Icons.arrow_forward_ios),
                 color: Colors.grey,
                 onPressed: () {
-                  setState(() {
-                    ;
-                  });
+                  LoginRepo().logoutProcess();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
                 },
               ),
             ],
@@ -275,12 +280,14 @@ class _UserScreenState extends State<UserScreen> {
 
     final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
-      child: Container(
-          transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-          child:IconButton(
-            icon: Icon(Icons.add_a_photo),
-            color: Colors.lightBlueAccent,
-            onPressed: _asyncConfirmDialog,
+      child: Transform(
+      transform: Matrix4.translationValues(0.0, -10.0, 0.0),
+        child: Container(
+            child:IconButton(
+              icon: Icon(Icons.add_a_photo),
+              color: Colors.lightBlueAccent,
+              onPressed: _asyncConfirmDialog,
+          ),
         ),
       ),
     );

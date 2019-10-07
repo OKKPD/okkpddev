@@ -88,6 +88,20 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
     );
   }
 
+
+  var _jenisUsahaController = TextEditingController();
+  var _namaPemohonController = TextEditingController();
+  var _jabatanController = TextEditingController();
+  var _noKtpController = TextEditingController();
+  var _noNpwpController = TextEditingController();
+  var _namaPerusahaanController = TextEditingController();
+  var _alamatPerusahaanController = TextEditingController();
+  var _rtController = TextEditingController();
+  var _rwController = TextEditingController();
+  var _kotaController = TextEditingController();
+  var _noHpController = TextEditingController();
+  var _noTelpController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -130,6 +144,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
             fontFamily: "NeoSansBold"),
       ),
       TextFormField(
+        controller: _jenisUsahaController,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -151,6 +166,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -172,6 +188,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _jabatanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -198,6 +215,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
               Container(
                 width: queryData.size.width/2,
                 child: TextFormField(
+                  controller: _noKtpController,
                   keyboardType: TextInputType.text,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -238,6 +256,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
               Container(
                 width: queryData.size.width/2,
                 child: TextFormField(
+                  controller: _noNpwpController,
                   keyboardType: TextInputType.text,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -273,6 +292,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -294,6 +314,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _alamatPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -332,6 +353,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                             fontFamily: "NeoSansBold"),
                       ),
                       TextFormField(
+                        controller: _rtController,
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
@@ -355,6 +377,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                             fontFamily: "NeoSansBold"),
                       ),
                       TextFormField(
+                        controller: _rwController,
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
@@ -378,6 +401,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                             fontFamily: "NeoSansBold"),
                       ),
                       TextFormField(
+                        controller: _kotaController,
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
@@ -420,6 +444,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                             fontFamily: "NeoSansBold"),
                       ),
                       TextFormField(
+                        controller: _noTelpController,
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
@@ -443,6 +468,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                             fontFamily: "NeoSansBold"),
                       ),
                       TextFormField(
+                        controller: _noHpController,
                         keyboardType: TextInputType.text,
                         autofocus: false,
                         decoration: InputDecoration(
