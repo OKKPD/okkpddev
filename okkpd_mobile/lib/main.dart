@@ -9,6 +9,7 @@ import 'package:okkpd_mobile/pages/psat_screen.dart';
 import 'package:okkpd_mobile/pages/hc_screen.dart';
 import 'package:okkpd_mobile/pages/primaDua_screen.dart';
 import 'package:okkpd_mobile/pages/rumahKemas_screen.dart';
+import 'package:okkpd_mobile/pages/media_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             '/primaDuascreen' : (BuildContext context) => new PrimaduaScreen(),
             '/primaTigascreen' : (BuildContext context) => new PrimatigaScreen(),
             '/rumahKemas' : (BuildContext context) => new Rumahkemas(),
+            '/mediaScreen' : (BuildContext context) => new Mediascreen(),
 
           },
 

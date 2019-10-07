@@ -5,6 +5,12 @@ import 'package:okkpd_mobile/pages/dashboard_screen.dart';
 import 'package:okkpd_mobile/pages/user_screen.dart';
 import 'package:okkpd_mobile/pages/profil_usaha_screen.dart';
 import 'package:okkpd_mobile/pages/status_screen.dart';
+import 'package:okkpd_mobile/pages/primaTiga_screen.dart';
+import 'package:okkpd_mobile/pages/psat_screen.dart';
+import 'package:okkpd_mobile/pages/hc_screen.dart';
+import 'package:okkpd_mobile/pages/primaDua_screen.dart';
+import 'package:okkpd_mobile/pages/rumahKemas_screen.dart';
+import 'package:okkpd_mobile/pages/media_screen.dart';
 
 
 
@@ -20,9 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final widgetOptions = [
     DashboardScreen(),
     StatusScreen(),
-    Text('Media'),
+    Mediascreen(),
     ProfilUsahaScreen(),
-    UserScreen(),
+    UserScreen()
+
   ];
 
   @override
@@ -56,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.track_changes), title: Text('Track')),
+                icon: Icon(Icons.track_changes), title: Text('History')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_media), title: Text('Media')),
             BottomNavigationBarItem(
@@ -79,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if(index == 0){
         appBarTitle = "OKKPD Jateng";
       }else if(index == 1){
-        appBarTitle = "Track";
+        appBarTitle = "History";
       }else if(index == 2){
         appBarTitle = "Media";
       }else if(index == 3){
