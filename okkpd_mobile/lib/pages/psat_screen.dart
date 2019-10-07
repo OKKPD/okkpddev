@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
 
 class Psatscreen extends StatefulWidget {
   @override
@@ -11,6 +8,17 @@ class Psatscreen extends StatefulWidget {
 }
 
 class _Psatscreen extends State<Psatscreen>{
+
+  var _jenisPerusahaanController = TextEditingController();
+  var _namaUsahaController = TextEditingController();
+  var _alamatPerusahaanController = TextEditingController();
+  var _namaPemohonController = TextEditingController();
+  var _nomorKtpPemohonController = TextEditingController();
+  var _nomorHpPemohonController = TextEditingController();
+  var _DaftarProdukController = TextEditingController();
+  var _namaProdukdagangController = TextEditingController();
+  var _namadagangController = TextEditingController();
+  var _jenisKemasanController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +69,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _jenisPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -82,6 +91,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaUsahaController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -103,6 +113,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _alamatPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -124,6 +135,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -150,6 +162,7 @@ class _Psatscreen extends State<Psatscreen>{
               Container(
                 width: 220.0,
                 child: TextFormField(
+                  controller: _nomorKtpPemohonController,
                   keyboardType: TextInputType.text,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -175,6 +188,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _nomorHpPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -213,7 +227,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-
+            controller: _namaProdukdagangController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -236,7 +250,7 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-
+            controller: _namadagangController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -265,6 +279,7 @@ class _Psatscreen extends State<Psatscreen>{
               Container(
                 width: 120.0,
                 child: TextFormField(
+                  controller: _jenisKemasanController,
                   keyboardType: TextInputType.text,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -284,8 +299,6 @@ class _Psatscreen extends State<Psatscreen>{
                         color: Colors.black54,
                         fontFamily: "NeoSansBold"),
                   ),
-
-
                 ],
               )
 
@@ -293,13 +306,6 @@ class _Psatscreen extends State<Psatscreen>{
           ),
         ]
     );
-
-
-
-
-
-
-
 
 
     final spasiforjarak= Column(

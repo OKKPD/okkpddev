@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
 
 class Hcscreen extends StatefulWidget{
   @override
@@ -10,6 +7,12 @@ class Hcscreen extends StatefulWidget{
 }
 
 class _Hcscreen extends State<Hcscreen>{
+  var _jenisPerusahaanController = TextEditingController();
+  var _namaUsahaController = TextEditingController();
+  var _alamatPerusahaanController = TextEditingController();
+  var _namaPemohonController = TextEditingController();
+  var _nomorKtpPemohonController = TextEditingController();
+  var _nomorHpPemohonController = TextEditingController();
 
   @override
 
@@ -60,6 +63,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _jenisPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -81,6 +85,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaUsahaController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -102,6 +107,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _alamatPerusahaanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -123,6 +129,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -144,6 +151,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _nomorKtpPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -165,6 +173,7 @@ class _Hcscreen extends State<Hcscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _nomorHpPemohonController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -173,33 +182,6 @@ class _Hcscreen extends State<Hcscreen>{
           ),
         ]
     );
-
-
-//    final namaProdokjenis = Row(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          "row 1",
-//          textAlign: TextAlign.left,
-//          style: TextStyle(
-//              fontSize: 14,
-//              color: Colors.black54,
-//              fontFamily: "NeoSansBold"),
-//        ),
-//        Text(
-//          " row 2",
-//          textAlign: TextAlign.left,
-//          style: TextStyle(
-//              fontSize: 14,
-//              color: Colors.black54,
-//              fontFamily: "NeoSansBold"),
-//        ),
-//      ],
-//    );
-
-
-
-
 
     final spasiforjarak= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +225,6 @@ class _Hcscreen extends State<Hcscreen>{
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-//            header,
             SizedBox(height: 20.0),
             jenisPerusahaan,
             SizedBox(height: 20.0),
@@ -252,16 +233,11 @@ class _Hcscreen extends State<Hcscreen>{
             alamatPerusahaan,
             SizedBox(height: 20.0),
             namaPemohon,
-
             SizedBox(height: 20.0),
             nomorKtpPemohon,
             SizedBox(height: 20.0),
             nomorHpPemohon,
             SizedBox(height: 20.0),
-            //namaProdokjenis,
-//            SizedBox(height: 20.0),
-//            alamatDetail,
-//            SizedBox(height: 20.0),
             spasiforjarak,
             SizedBox(height: 20.0),
             SaveButton,

@@ -30,9 +30,6 @@ class _UserScreenState extends State<UserScreen> {
   var jabatanController = TextEditingController();
 
   Future _asyncConfirmDialog() async {
-
-    
-    
     return showDialog(
       context: context,
       barrierDismissible: true, // user must tap button for close dialog!
@@ -74,6 +71,8 @@ class _UserScreenState extends State<UserScreen> {
       jabatanController.text = "Pelaku Usaha";
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +281,7 @@ class _UserScreenState extends State<UserScreen> {
     final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
       child: Transform(
-      transform: Matrix4.translationValues(0.0, -30.0, 0.0),
+      transform: Matrix4.translationValues(0.0, -10.0, 0.0),
         child: Container(
             child:IconButton(
               icon: Icon(Icons.add_a_photo),

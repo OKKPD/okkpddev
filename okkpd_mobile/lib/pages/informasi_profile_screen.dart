@@ -8,6 +8,9 @@ class InformasiProfilescreen extends StatefulWidget{
 
 class _InformasiProfilescreen extends State<InformasiProfilescreen>{
 
+  var _namaController = TextEditingController();
+  var _emailController = TextEditingController();
+  var _jabatanController = TextEditingController();
   @override
 
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _namaController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -65,6 +69,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             autofocus: false,
             decoration: InputDecoration(
@@ -86,6 +91,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _jabatanController,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(

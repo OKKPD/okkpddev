@@ -8,6 +8,9 @@ class GantiPasswordscreen extends StatefulWidget{
 
 class _GantiPasswordscreen extends State<GantiPasswordscreen>{
 
+  var _passwordLamaController = TextEditingController();
+  var _passwordBaruController = TextEditingController();
+  var _passwordBaru2Controller = TextEditingController();
   @override
 
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _passwordLamaController,
             obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
@@ -65,6 +69,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _passwordBaruController,
             obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
@@ -86,6 +91,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
+            controller: _passwordBaru2Controller,
             obscureText:true,
             autofocus: false,
             decoration: InputDecoration(
