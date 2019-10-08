@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/repository/login_repo.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -30,15 +32,27 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
 
+    ProgressDialog pr;
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+    
     Future loginProcess() async { 
-      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
-      if(await resultLogin == true){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
+     
+      if(_usernameController.text.isEmpty || _passwordController.text.isEmpty){
+        FunctionDart().setToast("Username atau password masih kosong");
       }else{
+        pr.show();
+        Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
+        if(await resultLogin == true){
+          pr.dismiss();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        }else{
+          pr.dismiss();
+        }
       }
+     
     }
 
     final logo = Hero(
@@ -102,21 +116,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-            logo,
-            SizedBox(height: 48.0),
-            email,
-            SizedBox(height: 8.0),
-            password,
-            SizedBox(height: 8.0),
-            loginButton,
-            forgotLabel,
-            signupLabel
-          ],
+      body: SafeArea(
+        child: Center(
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            children: <Widget>[
+              logo,
+              SizedBox(height: 48.0),
+              email,
+              SizedBox(height: 8.0),
+              password,
+              SizedBox(height: 8.0),
+              loginButton,
+              forgotLabel,
+              signupLabel
+            ],
+          ),
         ),
       ),
     );

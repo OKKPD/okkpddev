@@ -1,21 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/user_repo.dart';
+import 'package:okkpd_mobile/model/user_model.dart';
 import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InformasiProfilescreen extends StatefulWidget{
   @override
   _InformasiProfilescreen createState() => _InformasiProfilescreen();
 }
 
-class _InformasiProfilescreen extends State<InformasiProfilescreen>{
+class _InformasiProfilescreen extends State<InformasiProfilescreen> {
 
   var _namaController = TextEditingController();
   var _emailController = TextEditingController();
   var _jabatanController = TextEditingController();
-  @override
+  String idUser;
+  
+  Future setUser() async {
 
+    UserModel user = await UserRepo().getProfile();
+    if(user != null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      idUser = prefs.getString('loginId');
+      prefs.setString('loginNama',user.namaLengkap);
+      _namaController.text = user.namaLengkap;
+      _emailController.text =  prefs.getString('loginEmail');
+      _jabatanController.text = prefs.getString('loginRole');
+    }
+  }
+
+    
+  @override
+  void initState() {
+    super.initState();
+    setUser();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
+
+    ProgressDialog pr;
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+    
+    Future updateProfile() async { 
+     
+      if(_namaController.text.isEmpty){
+        FunctionDart().setToast("Nama harus diisi");
+      }else{
+        pr.show();
+        UserModel user = new UserModel('', '', '','', '', '', '', '');
+        user.namaLengkap = _namaController.text;
+        Future<bool> resultLogin = UserRepo().updateProfile(user);
+        if(await resultLogin == true){
+          pr.dismiss();
+          setUser();
+        }else{
+          pr.dismiss();
+        }
+      }
+     
+    }
 
     final SaveButton = Padding(
       padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/2.5,bottom: 0.0),
@@ -24,10 +72,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            updateProfile();
           },
           color: Colors.lightBlueAccent,
           child: Text('Simpan', style: TextStyle(color: Colors.white)),
@@ -72,6 +117,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             autofocus: false,
+            readOnly: true,
             decoration: InputDecoration(
               hintText: '',
             ),
@@ -94,6 +140,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen>{
             controller: _jabatanController,
             keyboardType: TextInputType.text,
             autofocus: false,
+            readOnly: true,
             decoration: InputDecoration(
               hintText: '',
             ),

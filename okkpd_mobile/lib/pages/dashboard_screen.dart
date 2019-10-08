@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:okkpd_mobile/constants/key.dart';
+import 'package:okkpd_mobile/model/layanan_model.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -235,17 +237,67 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ],
       ),
     );
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-//            header,
-            SizedBox(height: 10.0),
-            layanan,
-            informasi,
+      body: Container(
+          child: Column(children: <Widget>[
+            
+             Container(
+               color: Color.fromRGBO(239, 239, 239, 100),
+                child: 
+                Column(children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(padding: EdgeInsets.only(left: 16,top:16),child: Text("Layanan", style: new TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),),
+                  ),
+                  GridView.count(
+                  shrinkWrap: true,
+                  physics: new NeverScrollableScrollPhysics(),
+                  crossAxisSpacing: 4,
+                  mainAxisSpacing: 4,
+                  padding: EdgeInsets.only(left: 12,top: 16,right: 12,bottom: 12),
+                  crossAxisCount: 3,
+                  children: List.generate(Keys.layanan.length, (index){
+                    return Center(child: LayananCard( layanan : Keys.layanan[index]),);
+                  }),
+                ),
+                ],)
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(padding: EdgeInsets.only(left: 16,top:16),child: Text("Berita Terbaru", style: new TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),),
+              ), 
+
           ],
         ),
-      ),
+      )
+    );
+  }
+}
+
+class LayananCard extends StatelessWidget {
+  const LayananCard({Key key, this.layanan}) : super(key: key);
+  final LayananModel layanan;
+
+  @override
+  Widget build(BuildContext context) {
+    // final TextStyle textStyle = Theme.of(context).textTheme.display1;
+        return Card(
+          color: Colors.white,
+          child: 
+          new InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(layanan.route);
+            },
+            child: Center(child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(child: Text(layanan.nama_layanan, textAlign: TextAlign.center,),)
+              ]
+            ),
+          )
+      )
     );
   }
 }

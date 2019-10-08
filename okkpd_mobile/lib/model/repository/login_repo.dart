@@ -9,9 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRepo {
   Future<bool> loginProcess(String username, String password) async { 
-    if(username.isEmpty || password.isEmpty){
-        FunctionDart().setToast("Username atau password masih kosong");
-    }else{
+   
       var url = '${Keys.APIURL}login';
       var response = await http.post(url, body: {'username': username, 'password': password, "role":"pelaku"});
       var message = "Login Sukses";
@@ -26,9 +24,11 @@ class LoginRepo {
         await prefs.setString('loginFolder', user.folder);
         await prefs.setString('loginId', user.idUser);
         await prefs.setString('loginidUsaha', user.idIdentitasUsaha);
+        await prefs.setString('loginNama', user.namaLengkap);
+        await prefs.setString('loginEmail', user.username);
+        await prefs.setString('loginRole', user.kodeRole);
         return Future.value(true);
       }
-    }
   }
 
   void logoutProcess() async {
@@ -36,5 +36,8 @@ class LoginRepo {
     await prefs.remove('loginFolder');
     await prefs.remove('loginId');
     await prefs.remove('loginidUsaha');
+    await prefs.remove('loginNama');
+    await prefs.remove('loginEmail');
+    await prefs.remove('loginRole');
   }
 }

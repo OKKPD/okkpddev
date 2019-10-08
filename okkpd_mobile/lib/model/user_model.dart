@@ -1,12 +1,12 @@
 class UserModel{
-  final String username;
-  final String namaLengkap;
-  final String alamatLengkap;
-  final String kodeKota;
-  final String kodeRole;
-  final String idUser;
-  final String idIdentitasUsaha;
-  final String folder;
+  String username;
+  String namaLengkap;
+  String alamatLengkap;
+  String kodeKota;
+  String kodeRole;
+  String idUser;
+  String idIdentitasUsaha;
+  String folder;
 
   UserModel(this.username,this.namaLengkap,this.alamatLengkap,this.kodeKota,
             this.kodeRole,this.idUser,this.idIdentitasUsaha,this.folder);

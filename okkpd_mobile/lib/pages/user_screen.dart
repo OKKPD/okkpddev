@@ -9,6 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class UserScreen extends StatefulWidget {
   @override
   _UserScreenState createState() => _UserScreenState();
@@ -25,6 +27,7 @@ class _UserScreenState extends State<UserScreen> {
     });
   }
 
+  String namaLengkap = '';
   var namaLengkapController = TextEditingController();
   var emailController = TextEditingController();
   var jabatanController = TextEditingController();
@@ -64,12 +67,11 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   void getProfile() async {
-    var user = await UserRepo().getProfile();
-    if(user != null){
-      namaLengkapController.text = user.namaLengkap;
-      emailController.text = user.username;
-      jabatanController.text = "Pelaku Usaha";
-    }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      namaLengkap = prefs.getString('loginNama');  
+    });
+    
   }
 
 
@@ -82,7 +84,7 @@ class _UserScreenState extends State<UserScreen> {
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.white,
         radius: 55.0,
         child:ClipOval(
           child:
@@ -281,7 +283,7 @@ class _UserScreenState extends State<UserScreen> {
     final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
       child: Transform(
-      transform: Matrix4.translationValues(0.0, -10.0, 0.0),
+      transform: Matrix4.translationValues(0.0, -40.0, 0.0),
         child: Container(
             child:IconButton(
               icon: Icon(Icons.add_a_photo),
@@ -334,9 +336,14 @@ class _UserScreenState extends State<UserScreen> {
       body: Center(
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 48.0),
-            logo,
-            profilButton,
+            Container(color: Color.fromRGBO(225, 225, 225, 100),padding: EdgeInsets.only(top:36,bottom: 36),
+              child: Column(children: <Widget>[
+                logo,
+                profilButton,
+                Text('$namaLengkap'),
+              ],),
+            ),
+            
             informasi,
             ubahPassword,
             logout,
