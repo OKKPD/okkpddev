@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
-
-class Rumahkemas extends StatefulWidget{
+class Hcscreen extends StatefulWidget{
   @override
-
-  _Rumahkemas createState() => _Rumahkemas();
+  _Hcscreen createState() => _Hcscreen();
 }
 
-class _Rumahkemas extends State<Rumahkemas>{
-
+class _Hcscreen extends State<Hcscreen>{
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
+
+  var _namaProdukController = TextEditingController();
+  var _jenisProdukController = TextEditingController();
+  var _nomorHIS = TextEditingController();
+  var _namaTerlampirController = TextEditingController();
+  var _alamatKantorController = TextEditingController();
+  var _alamatGudangController = TextEditingController();
+  var _conegCodeController = TextEditingController();
+  var _jumlahLatController = TextEditingController();
+  var _beratController = TextEditingController();
+  var _jumlahKemasanController = TextEditingController();
+  var _jenisKemasanController = TextEditingController();
+  var _beratKotorControler = TextEditingController();
+  var _beratBersihController = TextEditingController();
+  var _perubahanBrktController = TextEditingController();
+  var _identitasTrsController = TextEditingController();
+  var _pelabuhanController = TextEditingController();
+  var _negaraController = TextEditingController();
+  var _negaraTransitController = TextEditingController();
+  var _pelabuhantransit = TextEditingController();
+  var _identitasTranspot = TextEditingController();
+
 
   @override
 
@@ -41,7 +60,7 @@ class _Rumahkemas extends State<Rumahkemas>{
         children: <Widget>[
 
           Text(
-            "PENDAFTARAN RUMAH KEMAS",
+            "PENDAFTARAN HC",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
@@ -222,7 +241,7 @@ class _Rumahkemas extends State<Rumahkemas>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran RUMAH KEMAS",style: TextStyle(color: Colors.white)),
+        title: Text("Pendaftaran HC",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
-class Psatscreen extends StatefulWidget {
+class PrimaduaScreen extends StatefulWidget{
   @override
-  _Psatscreen createState() => _Psatscreen();
-
+  _PrimaduaScreen createState() =>  _PrimaduaScreen();
 }
 
-class _Psatscreen extends State<Psatscreen>{
+class _PrimaduaScreen extends State<PrimaduaScreen>{
 
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
@@ -15,13 +14,14 @@ class _Psatscreen extends State<Psatscreen>{
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
-  var _DaftarProdukController = TextEditingController();
-  var _namaProdukdagangController = TextEditingController();
-  var _namadagangController = TextEditingController();
-  var _jenisKemasanController = TextEditingController();
+  var _namaKomuditas = TextEditingController();
+  var _luasLahan = TextEditingController();
 
   @override
+
   Widget build(BuildContext context) {
+    // TODO: implement build
+
 
     final header = Container(
       padding: EdgeInsets.all(12),
@@ -39,20 +39,14 @@ class _Psatscreen extends State<Psatscreen>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: <Widget>[
-          Text(
 
-            "PENDAFTARAN PSAT",
-            textAlign: TextAlign.left,
+          Text(
+            "PENDAFTARAN PRIMA 2",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
-          ),
-
-
-
-
-
+          )
         ],
       ),
     );
@@ -156,22 +150,13 @@ class _Psatscreen extends State<Psatscreen>{
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  controller: _nomorKtpPemohonController,
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-
-            ],
+          TextFormField(
+            controller: _nomorKtpPemohonController,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
           ),
         ]
     );
@@ -198,15 +183,14 @@ class _Psatscreen extends State<Psatscreen>{
         ]
     );
 
-
-    final DaftarProduk= Column(
+    final daftarKomuditas= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Daftar Produk PSAT",
+            "Identitas Komuditas dan Lahan",
             textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
@@ -214,35 +198,11 @@ class _Psatscreen extends State<Psatscreen>{
         ]
     );
 
-
-    final namaProdukdagang= Column(
+    final namaKomuditas= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Nama Produk",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaProdukdagangController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-    final namadagang= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Dagang",
+            "Nama Komuditas",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
@@ -250,63 +210,38 @@ class _Psatscreen extends State<Psatscreen>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-            controller: _namadagangController,
+            controller: _namaKomuditas,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
               hintText: '',
             ),
           ),
-
         ]
     );
 
 
-    final jenisKemasan= Column(
+    final luasLahan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Jenis Kemasan",
+            "Luas Lahan",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 120.0,
-                child: TextFormField(
-                  controller: _jenisKemasanController,
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-
-            Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Netto",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                        fontFamily: "NeoSansBold"),
-                  ),
-                ],
-              )
-
-            ],
+          TextFormField(
+            controller: _luasLahan,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
           ),
         ]
     );
-
 
     final spasiforjarak= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,8 +258,6 @@ class _Psatscreen extends State<Psatscreen>{
         ]
     );
 
-
-
     final SaveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
@@ -338,7 +271,7 @@ class _Psatscreen extends State<Psatscreen>{
             );
           },
           color: Colors.lightBlueAccent,
-          child: Text('Simpan ', style: TextStyle(color: Colors.white)),
+          child: Text('Simpan', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
@@ -346,13 +279,12 @@ class _Psatscreen extends State<Psatscreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran PSAT",style: TextStyle(color: Colors.white)),
+        title: Text("Pendaftaran PRIMA 2",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-//            header,
             SizedBox(height: 20.0),
             jenisPerusahaan,
             SizedBox(height: 20.0),
@@ -367,15 +299,15 @@ class _Psatscreen extends State<Psatscreen>{
             nomorHpPemohon,
 
             SizedBox(height: 20.0),
-            DaftarProduk,
+            daftarKomuditas,
             SizedBox(height: 20.0),
-           namaProdukdagang,
+            namaKomuditas,
             SizedBox(height: 20.0),
-            namadagang,
-           SizedBox(height: 20.0),
-            jenisKemasan,
-            SizedBox(height: 40.0),
+            luasLahan,
+
+            SizedBox(height: 20.0),
             spasiforjarak,
+            SizedBox(height: 20.0),
             SaveButton,
             SizedBox(height: 48.0),
           ],

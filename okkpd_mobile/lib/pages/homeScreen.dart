@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:okkpd_mobile/pages/dashboard_screen.dart';
-import 'package:okkpd_mobile/pages/user_screen.dart';
-import 'package:okkpd_mobile/pages/profil_usaha_screen.dart';
-import 'package:okkpd_mobile/pages/status_screen.dart';
-import 'package:okkpd_mobile/pages/primaTiga_screen.dart';
-import 'package:okkpd_mobile/pages/psat_screen.dart';
-import 'package:okkpd_mobile/pages/hc_screen.dart';
-import 'package:okkpd_mobile/pages/primaDua_screen.dart';
-import 'package:okkpd_mobile/pages/rumahKemas_screen.dart';
-import 'package:okkpd_mobile/pages/media_screen.dart';
+import 'package:okkpd_mobile/pages/dashboardScreen.dart';
+import 'package:okkpd_mobile/pages/userScreen.dart';
+import 'package:okkpd_mobile/pages/profilUsahaScreen.dart';
+import 'package:okkpd_mobile/pages/statusScreen.dart';
+import 'package:okkpd_mobile/pages/primaTigaScreen.dart';
+import 'package:okkpd_mobile/pages/psatScreen.dart';
+import 'package:okkpd_mobile/pages/hcScreen.dart';
+import 'package:okkpd_mobile/pages/primaDuaScreen.dart';
+import 'package:okkpd_mobile/pages/rumahKemasScreen.dart';
+import 'package:okkpd_mobile/pages/mediaScreen.dart';
 
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class GantiPasswordscreen extends StatefulWidget{
   @override

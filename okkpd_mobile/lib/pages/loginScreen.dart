@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/repository/login_repo.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -31,14 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
 
     Future loginProcess() async { 
-      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
-      if(await resultLogin == true){
-        Navigator.push(
+//      Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
+//      if(await resultLogin == true){
+       Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
-      }else{
-      }
+//      }else{
+//      }
     }
 
     final logo = Hero(
