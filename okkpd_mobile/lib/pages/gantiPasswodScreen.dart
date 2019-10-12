@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class GantiPasswordscreen extends StatefulWidget{
   @override
@@ -17,6 +19,28 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
+    ProgressDialog pr;
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+
+    Future UpdateProfile() async {
+
+      if(_passwordBaruController.text.isEmpty || _passwordBaru2Controller.text.isEmpty){
+        FunctionDart().setToast("Password harus diisi");
+      }else{
+        pr.show();
+        Future<bool> resultLogin = UserRepo().updatePassword(_passwordBaruController.text,_passwordBaru2Controller.text);
+        if(await resultLogin == true){
+          pr.dismiss();
+          _passwordBaruController.clear();
+          _passwordBaru2Controller.clear();
+        }else{
+          pr.dismiss();
+        }
+      }
+
+    }
+
+
     final SaveButton = Padding(
       padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/2.5,bottom: 0.0),
       child: Material(
@@ -24,10 +48,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            UpdateProfile();
           },
           color: Colors.lightBlueAccent,
           child: Text('Simpan', style: TextStyle(color: Colors.white)),
@@ -110,11 +131,11 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
       ),
       body: Center(
         child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          padding: EdgeInsets.only(left: 16.0, right: 16.0),
           children: <Widget>[
 //            header,
             SizedBox(height: 20.0),
-            passwordLama,
+            // passwordLama,
             SizedBox(height: 20.0),
             passwordBaru,
             SizedBox(height: 20.0),

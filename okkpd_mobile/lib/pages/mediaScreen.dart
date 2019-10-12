@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/repository/login_repo.dart';
+import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +29,7 @@ class _Mediascreen extends State<Mediascreen>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Media",
+            "MEDIA",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
@@ -49,11 +49,11 @@ class _Mediascreen extends State<Mediascreen>{
     final track = FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot res){
           var data= [
-            {'Media': 'Scan KTP','Status':'Lihat'},
-            {'Media': 'Scan KK','Status':'Lihat'},
-            {'Media': 'Scan Ijazah','Status':'Lihat'},
-            {'Media': 'Scan Transkip','Status':'Lihat'},
-            {'Media': 'Scan Surat lamaran','Status':'Lihat'},
+            {'Media': 'Scan KTP','Folder':'Lihat'},
+            {'Media': 'Scan Surat Lampiran','Folder':'Lihat'},
+            {'Media': 'Scan Ijazah','Folder':'Lihat'},
+            {'Media': 'Scan Transkip NIlai','Folder':'Lihat'},
+            {'Media': 'Scan SIUP','Folder':'Lihat'},
 
           ];
 
@@ -93,23 +93,14 @@ class _Mediascreen extends State<Mediascreen>{
                             alignment: Alignment.center,
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
                             decoration: new BoxDecoration(
-                              color: (datas['Status'].toString() == 'Ditolak')?Colors.redAccent:Colors.green,
+                              color: (datas['Status'].toString() == 'Lihat')?Colors.redAccent:Colors.green,
                               borderRadius: new BorderRadius.circular(15.0),
                               border: new Border.all(
                                 width: 5.0,
                                 color: Colors.transparent,
                               ),
                             ),
-                            child:
-                            Text(
-                              datas['Status'].toString(),
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color:Colors.white,
-                                fontFamily: "NeoSansBold",
-                              ),
-                            ),
+
                           ),
                         ],
                       ),
@@ -130,7 +121,7 @@ class _Mediascreen extends State<Mediascreen>{
                             width: queryData.size.width/3,
                             child:
                             Text(
-                              "Keteranganya disini",
+                              "Folder disini",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 14,
@@ -156,7 +147,7 @@ class _Mediascreen extends State<Mediascreen>{
 
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.green,
       body: Center(
         child: ListView(
           children: <Widget>[
