@@ -23,8 +23,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
     
-    Future UpdateProfile() async { 
-     
+    Future UpdateProfile() async {
       if(_passwordBaruController.text.isEmpty || _passwordBaru2Controller.text.isEmpty){
         FunctionDart().setToast("Password harus diisi");
       }else{
