@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/repository/user_repo.dart';
-import 'package:okkpd_mobile/model/user_model.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';

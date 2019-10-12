@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
-import 'package:okkpd_mobile/model/response_model.dart';
-import 'package:okkpd_mobile/model/user_model.dart';
+import 'package:okkpd_mobile/model/responseModel.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

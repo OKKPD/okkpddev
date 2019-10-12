@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
-class Hcscreen extends StatefulWidget{
+class PrimaduaScreen extends StatefulWidget{
   @override
-  _Hcscreen createState() => _Hcscreen();
+  _PrimaduaScreen createState() =>  _PrimaduaScreen();
 }
 
-class _Hcscreen extends State<Hcscreen>{
+class _PrimaduaScreen extends State<PrimaduaScreen>{
+
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
@@ -38,15 +39,12 @@ class _Hcscreen extends State<Hcscreen>{
         children: <Widget>[
 
           Text(
-            "PENDAFTARAN HC",
+            "PENDAFTARAN PRIMA 2",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           )
-
-
-
         ],
       ),
     );
@@ -219,7 +217,7 @@ class _Hcscreen extends State<Hcscreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran HC",style: TextStyle(color: Colors.white)),
+        title: Text("Pendaftaran PRIMA 2",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(

@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart'as theme;
-import 'package:okkpd_mobile/pages/home_screen.dart';
-import 'package:okkpd_mobile/pages/login_screen.dart';
-import 'package:okkpd_mobile/pages/primaTiga_screen.dart';
-import 'package:okkpd_mobile/pages/psat_screen.dart';
-import 'package:okkpd_mobile/pages/hc_screen.dart';
-import 'package:okkpd_mobile/pages/primaDua_screen.dart';
-import 'package:okkpd_mobile/pages/rumahKemas_screen.dart';
-import 'package:okkpd_mobile/pages/media_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:okkpd_mobile/pages/loginScreen.dart';
+import 'package:okkpd_mobile/pages/primaTigaScreen.dart';
+import 'package:okkpd_mobile/pages/psatScreen.dart';
+import 'package:okkpd_mobile/pages/hcScreen.dart';
+import 'package:okkpd_mobile/pages/primaDuaScreen.dart';
+import 'package:okkpd_mobile/pages/rumahKemasScreen.dart';
+import 'package:okkpd_mobile/pages/mediaScreen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

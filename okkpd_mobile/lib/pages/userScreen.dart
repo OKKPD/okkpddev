@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/repository/login_repo.dart';
-import 'package:okkpd_mobile/model/repository/user_repo.dart';
-import 'package:okkpd_mobile/pages/login_screen.dart';
-import 'package:okkpd_mobile/pages/informasi_profile_screen.dart';
-import 'package:okkpd_mobile/pages/ganti_passwod_screen.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/model/repository/loginRepo.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/pages/loginScreen.dart';
+import 'package:okkpd_mobile/pages/informasiProfileScreen.dart';
+import 'package:okkpd_mobile/pages/gantiPasswodScreen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';

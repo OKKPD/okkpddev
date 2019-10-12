@@ -1,14 +1,14 @@
 
-import 'package:okkpd_mobile/model/layanan_model.dart';
+import 'package:okkpd_mobile/model/masterLayananModel.dart';
 
 class Keys {
   static const String APIURL = "http://yogaadi.xyz/okkpd_api/public/api/v1/";
   
-  static const List<LayananModel> layanan = const <LayananModel>[
-    const LayananModel("hc", "Health Certificate","/hcsreen"),
-    const LayananModel("kemas", "Rumah Kemas","/rumahKemas"),
-    const LayananModel("prima_2", "Prima 2","/primaDuascreen"),
-    const LayananModel("prima_3", "Prima 3","/primaTigascreen"),
-    const LayananModel("psat", "PSAT","/psatscreen"),
+  static const List<MasterLayananModel> layanan = const <MasterLayananModel>[
+    const MasterLayananModel("hc", "Health Certificate","/hcscreen"),
+    const MasterLayananModel("kemas", "Rumah Kemas","/rumahKemas"),
+    const MasterLayananModel("prima_2", "Prima 2","/primaDuascreen"),
+    const MasterLayananModel("prima_3", "Prima 3","/primaTigascreen"),
+    const MasterLayananModel("psat", "PSAT","/psatscreen"),
   ];
 }

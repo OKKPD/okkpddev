@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/home_screen.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
-
-class PrimatigaScreen extends StatefulWidget{
+class Hcscreen extends StatefulWidget{
   @override
-
-  _PrimatigaScreen createState() => _PrimatigaScreen();
-
+  _Hcscreen createState() => _Hcscreen();
 }
 
-class _PrimatigaScreen extends State<PrimatigaScreen>{
-
-
+class _Hcscreen extends State<Hcscreen>{
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
+
   @override
+
   Widget build(BuildContext context) {
     // TODO: implement build
 
@@ -41,12 +38,15 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
         children: <Widget>[
 
           Text(
-            "PENDAFTARAN PRIMA 3",
+            "PENDAFTARAN HC",
             style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontFamily: "NeoSansBold"),
           )
+
+
+
         ],
       ),
     );
@@ -219,13 +219,12 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran PRIMA 3",style: TextStyle(color: Colors.white)),
+        title: Text("Pendaftaran HC",style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-//            header,
             SizedBox(height: 20.0),
             jenisPerusahaan,
             SizedBox(height: 20.0),
@@ -248,6 +247,4 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
       ),
     );
   }
-
-
 }
