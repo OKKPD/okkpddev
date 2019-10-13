@@ -16,6 +16,8 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
+  var _namaKomuditas = TextEditingController();
+  var _luasLahan = TextEditingController();
 
 
   void simpanKomoditas() async{
@@ -195,6 +197,66 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
         ]
     );
 
+    final daftarKomuditas= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Identitas Komuditas dan Lahan",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+
+        ]
+    );
+
+    final namaKomuditas= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Nama Komuditas",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            controller: _namaKomuditas,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+        ]
+    );
+
+
+    final luasLahan= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Luas Lahan",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            controller: _luasLahan,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+        ]
+    );
+
     final spasiforjarak= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -246,6 +308,14 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
             nomorKtpPemohon,
             SizedBox(height: 20.0),
             nomorHpPemohon,
+
+            SizedBox(height: 20.0),
+            daftarKomuditas,
+            SizedBox(height: 20.0),
+            namaKomuditas,
+            SizedBox(height: 20.0),
+            luasLahan,
+
             SizedBox(height: 20.0),
             spasiforjarak,
             SizedBox(height: 20.0),

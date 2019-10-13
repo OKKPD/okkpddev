@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -22,9 +21,9 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
 
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
-    
-    Future UpdateProfile() async { 
-     
+
+    Future UpdateProfile() async {
+
       if(_passwordBaruController.text.isEmpty || _passwordBaru2Controller.text.isEmpty){
         FunctionDart().setToast("Password harus diisi");
       }else{
@@ -38,7 +37,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
           pr.dismiss();
         }
       }
-     
+
     }
 
 
@@ -136,7 +135,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
           children: <Widget>[
 //            header,
             SizedBox(height: 20.0),
-           // passwordLama,
+            // passwordLama,
             SizedBox(height: 20.0),
             passwordBaru,
             SizedBox(height: 20.0),

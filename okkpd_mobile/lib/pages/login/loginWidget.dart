@@ -3,20 +3,24 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+
+
 
 class LoginWidget extends StatefulWidget {
   var _usernameController = TextEditingController();
   var _passwordController = TextEditingController();
-
-
   @override
   LoginWidgetState createState() => LoginWidgetState();
 }
 
+
+
+
 class LoginWidgetState extends State<LoginWidget>{
   var _usernameController = TextEditingController();
   var _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {//ProgressDialog pr;
     ProgressDialog pr;

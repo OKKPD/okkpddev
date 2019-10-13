@@ -14,6 +14,28 @@ class _Hcscreen extends State<Hcscreen>{
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
 
+  var _namaProdukController = TextEditingController();
+  var _jenisProdukController = TextEditingController();
+  var _nomorHIS = TextEditingController();
+  var _namaTerlampirController = TextEditingController();
+  var _alamatKantorController = TextEditingController();
+  var _alamatGudangController = TextEditingController();
+  var _conegCodeController = TextEditingController();
+  var _jumlahLatController = TextEditingController();
+  var _beratController = TextEditingController();
+  var _jumlahKemasanController = TextEditingController();
+  var _jenisKemasanController = TextEditingController();
+  var _beratKotorControler = TextEditingController();
+  var _beratBersihController = TextEditingController();
+  var _perubahanBrktController = TextEditingController();
+  var _identitasTrsController = TextEditingController();
+  var _pelabuhanController = TextEditingController();
+  var _negaraController = TextEditingController();
+  var _negaraTransitController = TextEditingController();
+  var _pelabuhantransit = TextEditingController();
+  var _identitasTranspot = TextEditingController();
+
+
   @override
 
   Widget build(BuildContext context) {
