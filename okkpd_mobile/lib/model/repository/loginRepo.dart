@@ -21,6 +21,7 @@ class LoginRepo {
       }else{
         SharedPreferences prefs = await SharedPreferences.getInstance();
         var user = UserModel.fromJson(resp.data);
+        print(user.jenisUsaha);
         await prefs.setString('loginFolder', user.folder);
         await prefs.setString('loginId', user.idUser);
         await prefs.setString('loginidUsaha', user.idIdentitasUsaha);

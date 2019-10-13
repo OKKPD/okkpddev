@@ -53,7 +53,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
         FunctionDart().setToast("Nama harus diisi");
       }else{
         pr.show();
-        UserModel user = new UserModel('', '', '','', '', '', '', '');
+        UserModel user = new UserModel('', '', '','', '', '', '', '','','','','');
         user.namaLengkap = _namaController.text;
         Future<bool> resultLogin = UserRepo().updateProfile(user);
         if(await resultLogin == true){

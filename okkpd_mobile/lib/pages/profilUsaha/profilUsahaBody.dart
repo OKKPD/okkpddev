@@ -3,12 +3,42 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilUsahaBody extends StatefulWidget{
   @override
   _ProfilUsahaBody createState() => _ProfilUsahaBody();
   
+}
+
+var _jenisUsahaController = TextEditingController();
+var _namaPemohonController = TextEditingController();
+var _jabatanController = TextEditingController();
+var _noKtpController = TextEditingController();
+var _noNpwpController = TextEditingController();
+var _namaPerusahaanController = TextEditingController();
+var _alamatPerusahaanController = TextEditingController();
+var _rtController = TextEditingController();
+var _rwController = TextEditingController();
+var _kotaController = TextEditingController();
+var _noHpController = TextEditingController();
+var _noTelpController = TextEditingController();
+
+Future setUser() async {
+  UserModel user = await UserRepo().getProfile();
+  if(user != null){
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('loginNama',user.namaLengkap);
+    _namaPemohonController.text = user.namaLengkap;
+    _namaPerusahaanController.text = user.namaUsaha;
+    _jenisUsahaController.text = user.jenisUsaha;
+    _noHpController.text = user.noHp;
+    _noKtpController.text = user.noKtp;
+    _alamatPerusahaanController.text = user.alamatLengkap;
+  }
 }
 
 class _ProfilUsahaBody extends State<ProfilUsahaBody>{
@@ -90,21 +120,13 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    setUser();
+  }
 
-  var _jenisUsahaController = TextEditingController();
-  var _namaPemohonController = TextEditingController();
-  var _jabatanController = TextEditingController();
-  var _noKtpController = TextEditingController();
-  var _noNpwpController = TextEditingController();
-  var _namaPerusahaanController = TextEditingController();
-  var _alamatPerusahaanController = TextEditingController();
-  var _rtController = TextEditingController();
-  var _rwController = TextEditingController();
-  var _kotaController = TextEditingController();
-  var _noHpController = TextEditingController();
-  var _noTelpController = TextEditingController();
 
-  
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;

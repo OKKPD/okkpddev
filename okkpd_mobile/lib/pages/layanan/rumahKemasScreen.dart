@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/komoditasModel.dart';
+import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class Rumahkemas extends StatefulWidget{
@@ -9,53 +15,60 @@ class Rumahkemas extends StatefulWidget{
 }
 
 class _Rumahkemas extends State<Rumahkemas>{
-
+  ProgressDialog pr = null;
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
-  var _namaKomuditas = TextEditingController();
+  var _namaKomoditas = TextEditingController();
   var _luasLahan = TextEditingController();
+  
+  Future setUser() async {
+    UserModel user = await UserRepo().getProfile();
+    print(user);
+    if(user != null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('loginNama',user.namaLengkap);
+      _namaPemohonController.text = user.namaLengkap;
+      _jenisPerusahaanController.text = user.jenisUsaha;
+      _namaUsahaController.text = user.namaUsaha;
+      _nomorHpPemohonController.text = user.noHp;
+      _nomorKtpPemohonController.text = user.noKtp;
+      _alamatPerusahaanController.text = user.alamatLengkap;
+    }
+  }
 
+  void simpanKomoditas() async{
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+
+    KomoditasModel komoditas = new KomoditasModel(null, null,
+        "I", "002", "02",
+        _luasLahan.text, _namaKomoditas.text, "Oryza Sativa");
+
+    try {
+      pr.show();
+      await KomoditasRepo().postKomoditas(komoditas, "kemas");
+    }catch(e){
+      print("Error Insert");
+    }finally{
+      _luasLahan.text = "";
+      _namaKomoditas.text = "";
+      pr.dismiss();
+    }
+  }
 
   @override
+  void initState() {
+    super.initState();
+    setUser();
+  }
 
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
-
-    final header = Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xdfe6e9),
-            Color(0xdfe6e9)
-          ],
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-        children: <Widget>[
-
-          Text(
-            "PENDAFTARAN RUMAH KEMAS",
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          )
-
-
-
-        ],
-      ),
-    );
+    
 
     final jenisPerusahaan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,11 +204,11 @@ class _Rumahkemas extends State<Rumahkemas>{
 
 
 
-    final daftarKomuditas= Column(
+    final daftarKomoditas= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Identitas Komuditas dan Lahan",
+            "Identitas Komoditas dan Lahan",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 20,
@@ -206,11 +219,11 @@ class _Rumahkemas extends State<Rumahkemas>{
         ]
     );
 
-    final namaKomuditas= Column(
+    final namaKomoditas= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
-            "Nama Komuditas",
+            "Nama Komoditas",
             textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 14,
@@ -218,7 +231,7 @@ class _Rumahkemas extends State<Rumahkemas>{
                 fontFamily: "NeoSansBold"),
           ),
           TextFormField(
-            controller: _namaKomuditas,
+            controller: _namaKomoditas,
             keyboardType: TextInputType.text,
             autofocus: false,
             decoration: InputDecoration(
@@ -307,9 +320,9 @@ class _Rumahkemas extends State<Rumahkemas>{
             nomorHpPemohon,
 
             SizedBox(height: 20.0),
-            daftarKomuditas,
+            daftarKomoditas,
             SizedBox(height: 20.0),
-            namaKomuditas,
+            namaKomoditas,
             SizedBox(height: 20.0),
             luasLahan,
             SizedBox(height: 20.0),
