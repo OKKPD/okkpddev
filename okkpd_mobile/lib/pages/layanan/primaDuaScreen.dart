@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/komoditasModel.dart';
+import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class PrimaduaScreen extends StatefulWidget{
@@ -14,6 +16,18 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
+
+
+  void simpanKomoditas() async{
+    KomoditasModel komoditas = new KomoditasModel(null, null,
+        "I", "002", "02",
+        "400", "Padi", "Oryza Sativa");
+    KomoditasRepo().postKomoditas(komoditas, "prima_2");
+//            Navigator.push(
+//              context,
+//              MaterialPageRoute(builder: (context) => HomeScreen()),
+//            );
+  }
 
   @override
 
@@ -203,10 +217,7 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            simpanKomoditas();
           },
           color: Colors.lightBlueAccent,
           child: Text('Simpan', style: TextStyle(color: Colors.white)),
