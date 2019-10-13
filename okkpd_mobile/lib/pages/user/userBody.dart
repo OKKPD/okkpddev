@@ -1,22 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/repository/loginRepo.dart';
-import 'package:okkpd_mobile/model/repository/userRepo.dart';
-import 'package:okkpd_mobile/pages/loginScreen.dart';
-import 'package:okkpd_mobile/pages/informasiProfileScreen.dart';
-import 'package:okkpd_mobile/pages/gantiPasswodScreen.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:okkpd_mobile/model/repository/loginRepo.dart';
+import 'package:okkpd_mobile/pages/user/gantiPasswodScreen.dart';
+import 'package:okkpd_mobile/pages/user/informasiProfileScreen.dart';
+import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class UserScreen extends StatefulWidget {
+class UserBody extends StatefulWidget {
   @override
-  _UserScreenState createState() => _UserScreenState();
+  _UserBodyState createState() => _UserBodyState();
 }
 
-class _UserScreenState extends State<UserScreen> {
+class _UserBodyState extends State<UserBody> {
   File _image;
 
   Future getImage(ImageSource source) async {
@@ -73,7 +70,6 @@ class _UserScreenState extends State<UserScreen> {
     });
     
   }
-
 
 
   @override
@@ -213,73 +209,6 @@ class _UserScreenState extends State<UserScreen> {
       ],
     );
 
-    final nama= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Lengkap",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            controller: namaLengkapController,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-    final email= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Email",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            autofocus: false,
-            controller: emailController,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-    final jabatan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Jabatan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            controller: jabatanController,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-
     final profilButton =Padding(
       padding: EdgeInsets.only(left: 90.0, right: 20.0),
       child: Transform(
@@ -293,47 +222,7 @@ class _UserScreenState extends State<UserScreen> {
         ),
       ),
     );
-
-    final SaveButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Update Profile', style: TextStyle(color: Colors.white)),
-        ),
-      ),
-    );
-
-    final LogoutButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            LoginRepo().logoutProcess();
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          },
-          color: Colors.redAccent,
-          child: Text('Logout', style: TextStyle(color: Colors.white)),
-        ),
-      ),
-    );
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    return Center(
         child: ListView(
           children: <Widget>[
             Container(color: Color.fromRGBO(225, 225, 225, 100),padding: EdgeInsets.only(top:36,bottom: 36),
@@ -347,18 +236,9 @@ class _UserScreenState extends State<UserScreen> {
             informasi,
             ubahPassword,
             logout,
-//            SizedBox(height: 48.0),
-//            nama,
-//            SizedBox(height: 8.0),
-//            email,
-//            SizedBox(height: 8.0),
-//            jabatan,
-//            SizedBox(height: 48.0),
-//            SaveButton,
-//            LogoutButton,
           ],
         ),
-      ),
-    );
+      );
   }
+
 }

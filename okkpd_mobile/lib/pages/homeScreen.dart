@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:okkpd_mobile/pages/dashboardScreen.dart';
-import 'package:okkpd_mobile/pages/userScreen.dart';
-import 'package:okkpd_mobile/pages/profilUsahaScreen.dart';
-import 'package:okkpd_mobile/pages/statusScreen.dart';
-import 'package:okkpd_mobile/pages/primaTigaScreen.dart';
-import 'package:okkpd_mobile/pages/psatScreen.dart';
-import 'package:okkpd_mobile/pages/hcScreen.dart';
-import 'package:okkpd_mobile/pages/primaDuaScreen.dart';
-import 'package:okkpd_mobile/pages/rumahKemasScreen.dart';
-import 'package:okkpd_mobile/pages/mediaScreen.dart';
+import 'package:okkpd_mobile/pages/dashboard/dashboardScreen.dart';
+import 'package:okkpd_mobile/pages/user/userScreen.dart';
+import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
+import 'package:okkpd_mobile/pages/status/statusScreen.dart';
+import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 
 
 

@@ -1,15 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
 import 'dart:io';
 
-class ProfilUsahaScreen extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
+
+class ProfilUsahaBody extends StatefulWidget{
   @override
-  _ProfilUsahaScreenState createState() => _ProfilUsahaScreenState();
+  _ProfilUsahaBody createState() => _ProfilUsahaBody();
+  
 }
 
-class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
+class _ProfilUsahaBody extends State<ProfilUsahaBody>{
   File _imageKTP;
   File _imageNPWP;
   File _imageKopSurat;
@@ -102,35 +104,11 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
   var _noHpController = TextEditingController();
   var _noTelpController = TextEditingController();
 
+  
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-
-    final header = Container(
-      padding: EdgeInsets.all(12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            "PROFIL USAHA",
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-          //ini buat tulisan saldo, dengan pakai container
-          //coba, apa bedanya?
-          IconButton(
-            icon: Icon(Icons.notifications),
-            color: Colors.black54,
-            onPressed: () {
-            },
-          ),
-        ],
-      ),
-    );
 
     final jenisUsaha= Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,7 +493,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
 
 
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -533,9 +511,7 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
       ),
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
+    return Center(
         child: ListView(
           children: <Widget>[
 //            header,
@@ -564,14 +540,14 @@ class _ProfilUsahaScreenState extends State<ProfilUsahaScreen> {
                   SizedBox(height: 20.0),
                   informasiDetail,
                   SizedBox(height: 48.0),
-                  SaveButton,
+                  saveButton,
                   SizedBox(height: 48.0),
                 ]
               )
             ),
           ],
         ),
-      ),
-    );
+      );
   }
+  
 }
