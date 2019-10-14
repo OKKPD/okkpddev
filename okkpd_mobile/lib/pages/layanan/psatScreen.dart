@@ -19,6 +19,9 @@ class _Psatscreen extends State<Psatscreen>{
   var _namaProdukdagangController = TextEditingController();
   var _namadagangController = TextEditingController();
   var _jenisKemasanController = TextEditingController();
+  var _nettoController = TextEditingController();
+  var _satuanController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -308,6 +311,30 @@ class _Psatscreen extends State<Psatscreen>{
     );
 
 
+    final namaSatuan= Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text(
+            "Satuan",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+                fontFamily: "NeoSansBold"),
+          ),
+          TextFormField(
+            controller: _satuanController,
+            keyboardType: TextInputType.text,
+            autofocus: false,
+            decoration: InputDecoration(
+              hintText: '',
+            ),
+          ),
+
+        ]
+    );
+
+
     final spasiforjarak= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -374,6 +401,9 @@ class _Psatscreen extends State<Psatscreen>{
             namadagang,
            SizedBox(height: 20.0),
             jenisKemasan,
+
+            SizedBox(height: 20.0),
+            namaSatuan,
             SizedBox(height: 40.0),
             spasiforjarak,
             SaveButton,
