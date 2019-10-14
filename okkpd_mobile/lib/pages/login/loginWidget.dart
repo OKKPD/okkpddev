@@ -1,42 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class LoginWidget extends StatefulWidget {
+  var _usernameController = TextEditingController();
+  var _passwordController = TextEditingController();
 
-class LoginScreen extends StatefulWidget {
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginWidgetState createState() => LoginWidgetState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-
-  // @override
-  // void initState() {
-  //   checkLogin();
-  //   super.initState();
-  // }
-
-  // checkLogin() async{
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     if(prefs.getString("loginFolder") != null){
-        
-  //     }
-  //     return;
-  //   }
- var _usernameController = TextEditingController();
- var _passwordController = TextEditingController();
-
+class LoginWidgetState extends State<LoginWidget>{
+  var _usernameController = TextEditingController();
+  var _passwordController = TextEditingController();
   @override
-  Widget build(BuildContext context) {
-
+  Widget build(BuildContext context) {//ProgressDialog pr;
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
-    
-    Future loginProcess() async { 
-     
+
+    Future loginProcess() async {
+
       if(_usernameController.text.isEmpty || _passwordController.text.isEmpty){
         FunctionDart().setToast("Username atau password masih kosong");
       }else{
@@ -52,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
           pr.dismiss();
         }
       }
-     
+
     }
 
     final logo = Hero(
@@ -114,9 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
       onPressed: () {},
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
+    return
+      SafeArea(
         child: Center(
           child: ListView(
             shrinkWrap: true,
@@ -134,7 +120,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

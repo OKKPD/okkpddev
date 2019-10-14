@@ -110,11 +110,12 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
+  //#1
     final jenisUsaha= Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children:<Widget>[
       Text(
-        "Jenis Usaha",
+        "Jenis Usaha", 
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14,
@@ -131,7 +132,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
         ),
       ]
     );
-
+//#2
     final namaPemohon= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -153,7 +154,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
           ),
         ]
     );
-
+//#3
     final jabatan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -175,7 +176,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
           ),
         ]
     );
-
+//#4
     final noKtp= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -209,14 +210,14 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
                     _asyncConfirmDialog('KTP');
                   },
                   color: clrKtp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
+                  child: Text('Foto KTP', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
           ),
         ]
     );
-
+//#5
     final noNpwp= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
@@ -250,7 +251,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody>{
                     _asyncConfirmDialog('NPWP');
                   },
                   color: clrNpwp,
-                  child: Text('Pick File', style: TextStyle(color: Colors.white)),
+                  child: Text('Foto NPWP', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
