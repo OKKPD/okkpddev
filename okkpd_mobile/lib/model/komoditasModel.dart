@@ -13,23 +13,23 @@ class KomoditasModel{
 
   KomoditasModel.fromJson(Map<String, dynamic> json)
       : idDetail = json['id_detail'],
-        idLayanan= json['kode_layanan'],
+        idLayanan= json['id_layanan'],
         idSektor = json['id_sektor'],
         idKomoditas = json['kode_komoditas'],
         idKelompok = json['id_kelompok'],
         luasLahan = json['luas_lahan'],
         namaJenisKomoditas = json['nama_jenis_komoditas'],
-        namaLatin = json['username'];
+        namaLatin = json['nama_latin'];
 
   Map<String, dynamic> toJson() =>
       {
         'id_detail': idDetail,
-        'kode_layanan': idLayanan,
+        'id_layanan': idLayanan,
         'id_sektor': idSektor,
         'kode_komoditas': idKomoditas,
         'id_kelompok': idKelompok,
         'luas_lahan': luasLahan,
         'nama_jenis_komoditas': namaJenisKomoditas,
-        'username': namaLatin,
+        'nama_latin': namaLatin,
       };
 }

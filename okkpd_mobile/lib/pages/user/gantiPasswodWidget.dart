@@ -10,7 +10,6 @@ class GantiPasswordscreen extends StatefulWidget{
 
 class _GantiPasswordscreen extends State<GantiPasswordscreen>{
 
-  var _passwordLamaController = TextEditingController();
   var _passwordBaruController = TextEditingController();
   var _passwordBaru2Controller = TextEditingController();
   @override
@@ -22,7 +21,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 
-    Future UpdateProfile() async {
+    Future updateProfile() async {
 
       if(_passwordBaruController.text.isEmpty || _passwordBaru2Controller.text.isEmpty){
         FunctionDart().setToast("Password harus diisi");
@@ -40,42 +39,19 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
 
     }
 
-
-    final SaveButton = Padding(
-      padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/2.5,bottom: 0.0),
+    final saveButton = Padding(
+      padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/1.8,bottom: 0.0),
       child: Material(
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            UpdateProfile();
+            updateProfile();
           },
           color: Colors.lightBlueAccent,
           child: Text('Simpan', style: TextStyle(color: Colors.white)),
         ),
       ),
-    );
-
-    final passwordLama= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Password Lama",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _passwordLamaController,
-            obscureText:true,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
     );
 
     final passwordBaru= Column(
@@ -133,15 +109,12 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
         child: ListView(
           padding: EdgeInsets.only(left: 16.0, right: 16.0),
           children: <Widget>[
-//            header,
-            SizedBox(height: 20.0),
-            // passwordLama,
             SizedBox(height: 20.0),
             passwordBaru,
             SizedBox(height: 20.0),
             passwordBaru2,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton,
           ],
         ),
       ),
