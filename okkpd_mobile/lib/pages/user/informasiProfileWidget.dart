@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,7 +65,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
      
     }
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/2.5,bottom: 0.0),
       child: Material(
         child: MaterialButton(
@@ -166,7 +165,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
             SizedBox(height: 20.0),
             jabatan,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton,
           ],
         ),
       ),

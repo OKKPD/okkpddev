@@ -6,14 +6,13 @@ import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PrimaduaScreen extends StatefulWidget{
+class PrimaduaScreen extends StatefulWidget {
   @override
-  _PrimaduaScreen createState() =>  _PrimaduaScreen();
+  _PrimaduaScreen createState() => _PrimaduaScreen();
 }
 
-class _PrimaduaScreen extends State<PrimaduaScreen>{
-
-  ProgressDialog pr = null;
+class _PrimaduaScreen extends State<PrimaduaScreen> {
+  ProgressDialog pr;
 
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
@@ -22,14 +21,30 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
   var _namaKomoditas= TextEditingController();
+  var _idSektor= TextEditingController();
+  var _idKomoditas= TextEditingController();
+  var _idKelompok= TextEditingController();
+  var _namaLatin= TextEditingController();
   var _luasLahan = TextEditingController();
 
-  Future setUser() async {
+  List getKomoditas = [];
+  List komoditas = [];
+  String _komoditas;
+
+  Future setInit() async {
+    getKomoditas = await KomoditasRepo().getKomoditas();
+    setState(() {
+      var i = 0;
+      for (var datas in getKomoditas){
+        komoditas.add({'key':i,'val':datas['deskripsi']});
+        i++;
+      }
+    });
 
     UserModel user = await UserRepo().getProfile();
-    if(user != null){
+    if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('loginNama',user.namaLengkap);
+      prefs.setString('loginNama', user.namaLengkap);
       _namaPemohonController.text = user.namaLengkap;
       _jenisPerusahaanController.text = user.jenisUsaha;
       _namaUsahaController.text = user.namaUsaha;
@@ -39,20 +54,18 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
     }
   }
 
-
-  void simpanKomoditas() async{
+  void simpanKomoditas() async {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 
-    KomoditasModel komoditas = new KomoditasModel(null, null,
-        "I", "002", "02",
-        _luasLahan.text, _namaKomoditas.text, "Oryza Sativa");
+    KomoditasModel komoditas = new KomoditasModel(null, null, _idSektor.text, _idKomoditas.text, _idKelompok.text,
+        _luasLahan.text, _namaKomoditas.text, _namaLatin.text);
 
     try {
       pr.show();
       await KomoditasRepo().postKomoditas(komoditas, "prima_2");
-    }catch(e){
+    } catch (e) {
       print("Error Insert");
-    }finally{
+    } finally {
       _luasLahan.text = "";
       _namaKomoditas.text = "";
       pr.dismiss();
@@ -62,220 +75,190 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
   @override
   void initState() {
     super.initState();
-    setUser();
+    setInit();
   }
 
   @override
   Widget build(BuildContext context) {
+    final jenisPerusahaan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jenis Perusahaan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _jenisPerusahaanController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final jenisPerusahaan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Jenis Perusahaan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _jenisPerusahaanController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final namaUsaha =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Usaha",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaUsahaController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final namaUsaha= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Usaha",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaUsahaController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final alamatPerusahaan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Alamat Perusahaan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _alamatPerusahaanController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final alamatPerusahaan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Alamat Perusahaan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _alamatPerusahaanController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final namaPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaPemohonController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      )
+    ]);
 
-    final namaPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaPemohonController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          )
-        ]
-    );
+    final nomorKtpPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nomor KTP Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _nomorKtpPemohonController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final nomorKtpPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nomor KTP Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _nomorKtpPemohonController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final nomorHpPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nomor Hp Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _nomorHpPemohonController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final nomorHpPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nomor Hp Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _nomorHpPemohonController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final daftarKomoditas =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Identitas Komoditas dan Lahan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 20, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+    ]);
 
-    final daftarKomoditas= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Identitas Komoditas dan Lahan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
+    final namaKomoditas =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Komoditas",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      DropdownButton(
+        hint: new Text('Pilih Komoditas'),
+        isExpanded: true,
+        items: komoditas.map((value) {
+          return new DropdownMenuItem(
+            child: new Text(value['val']),
+            value: value['key'].toString(),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            int index = int.parse(value);
+            _komoditas = value;
+            _namaLatin.text = getKomoditas[index]['nama_latin'];
+            _namaKomoditas.text = getKomoditas[index]['deskripsi'];
+            _idSektor.text = getKomoditas[index]['id_sektor'];
+            _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
+            _idKelompok.text = getKomoditas[index]['id_kelompok'];
+          });
+        },
+        value: _komoditas,
+      ),
+    ]);
 
-        ]
-    );
+    final luasLahan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Luas Lahan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _luasLahan,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final namaKomoditas= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Komoditas",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaKomoditas,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final spasiforjarak =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+    ]);
 
-
-    final luasLahan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Luas Lahan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _luasLahan,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-    final spasiforjarak= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-        ]
-    );
-
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -293,7 +276,8 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran PRIMA 2",style: TextStyle(color: Colors.white)),
+        title:
+            Text("Pendaftaran PRIMA 2", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
@@ -311,18 +295,16 @@ class _PrimaduaScreen extends State<PrimaduaScreen>{
             nomorKtpPemohon,
             SizedBox(height: 20.0),
             nomorHpPemohon,
-
             SizedBox(height: 20.0),
             daftarKomoditas,
             SizedBox(height: 20.0),
             namaKomoditas,
             SizedBox(height: 20.0),
             luasLahan,
-
             SizedBox(height: 20.0),
             spasiforjarak,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton ,
             SizedBox(height: 48.0),
           ],
         ),

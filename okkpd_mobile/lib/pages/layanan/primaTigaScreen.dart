@@ -16,7 +16,7 @@ class PrimatigaScreen extends StatefulWidget{
 
 class _PrimatigaScreen extends State<PrimatigaScreen>{
 
-  ProgressDialog pr = null;
+  ProgressDialog pr;
 
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
@@ -25,13 +25,30 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
   var _namaKomoditas= TextEditingController();
+  var _idSektor= TextEditingController();
+  var _idKomoditas= TextEditingController();
+  var _idKelompok= TextEditingController();
+  var _namaLatin= TextEditingController();
   var _luasLahan = TextEditingController();
 
-  Future setUser() async {
+  List getKomoditas = [];
+  List komoditas = [];
+  String _komoditas;
+
+  Future setInit() async {
+    getKomoditas = await KomoditasRepo().getKomoditas();
+    setState(() {
+      var i = 0;
+      for (var datas in getKomoditas){
+        komoditas.add({'key':i,'val':datas['deskripsi']});
+        i++;
+      }
+    });
+
     UserModel user = await UserRepo().getProfile();
-    if(user != null){
+    if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('loginNama',user.namaLengkap);
+      prefs.setString('loginNama', user.namaLengkap);
       _namaPemohonController.text = user.namaLengkap;
       _jenisPerusahaanController.text = user.jenisUsaha;
       _namaUsahaController.text = user.namaUsaha;
@@ -63,7 +80,7 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
   @override
   void initState() {
     super.initState();
-    setUser();
+    setInit();
   }
 
   @override
@@ -216,27 +233,37 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
         ]
     );
 
-    final namaKomoditas= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Komoditas",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaKomoditas,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final namaKomoditas =
+    Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Komoditas",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      DropdownButton(
+        hint: new Text('Pilih Komoditas'),
+        isExpanded: true,
+        items: komoditas.map((value) {
+          return new DropdownMenuItem(
+            child: new Text(value['val']),
+            value: value['key'].toString(),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            int index = int.parse(value);
+            _komoditas = value;
+            _namaLatin.text = getKomoditas[index]['nama_latin'];
+            _namaKomoditas.text = getKomoditas[index]['deskripsi'];
+            _idSektor.text = getKomoditas[index]['id_sektor'];
+            _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
+            _idKelompok.text = getKomoditas[index]['id_kelompok'];
+          });
+        },
+        value: _komoditas,
+      ),
+    ]);
 
 
     final luasLahan= Column(
@@ -276,7 +303,7 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
         ]
     );
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -323,7 +350,7 @@ class _PrimatigaScreen extends State<PrimatigaScreen>{
 
             spasiforjarak,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton ,
             SizedBox(height: 48.0),
           ],
         ),

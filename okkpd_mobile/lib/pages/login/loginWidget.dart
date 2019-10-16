@@ -4,18 +4,12 @@ import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
-
-
-
 class LoginWidget extends StatefulWidget {
   var _usernameController = TextEditingController();
   var _passwordController = TextEditingController();
   @override
   LoginWidgetState createState() => LoginWidgetState();
 }
-
-
-
 
 class LoginWidgetState extends State<LoginWidget>{
   var _usernameController = TextEditingController();

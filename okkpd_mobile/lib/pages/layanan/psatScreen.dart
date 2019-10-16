@@ -19,11 +19,9 @@ class _Psatscreen extends State<Psatscreen>{
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
-  var _DaftarProdukController = TextEditingController();
   var _namaProdukdagangController = TextEditingController();
   var _namadagangController = TextEditingController();
   var _jenisKemasanController = TextEditingController();
-  var _nettoController = TextEditingController();
   var _satuanController = TextEditingController();
 
 
@@ -45,40 +43,6 @@ class _Psatscreen extends State<Psatscreen>{
 
   @override
   Widget build(BuildContext context) {
-
-    final header = Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xdfe6e9),
-            Color(0xdfe6e9)
-          ],
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-        children: <Widget>[
-          Text(
-
-            "PENDAFTARAN PSAT",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-
-
-
-
-        ],
-      ),
-    );
 
     final jenisPerusahaan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +186,7 @@ class _Psatscreen extends State<Psatscreen>{
     );
 
 
-    final DaftarProduk= Column(
+    final daftarProduk= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:<Widget>[
           Text(
@@ -372,7 +336,7 @@ class _Psatscreen extends State<Psatscreen>{
 
 
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -414,7 +378,7 @@ class _Psatscreen extends State<Psatscreen>{
             nomorHpPemohon,
 
             SizedBox(height: 20.0),
-            DaftarProduk,
+            daftarProduk,
             SizedBox(height: 20.0),
            namaProdukdagang,
             SizedBox(height: 20.0),
@@ -426,7 +390,7 @@ class _Psatscreen extends State<Psatscreen>{
             namaSatuan,
             SizedBox(height: 40.0),
             spasiforjarak,
-            SaveButton,
+            saveButton,
             SizedBox(height: 48.0),
           ],
         ),
