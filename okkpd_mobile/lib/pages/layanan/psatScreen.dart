@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
+import 'package:progress_dialog/progress_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Psatscreen extends StatefulWidget {
   @override
@@ -22,6 +26,22 @@ class _Psatscreen extends State<Psatscreen>{
   var _nettoController = TextEditingController();
   var _satuanController = TextEditingController();
 
+
+
+  Future setUser() async {
+
+    UserModel user = await UserRepo().getProfile();
+    if(user != null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('loginNama',user.namaLengkap);
+      _namaPemohonController.text = user.namaLengkap;
+      _jenisPerusahaanController.text = user.jenisUsaha;
+      _namaUsahaController.text = user.namaUsaha;
+      _nomorHpPemohonController.text = user.noHp;
+      _nomorKtpPemohonController.text = user.noKtp;
+      _alamatPerusahaanController.text = user.alamatLengkap;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
