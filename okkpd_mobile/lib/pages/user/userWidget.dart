@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
-import 'package:okkpd_mobile/pages/user/gantiPasswodScreen.dart';
-import 'package:okkpd_mobile/pages/user/informasiProfileScreen.dart';
+import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
+import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,11 +66,9 @@ class _UserBodyState extends State<UserBody> {
   void getProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      namaLengkap = prefs.getString('loginNama');  
+      namaLengkap = prefs.getString('loginNama');
     });
-    
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +78,14 @@ class _UserBodyState extends State<UserBody> {
     final logo = Hero(
       tag: 'hero',
       child: CircleAvatar(
-        backgroundColor: Colors.white,
-        radius: 55.0,
-        child:ClipOval(
-          child:
-        _image == null
-          ? Text(' No image ')
-            : Image.file(_image,
-            width: 100,
-            height: 100,
-            fit: BoxFit.cover),
-        )
-      ),
+          backgroundColor: Colors.white,
+          radius: 55.0,
+          child: ClipOval(
+            child: _image == null
+                ? Text(' No image ')
+                : Image.file(_image,
+                    width: 100, height: 100, fit: BoxFit.cover),
+          )),
     );
 
     final informasi = Column(
@@ -102,9 +96,8 @@ class _UserBodyState extends State<UserBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: queryData.size.width/3,
-                child:
-                Text(
+                width: queryData.size.width / 3,
+                child: Text(
                   "Informasi Detail",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -119,7 +112,8 @@ class _UserBodyState extends State<UserBody> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => InformasiProfilescreen()),
+                    MaterialPageRoute(
+                        builder: (context) => InformasiProfilescreen()),
                   );
                 },
               ),
@@ -140,9 +134,8 @@ class _UserBodyState extends State<UserBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: queryData.size.width/3,
-                child:
-                Text(
+                width: queryData.size.width / 3,
+                child: Text(
                   "Ubah Password",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -157,7 +150,8 @@ class _UserBodyState extends State<UserBody> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => GantiPasswordscreen()),
+                    MaterialPageRoute(
+                        builder: (context) => GantiPasswordscreen()),
                   );
                 },
               ),
@@ -178,9 +172,8 @@ class _UserBodyState extends State<UserBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: queryData.size.width/3,
-                child:
-                Text(
+                width: queryData.size.width / 3,
+                child: Text(
                   "Logout",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -209,36 +202,38 @@ class _UserBodyState extends State<UserBody> {
       ],
     );
 
-    final profilButton =Padding(
-      padding: EdgeInsets.only(left: 90.0, right: 20.0),
-      child: Transform(
+    final profilButton = Transform(
       transform: Matrix4.translationValues(0.0, -40.0, 0.0),
+      child: Padding(
+        padding: EdgeInsets.only(left: 90.0, right: 20.0),
         child: Container(
-            child:IconButton(
-              icon: Icon(Icons.add_a_photo),
-              color: Colors.lightBlueAccent,
-              onPressed: _asyncConfirmDialog,
+          child: IconButton(
+            icon: Icon(Icons.add_a_photo),
+            color: Colors.lightBlueAccent,
+            onPressed: _asyncConfirmDialog,
           ),
         ),
       ),
     );
     return Center(
-        child: ListView(
-          children: <Widget>[
-            Container(color: Color.fromRGBO(225, 225, 225, 100),padding: EdgeInsets.only(top:36,bottom: 36),
-              child: Column(children: <Widget>[
+      child: ListView(
+        children: <Widget>[
+          Container(
+            color: Color.fromRGBO(225, 225, 225, 100),
+            padding: EdgeInsets.only(top: 36, bottom: 36),
+            child: Column(
+              children: <Widget>[
                 logo,
                 profilButton,
                 Text('$namaLengkap'),
-              ],),
+              ],
             ),
-            
-            informasi,
-            ubahPassword,
-            logout,
-          ],
-        ),
-      );
+          ),
+          informasi,
+          ubahPassword,
+          logout,
+        ],
+      ),
+    );
   }
-
 }

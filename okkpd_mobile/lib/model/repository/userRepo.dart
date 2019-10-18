@@ -19,6 +19,8 @@ class UserRepo {
       var response = await http.get(url);
       var resp = ResponseModel.fromJson(json.decode(response.body));
 
+//      print(json.decode(response.body)['DATA']);
+
       if(response.statusCode != 200){
         FunctionDart().setToast("Ups! Ada kendala pada server.");
         return Future.value(null);

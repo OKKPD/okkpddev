@@ -31,7 +31,6 @@ class _Hcscreen extends State<Hcscreen>{
   var _identitasTrsController = TextEditingController();
   var _pelabuhanController = TextEditingController();
   var _negaraController = TextEditingController();
-  var _negaraTransitController = TextEditingController();
   var _pelabuhantransit = TextEditingController();
   var _identitasTranspot = TextEditingController();
 
@@ -40,38 +39,6 @@ class _Hcscreen extends State<Hcscreen>{
 
   Widget build(BuildContext context) {
     // TODO: implement build
-
-
-    final header = Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xdfe6e9),
-            Color(0xdfe6e9)
-          ],
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-        children: <Widget>[
-
-          Text(
-            "PENDAFTARAN HC",
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          )
-
-
-
-        ],
-      ),
-    );
 
     final jenisPerusahaan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -694,7 +661,7 @@ class _Hcscreen extends State<Hcscreen>{
         ]
     );
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -778,7 +745,7 @@ class _Hcscreen extends State<Hcscreen>{
             SizedBox(height: 20.0),
             spasiforjarak,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton,
             SizedBox(height: 48.0),
           ],
         ),

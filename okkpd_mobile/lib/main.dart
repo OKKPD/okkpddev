@@ -10,6 +10,7 @@ import 'package:okkpd_mobile/pages/layanan/hcScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaDuaScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/rumahKemasScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
+import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
             '/primaTigascreen' : (BuildContext context) => new PrimatigaScreen(),
             '/rumahKemas' : (BuildContext context) => new Rumahkemas(),
             '/mediaScreen' : (BuildContext context) => new Mediascreen(),
+            '/mediaBody' : (BuildContext context) => new MediaBody(),
 
           },
 

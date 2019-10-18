@@ -31,6 +31,7 @@ class _MediaWidget extends State<MediaWidget> {
           child: new InkWell(
             onTap: () {
               print("tapped");
+              Navigator.of(context).pushNamed('/mediaBody');
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

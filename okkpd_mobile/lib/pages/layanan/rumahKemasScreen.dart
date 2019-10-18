@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/komoditasModel.dart';
 import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
@@ -15,22 +14,39 @@ class Rumahkemas extends StatefulWidget{
 }
 
 class _Rumahkemas extends State<Rumahkemas>{
-  ProgressDialog pr = null;
+  ProgressDialog pr;
+
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
-  var _namaKomoditas = TextEditingController();
+  var _namaKomoditas= TextEditingController();
+  var _idSektor= TextEditingController();
+  var _idKomoditas= TextEditingController();
+  var _idKelompok= TextEditingController();
+  var _namaLatin= TextEditingController();
   var _luasLahan = TextEditingController();
-  
-  Future setUser() async {
+
+  List getKomoditas = [];
+  List komoditas = [];
+  String _komoditas;
+
+  Future setInit() async {
+    getKomoditas = await KomoditasRepo().getKomoditas();
+    setState(() {
+      var i = 0;
+      for (var datas in getKomoditas){
+        komoditas.add({'key':i,'val':datas['deskripsi']});
+        i++;
+      }
+    });
+
     UserModel user = await UserRepo().getProfile();
-    print(user);
-    if(user != null){
+    if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('loginNama',user.namaLengkap);
+      prefs.setString('loginNama', user.namaLengkap);
       _namaPemohonController.text = user.namaLengkap;
       _jenisPerusahaanController.text = user.jenisUsaha;
       _namaUsahaController.text = user.namaUsaha;
@@ -40,29 +56,10 @@ class _Rumahkemas extends State<Rumahkemas>{
     }
   }
 
-  void simpanKomoditas() async{
-    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
-
-    KomoditasModel komoditas = new KomoditasModel(null, null,
-        "I", "002", "02",
-        _luasLahan.text, _namaKomoditas.text, "Oryza Sativa");
-
-    try {
-      pr.show();
-      await KomoditasRepo().postKomoditas(komoditas, "kemas");
-    }catch(e){
-      print("Error Insert");
-    }finally{
-      _luasLahan.text = "";
-      _namaKomoditas.text = "";
-      pr.dismiss();
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    setUser();
+    setInit();
   }
 
   @override
@@ -219,27 +216,37 @@ class _Rumahkemas extends State<Rumahkemas>{
         ]
     );
 
-    final namaKomoditas= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Komoditas",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaKomoditas,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final namaKomoditas =
+    Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Komoditas",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      DropdownButton(
+        hint: new Text('Pilih Komoditas'),
+        isExpanded: true,
+        items: komoditas.map((value) {
+          return new DropdownMenuItem(
+            child: new Text(value['val']),
+            value: value['key'].toString(),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            int index = int.parse(value);
+            _komoditas = value;
+            _namaLatin.text = getKomoditas[index]['nama_latin'];
+            _namaKomoditas.text = getKomoditas[index]['deskripsi'];
+            _idSektor.text = getKomoditas[index]['id_sektor'];
+            _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
+            _idKelompok.text = getKomoditas[index]['id_kelompok'];
+          });
+        },
+        value: _komoditas,
+      ),
+    ]);
 
 
     final luasLahan= Column(
@@ -279,7 +286,7 @@ class _Rumahkemas extends State<Rumahkemas>{
         ]
     );
 
-    final SaveButton = Padding(
+    final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
       child: Material(
         child: MaterialButton(
@@ -328,7 +335,7 @@ class _Rumahkemas extends State<Rumahkemas>{
             SizedBox(height: 20.0),
             spasiforjarak,
             SizedBox(height: 20.0),
-            SaveButton,
+            saveButton,
             SizedBox(height: 48.0),
           ],
         ),
