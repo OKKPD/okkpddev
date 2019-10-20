@@ -48,7 +48,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisCount: 3,
                     children: List.generate(Keys.layanan.length, (index) {
                       return Center(
-                      child: DashboardLayananWidget(layanan: Keys.layanan[index],),
+                        child: DashboardLayananWidget(
+                          layanan: Keys.layanan[index],
+                        ),
                       );
                     }),
                   ),
@@ -68,4 +70,3 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ));
   }
 }
-

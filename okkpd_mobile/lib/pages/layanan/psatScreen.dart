@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Psatscreen extends StatefulWidget {
   @override
   _Psatscreen createState() => _Psatscreen();
-
 }
 
-class _Psatscreen extends State<Psatscreen>{
-
+class _Psatscreen extends State<Psatscreen> {
   var _jenisPerusahaanController = TextEditingController();
   var _namaUsahaController = TextEditingController();
   var _alamatPerusahaanController = TextEditingController();
@@ -24,14 +21,11 @@ class _Psatscreen extends State<Psatscreen>{
   var _jenisKemasanController = TextEditingController();
   var _satuanController = TextEditingController();
 
-
-
   Future setUser() async {
-
     UserModel user = await UserRepo().getProfile();
-    if(user != null){
+    if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('loginNama',user.namaLengkap);
+      prefs.setString('loginNama', user.namaLengkap);
       _namaPemohonController.text = user.namaLengkap;
       _jenisPerusahaanController.text = user.jenisUsaha;
       _namaUsahaController.text = user.namaUsaha;
@@ -43,298 +37,234 @@ class _Psatscreen extends State<Psatscreen>{
 
   @override
   Widget build(BuildContext context) {
+    final jenisPerusahaan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jenis Perusahaan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _jenisPerusahaanController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-    final jenisPerusahaan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Jenis Perusahaan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _jenisPerusahaanController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
+    final namaUsaha =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Usaha",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaUsahaController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final alamatPerusahaan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Alamat Perusahaan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _alamatPerusahaanController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final namaPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaPemohonController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      )
+    ]);
+
+    final nomorKtpPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nomor KTP Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: 220.0,
+            child: TextFormField(
+              controller: _nomorKtpPemohonController,
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              decoration: InputDecoration(
+                hintText: '',
+              ),
             ),
           ),
-        ]
-    );
+        ],
+      ),
+    ]);
 
-    final namaUsaha= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Usaha",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaUsahaController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
+    final nomorHpPemohon =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nomor Hp Pemohon",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _nomorHpPemohonController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final daftarProduk =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Daftar Produk PSAT",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+    ]);
+
+    final namaProdukdagang =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Produk",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaProdukdagangController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final namadagang =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Dagang",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namadagangController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final jenisKemasan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jenis Kemasan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            child: TextFormField(
+              controller: _jenisKemasanController,
+              keyboardType: TextInputType.text,
+              autofocus: false,
+              decoration: InputDecoration(
+                hintText: '',
+              ),
             ),
           ),
-        ]
-    );
-
-    final alamatPerusahaan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Alamat Perusahaan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _alamatPerusahaanController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-    final namaPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaPemohonController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Netto",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black54,
+                    fontFamily: "NeoSansBold"),
+              ),
+            ],
           )
-        ]
-    );
+        ],
+      ),
+    ]);
 
-    final nomorKtpPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nomor KTP Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 220.0,
-                child: TextFormField(
-                  controller: _nomorKtpPemohonController,
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
+    final namaSatuan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Satuan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _satuanController,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
 
-            ],
-          ),
-        ]
-    );
-
-    final nomorHpPemohon= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nomor Hp Pemohon",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _nomorHpPemohonController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-
-    final daftarProduk= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Daftar Produk PSAT",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-        ]
-    );
-
-
-    final namaProdukdagang= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Produk",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namaProdukdagangController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-    final namadagang= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Nama Dagang",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _namadagangController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-
-    final jenisKemasan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Jenis Kemasan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                width: 120.0,
-                child: TextFormField(
-                  controller: _jenisKemasanController,
-                  keyboardType: TextInputType.text,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: '',
-                  ),
-                ),
-              ),
-
-            Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Netto",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                        fontFamily: "NeoSansBold"),
-                  ),
-                ],
-              )
-
-            ],
-          ),
-        ]
-    );
-
-
-    final namaSatuan= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Satuan",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _satuanController,
-            keyboardType: TextInputType.text,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-
-        ]
-    );
-
-
-    final spasiforjarak= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-
-        ]
-    );
-
-
+    final spasiforjarak =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+    ]);
 
     final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0),
@@ -357,7 +287,7 @@ class _Psatscreen extends State<Psatscreen>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran PSAT",style: TextStyle(color: Colors.white)),
+        title: Text("Pendaftaran PSAT", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
@@ -380,10 +310,10 @@ class _Psatscreen extends State<Psatscreen>{
             SizedBox(height: 20.0),
             daftarProduk,
             SizedBox(height: 20.0),
-           namaProdukdagang,
+            namaProdukdagang,
             SizedBox(height: 20.0),
             namadagang,
-           SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             jenisKemasan,
 
             SizedBox(height: 20.0),

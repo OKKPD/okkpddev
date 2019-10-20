@@ -14,11 +14,17 @@ class _MediaWidget extends State<MediaWidget> {
     final track =
         FutureBuilder(builder: (BuildContext context, AsyncSnapshot res) {
       var data = [
-        {'Media': 'Scan KTP', 'Folder': 'Lihat'},
-        {'Media': 'Scan Surat Lampiran', 'Folder': 'Lihat'},
-        {'Media': 'Scan Ijazah', 'Folder': 'Lihat'},
-        {'Media': 'Scan Transkip NIlai', 'Folder': 'Lihat'},
-        {'Media': 'Scan SIUP', 'Folder': 'Lihat'},
+        {'Media': 'Surat Pernyataan Kesanggupan', 'Folder': 'Lihat'},
+        {'Media': 'Dokumen Legalitas Perusahaan', 'Folder': 'Lihat'},
+        {'Media': 'Struktur Organisasi', 'Folder': 'Lihat'},
+        {'Media': 'Jenis Komoditas Dan Peta Lahan', 'Folder': 'Lihat'},
+        {'Media': 'Sertifikat Prima 3', 'Folder': 'Lihat'},
+        {'Media': 'Surat Keterangan Domisili', 'Folder': 'Lihat'},
+        {'Media': 'Akta Pendirian Dan Badan Usaha', 'Folder': 'Lihat'},
+        {'Media': 'Dokumen Kerjasama Dengan Pemasok', 'Folder': 'Lihat'},
+        {'Media': 'SIUP', 'Folder': 'Lihat'},
+        {'Media': 'Sertifikat HS', 'Folder': 'Lihat'},
+        {'Media': 'Sertifikat GMP/HACPP/ISO2000', 'Folder': 'Lihat'},
       ];
 
       final children = <Widget>[];
@@ -31,18 +37,20 @@ class _MediaWidget extends State<MediaWidget> {
           child: new InkWell(
             onTap: () {
               print("tapped");
-              Navigator.of(context).pushNamed('/mediaBody');
+              Navigator.of(context).pushNamed('/mediaBody',
+                  arguments: datas['Media'].toString());
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 12.0),
+                  padding: EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: queryData.size.width / 3,
+                        width: queryData.size.width / 1.5,
+                        height: 30,
                         child: Text(
                           datas['Media'].toString(),
                           textAlign: TextAlign.left,
@@ -53,40 +61,18 @@ class _MediaWidget extends State<MediaWidget> {
                         ),
                       ),
                       Container(
-                        width: queryData.size.width / 4,
+                        width: queryData.size.width / 10,
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        decoration: new BoxDecoration(
-                          borderRadius: new BorderRadius.circular(15.0),
-                          border: new Border.all(
-                            width: 5.0,
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-                  child: new Divider(
-                    color: Colors.grey,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: queryData.size.width / 3,
-                        child: Text(
-                          "Folder disini",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black54,
-                              fontFamily: "NeoSansBold"),
+                        child: IconButton(
+                          icon: Icon(Icons.check),
+                          color: Colors.green,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -104,11 +90,10 @@ class _MediaWidget extends State<MediaWidget> {
 
     return ListView(
       children: <Widget>[
-//            header,
-        SizedBox(height: 10.0),
         SingleChildScrollView(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            padding: EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(children: <Widget>[
+              SizedBox(height: 24.0),
               track,
             ])),
       ],

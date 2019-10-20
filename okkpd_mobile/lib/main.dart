@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/constants/theme.dart'as theme;
+import 'package:okkpd_mobile/constants/theme.dart' as theme;
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaTigaScreen.dart';
@@ -29,23 +29,21 @@ class MyApp extends StatelessWidget {
         accentColor: theme.menuBluebird,
       ),
       home: SplashScreen(),
-
-          routes: <String, WidgetBuilder> {
-            '/login': (BuildContext context) => new LoginScreen(),
-            '/homescreen' : (BuildContext context) => new HomeScreen(),
-            '/hcscreen' : (BuildContext context) => new Hcscreen(),
-            '/psatscreen' : (BuildContext context) => new Psatscreen(),
-            '/primaDuascreen' : (BuildContext context) => new PrimaduaScreen(),
-            '/primaTigascreen' : (BuildContext context) => new PrimatigaScreen(),
-            '/rumahKemas' : (BuildContext context) => new Rumahkemas(),
-            '/mediaScreen' : (BuildContext context) => new Mediascreen(),
-            '/mediaBody' : (BuildContext context) => new MediaBody(),
-
-          },
-
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => new LoginScreen(),
+        '/homescreen': (BuildContext context) => new HomeScreen(),
+        '/hcscreen': (BuildContext context) => new Hcscreen(),
+        '/psatscreen': (BuildContext context) => new Psatscreen(),
+        '/primaDuascreen': (BuildContext context) => new PrimaduaScreen(),
+        '/primaTigascreen': (BuildContext context) => new PrimatigaScreen(),
+        '/rumahKemas': (BuildContext context) => new Rumahkemas(),
+        '/mediaScreen': (BuildContext context) => new Mediascreen(),
+        '/mediaBody': (BuildContext context) => new MediaBody(),
+      },
     );
   }
 }
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => new _SplashScreenState();
@@ -58,10 +56,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if(prefs.getString("loginId") != null){
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString("loginId") != null) {
       Navigator.of(context).pushReplacementNamed('/homescreen');
-    }else{
+    } else {
       Navigator.of(context).pushReplacementNamed('/login');
     }
   }

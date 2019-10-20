@@ -38,7 +38,6 @@ class _Hcscreen extends State<Hcscreen>{
   @override
 
   Widget build(BuildContext context) {
-    // TODO: implement build
 
     final jenisPerusahaan= Column(
         crossAxisAlignment: CrossAxisAlignment.start,
