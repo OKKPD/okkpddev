@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
-import 'package:okkpd_mobile/pages/user/gantiPasswodScreen.dart';
-import 'package:okkpd_mobile/pages/user/informasiProfileScreen.dart';
+import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
+import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

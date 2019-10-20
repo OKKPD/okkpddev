@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart'as theme;
 import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaTigaScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/psatScreen.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             '/rumahKemas' : (BuildContext context) => new Rumahkemas(),
             '/mediaScreen' : (BuildContext context) => new Mediascreen(),
             '/mediaBody' : (BuildContext context) => new MediaBody(),
+            '/tambahKomoditas' : (BuildContext context) => new TambahKomoditasScreen(),
 
           },
 
