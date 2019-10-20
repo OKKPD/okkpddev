@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart' as theme;
 import 'package:okkpd_mobile/pages/homeScreen.dart';
+import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaTigaScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/psatScreen.dart';
@@ -10,7 +11,7 @@ import 'package:okkpd_mobile/pages/layanan/hcScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaDuaScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/rumahKemasScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
-import 'package:okkpd_mobile/pages/media/mediaBody.dart';
+// import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
         '/primaTigascreen': (BuildContext context) => new PrimatigaScreen(),
         '/rumahKemas': (BuildContext context) => new Rumahkemas(),
         '/mediaScreen': (BuildContext context) => new Mediascreen(),
-        '/mediaBody': (BuildContext context) => new MediaBody(),
+        // '/mediaBody': (BuildContext context) => new MediaBody("asd"),
+        '/tambahKomoditas': (BuildContext context) =>
+            new TambahKomoditasScreen(),
       },
     );
   }

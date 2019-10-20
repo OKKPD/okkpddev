@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 
 class MediaWidget extends StatefulWidget {
   @override
@@ -14,17 +15,17 @@ class _MediaWidget extends State<MediaWidget> {
     final track =
         FutureBuilder(builder: (BuildContext context, AsyncSnapshot res) {
       var data = [
-        {'Media': 'Surat Pernyataan Kesanggupan', 'Folder': 'Lihat'},
-        {'Media': 'Dokumen Legalitas Perusahaan', 'Folder': 'Lihat'},
-        {'Media': 'Struktur Organisasi', 'Folder': 'Lihat'},
-        {'Media': 'Jenis Komoditas Dan Peta Lahan', 'Folder': 'Lihat'},
-        {'Media': 'Sertifikat Prima 3', 'Folder': 'Lihat'},
-        {'Media': 'Surat Keterangan Domisili', 'Folder': 'Lihat'},
-        {'Media': 'Akta Pendirian Dan Badan Usaha', 'Folder': 'Lihat'},
-        {'Media': 'Dokumen Kerjasama Dengan Pemasok', 'Folder': 'Lihat'},
-        {'Media': 'SIUP', 'Folder': 'Lihat'},
-        {'Media': 'Sertifikat HS', 'Folder': 'Lihat'},
-        {'Media': 'Sertifikat GMP/HACPP/ISO2000', 'Folder': 'Lihat'},
+        {'Media': 'Surat Pernyataan Kesanggupan'},
+        {'Media': 'Dokumen Legalitas Perusahaan'},
+        {'Media': 'Struktur Organisasi'},
+        {'Media': 'Jenis Komoditas Dan Peta Lahan'},
+        {'Media': 'Sertifikat Prima 3'},
+        {'Media': 'Surat Keterangan Domisili'},
+        {'Media': 'Akta Pendirian Dan Badan Usaha'},
+        {'Media': 'Dokumen Kerjasama Dengan Pemasok'},
+        {'Media': 'SIUP'},
+        {'Media': 'Sertifikat HS'},
+        {'Media': 'Sertifikat GMP/HACPP/ISO2000'},
       ];
 
       final children = <Widget>[];
@@ -36,9 +37,11 @@ class _MediaWidget extends State<MediaWidget> {
           clipBehavior: Clip.antiAlias,
           child: new InkWell(
             onTap: () {
-              print("tapped");
-              Navigator.of(context).pushNamed('/mediaBody',
-                  arguments: datas['Media'].toString());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MediaBody(datas['Media'].toString())),
+              );
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

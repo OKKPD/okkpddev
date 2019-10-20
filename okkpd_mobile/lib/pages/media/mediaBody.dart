@@ -5,11 +5,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MediaBody extends StatefulWidget {
+  final String name;
+  MediaBody(this.name);
+
   @override
-  _MediaBody createState() => _MediaBody();
+  _MediaBody createState() => _MediaBody(name);
 }
 
 class _MediaBody extends State<MediaBody> {
+  final String name;
+  _MediaBody(this.name);
+
   File _image;
 
   Future getImage(ImageSource source) async {
@@ -99,7 +105,7 @@ class _MediaBody extends State<MediaBody> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Nama Media", style: TextStyle(color: Colors.white)),
+          title: Text(this.name, style: TextStyle(color: Colors.white)),
         ),
         body: Container(
           child: Column(
