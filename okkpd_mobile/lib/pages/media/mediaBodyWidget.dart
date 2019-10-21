@@ -5,11 +5,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MediaBodyWidget extends StatefulWidget {
+  final int index;
+  MediaBodyWidget(this.index);
   @override
-  _MediaBodyWidget createState() => _MediaBodyWidget();
+  _MediaBodyWidget createState() => _MediaBodyWidget(index);
 }
 
 class _MediaBodyWidget extends State<MediaBodyWidget> {
+  int index;
+  _MediaBodyWidget(this.index);
+
   File _image;
 
   Future getImage(ImageSource source) async {
@@ -69,7 +74,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
-      tag: 'hero',
+      tag: 'hero' + this.index.toString(),
       child: CircleAvatar(
           backgroundColor: Colors.white,
           radius: 55.0,

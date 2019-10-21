@@ -35,7 +35,7 @@ class _MediaBody extends State<MediaBody> {
             crossAxisCount: 3,
             children: List.generate(1, (index) {
               return Center(
-                child: MediaBodyWidget(),
+                child: MediaBodyWidget(index),
               );
             }),
           ),
