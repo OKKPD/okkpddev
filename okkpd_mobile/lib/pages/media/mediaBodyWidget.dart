@@ -61,14 +61,6 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   @override
   void initState() {
     super.initState();
-    getProfile();
-  }
-
-  void getProfile() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      namaLengkap = prefs.getString('loginNama');
-    });
   }
 
   @override
@@ -100,12 +92,9 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
       ),
     );
 
-    return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      body: Container(
-        child: Column(
-          children: <Widget>[logo, profilButton],
-        ),
+    return Container(
+      child: Column(
+        children: <Widget>[logo, profilButton],
       ),
     );
   }

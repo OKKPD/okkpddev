@@ -13,9 +13,23 @@ class _MediaBody extends State<MediaBody> {
   final String name;
   _MediaBody(this.name);
 
+  int loop = 1;
+
   @override
   void initState() {
     super.initState();
+  }
+
+  void _addCamera() {
+    setState(() {
+      loop += 1;
+    });
+  }
+
+  void _removeCamera() {
+    setState(() {
+      loop -= 1;
+    });
   }
 
   @override
@@ -33,11 +47,47 @@ class _MediaBody extends State<MediaBody> {
             mainAxisSpacing: 4,
             padding: EdgeInsets.only(left: 12, top: 16, right: 12, bottom: 12),
             crossAxisCount: 3,
-            children: List.generate(1, (index) {
+            children: List.generate(this.loop, (index) {
               return Center(
                 child: MediaBodyWidget(index),
               );
             }),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FlatButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  splashColor: Colors.blueAccent,
+                  onPressed: () {
+                    _addCamera();
+                  },
+                  child: Text(
+                    "Add",
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ),
+                FlatButton(
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  splashColor: Colors.redAccent,
+                  onPressed: () {
+                    _removeCamera();
+                  },
+                  child: Text(
+                    "Remove",
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                )
+              ],
+            ),
           ),
         ])));
   }
