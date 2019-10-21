@@ -70,12 +70,7 @@ class _MediaWidget extends State<MediaWidget> {
                         child: IconButton(
                           icon: Icon(Icons.check),
                           color: Colors.green,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(),
-                            );
-                          },
+                          onPressed: () {},
                         ),
                       ),
                     ],
