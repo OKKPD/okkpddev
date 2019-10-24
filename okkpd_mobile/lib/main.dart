@@ -14,6 +14,7 @@ import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 // import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/primaTigascreen': (BuildContext context) => new PrimatigaScreen(),
         '/rumahKemas': (BuildContext context) => new Rumahkemas(),
         '/mediaScreen': (BuildContext context) => new Mediascreen(),
+        '/homeGuest' : (BuildContext context) => new HomeGuestScreen(),
         // '/mediaBody': (BuildContext context) => new MediaBody("asd"),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
@@ -55,7 +57,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   startTime() async {
     var _duration = new Duration(seconds: 2);
-    return new Timer(_duration, navigationPage);
+    return new Timer(_duration, navigationAwal);
+  }
+
+  void navigationAwal(){
+    Navigator.of(context).pushReplacementNamed('/homeGuest');
   }
 
   void navigationPage() async {
