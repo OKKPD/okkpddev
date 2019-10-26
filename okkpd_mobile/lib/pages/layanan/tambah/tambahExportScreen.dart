@@ -1,225 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
-import 'package:okkpd_mobile/pages/layanan/detailHcScreen.dart';
-import 'package:okkpd_mobile/pages/layanan/infoUsahaScreen.dart';
+import 'package:okkpd_mobile/model/exportModel.dart';
+import 'package:okkpd_mobile/model/kelompokKomoditasModel.dart';
+import 'package:okkpd_mobile/model/komoditasModel.dart';
+import 'package:okkpd_mobile/model/repository/exportRepo.dart';
+import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
+import 'package:okkpd_mobile/model/sektorKomoditasModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
-class Hcscreen extends StatefulWidget {
+class TambahExportScreen extends StatefulWidget {
   @override
-  _Hcscreen createState() => _Hcscreen();
+  _TambahExportScreen createState() => _TambahExportScreen();
 }
 
-class _Hcscreen extends State<Hcscreen> {
-  var _jenisPerusahaanController = TextEditingController();
-  var _namaUsahaController = TextEditingController();
-  var _alamatPerusahaanController = TextEditingController();
-  var _namaPemohonController = TextEditingController();
-  var _nomorKtpPemohonController = TextEditingController();
-  var _nomorHpPemohonController = TextEditingController();
+class _TambahExportScreen extends State<TambahExportScreen> {
+  ProgressDialog pr;
 
-  var _namaProdukController = TextEditingController();
-  var _jenisProdukController = TextEditingController();
-  var _nomorHIS = TextEditingController();
-  var _namaTerlampirController = TextEditingController();
-  var _alamatKantorController = TextEditingController();
-  var _alamatGudangController = TextEditingController();
-  var _conegCodeController = TextEditingController();
-  var _jumlahLatController = TextEditingController();
-  var _beratController = TextEditingController();
-  var _jumlahKemasanController = TextEditingController();
-  var _jenisKemasanController = TextEditingController();
-  var _beratKotorControler = TextEditingController();
-  var _beratBersihController = TextEditingController();
-  var _perubahanBrktController = TextEditingController();
-  var _identitasTrsController = TextEditingController();
-  var _pelabuhanController = TextEditingController();
-  var _negaraController = TextEditingController();
-  var _pelabuhantransit = TextEditingController();
-  var _identitasTranspot = TextEditingController();
+  var _namaProduk = TextEditingController();
+  var _jenisProduk = TextEditingController();
+  var _nomorHs = TextEditingController();
+  var _namaExportir = TextEditingController();
+  var _alamatKantor = TextEditingController();
+  var _alamatGudang = TextEditingController();
+  var _consigmentCode = TextEditingController();
+  var _jumlahLot = TextEditingController();
+  var _beratLot = TextEditingController();
+  var _jumlahKemasan = TextEditingController();
+  var _jenisKemasan = TextEditingController();
+  var _beratKotor = TextEditingController();
+  var _beratBersih = TextEditingController();
+  var _pelabuhanPemberangkatan = TextEditingController();
+  var _identitasTransportasi = TextEditingController();
+  var _pelabuhanTujuan = TextEditingController();
+  var _negaraTujuan = TextEditingController();
+  var _negaraTransit = TextEditingController();
+  var _pelabuhanTransit = TextEditingController();
+  var _transportasiTransit = TextEditingController();
+
+  // List getSektor = [];
+  // List getKelompok = [];
+  // List getKomoditas = [];
+  // List<SektorKomoditasModel> sektor = [];
+  // List<KelompokKomoditasModel> kelompok = [];
+  List<ExportModel> export = [];
+  // String idSektor;
+  // String idKelompok;
+  // String idKomoditas;
+  // String namaLatin;
+  // String nmKomoditas;
+
+  void simpanExport() async {
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+
+    try {
+      pr.show();
+      await ExportRepo().postExport(export, "");
+    } catch (e) {
+      print("Error Insert");
+    } finally {
+      pr.dismiss();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final jenisPerusahaan =
+    final alamatGudang =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Jenis Perusahaan",
+        "Alamat Gudang",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _jenisPerusahaanController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final namaUsaha =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Usaha",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaUsahaController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final alamatPerusahaan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Alamat Perusahaan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _alamatPerusahaanController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final namaPemohon =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Pemohon",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaPemohonController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      )
-    ]);
-
-    final nomorKtpPemohon =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nomor KTP Pemohon",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _nomorKtpPemohonController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final nomorHpPemohon =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nomor Hp Pemohon",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _nomorHpPemohonController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final daftarHC =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Daftar Identitas HC",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 19, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-    ]);
-
-    final namaProduk =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Produk",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaProdukController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final jenisProduk =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Jenis Produk",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jenisProdukController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final nomorHS =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nomor HS",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _nomorHIS,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final namaTerlampir =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Terlampir",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaTerlampirController,
+        controller: _alamatGudang,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -237,133 +96,7 @@ class _Hcscreen extends State<Hcscreen> {
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _alamatKantorController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final alamatGudang =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nomor Hp Pemohon",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _alamatGudangController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final codeCode =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Cogenment Code",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _conegCodeController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final jumlahLot =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Jumlah Lot",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jumlahLatController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final beratMasing =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Berat Masing-Masing Lot",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _beratController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final jumlahKemasan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Jumlah Kemasan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jumlahKemasanController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final jenisKemasan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Jenis Kemasan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jenisKemasanController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
-
-    final beratKotor =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Berat Kotor",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _beratKotorControler,
+        controller: _alamatKantor,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -381,7 +114,25 @@ class _Hcscreen extends State<Hcscreen> {
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _beratBersihController,
+        controller: _beratBersih,
+        keyboardType: TextInputType.number,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final beratKotor =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Berat Kotor",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _beratKotor,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -390,16 +141,16 @@ class _Hcscreen extends State<Hcscreen> {
       ),
     ]);
 
-    final perubahanPembktn =
+    final beratLot =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Perubahan Pemberangkatan",
+        "Berat Lot",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _perubahanBrktController,
+        controller: _beratLot,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -408,16 +159,16 @@ class _Hcscreen extends State<Hcscreen> {
       ),
     ]);
 
-    final identitasTransport =
+    final consigmentCode =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Identitas Transport",
+        "Consigment Code",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _identitasTranspot,
+        controller: _consigmentCode,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -426,16 +177,16 @@ class _Hcscreen extends State<Hcscreen> {
       ),
     ]);
 
-    final pelabuhanTujuan =
+    final identitasTransportasi =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Pelabuhan Tujuan",
+        "Identitas Transportasi",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _pelabuhanController,
+        controller: _identitasTransportasi,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -444,16 +195,106 @@ class _Hcscreen extends State<Hcscreen> {
       ),
     ]);
 
-    final negaraTujuan =
+    final jenisKemasan =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Negara Tujuan",
+        "Jenis Kemasan",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _negaraController,
+        controller: _jenisKemasan,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final jenisProduk =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jenis Produk",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _jenisProduk,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final jumlahKemasan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jumlah Kemasan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _jumlahKemasan,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final jumlahLot =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Jumlah Lot",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _jumlahLot,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final namaExportir =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Exportir",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaExportir,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final namaProduk =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nama Produk",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _namaProduk,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -471,7 +312,61 @@ class _Hcscreen extends State<Hcscreen> {
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _beratBersihController,
+        controller: _negaraTransit,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final negaraTujuan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Negara Tujuan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _negaraTujuan,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final nomorHs =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Nomor Hs",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _nomorHs,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
+      ),
+    ]);
+
+    final pelabuhanPemberangkatan =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      Text(
+        "Pelabuhan Pemberangkatan",
+        textAlign: TextAlign.left,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _pelabuhanPemberangkatan,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -489,7 +384,7 @@ class _Hcscreen extends State<Hcscreen> {
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _pelabuhantransit,
+        controller: _pelabuhanTransit,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -498,16 +393,16 @@ class _Hcscreen extends State<Hcscreen> {
       ),
     ]);
 
-    final identitasTRS =
+    final pelabuhanTujuan =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "Identitas Transport",
+        "Pelabuhan Tujuan",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
       TextFormField(
-        controller: _identitasTrsController,
+        controller: _pelabuhanTujuan,
         keyboardType: TextInputType.text,
         autofocus: false,
         decoration: InputDecoration(
@@ -515,14 +410,21 @@ class _Hcscreen extends State<Hcscreen> {
         ),
       ),
     ]);
-
-    final spasiforjarak =
+    final transportasiTransit =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
-        "",
+        "Transportasi Transit",
         textAlign: TextAlign.left,
         style: TextStyle(
             fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+      ),
+      TextFormField(
+        controller: _transportasiTransit,
+        keyboardType: TextInputType.text,
+        autofocus: false,
+        decoration: InputDecoration(
+          hintText: '',
+        ),
       ),
     ]);
 
@@ -533,13 +435,41 @@ class _Hcscreen extends State<Hcscreen> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+            ExportModel exp = ExportModel(
+              _namaProduk.text,
+              _jenisProduk.text,
+              _nomorHs.text,
+              _namaExportir.text,
+              _alamatKantor.text,
+              _alamatGudang.text,
+              null,
+              _consigmentCode.text,
+              _jumlahLot.text,
+              _beratLot.text,
+              _jumlahKemasan.text,
+              _jenisKemasan.text,
+              _beratKotor.text,
+              _beratBersih.text,
+              _pelabuhanPemberangkatan.text,
+              _identitasTransportasi.text,
+              _pelabuhanTujuan.text,
+              _negaraTujuan.text,
+              _negaraTransit.text,
+              _pelabuhanTransit.text,
+              _transportasiTransit.text,
+              null,
+              null,
+              null,
+              null,
             );
+            if (exp == null) {
+              FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
+            } else {
+              Navigator.pop(context, exp);
+            }
           },
           color: Colors.lightBlueAccent,
-          child: Text('Simpan', style: TextStyle(color: Colors.white)),
+          child: Text('Tambah', style: TextStyle(color: Colors.white)),
         ),
       ),
     );
@@ -547,15 +477,57 @@ class _Hcscreen extends State<Hcscreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Pendaftaran HC", style: TextStyle(color: Colors.white)),
+        title: Text("Tambah Export", style: TextStyle(color: Colors.white)),
       ),
-      body: Container(
-        child: Column(
+      body: Center(
+        child: ListView(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            InfoUsahaScreen(),
-            Expanded(
-              child: DetailHcScreen("HC"),
-            )
+            SizedBox(height: 16.0),
+            namaProduk,
+            SizedBox(height: 16.0),
+            jenisProduk,
+            SizedBox(height: 16.0),
+            nomorHs,
+            SizedBox(height: 16.0),
+            namaExportir,
+            SizedBox(height: 16.0),
+            alamatKantor,
+            SizedBox(height: 16.0),
+            alamatGudang,
+            SizedBox(height: 16.0),
+            consigmentCode,
+            SizedBox(height: 16.0),
+            jumlahLot,
+            SizedBox(height: 16.0),
+            beratLot,
+            SizedBox(height: 16.0),
+            jumlahKemasan,
+            SizedBox(height: 16.0),
+            jenisKemasan,
+            SizedBox(height: 16.0),
+            beratKotor,
+            SizedBox(height: 16.0),
+            beratBersih,
+            SizedBox(height: 16.0),
+            pelabuhanPemberangkatan,
+            SizedBox(height: 16.0),
+            identitasTransportasi,
+            SizedBox(height: 16.0),
+            pelabuhanTujuan,
+            SizedBox(height: 16.0),
+            negaraTujuan,
+            SizedBox(height: 16.0),
+            negaraTransit,
+            SizedBox(height: 16.0),
+            pelabuhanTransit,
+            SizedBox(height: 16.0),
+            identitasTransportasi,
+            SizedBox(height: 16.0),
+            transportasiTransit,
+            SizedBox(height: 16.0),
+            saveButton,
+            SizedBox(height: 48.0),
           ],
         ),
       ),

@@ -7,8 +7,6 @@ import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/status/statusScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -24,15 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Mediascreen(),
     ProfilUsahaScreen(),
     UserScreen()
-
   ];
 
   @override
   Widget build(BuildContext context) {
-
-     return new WillPopScope(
+    return new WillPopScope(
       onWillPop: _onWillPop,
-      child : new Scaffold(
+      child: new Scaffold(
         appBar: AppBar(
           elevation: 0,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
@@ -46,9 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           leading: new Container(),
-          title: Text(appBarTitle,style: TextStyle(color: Colors.black87)),
+          title: Text(appBarTitle, style: TextStyle(color: Colors.black87)),
           centerTitle: true,
-
         ),
         body: Center(
           child: widgetOptions.elementAt(selectedIndex),
@@ -56,9 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.track_changes), title: Text('History')),
+                icon: Icon(Icons.home), title: Text('Home')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.track_changes), title: Text('Track')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_media), title: Text('Media')),
             BottomNavigationBarItem(
@@ -71,23 +67,22 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: onItemTapped,
         ),
       ),
-     );
-
+    );
   }
 
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
-      if(index == 0){
+      if (index == 0) {
         appBarTitle = "OKKPD Jateng";
-      }else if(index == 1){
-        appBarTitle = "History";
-      }else if(index == 2){
+      } else if (index == 1) {
+        appBarTitle = "Track";
+      } else if (index == 2) {
         appBarTitle = "Media";
-      }else if(index == 3){
-        appBarTitle = "Usaha";
-      }else if(index == 4){
-        appBarTitle = "User";
+      } else if (index == 3) {
+        appBarTitle = "Profil Usaha";
+      } else if (index == 4) {
+        appBarTitle = "Profil User";
       }
     });
   }
@@ -95,23 +90,25 @@ class _HomeScreenState extends State<HomeScreen> {
   static Future<void> pop() async {
     await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
   }
+
   Future<bool> _onWillPop() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Keluar Aplikasi'),
-        content: new Text('Apakah anda ingin keluar aplikasi?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Keluar Aplikasi'),
+            content: new Text('Apakah anda ingin keluar aplikasi?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Yes'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    ) ?? false;
+        ) ??
+        false;
   }
 }
