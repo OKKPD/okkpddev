@@ -256,8 +256,14 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
                 _luasLahan.text,
                 nmKomoditas,
                 namaLatin);
-
-            Navigator.pop(context, kmd);
+            if (idSektor == null ||
+                idKomoditas == null ||
+                idKelompok == null ||
+                _luasLahan.text.length == 0) {
+              FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
+            } else {
+              Navigator.pop(context, kmd);
+            }
           },
           color: Colors.lightBlueAccent,
           child: Text('Tambah', style: TextStyle(color: Colors.white)),
