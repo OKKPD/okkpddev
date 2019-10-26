@@ -3,6 +3,7 @@ import 'package:okkpd_mobile/model/kelompokKomoditasModel.dart';
 import 'package:okkpd_mobile/model/komoditasModel.dart';
 import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
 import 'package:okkpd_mobile/model/sektorKomoditasModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class TambahKomoditasScreen extends StatefulWidget {
@@ -19,11 +20,11 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   var _namaPemohonController = TextEditingController();
   var _nomorKtpPemohonController = TextEditingController();
   var _nomorHpPemohonController = TextEditingController();
-  var _namaKomoditas= TextEditingController();
-  var _idSektor= TextEditingController();
-  var _idKomoditas= TextEditingController();
-  var _idKelompok= TextEditingController();
-  var _namaLatin= TextEditingController();
+  var _namaKomoditas = TextEditingController();
+  var _idSektor = TextEditingController();
+  var _idKomoditas = TextEditingController();
+  var _idKelompok = TextEditingController();
+  var _namaLatin = TextEditingController();
   var _luasLahan = TextEditingController();
 
   List getSektor = [];
@@ -38,30 +39,36 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   String namaLatin;
   String nmKomoditas;
 
-
-  Future getDataSektor() async{
+  Future getDataSektor() async {
     getSektor = await KomoditasRepo().getSektor();
     setState(() {
-      for (var datas in getSektor){
+      for (var datas in getSektor) {
         sektor.add(datas);
       }
     });
   }
-  Future getDataKelompok(String idSektor) async{
+
+  Future getDataKelompok(String idSektor) async {
     getKelompok = await KomoditasRepo().getKelompok(idSektor);
     setState(() {
-      for (var datas in getKelompok){
+      for (var datas in getKelompok) {
         kelompok.add(datas);
       }
     });
   }
-  Future getDataKomoditas(String idSektor,String idKelompok) async{
-    getKomoditas = await KomoditasRepo().getKomoditas(idSektor,idKelompok);
-    setState(() {
-      for (var datas in getKomoditas){
-        komoditas.add(datas);
-      }
-    });
+
+  Future getDataKomoditas(String idSektor, String idKelompok) async {
+    getKomoditas = await KomoditasRepo().getKomoditas(idSektor, idKelompok);
+    if (getKomoditas != null) {
+      setState(() {
+        for (var datas in getKomoditas) {
+          komoditas.add(datas);
+        }
+      });
+    } else {
+      FunctionDart().setToast('Belum Ada Komoditas');
+      Navigator.pop(context, null);
+    }
   }
 
   Future setInit() async {
@@ -91,7 +98,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
   @override
   Widget build(BuildContext context) {
-   
     final daftarKomoditas =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
@@ -122,8 +128,8 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
         onChanged: (value) {
           setState(() {
             idKomoditas = value;
-            for(var kmd in komoditas){
-              if(kmd.idKomoditas == idKomoditas){
+            for (var kmd in komoditas) {
+              if (kmd.idKomoditas == idKomoditas) {
                 namaLatin = kmd.namaLatin;
                 nmKomoditas = kmd.deskripsi;
               }
@@ -141,7 +147,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
     ]);
 
     final namaSektor =
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(
         "Nama Sektor",
         textAlign: TextAlign.left,
@@ -192,7 +198,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
         onChanged: (value) {
           setState(() {
             idKelompok = value;
-            getDataKomoditas(idSektor,idKelompok);
+            getDataKomoditas(idSektor, idKelompok);
 
             // _namaLatin.text = getKomoditas[index]['nama_latin'];
             // _namaKomoditas.text = getKomoditas[index]['deskripsi'];
@@ -240,8 +246,16 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            KomoditasModel kmd = KomoditasModel(null,nmKomoditas,"",idSektor,idKomoditas,idKelompok,_luasLahan.text,nmKomoditas,
-            namaLatin);
+            KomoditasModel kmd = KomoditasModel(
+                null,
+                nmKomoditas,
+                "",
+                idSektor,
+                idKomoditas,
+                idKelompok,
+                _luasLahan.text,
+                nmKomoditas,
+                namaLatin);
 
             Navigator.pop(context, kmd);
           },
@@ -254,8 +268,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title:
-            Text("Tambah Komoditas", style: TextStyle(color: Colors.white)),
+        title: Text("Tambah Komoditas", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: ListView(
@@ -272,7 +285,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             SizedBox(height: 16.0),
             spasiforjarak,
             SizedBox(height: 16.0),
-            saveButton ,
+            saveButton,
             SizedBox(height: 48.0),
           ],
         ),

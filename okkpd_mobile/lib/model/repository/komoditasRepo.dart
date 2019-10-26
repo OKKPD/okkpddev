@@ -9,7 +9,8 @@ import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class KomoditasRepo {
-  Future<bool> postKomoditas(List<KomoditasModel> komoditas, String jenis) async {
+  Future<bool> postKomoditas(
+      List<KomoditasModel> komoditas, String jenis) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var idUsaha = prefs.getString('loginidUsaha');
 
@@ -72,19 +73,21 @@ class KomoditasRepo {
     return _postList;
   }
 
-   Future getKomoditas(String id, String kelompok) async {
+  Future getKomoditas(String id, String kelompok) async {
     List<KomoditasModel> _postList = [];
     var url = '${Keys.APIURL}komoditas/sektor/$id/kelompok/$kelompok';
     var response = await http.get(url);
     final values = json.decode(response.body);
     print(values);
 
-    if (values['DATA'].length > 0) {
+    if (values['DATA'] == null) {
+      return null;
+    } else {
       for (int i = 0; i < values['DATA'].length; i++) {
         var komoditas = KomoditasModel.fromJson(values['DATA'][i]);
         _postList.add(komoditas);
       }
+      return _postList;
     }
-    return _postList;
   }
 }
