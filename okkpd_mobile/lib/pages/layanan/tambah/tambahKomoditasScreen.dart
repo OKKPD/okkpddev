@@ -14,17 +14,7 @@ class TambahKomoditasScreen extends StatefulWidget {
 class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   ProgressDialog pr;
 
-  var _jenisPerusahaanController = TextEditingController();
-  var _namaUsahaController = TextEditingController();
-  var _alamatPerusahaanController = TextEditingController();
-  var _namaPemohonController = TextEditingController();
-  var _nomorKtpPemohonController = TextEditingController();
-  var _nomorHpPemohonController = TextEditingController();
   var _namaKomoditas = TextEditingController();
-  var _idSektor = TextEditingController();
-  var _idKomoditas = TextEditingController();
-  var _idKelompok = TextEditingController();
-  var _namaLatin = TextEditingController();
   var _luasLahan = TextEditingController();
 
   List getSektor = [];

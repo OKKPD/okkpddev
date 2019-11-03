@@ -60,7 +60,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   startTime() async {
     var _duration = new Duration(seconds: 2);
-    return new Timer(_duration, navigationAwal);
+    return new Timer(_duration, navigationPage);
   }
 
   void navigationAwal(){
@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (prefs.getString("loginId") != null) {
       Navigator.of(context).pushReplacementNamed('/homescreen');
     } else {
-      Navigator.of(context).pushReplacementNamed('/login');
+      Navigator.of(context).pushReplacementNamed('/homeGuest');
     }
   }
 
