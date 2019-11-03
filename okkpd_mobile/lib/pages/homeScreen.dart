@@ -30,9 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
       onWillPop: _onWillPop,
       child: new Scaffold(
         appBar: AppBar(
-          elevation: 0,
+          elevation: 3,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
-          backgroundColor: Color.fromRGBO(255, 255, 255, 50),
+          backgroundColor: Colors.white,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           actions: <Widget>[

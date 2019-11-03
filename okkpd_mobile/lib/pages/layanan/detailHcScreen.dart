@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/exportModel.dart';
 import 'package:okkpd_mobile/model/repository/exportRepo.dart';
 import 'package:okkpd_mobile/pages/layanan/tambah/tambahExportScreen.dart';
-import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 

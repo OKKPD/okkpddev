@@ -19,8 +19,6 @@ class ProdukRepo {
         headers: {"Content-Type": "application/json"},
         body: json.encode(produks));
 
-    print(url);
-    print(response.body);
 
     var resp = ResponseModel.fromJson(json.decode(response.body));
     FunctionDart().setToast(resp.message);

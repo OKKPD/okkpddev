@@ -78,7 +78,6 @@ class KomoditasRepo {
     var url = '${Keys.APIURL}komoditas/sektor/$id/kelompok/$kelompok';
     var response = await http.get(url);
     final values = json.decode(response.body);
-    print(values);
 
     if (values['DATA'] == null) {
       return null;
