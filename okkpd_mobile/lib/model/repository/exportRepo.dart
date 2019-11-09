@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/exportModel.dart';
@@ -18,7 +17,6 @@ class ExportRepo {
         headers: {"Content-Type": "application/json"},
         body: json.encode(export));
 
-    debugPrint('asdasdsadsad' + response.body);
     var resp = ResponseModel.fromJson(json.decode(response.body));
     FunctionDart().setToast(resp.message);
     if (response.statusCode != 200) {

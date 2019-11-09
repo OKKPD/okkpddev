@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:okkpd_mobile/model/exportModel.dart';
-import 'package:okkpd_mobile/model/repository/exportRepo.dart';
-import 'package:okkpd_mobile/pages/layanan/tambah/tambahExportScreen.dart';
+import 'package:okkpd_mobile/model/produkModel.dart';
+import 'package:okkpd_mobile/model/repository/produkRepo.dart';
+import 'package:okkpd_mobile/pages/layanan/tambah/tambahProdukScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-class DetailHcScreen extends StatefulWidget {
+class DetailPsatScreen extends StatefulWidget {
   final String jenis;
-  DetailHcScreen(this.jenis);
+  DetailPsatScreen(this.jenis);
 
   @override
-  _DetailHcScreen createState() => _DetailHcScreen(jenis);
+  _DetailPsatScreen createState() => _DetailPsatScreen(jenis);
 }
 
-class _DetailHcScreen extends State<DetailHcScreen> {
+class _DetailPsatScreen extends State<DetailPsatScreen> {
   final String jenis;
-  _DetailHcScreen(this.jenis);
+  _DetailPsatScreen(this.jenis);
 
-  final List<ExportModel> hcs = [];
+  final List<ProdukModel> produks = [];
   final _normalFont = const TextStyle(fontSize: 14.0);
   final _smallFont = const TextStyle(fontSize: 12.0);
   ProgressDialog pr;
@@ -27,29 +27,31 @@ class _DetailHcScreen extends State<DetailHcScreen> {
     super.initState();
   }
 
-  void simpanHc() async {
+  void simpanProduk() async {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 
     try {
       pr.show();
-      await ExportRepo().postExport(hcs, 'hc');
-    } catch (e) {} finally {
+      await ProdukRepo().postProduk(produks, jenis);
+    } catch (e) {
+      print("Error Insert");
+    } finally {
       pr.dismiss();
       Navigator.pop(context, null);
     }
   }
 
-  void _addHc(ExportModel exp) {
+  void _addProduk(ProdukModel prd) {
     setState(() {
-      if (exp != null) {
-        hcs.add(exp);
+      if (prd != null) {
+        produks.add(prd);
       }
     });
   }
 
-  void _removeHc(int i) {
+  void _removeProduk(int i) {
     setState(() {
-      hcs.removeAt(i);
+      produks.removeAt(i);
     });
   }
 
@@ -59,8 +61,8 @@ class _DetailHcScreen extends State<DetailHcScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Hapus Hc'),
-            content: Text('Anda yakin untuk menghapus Hc ini?'),
+            title: Text('Hapus Produk'),
+            content: Text('Anda yakin untuk menghapus Produk ini?'),
             actions: <Widget>[
               FlatButton(
                   onPressed: () {
@@ -69,7 +71,7 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                   child: Text('Tidak')),
               FlatButton(
                 onPressed: () {
-                  _removeHc(i);
+                  _removeProduk(i);
                   _dismissDialog();
                 },
                 child: Text('Ya'),
@@ -85,20 +87,20 @@ class _DetailHcScreen extends State<DetailHcScreen> {
 
   _buildSuggestions() {
     return ListView.builder(
-        itemCount: hcs.length,
+        itemCount: produks.length,
         itemBuilder: (context, i) {
-          return _buildRow(hcs[i], i);
+          return _buildRow(produks[i], i);
         });
   }
 
-  _buildRow(ExportModel export, int i) {
+  _buildRow(ProdukModel psat, int i) {
     return ListTile(
         title: Column(
           children: <Widget>[
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                export.namaProduk,
+                psat.namaProdukPangan,
                 style: _normalFont,
               ),
             ),
@@ -106,7 +108,8 @@ class _DetailHcScreen extends State<DetailHcScreen> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                export.negaraTujuan,
+                // "${Psat.luasLahan} Ha",
+                '',
                 style: _smallFont,
               ),
             )
@@ -124,12 +127,12 @@ class _DetailHcScreen extends State<DetailHcScreen> {
         ));
   }
 
-  _tambahHc(BuildContext context) async {
-    final ExportModel result = await Navigator.push(
+  _tambahProduk(BuildContext context) async {
+    final ProdukModel result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => TambahExportScreen()),
+      MaterialPageRoute(builder: (context) => TambahProdukScreen()),
     );
-    _addHc(result);
+    _addProduk(result);
   }
 
   @override
@@ -144,7 +147,7 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Export HC",
+                    "Produk dan Lahan",
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.black54,
@@ -154,7 +157,7 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                       alignment: Alignment.centerRight,
                       child: RaisedButton(
                         onPressed: () {
-                          _tambahHc(context);
+                          _tambahProduk(context);
                         },
                         child: Icon(
                           Icons.add,
@@ -174,11 +177,11 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                 child: new RaisedButton(
                   child: Text("Simpan"),
                   onPressed: () {
-                    print(hcs.length);
-                    if (hcs.length != 0) {
-                      simpanHc();
+                    print(produks.length);
+                    if (produks.length != 0) {
+                      simpanProduk();
                     } else {
-                      FunctionDart().setToast('HC Tidak Boleh Kosong');
+                      FunctionDart().setToast('Produk Tidak Boleh Kosong');
                     }
                   },
                 ),
