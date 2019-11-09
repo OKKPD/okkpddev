@@ -8,6 +8,7 @@ import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
+import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 
 class UserBody extends StatefulWidget {
   @override
@@ -231,7 +232,7 @@ class _UserBodyState extends State<UserBody> {
                   LoginRepo().logoutProcess();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => HomeGuestScreen()),
                   );
                 },
               ),
