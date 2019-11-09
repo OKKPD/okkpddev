@@ -8,7 +8,9 @@ import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/status/statusScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
-//import 'package:okkpd_mobile/pages/guest/barcodeScreen.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:okkpd_mobile/pages/guest/dashBoardGuestScreen.dart';
+import 'package:okkpd_mobile/pages/guest/layananGuestScreen.dart';
 
 
 
@@ -17,16 +19,35 @@ class HomeGuestScreen extends StatefulWidget {
   _HomeGuestScreen createState() => _HomeGuestScreen();
 }
 
+
+
 class _HomeGuestScreen extends State<HomeGuestScreen> {
   String appBarTitle = "OKKPD Jateng";
+  String  _barcodeScanRes,_scanBarcode;
 
   int selectedIndex = 0;
   final widgetOptions = [
+
+    DashboarGuestScreen(),
+    LayananGuestScreen(),
     GuestScreen(),
     StatusScreen(),
     LoginScreen()
 
   ];
+
+
+
+  Future scanBarcodeNormal() async {
+
+       _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666", "Cancel", true, ScanMode.BARCODE);
+    // print(barcodeScanRes);
+
+    setState(() {
+      _scanBarcode = _barcodeScanRes;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +80,13 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.track_changes), title: Text('History')),
+                icon: Icon(Icons.track_changes), title: Text('Layanan')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.account_box), title: Text('User')),
+                icon: Icon(Icons.perm_media), title: Text('QR')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.contact_phone), title: Text('Kontak')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_box), title: Text('Login')),
           ],
           currentIndex: selectedIndex,
           fixedColor: Colors.blue,
@@ -75,11 +100,15 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
-      if(index == 0){
-        appBarTitle = "OKKPD Jateng";
-      }else if(index == 1){
-        appBarTitle = "History";
-      }else if(index == 2){
+      if (index == 0) {
+        appBarTitle = "Home";
+      } else if (index == 1) {
+        appBarTitle = "Layanan";
+      } else if (index == 2) {
+        appBarTitle = "QR";
+      } else if (index == 3) {
+        appBarTitle = "Kontak";
+      } else if (index == 4) {
         appBarTitle = "Login";
       }
     });
