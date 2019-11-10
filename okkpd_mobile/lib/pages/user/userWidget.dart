@@ -7,6 +7,8 @@ import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
 import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
+import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 
 class UserBody extends StatefulWidget {
   @override
@@ -164,6 +166,47 @@ class _UserBodyState extends State<UserBody> {
       ],
     );
 
+
+
+
+    final surveiPelanggan = Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: queryData.size.width / 3,
+                child: Text(
+                  "Survei Kepuasan Pelanggan",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      fontFamily: "NeoSansBold"),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.arrow_forward_ios),
+                color: Colors.grey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SurveiScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        new Divider(
+          color: Colors.grey,
+        ),
+      ],
+    );
+
     final logout = Column(
       children: <Widget>[
         Padding(
@@ -187,7 +230,10 @@ class _UserBodyState extends State<UserBody> {
                 color: Colors.grey,
                 onPressed: () {
                   LoginRepo().logoutProcess();
-                  Navigator.of(context).pushReplacementNamed('/homeGuest');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeGuestScreen()),
+                  );
                 },
               ),
             ],
@@ -228,6 +274,7 @@ class _UserBodyState extends State<UserBody> {
           ),
           informasi,
           ubahPassword,
+          surveiPelanggan,
           logout,
         ],
       ),

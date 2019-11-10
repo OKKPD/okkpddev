@@ -50,6 +50,7 @@ flutter:
   assets:
   - assets/logo.png
   - assets/user.png
+  - assets/titik.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
