@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 class TambahDokumenScreen extends StatefulWidget {
   final String kodeDokumen;

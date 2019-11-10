@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:okkpd_mobile/constants/key.dart';
+import 'package:okkpd_mobile/pages/dashboard/beritaWidget.dart';
 import 'package:okkpd_mobile/pages/dashboard/dashboarLayananWidget.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -56,15 +57,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               )),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 16, top: 16),
-              child: Text("Berita Terbaru",
-                  style:
-                      new TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            Container(
+              child: Expanded(child: BeritaWidget(),flex: 1,),
             ),
-          ),
+//          Align(
+//            alignment: Alignment.centerLeft,
+//            child: Container(
+//              padding: EdgeInsets.only(left: 16, top: 16),
+//              child: Text("ajshdaj")
+//            ),
+//          ),
         ],
       ),
     ));

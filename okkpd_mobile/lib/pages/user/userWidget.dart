@@ -187,10 +187,7 @@ class _UserBodyState extends State<UserBody> {
                 color: Colors.grey,
                 onPressed: () {
                   LoginRepo().logoutProcess();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
+                  Navigator.of(context).pushReplacementNamed('/homeGuest');
                 },
               ),
             ],
