@@ -25,9 +25,10 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           Container(
             width: 200,
             height: 200,
-              alignment: AlignmentDirectional(3.0, 0.0),
+              alignment: AlignmentDirectional(2.0, 0.0),
           child: Image(image: AssetImage('assets/titik.png'))
           ),
+
 
           Container(
             alignment: AlignmentDirectional(0.0, 0.0),
@@ -84,16 +85,8 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
     final beritaScreen =
     FutureBuilder(builder: (BuildContext context, AsyncSnapshot res) {
       var data = [
-        {'Track': 'HC', 'Status': 'Ditolak'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Rumah Kemas', 'Status': 'Diterima'},
-        {'Track': 'Prima 2', 'Status': 'Diterima'},
+        {'Track': 'Berita', 'Status': 'Diterima'},
+
       ];
 
       final children = <Widget>[];
@@ -122,34 +115,11 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               fontSize: 14,
-                              color: Colors.black54,
+                              color: Colors.grey,
                               fontFamily: "NeoSansBold"),
                         ),
                       ),
-                      Container(
-                        width: queryData.size.width / 4,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        decoration: new BoxDecoration(
-                          color: (datas['Status'].toString() == 'Ditolak')
-                              ? Colors.redAccent
-                              : Colors.green,
-                          borderRadius: new BorderRadius.circular(15.0),
-                          border: new Border.all(
-                            width: 5.0,
-                            color: Colors.transparent,
-                          ),
-                        ),
-                        child: Text(
-                          datas['Status'].toString(),
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontFamily: "NeoSansBold",
-                          ),
-                        ),
-                      ),
+
                     ],
                   ),
                 ),
@@ -165,10 +135,10 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: queryData.size.width / 3,
+                        width: 100,
                         child: Text(
-                          "Keteranganya disini",
-                          textAlign: TextAlign.left,
+                          "Lorem ipsum dolor sit amet, consectetur adipicing elit,",
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.black54,

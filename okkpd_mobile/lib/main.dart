@@ -17,6 +17,7 @@ import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/last_page.dart';
+import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/rumahKemas': (BuildContext context) => new Rumahkemas(),
         '/mediaScreen': (BuildContext context) => new Mediascreen(),
         '/homeGuest' : (BuildContext context) => new HomeGuestScreen(),
+        '/kontak' : (BuildContext context) => new KontakScreen(),
         '/surveiPelanggan' : (BuildContext context) => new SurveiScreen(),
         // '/mediaBody': (BuildContext context) => new MediaBody("asd"),
         '/tambahKomoditas': (BuildContext context) =>
