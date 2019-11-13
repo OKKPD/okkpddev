@@ -65,14 +65,17 @@ class _QrScreen extends State<QrScreen> {
 //             _scanBarcode,
 //              style: Theme.of(context).textTheme.display1,
 //            ),
+
+            FloatingActionButton(
+
+              onPressed: scanBarcodeNormal,
+              tooltip: 'Increment',
+              child: Icon(Icons.settings_overscan),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: scanBarcodeNormal,
-        tooltip: 'Increment',
-        child: Icon(Icons.settings_overscan),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

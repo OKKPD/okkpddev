@@ -1,62 +1,30 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:okkpd_mobile/constants/key.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class GuestScreen extends StatefulWidget {
+class KontakScreen extends StatefulWidget {
+
   @override
-  _GuestScreen createState() => _GuestScreen();
+  _KontakScreen createState() => _KontakScreen();
 }
 
-void _portraitModeOnly() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-}
-
-
-//void _getDatascan(){
-//  if(_barcodeScanRes == null){
-//    print("data kosong");
-//  }else if(_barcodeScanRes != null){
-//    print("Data");
-//  }
-//}
-
-
-
-
-class _GuestScreen extends State<GuestScreen> {
-  String  _barcodeScanRes,_scanBarcode;
-
-
-  Future scanBarcodeNormal() async {
-    _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666", "Cancel", true, ScanMode.QR);
-   if(_barcodeScanRes != "") {
-    // print(_barcodeScanRes);
-
-     setState(() {
-       _scanBarcode = _barcodeScanRes;
-    });
-   }else{
-
-    // print(_barcodeScanRes);
-
-//     setState(() {
-//       _scanBarcode = "Data kosong";
-//     });
-   }
+class _KontakScreen extends State<KontakScreen> {
+  _launchURL() async {
+    const url = 'https://api.whatsapp.com/send?phone=6285865813540&text=Halo%20Admin%20Saya%20Mau%20Tanya%20Nih';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
 
-  
   @override
   Widget build(BuildContext context) {
-    _portraitModeOnly();
+
     return Scaffold(
         body: Container(
           child: Column(
@@ -69,14 +37,15 @@ class _GuestScreen extends State<GuestScreen> {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: EdgeInsets.only(left: 16, top: 16),
-                          child: Text("Data",
+                          child: Text("Kontak",
                               style: new TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold)),
                         ),
                       ),
                       Container(
-                          width: 300,
-                          height: 200,
+                        width: 250,
+                          height: 250,
+                          child: Image(image: AssetImage('assets/kontak.png'))
                       ),
 
                     ],
@@ -93,7 +62,7 @@ class _GuestScreen extends State<GuestScreen> {
                           Container(
                             width: 250,
                             child: Text(
-                              "Scan Sertifikat",
+                              "KONTAK",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontSize: 14,
@@ -113,7 +82,29 @@ class _GuestScreen extends State<GuestScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(Icons.web),
+                            tooltip: 'Increase volume by 10',
+                            onPressed: () {
+                            },
+                          ),
+                          Container(
+                            width: 250,
+                            child: Text(
+                              "Web : http://okkpd.dishanpan.jatengprov.go.id/",
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontFamily: "NeoSansBold"),
+                            ),
+                          ),
 
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -126,9 +117,9 @@ class _GuestScreen extends State<GuestScreen> {
                   child: MaterialButton(
                     minWidth: 200.0,
                     height: 42.0,
-                    onPressed: scanBarcodeNormal,
+                    onPressed: _launchURL,
                     color: Colors.blue,
-                    child: Text('Scan Sertifikat', style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                    child: Text('Hubungi Admin', style: TextStyle(color: Colors.white, fontSize: 20.0)),
 
                   ),
                 ),

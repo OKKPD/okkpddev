@@ -11,6 +11,7 @@ import 'package:okkpd_mobile/pages/login/loginScreen.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:okkpd_mobile/pages/guest/dashBoardGuestScreen.dart';
 import 'package:okkpd_mobile/pages/guest/layananGuestScreen.dart';
+import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
 
 
 
@@ -31,23 +32,23 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
     DashboarGuestScreen(),
     LayananGuestScreen(),
     GuestScreen(),
-    StatusScreen(),
+    KontakScreen(),
     LoginScreen()
 
   ];
 
 
 
-  Future scanBarcodeNormal() async {
-
-       _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-        "#ff6666", "Cancel", true, ScanMode.BARCODE);
-    // print(barcodeScanRes);
-
-    setState(() {
-      _scanBarcode = _barcodeScanRes;
-    });
-  }
+//  Future scanBarcodeNormal() async {
+//
+//       _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+//        "#ff6666", "Cancel", true, ScanMode.BARCODE);
+//    // print(barcodeScanRes);
+//
+//    setState(() {
+//      _scanBarcode = _barcodeScanRes;
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
