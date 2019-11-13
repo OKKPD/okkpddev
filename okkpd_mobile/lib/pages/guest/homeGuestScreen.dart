@@ -79,8 +79,8 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.track_changes), title: Text('Layanan')),
+           BottomNavigationBarItem(
+               icon: Icon(Icons.track_changes), title: Text('Layanan')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_media), title: Text('QR')),
             BottomNavigationBarItem(
@@ -102,9 +102,11 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
       selectedIndex = index;
       if (index == 0) {
         appBarTitle = "Home";
-      } else if (index == 1) {
-        appBarTitle = "Layanan";
-      } else if (index == 2) {
+      }
+     else if (index == 1) {
+       appBarTitle = "Layanan";
+     }
+      else if (index == 2) {
         appBarTitle = "QR";
       } else if (index == 3) {
         appBarTitle = "Kontak";

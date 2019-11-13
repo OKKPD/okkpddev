@@ -1,12 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
-import 'package:okkpd_mobile/constants/key.dart';
-import 'package:okkpd_mobile/model/layananModel.dart';
-import 'package:okkpd_mobile/model/masterLayananModel.dart';
-import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/pages/layanan/upload/uploadPrimaTiga.dart';
+import 'package:okkpd_mobile/pages/dashboard/beritaWidget.dart';
+import 'package:okkpd_mobile/pages/guest/trackingStatusScreen.dart';
 
 class DashboarGuestScreen extends StatefulWidget {
   @override
@@ -15,17 +11,17 @@ class DashboarGuestScreen extends StatefulWidget {
 
 class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
+  var _trackController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
     final kodeRegistrasi= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children:<Widget>[
           Container(
-            width: 200,
-            height: 200,
-              alignment: AlignmentDirectional(3.0, 0.0),
+            width: 100,
+            height: 100,
           child: Image(image: AssetImage('assets/titik.png'))
           ),
 
@@ -39,6 +35,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
           new Padding(padding: EdgeInsets.only(top: 20.0)),
           TextFormField(
+            controller: _trackController,
             decoration: new InputDecoration(
               labelText: "Kode Registrasi Layanan",
               fillColor: Colors.white,
@@ -49,7 +46,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               ),
               //fillColor: Colors.green
             ),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
             style: new TextStyle(
               fontFamily: "NeoSansBold",
             ),
@@ -59,13 +56,16 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
     final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0),
-      
+
       child: Material(
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            //method cari
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TrackingStatusScreen(_trackController.text)),
+            );
           },
           color: Colors.blue,
           child: Text('Cari', style: TextStyle(color: Colors.white, fontSize: 20.0)),
@@ -202,7 +202,14 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
             kodeRegistrasi,
             saveButton ,
             SizedBox(height: 48.0),
-            beritaScreen,
+
+
+//            Flex(
+//              direction: Axis.vertical,
+//              children: <Widget>[
+//                Expanded(child: BeritaWidget(),flex: 1,),
+//              ],
+//            ),
             SizedBox(height: 58.0),
                       ],
                 ),

@@ -25,12 +25,9 @@ class _QrScreen extends State<QrScreen> {
   String  _barcodeScanRes,_scanBarcode;
 
   Future scanBarcodeNormal() async {
-    String ;
-
-
-    _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+    String _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.BARCODE);
-    // print(barcodeScanRes);
+    print("ASDASDSA"+_barcodeScanRes);
 
     setState(() {
       _scanBarcode = _barcodeScanRes;
@@ -39,9 +36,9 @@ class _QrScreen extends State<QrScreen> {
 
   Future _dataScan(){
     if(_barcodeScanRes != null){
-      print(_scanBarcode);
+      print("HALOOOO"+_scanBarcode);
     }else{
-      print("-");
+      print("HALOOOO-");
     }
 
   }
