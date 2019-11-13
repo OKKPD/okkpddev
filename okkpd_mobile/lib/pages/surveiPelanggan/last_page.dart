@@ -66,7 +66,10 @@ class LastPageState extends State<LastPage> {
             child: getPages(_width)
         ),
       ),
+
+
       bottomNavigationBar: BottomAppBar(
+
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -77,7 +80,9 @@ class LastPageState extends State<LastPage> {
                   'Finish',
                   style: TextStyle(fontSize: 20.0, color: Colors.cyan),
                 )),
-          )),
+
+          )
+      ),
     );
   }
 

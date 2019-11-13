@@ -53,6 +53,10 @@ flutter:
   - assets/user.png
   - assets/titik.png
   - assets/kontak.png
+  - assets/angry.gif
+  - assets/hearteyes.gif
+  - assets/star.png
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

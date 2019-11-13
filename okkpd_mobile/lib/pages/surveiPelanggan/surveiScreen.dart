@@ -259,10 +259,10 @@ class SplashScreenState extends State<SplashScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Question 1'),
+            Text('Pertanyaan 1'),
             Container(
                 margin: EdgeInsets.only(top: 16.0),
-                child: Text('Overall, how would you rate our service?')),
+                child: Text('Bagaimana tampilan aplikasi mobile?')),
             Container(
               margin: EdgeInsets.symmetric(vertical: 50.0),
               child: Text(
@@ -301,72 +301,42 @@ class SplashScreenState extends State<SplashScreen>
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(top: 34.0),
-        child: Transform(
-          transform: new Matrix4.translationValues(
-              0.0, 50.0 * (1.0 - secondTranformAnimation.value), 0.0),
-          child: Opacity(
-            opacity: secondTranformAnimation.value,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text('Question 2'),
-                Container(
-                    margin: EdgeInsets.only(top: 16.0),
-                    child: Text('How often do you typically use our service?')),
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      height: 258.0,
-                      child: Card(
-                        child: Column(
-                          children: List.generate(usingCollection.length,
-                                  (int index) {
-                                final using = usingCollection[index];
-                                return GestureDetector(
-                                  onTapUp: (detail) {
-                                    setState(() {
-                                      usingTimes = using.identifier;
-                                    });
-                                  },
-                                  child: Container(
-                                    height: 50.0,
-                                    color: usingTimes == using.identifier
-                                        ? Colors.orangeAccent.withAlpha(100)
-                                        : Colors.white,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                                activeColor: Colors.cyan,
-                                                value: using.identifier,
-                                                groupValue: usingTimes,
-                                                onChanged: (String value) {
-                                                  setState(() {
-                                                    usingTimes = value;
-                                                  });
-                                                }),
-                                            Text(using.displayContent)
-                                          ],
-                                        ),
-                                        Divider(
-                                          height: index < usingCollection.length
-                                              ? 1.0
-                                              : 0.0,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text('Pertanyaan 1'),
+            Container(
+                margin: EdgeInsets.only(top: 16.0),
+                child: Text('Bagaimana tampilan aplikasi mobile?')),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 50.0),
+              child: Text(
+                overallStatus,
+                style: TextStyle(
+                    color: Colors.cyan,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30.0),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+            Expanded(
+              child: Center(
+                child: Slider(
+                  value: overall,
+                  onChanged: (value) {
+                    setState(() {
+                      overall = value.round().toDouble();
+                      _getOverallStatus(overall);
+                    });
+                  },
+                  label: '${overall.toInt()}',
+                  divisions: 30,
+                  min: 1.0,
+                  max: 5.0,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -382,74 +352,42 @@ class SplashScreenState extends State<SplashScreen>
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(top: 34.0),
-        child: Transform(
-          transform: new Matrix4.translationValues(
-              0.0, 50.0 * (1.0 - thirdTranformAnimation.value), 0.0),
-          child: Opacity(
-            opacity: thirdTranformAnimation.value,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text('Question 3'),
-                Container(
-                    margin: EdgeInsets.only(top: 16.0),
-                    child: Text('What do you like about our service?')),
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      height: 213.0,
-                      child: Card(
-                        child: Column(
-                          children: List.generate(thirdQuestionList.length,
-                                  (int index) {
-                                ThirdQuestion question = thirdQuestionList[index];
-                                return Column(
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      onTapUp: (detail) {
-                                        setState(() {
-                                          question.isSelected =
-                                          !question.isSelected;
-//                                  isFairly = !isFairly;
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 50.0,
-                                        color: question.isSelected
-                                            ? Colors.orangeAccent.withAlpha(100)
-                                            : Colors.white,
-                                        child: Row(
-                                          children: <Widget>[
-                                            Checkbox(
-                                                activeColor: Colors.orangeAccent,
-                                                value: question.isSelected,
-                                                onChanged: (bool value) {
-//                                          print(value);
-                                                  setState(() {
-                                                    question.isSelected = value;
-                                                  });
-                                                }),
-                                            Text(question.displayContent)
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Divider(
-                                      height: index < thirdQuestionList.length
-                                          ? 1.0
-                                          : 0.0,
-                                    ),
-                                  ],
-                                );
-                              }),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text('Pertanyaan 1'),
+            Container(
+                margin: EdgeInsets.only(top: 16.0),
+                child: Text('Bagaimana tampilan aplikasi mobile?')),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 50.0),
+              child: Text(
+                overallStatus,
+                style: TextStyle(
+                    color: Colors.cyan,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30.0),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
+            Expanded(
+              child: Center(
+                child: Slider(
+                  value: overall,
+                  onChanged: (value) {
+                    setState(() {
+                      overall = value.round().toDouble();
+                      _getOverallStatus(overall);
+                    });
+                  },
+                  label: '${overall.toInt()}',
+                  divisions: 30,
+                  min: 1.0,
+                  max: 5.0,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -467,11 +405,11 @@ class SplashScreenState extends State<SplashScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Text('Question 4'),
+                Text('Pertanyaan 4'),
                 Container(
                     margin: EdgeInsets.only(top: 16.0),
                     child: Text(
-                        'When you need help or has concerns related with our product, how satisfied are you with our customer support\'s performance?')),
+                        'Bagaimana kecepatan layanan ini?')),
                 Expanded(
                   child: Center(
                     child: Container(
@@ -489,14 +427,7 @@ class SplashScreenState extends State<SplashScreen>
                                 Column(
                                   children: <Widget>[
                                     GestureDetector(
-//                              onTapU
-//                        onLongPress: () {
-//                          _startLongPressAnimation();
-//                          },
-//                                onTapUp: (detail) {
-//                          print(detail);
-//                         _longPressController.reset();
-//                      },
+
                                       onTapUp: (detail) {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -511,7 +442,7 @@ class SplashScreenState extends State<SplashScreen>
                                           child: Hero(
                                             tag: 'Unhappy',
                                             child: Image.asset(
-                                              'assets/angry.gif',
+                                              'assets/star.png',
                                               width: 50.0,
                                               height: 50.0,
                                             ),
@@ -547,8 +478,9 @@ class SplashScreenState extends State<SplashScreen>
                                         tag: 'Neutral',
                                         child: Transform.scale(
                                             scale: longPressAnimation.value,
+
                                             child: Image.asset(
-                                              'assets/mmm.gif',
+                                              'assets/star.png',
                                               width: 50.0,
                                               height: 50.0,
                                             )),
@@ -563,14 +495,7 @@ class SplashScreenState extends State<SplashScreen>
                                 Column(
                                   children: <Widget>[
                                     GestureDetector(
-//                              onTapU
-//                        onLongPress: () {
-//                          _startLongPressAnimation();
-//                          },
-//                                onTapUp: (detail) {
-//                          print(detail);
-//                         _longPressController.reset();
-//                      },
+
                                       onTapUp: (detail) {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
@@ -586,7 +511,7 @@ class SplashScreenState extends State<SplashScreen>
                                           child: Hero(
                                             tag: 'Satisfied',
                                             child: Image.asset(
-                                              'assets/hearteyes.gif',
+                                              'assets/star.png',
                                               width: 50.0,
                                               height: 50.0,
                                             ),
@@ -832,7 +757,7 @@ class AnimationBox extends StatelessWidget {
                 children: <Widget>[
 
                   Text(
-                    'Your opinion in 3 minutes.',
+                    'Pendapat Anda dalam 3 Menit.',
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -841,7 +766,7 @@ class AnimationBox extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0, bottom: 120.0),
                     child: Text(
-                      'By answering this 3 minutes survey, you help us improve our service event better for you',
+                      'Dengan menjawab survei 3 menit ini, Anda membantu kami meningkatkan acara layanan kami lebih baik untuk Anda',
                       style: TextStyle(
                         fontSize: 16.0,
                       ),
@@ -868,7 +793,7 @@ class AnimationBox extends StatelessWidget {
                         child: Center(
                           child: controller.status == AnimationStatus.dismissed
                               ? Text(
-                            'Take the survey',
+                            'Ikuti Survey',
                             style: TextStyle(
                                 color: Colors.white, fontSize: 20.0),
                           )
