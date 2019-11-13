@@ -16,7 +16,7 @@ class LoginRepo {
     var resp = ResponseModel.fromJson(json.decode(response.body));
     if (response.statusCode != 200) {
       message = resp.message;
-      FunctionDart().setToast(message);
+      FunctionDart().setToast("$message Eror code :${response.statusCode}");
       return Future.value(false);
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();

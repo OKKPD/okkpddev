@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class LastPage extends StatefulWidget {
 
@@ -76,10 +77,21 @@ class LastPageState extends State<LastPage> {
                 boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
             height: 50.0,
             child: Center(
-                child: Text(
-                  'Finish',
-                  style: TextStyle(fontSize: 20.0, color: Colors.cyan),
-                )),
+
+                child: MaterialButton(
+                  minWidth: 200.0,
+                  height: 42.0,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                    },
+                  color: Colors.blue,
+                  child: Text('Finish', style: TextStyle(color: Colors.white, fontSize: 20.0)),
+
+                ),
+                ),
 
           )
       ),
@@ -102,7 +114,7 @@ class LastPageState extends State<LastPage> {
               return Container(
                 decoration: BoxDecoration(
 //                    color: Colors.orangeAccent,
-                  color: Colors.orangeAccent,
+                  color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.all(Radius.circular(2.0)),
                 ),
                 height: 10.0,
@@ -160,12 +172,12 @@ class LastPageState extends State<LastPage> {
                               child: Container(
                                 height: 50.0,
                                 color: question.isSelected
-                                    ? Colors.orangeAccent.withAlpha(100)
+                                    ? Colors.lightBlueAccent.withAlpha(100)
                                     : Colors.white,
                                 child: Row(
                                   children: <Widget>[
                                     Checkbox(
-                                        activeColor: Colors.orangeAccent,
+                                        activeColor: Colors.lightBlueAccent,
                                         value: question.isSelected,
                                         onChanged: (bool value) {
 //                                          print(value);

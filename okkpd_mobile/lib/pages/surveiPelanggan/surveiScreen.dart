@@ -304,10 +304,10 @@ class SplashScreenState extends State<SplashScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Pertanyaan 1'),
+            Text('Pertanyaan 2'),
             Container(
                 margin: EdgeInsets.only(top: 16.0),
-                child: Text('Bagaimana tampilan aplikasi mobile?')),
+                child: Text('Bagaimana kemudahan penggunaan aplikasi ini ?')),
             Container(
               margin: EdgeInsets.symmetric(vertical: 50.0),
               child: Text(
@@ -355,7 +355,7 @@ class SplashScreenState extends State<SplashScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Pertanyaan 1'),
+            Text('Pertanyaan 3'),
             Container(
                 margin: EdgeInsets.only(top: 16.0),
                 child: Text('Bagaimana tampilan aplikasi mobile?')),
@@ -706,7 +706,7 @@ class AnimationBox extends StatelessWidget {
                           decoration: BoxDecoration(
 //                    color: Colors.orangeAccent,
                             color:
-                            index == 0 ? Colors.orangeAccent : Colors.grey,
+                            index == 0 ? Colors.lightBlueAccent : Colors.grey,
                             borderRadius:
                             BorderRadius.all(Radius.circular(2.0)),
                           ),
@@ -726,17 +726,17 @@ class AnimationBox extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text('Question 1'),
+                          Text('Pertanyaan 1'),
                           Container(
                               margin: EdgeInsets.only(top: 16.0),
                               child: Text(
-                                  'Overall, how would you rate our service?')),
+                                  'Bagaimana tampilan aplikasi mobile?')),
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 50.0),
                             child: Text(
                               'Good',
                               style: TextStyle(
-                                  color: Colors.orangeAccent,
+                                  color: Colors.lightBlueAccent,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 30.0),
                               textAlign: TextAlign.center,

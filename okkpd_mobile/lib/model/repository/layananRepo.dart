@@ -4,6 +4,7 @@ import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/trackLayananModel.dart';
+import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,6 +46,27 @@ class LayananRepo {
       for (int i = 0; i < values['DATA'].length; i++) {
         var sektor = LayananModel.fromJson(values['DATA'][i]);
         _postList.add(sektor);
+      }
+      return _postList;
+    }
+  }
+
+
+  Future trackSertifikat(String kodeTracking) async {
+    TrackSertifikatModel _postList ;
+    var url = '${Keys
+        .APIURL}tracking/sertifikat';
+    var response = await http.post(url,body: {'tracking_data':kodeTracking});
+    final values = json.decode(response.body);
+    print(url);
+
+    if(response.statusCode != 200){
+      FunctionDart().setToast(values['MESSAGE']);
+      return null;
+    }else{
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var data = TrackSertifikatModel.fromJson(values['DATA'][i]);
+        _postList = (data);
       }
       return _postList;
     }

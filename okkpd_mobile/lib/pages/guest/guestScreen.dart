@@ -4,6 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:okkpd_mobile/model/repository/layananRepo.dart';
+import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+
+
 
 class GuestScreen extends StatefulWidget {
   @override
@@ -30,30 +35,52 @@ void _portraitModeOnly() {
 
 
 class _GuestScreen extends State<GuestScreen> {
-  String  _barcodeScanRes,_scanBarcode;
+  String  _barcodeScanRes ="";
+  String _scanBarcode;
+  String noSertikat ="";
+  String tanggalKaduluarsa ="";
+  String statusAktif = "";
+  String namaJenisKomuditas = "";
+  String namaUsaha = "";
+
 
 
   Future scanBarcodeNormal() async {
     _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.QR);
-   if(_barcodeScanRes != "") {
-    // print(_barcodeScanRes);
 
-     setState(() {
-       _scanBarcode = _barcodeScanRes;
+   // print(_barcodeScanRes);
+    TrackSertifikatModel result = await  LayananRepo().trackSertifikat(_barcodeScanRes);
+
+    setState(()  {
+      // _scanBarcode = _barcodeScanRes;
+        FunctionDart().setToast(result.nomorSertifikat);
+        noSertikat = result.nomorSertifikat;
+        tanggalKaduluarsa = result.tanggalAkhir;
+        statusAktif = result.namaUsaha;
+        namaJenisKomuditas = result.namaJenisKomoditas;
+        namaUsaha = result.namaUsaha;
     });
-   }else{
 
-    // print(_barcodeScanRes);
 
+
+
+//   if(_barcodeScanRes != "") {
+//    // print(_barcodeScanRes);
+//
+//     setState(() {
+//       _scanBarcode = _barcodeScanRes;
+//    });
+//   }else{
+//
+//    // print(_barcodeScanRes);
+//
 //     setState(() {
 //       _scanBarcode = "Data kosong";
 //     });
-   }
+//   }
   }
 
-
-  
   @override
   Widget build(BuildContext context) {
     _portraitModeOnly();
@@ -69,16 +96,34 @@ class _GuestScreen extends State<GuestScreen> {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: EdgeInsets.only(left: 16, top: 16),
-                          child: Text("Data",
+                          child: Text("Data ",
                               style: new TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold)),
                         ),
                       ),
                       Container(
-                          width: 300,
-                          height: 200,
+                        child: Table(
+                          defaultColumnWidth: FixedColumnWidth(150.0),
+                          border: TableBorder(
+                            horizontalInside: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                            verticalInside: BorderSide(
+                              color: Colors.white,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                          ),
+                          children: [
+                            _buildTableRow("No Sertifikat, "+noSertikat),
+                            _buildTableRow("Pelaku Usaha, "+namaUsaha),
+                            _buildTableRow("Nama Jenis Komuditas, "+namaJenisKomuditas),
+                            _buildTableRow("Tanggal Kaduluarsa, "+tanggalKaduluarsa),
+                          ],
+                        ),
                       ),
-
                     ],
                   )),
               Container(
@@ -138,6 +183,18 @@ class _GuestScreen extends State<GuestScreen> {
             ],
           ),
         ));
+  }
+
+  TableRow _buildTableRow(String listOfNames) {
+    return TableRow(
+      children: listOfNames.split(',').map((name) {
+        return Container(
+          alignment: Alignment.topLeft,
+          child: Text(name, style: TextStyle(fontSize: 10.0)),
+          padding: EdgeInsets.all(8.0),
+        );
+      }).toList(),
+    );
   }
 }
 
