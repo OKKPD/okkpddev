@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/constants/key.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
@@ -42,20 +43,22 @@ class LoginWidgetState extends State<LoginWidget>{
 
     final logo = Hero(
       tag: 'hero',
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 48.0,
-        child: Image.asset('assets/logo.png'),
-      ),
+      child: Image(height: 70, image: AssetImage('assets/logo.png')),
     );
+
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       controller: _usernameController,
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      decoration: new InputDecoration(
+        labelText: "Username",
+        fillColor: Colors.white,
+        border: new OutlineInputBorder(
+          borderRadius: new BorderRadius.circular(8.0),
+          borderSide: new BorderSide(
+          ),
+        ),
       ),
     );
 
@@ -63,9 +66,14 @@ class LoginWidgetState extends State<LoginWidget>{
       autofocus: false,
       obscureText: true,
       controller: _passwordController,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      decoration: new InputDecoration(
+        labelText: "Password",
+        fillColor: Colors.white,
+        border: new OutlineInputBorder(
+          borderRadius: new BorderRadius.circular(8.0),
+          borderSide: new BorderSide(
+          ),
+        ),
       ),
     );
 
@@ -108,8 +116,13 @@ class LoginWidgetState extends State<LoginWidget>{
             children: <Widget>[
               logo,
               SizedBox(height: 48.0),
+              Align(child:
+                Text("LOGIN",style: Keys().bigBoldFontSiza,),
+              ),
+              SizedBox(height: 24.0),
+
               email,
-              SizedBox(height: 8.0),
+              SizedBox(height: 16.0),
               password,
               SizedBox(height: 8.0),
               loginButton,

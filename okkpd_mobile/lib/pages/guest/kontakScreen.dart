@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
-import 'package:okkpd_mobile/constants/key.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class KontakScreen extends StatefulWidget {

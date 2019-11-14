@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:okkpd_mobile/pages/dashboard/dashboardScreen.dart';
 import 'package:okkpd_mobile/pages/guest/guestScreen.dart';
-import 'package:okkpd_mobile/pages/user/userScreen.dart';
-import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
-import 'package:okkpd_mobile/pages/status/statusScreen.dart';
-import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:okkpd_mobile/pages/guest/dashBoardGuestScreen.dart';
 import 'package:okkpd_mobile/pages/guest/layananGuestScreen.dart';
 import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
@@ -24,13 +18,12 @@ class HomeGuestScreen extends StatefulWidget {
 
 class _HomeGuestScreen extends State<HomeGuestScreen> {
   String appBarTitle = "OKKPD Jateng";
-  String  _barcodeScanRes,_scanBarcode;
 
   int selectedIndex = 0;
   final widgetOptions = [
 
     DashboarGuestScreen(),
-    LayananGuestScreen(),
+//    LayananGuestScreen(),
     GuestScreen(),
     KontakScreen(),
     LoginScreen()
@@ -80,8 +73,8 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-           BottomNavigationBarItem(
-               icon: Icon(Icons.track_changes), title: Text('Layanan')),
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.track_changes), title: Text('Layanan')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_media), title: Text('QR')),
             BottomNavigationBarItem(
@@ -104,14 +97,14 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
       if (index == 0) {
         appBarTitle = "Home";
       }
-     else if (index == 1) {
-       appBarTitle = "Layanan";
-     }
-      else if (index == 2) {
+//     else if (index == 1) {
+//       appBarTitle = "Layanan";
+//     }
+      else if (index == 1) {
         appBarTitle = "QR";
-      } else if (index == 3) {
+      } else if (index == 2) {
         appBarTitle = "Kontak";
-      } else if (index == 4) {
+      } else if (index == 3) {
         appBarTitle = "Login";
       }
     });

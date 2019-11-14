@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:okkpd_mobile/constants/key.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
-import 'package:okkpd_mobile/tools/GlobalFunction.dart';
-
-
 
 class GuestScreen extends StatefulWidget {
   @override
@@ -23,24 +19,15 @@ void _portraitModeOnly() {
 }
 
 
-//void _getDatascan(){
-//  if(_barcodeScanRes == null){
-//    print("data kosong");
-//  }else if(_barcodeScanRes != null){
-//    print("Data");
-//  }
-//}
-
-
 
 
 class _GuestScreen extends State<GuestScreen> {
   String  _barcodeScanRes ="";
-  String _scanBarcode;
   String noSertikat ="";
   String tanggalKaduluarsa ="";
   String statusAktif = "";
-  String namaJenisKomuditas = "";
+  String namaProduk = "";
+  String keterangan = "";
   String namaUsaha = "";
 
 
@@ -54,12 +41,12 @@ class _GuestScreen extends State<GuestScreen> {
 
     setState(()  {
       // _scanBarcode = _barcodeScanRes;
-        FunctionDart().setToast(result.nomorSertifikat);
         noSertikat = result.nomorSertifikat;
         tanggalKaduluarsa = result.tanggalAkhir;
-        statusAktif = result.namaUsaha;
-        namaJenisKomuditas = result.namaJenisKomoditas;
+        namaProduk = result.namaProduk;
+        keterangan = "(${result.keterangan})";
         namaUsaha = result.namaUsaha;
+        statusAktif = result.statusAktif;
     });
 
 
@@ -93,17 +80,26 @@ class _GuestScreen extends State<GuestScreen> {
                   child: Column(
                     children: <Widget>[
                       Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Padding(
                           padding: EdgeInsets.only(left: 16, top: 16),
-                          child: Text("Data ",
+                          child: Text("Status",
                               style: new TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold)),
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 16, top: 16),
+                          child: Text(statusAktif,
+                              style: new TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
                         ),
                       ),
                       Container(
+                        padding: EdgeInsets.all(16),
                         child: Table(
-                          defaultColumnWidth: FixedColumnWidth(150.0),
                           border: TableBorder(
                             horizontalInside: BorderSide(
                               color: Colors.black,
@@ -117,10 +113,10 @@ class _GuestScreen extends State<GuestScreen> {
                             ),
                           ),
                           children: [
-                            _buildTableRow("No Sertifikat, "+noSertikat),
-                            _buildTableRow("Pelaku Usaha, "+namaUsaha),
-                            _buildTableRow("Nama Jenis Komuditas, "+namaJenisKomuditas),
-                            _buildTableRow("Tanggal Kaduluarsa, "+tanggalKaduluarsa),
+                            _buildTableRow("No Sertifikat, $noSertikat"),
+                            _buildTableRow("Pelaku Usaha, $namaUsaha"),
+                            _buildTableRow("Nama Produk, $namaProduk $keterangan"),
+                            _buildTableRow("Tanggal Kaduluarsa, $tanggalKaduluarsa"),
                           ],
                         ),
                       ),
@@ -130,32 +126,8 @@ class _GuestScreen extends State<GuestScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            width: 250,
-                            child: Text(
-                              "Scan Sertifikat",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                  fontFamily: "NeoSansBold"),
-                            ),
-                          ),
 
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-                      child: new Divider(
-                        color: Colors.grey,
-                      ),
-                    ),
+
                     Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
 
@@ -174,12 +146,9 @@ class _GuestScreen extends State<GuestScreen> {
                     onPressed: scanBarcodeNormal,
                     color: Colors.blue,
                     child: Text('Scan Sertifikat', style: TextStyle(color: Colors.white, fontSize: 20.0)),
-
                   ),
                 ),
               ),
-
-
             ],
           ),
         ));
@@ -190,8 +159,8 @@ class _GuestScreen extends State<GuestScreen> {
       children: listOfNames.split(',').map((name) {
         return Container(
           alignment: Alignment.topLeft,
-          child: Text(name, style: TextStyle(fontSize: 10.0)),
-          padding: EdgeInsets.all(8.0),
+          child: Text(name, style: TextStyle(fontSize: 14.0)),
+          padding: EdgeInsets.all(16.0),
         );
       }).toList(),
     );

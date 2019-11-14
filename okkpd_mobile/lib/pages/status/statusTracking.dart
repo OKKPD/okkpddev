@@ -236,6 +236,9 @@ class _StatusTrackingState extends State<StatusTracking> {
       },
         child: Text("Unggah Dokumen"),
       );
+    }else if(layananModel.status == '2') {
+      return new Text("Alasan Penolakan: ${layananModel.alasanPenolakan}", style: Keys().normalFontSize);
+
     }else{
       return new Text("Kode Pendaftaran: ${layananModel.kodePendaftaran}", style: Keys().normalFontSize);
     }

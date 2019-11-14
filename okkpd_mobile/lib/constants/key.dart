@@ -19,6 +19,7 @@ class Keys {
 
   //Font Size
   final normalFontSize = const TextStyle(fontSize: 14.0);
+  final bigBoldFontSiza = const TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold);
   final smallFontSize = const TextStyle(fontSize: 12.0);
 
   //==== Theme End ====

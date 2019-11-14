@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class InfoUsahaScreen extends StatefulWidget {
@@ -8,9 +10,27 @@ class InfoUsahaScreen extends StatefulWidget {
 
 class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   ProgressDialog pr;
-  String namaUsaha = "Nama usahanya apa";
-  String alamatUsaha = "Jl. Cungkup no 492 Salatiga";
-  String namaPemohon = "Yoga Adi Dharma";
+  String namaUsaha = "-";
+  String alamatUsaha = "-";
+  String namaPemohon = "-";
+
+
+  @override
+  void initState() {
+    super.initState();
+    setUser();
+  }
+
+  Future setUser() async {
+    UserModel user = await UserRepo().getProfile();
+    if (user != null) {
+      setState(() {
+        namaUsaha = user.namaUsaha;
+        alamatUsaha = user.alamatLengkap;
+        namaPemohon = user.namaLengkap;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -34,8 +34,7 @@ class LayananRepo {
 
     String idUsaha = await getIdUsaha();
     List<LayananModel> _postList = [];
-    var url = '${Keys
-        .APIURL}layanan/$idUsaha/list?layanan=$kodeLayanan&status=$status';
+    var url = '${Keys.APIURL}layanan/$idUsaha/list?layanan=$kodeLayanan&status=$status';
     print(url);
     var response = await http.get(url);
     final values = json.decode(response.body);
@@ -54,14 +53,11 @@ class LayananRepo {
 
   Future trackSertifikat(String kodeTracking) async {
     TrackSertifikatModel _postList ;
-    var url = '${Keys
-        .APIURL}tracking/sertifikat';
+    var url = '${Keys.APIURL}tracking/sertifikat';
     var response = await http.post(url,body: {'tracking_data':kodeTracking});
     final values = json.decode(response.body);
-    print(url);
 
     if(response.statusCode != 200){
-      FunctionDart().setToast(values['MESSAGE']);
       return null;
     }else{
       for (int i = 0; i < values['DATA'].length; i++) {

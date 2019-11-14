@@ -1,12 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
-import 'package:okkpd_mobile/constants/key.dart';
-import 'package:okkpd_mobile/model/layananModel.dart';
-import 'package:okkpd_mobile/model/masterLayananModel.dart';
-import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/pages/layanan/upload/uploadPrimaTiga.dart';
+import 'package:okkpd_mobile/pages/guest/trackingStatusScreen.dart';
 
 class DashboarGuestScreen extends StatefulWidget {
   @override
@@ -15,23 +10,29 @@ class DashboarGuestScreen extends StatefulWidget {
 
 class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
+  var _kodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
     final kodeRegistrasi= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children:<Widget>[
           Container(
             width: 200,
-            height: 200,
+            height: 100,
               alignment: AlignmentDirectional(2.0, 0.0),
-          child: Image(image: AssetImage('assets/titik.png'))
+            child: Image(image: AssetImage('assets/logo.png'))
           ),
-
+//          Container(
+//              width: 50,
+//              height: 50,
+//              alignment: Alignment.center,
+//              child: Image(image: AssetImage('assets/titik.png'))
+//          ),
 
           Container(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: Alignment.center,
             child: new Text('Traking Layanan Anda',
               style: new TextStyle(
                   color: Colors.black,
@@ -40,17 +41,18 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
           new Padding(padding: EdgeInsets.only(top: 20.0)),
           TextFormField(
+            controller: _kodeController,
             decoration: new InputDecoration(
               labelText: "Kode Registrasi Layanan",
               fillColor: Colors.white,
               border: new OutlineInputBorder(
-                borderRadius: new BorderRadius.circular(15.0),
+                borderRadius: new BorderRadius.circular(8.0),
                 borderSide: new BorderSide(
                 ),
               ),
               //fillColor: Colors.green
             ),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
             style: new TextStyle(
               fontFamily: "NeoSansBold",
             ),
@@ -66,7 +68,10 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            //method cari
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TrackingStatusScreen(_kodeController.text)),
+            );
           },
           color: Colors.blue,
           child: Text('Cari', style: TextStyle(color: Colors.white, fontSize: 20.0)),
@@ -93,7 +98,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
       for (var datas in data) {
         children.add(new Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           clipBehavior: Clip.antiAlias,
           child: new InkWell(
