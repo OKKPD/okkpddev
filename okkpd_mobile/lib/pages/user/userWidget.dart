@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
 import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
-import 'package:okkpd_mobile/pages/login//loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
@@ -37,17 +36,17 @@ class _UserBodyState extends State<UserBody> {
       barrierDismissible: true, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Pick Image'),
+          title: Text('Ambil Gambar'),
           actions: <Widget>[
             FlatButton(
-              child: const Text('Camera'),
+              child: const Text('Kamera'),
               onPressed: () {
                 getImage(ImageSource.camera);
                 Navigator.pop(context, '');
               },
             ),
             FlatButton(
-              child: const Text('Gallery'),
+              child: const Text('Galeri'),
               onPressed: () {
                 getImage(ImageSource.gallery);
                 Navigator.pop(context, '');
@@ -166,9 +165,6 @@ class _UserBodyState extends State<UserBody> {
       ],
     );
 
-
-
-
     final surveiPelanggan = Column(
       children: <Widget>[
         Padding(
@@ -177,7 +173,7 @@ class _UserBodyState extends State<UserBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                width: queryData.size.width / 3,
+                width: queryData.size.width / 2.1,
                 child: Text(
                   "Survei Kepuasan Pelanggan",
                   textAlign: TextAlign.left,
@@ -193,8 +189,7 @@ class _UserBodyState extends State<UserBody> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => SurveiScreen()),
+                    MaterialPageRoute(builder: (context) => SurveiScreen()),
                   );
                 },
               ),

@@ -10,21 +10,18 @@ class DashboarGuestScreen extends StatefulWidget {
 }
 
 class _DashboarGuestScreen extends State<DashboarGuestScreen> {
-
   var _kodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-    final kodeRegistrasi= Column(
+    final kodeRegistrasi = Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children:<Widget>[
+        children: <Widget>[
           Container(
-            width: 200,
-            height: 100,
+              width: 200,
+              height: 100,
               alignment: AlignmentDirectional(2.0, 0.0),
-            child: Image(image: AssetImage('assets/logo.png'))
-          ),
+              child: Image(image: AssetImage('assets/logo.png'))),
 //          Container(
 //              width: 50,
 //              height: 50,
@@ -34,10 +31,10 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
           Container(
             alignment: Alignment.center,
-            child: new Text('Traking Layanan Anda',
-              style: new TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0),),
+            child: new Text(
+              'Traking Layanan Anda',
+              style: new TextStyle(color: Colors.black, fontSize: 20.0),
+            ),
           ),
 
           new Padding(padding: EdgeInsets.only(top: 16.0)),
@@ -48,8 +45,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               fillColor: Colors.white,
               border: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(8.0),
-                borderSide: new BorderSide(
-                ),
+                borderSide: new BorderSide(),
               ),
               //fillColor: Colors.green
             ),
@@ -58,12 +54,10 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               fontFamily: "NeoSansBold",
             ),
           ),
-        ]
-    );
+        ]);
 
     final saveButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0),
-      
       child: Material(
         child: MaterialButton(
           minWidth: 200.0,
@@ -71,16 +65,17 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => TrackingStatusScreen(_kodeController.text)),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      TrackingStatusScreen(_kodeController.text)),
             );
           },
           color: Colors.blue,
-          child: Text('Cari', style: TextStyle(color: Colors.white, fontSize: 20.0)),
-
+          child: Text('Cari',
+              style: TextStyle(color: Colors.white, fontSize: 20.0)),
         ),
       ),
     );
-
 
 //    final beritaScreen = Container(
 //
@@ -88,11 +83,9 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    final beritaScreen =
     FutureBuilder(builder: (BuildContext context, AsyncSnapshot res) {
       var data = [
         {'Track': 'Berita', 'Status': 'Diterima'},
-
       ];
 
       final children = <Widget>[];
@@ -125,7 +118,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                               fontFamily: "NeoSansBold"),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -166,27 +158,25 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 
 //    _portraitModeOnly();
     return Scaffold(
-        backgroundColor: Colors.white,
-    body: Center(
-      child: ListView(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: ListView(
           children: <Widget>[
             SizedBox(height: 20.0),
             Container(
-              padding: EdgeInsets.only(left: 16,right: 16),
+              padding: EdgeInsets.only(left: 16, right: 16),
               child: kodeRegistrasi,
             ),
             Container(
-              padding: EdgeInsets.only(left: 16,right: 16,bottom: 24),
-              child: saveButton ,
+              padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+              child: saveButton,
             ),
             SizedBox(height: 8.0),
-
             BeritaWidget(),
             SizedBox(height: 16.0),
-                      ],
-                ),
-              ),
-            );
-      }
+          ],
+        ),
+      ),
+    );
   }
-
+}

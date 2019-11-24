@@ -3,27 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class LastPage extends StatefulWidget {
-
   LastPage({this.statusType});
 
   final String statusType;
 
   @override
   LastPageState createState() {
-    // TODO: implement createState
     return LastPageState();
   }
 }
 
 class LastPageState extends State<LastPage> {
-
   List<Feedback> feedbackList = [];
   String msg = '';
   String imgPath = '';
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.statusType == 'Unhappy') {
       imgPath = 'assets/angry.gif';
@@ -35,7 +31,7 @@ class LastPageState extends State<LastPage> {
         Feedback('Confusing', false),
         Feedback('Other', false),
       ];
-    }else if (widget.statusType == 'Neutral') {
+    } else if (widget.statusType == 'Neutral') {
       imgPath = 'assets/mmm.gif';
       msg = 'Neutral is okay. Why is that?';
       feedbackList = [
@@ -43,7 +39,7 @@ class LastPageState extends State<LastPage> {
         Feedback('I think they are okay', false),
         Feedback('I don\'t know', false),
       ];
-    }else {
+    } else {
       imgPath = 'assets/hearteyes.gif';
       msg = 'High five! What makes you satisfied?';
       feedbackList = [
@@ -59,42 +55,33 @@ class LastPageState extends State<LastPage> {
   Widget build(BuildContext context) {
     final ui.Size logicalSize = MediaQuery.of(context).size;
     final double _width = logicalSize.width;
-    // TODO: implement build
     return Scaffold(
       body: Center(
-        child: Container(
-            padding: EdgeInsets.all(16.0),
-            child: getPages(_width)
-        ),
+        child:
+            Container(padding: EdgeInsets.all(16.0), child: getPages(_width)),
       ),
-
-
       bottomNavigationBar: BottomAppBar(
-
           child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
-            height: 50.0,
-            child: Center(
-
-                child: MaterialButton(
-                  minWidth: 200.0,
-                  height: 42.0,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                    },
-                  color: Colors.blue,
-                  child: Text('Finish', style: TextStyle(color: Colors.white, fontSize: 20.0)),
-
-                ),
-                ),
-
-          )
-      ),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
+        height: 50.0,
+        child: Center(
+          child: MaterialButton(
+            minWidth: 200.0,
+            height: 42.0,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
+            color: Colors.blue,
+            child: Text('Finish',
+                style: TextStyle(color: Colors.white, fontSize: 20.0)),
+          ),
+        ),
+      )),
     );
   }
 
@@ -135,7 +122,8 @@ class LastPageState extends State<LastPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Hero(tag: widget.statusType,
+            Hero(
+                tag: widget.statusType,
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 40.0),
                   child: GestureDetector(
@@ -146,19 +134,21 @@ class LastPageState extends State<LastPage> {
                         imgPath,
                         width: 100.0,
                         height: 100.0,
-                      )
-                  ),
+                      )),
                 )),
-            Text(msg,
-              textAlign: TextAlign.center,),
+            Text(
+              msg,
+              textAlign: TextAlign.center,
+            ),
             Expanded(
               child: Center(
                 child: Container(
-                  height: 50.0 * feedbackList.length + 8.0 + 1.0 * (feedbackList.length),
+                  height: 50.0 * feedbackList.length +
+                      8.0 +
+                      1.0 * (feedbackList.length),
                   child: Card(
                     child: Column(
-                      children:
-                      List.generate(feedbackList.length, (int index) {
+                      children: List.generate(feedbackList.length, (int index) {
                         Feedback question = feedbackList[index];
                         return Column(
                           children: <Widget>[

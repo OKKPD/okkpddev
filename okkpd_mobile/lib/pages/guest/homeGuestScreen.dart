@@ -4,57 +4,33 @@ import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/pages/guest/guestScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
 import 'package:okkpd_mobile/pages/guest/dashBoardGuestScreen.dart';
-import 'package:okkpd_mobile/pages/guest/layananGuestScreen.dart';
 import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
-
-
 
 class HomeGuestScreen extends StatefulWidget {
   @override
   _HomeGuestScreen createState() => _HomeGuestScreen();
 }
 
-
-
 class _HomeGuestScreen extends State<HomeGuestScreen> {
   String appBarTitle = "OKKPD Jateng";
 
   int selectedIndex = 0;
   final widgetOptions = [
-
     DashboarGuestScreen(),
-//    LayananGuestScreen(),
     GuestScreen(),
     KontakScreen(),
     LoginScreen()
-
   ];
-
-
-
-//  Future scanBarcodeNormal() async {
-//
-//       _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-//        "#ff6666", "Cancel", true, ScanMode.BARCODE);
-//    // print(barcodeScanRes);
-//
-//    setState(() {
-//      _scanBarcode = _barcodeScanRes;
-//    });
-//  }
 
   @override
   Widget build(BuildContext context) {
-
     return new WillPopScope(
       onWillPop: _onWillPop,
-      child : new Scaffold(
+      child: new Scaffold(
         appBar: AppBar(
           elevation: 0,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Color.fromRGBO(255, 255, 255, 50),
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           actions: <Widget>[
             new IconButton(
               icon: new Icon(Icons.notifications),
@@ -62,9 +38,8 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
             ),
           ],
           leading: new Container(),
-          title: Text(appBarTitle,style: TextStyle(color: Colors.black87)),
+          title: Text(appBarTitle, style: TextStyle(color: Colors.black87)),
           centerTitle: true,
-
         ),
         body: Center(
           child: widgetOptions.elementAt(selectedIndex),
@@ -72,9 +47,8 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.track_changes), title: Text('Layanan')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), title: Text('Beranda')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_media), title: Text('QR')),
             BottomNavigationBarItem(
@@ -88,7 +62,6 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
         ),
       ),
     );
-
   }
 
   void onItemTapped(int index) {
@@ -113,23 +86,25 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
   static Future<void> pop() async {
     await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
   }
+
   Future<bool> _onWillPop() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Keluar Aplikasi'),
-        content: new Text('Apakah anda ingin keluar aplikasi?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Keluar Aplikasi'),
+            content: new Text('Apakah anda ingin keluar aplikasi?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Yes'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    ) ?? false;
+        ) ??
+        false;
   }
 }

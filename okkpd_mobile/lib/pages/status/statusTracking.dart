@@ -13,7 +13,6 @@ class StatusTracking extends StatefulWidget {
 }
 
 class _StatusTrackingState extends State<StatusTracking> {
-
   List listLayanan = [];
   final List<LayananModel> layanans = [];
   final List<MasterLayananModel> masterLayanan = [];
@@ -22,39 +21,34 @@ class _StatusTrackingState extends State<StatusTracking> {
   String idLayanan;
   String status;
 
-
-
   @override
   void initState() {
     super.initState();
 
-    getLayanan('%','0');
+    getLayanan('%', '0');
 
-    masterLayanan.add(MasterLayananModel("all","Semua Layanan",""));
-    masterLayanan.add(MasterLayananModel("prima_3","Prima 3",""));
-    masterLayanan.add(MasterLayananModel("prima_2","Prima 2",""));
-    masterLayanan.add(MasterLayananModel("psat","PSAT",""));
-    masterLayanan.add(MasterLayananModel("kemas","Rumah Kemas",""));
-    masterLayanan.add(MasterLayananModel("hc","Health Certificate",""));
+    masterLayanan.add(MasterLayananModel("all", "Semua Layanan", ""));
+    masterLayanan.add(MasterLayananModel("prima_3", "Prima 3", ""));
+    masterLayanan.add(MasterLayananModel("prima_2", "Prima 2", ""));
+    masterLayanan.add(MasterLayananModel("psat", "PSAT", ""));
+    masterLayanan.add(MasterLayananModel("kemas", "Rumah Kemas", ""));
+    masterLayanan.add(MasterLayananModel("hc", "Health Certificate", ""));
 
     statusLayanan.add("Semua");
     statusLayanan.add("Menunggu");
-    statusLayanan.add("Selesai");
+    statusLayanan.add("Diterima");
     statusLayanan.add("Ditolak");
-
   }
 
-  void getLayanan(String layanan, String status) async{
-
+  void getLayanan(String layanan, String status) async {
     listLayanan = await LayananRepo().getLayanan(layanan, status);
     setState(() {
       layanans.clear();
-      if(listLayanan != null){
+      if (listLayanan != null) {
         for (var datas in listLayanan) {
           layanans.add(datas);
         }
       }
-
     });
   }
 
@@ -62,70 +56,82 @@ class _StatusTrackingState extends State<StatusTracking> {
   // ignore: missing_return
   Widget build(BuildContext context) {
     return Column(
-        children: <Widget>[
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(child:
-                Container(
-                  //padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
-                  height: 86.0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(child: Text("Layanan",style: Keys().smallFontSize), padding: EdgeInsets.only(left: 16, top: 16),),
-                      Padding(
-                        padding: EdgeInsets.only(left: 16, bottom: 8, top:4, right: 16),
-                        child:
-                        DropdownButton(
-                          isDense: true,
-                          underline: Container(color: Colors.red,),
-                          hint: new Text('Semua Layanan'),
-                          style: TextStyle(fontSize: 14.0,color: Colors.black),
-                          isExpanded: true,
-                          items: masterLayanan.map((value) {
-                            return new DropdownMenuItem(
-                              child: new Text(value.namaLayanan),
-                              value: value.kodeLayanan.toString(),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              idLayanan = value;
-                            });
-                            getLayanan(idLayanan, status);
-                          },
-                          value: idLayanan,
-                        ),
-                      ),
-                      Divider(color: Colors.black26,),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: 1,
-                height: 75,
-                color: Colors.black12,
-              ),
-              Expanded(child:
-              Container(
+      children: <Widget>[
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Container(
                 //padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                 height: 86.0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(child: Text("Status",style: Keys().smallFontSize), padding: EdgeInsets.only(left: 16, top: 16),),
                     Padding(
-                      padding: EdgeInsets.only(left: 16, bottom: 8, top:4,right: 16),
-                      child:
-                      DropdownButton(
+                      child: Text("Layanan", style: Keys().smallFontSize),
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16, bottom: 8, top: 4, right: 16),
+                      child: DropdownButton(
                         isDense: true,
-                        underline: Container(color: Colors.red,),
+                        underline: Container(
+                          color: Colors.red,
+                        ),
+                        hint: new Text('Semua Layanan'),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        isExpanded: true,
+                        items: masterLayanan.map((value) {
+                          return new DropdownMenuItem(
+                            child: new Text(value.namaLayanan),
+                            value: value.kodeLayanan.toString(),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            idLayanan = value;
+                          });
+                          getLayanan(idLayanan, status);
+                        },
+                        value: idLayanan,
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.black26,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 1,
+              height: 75,
+              color: Colors.black12,
+            ),
+            Expanded(
+              child: Container(
+                //padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+                height: 86.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      child: Text("Status", style: Keys().smallFontSize),
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16, bottom: 8, top: 4, right: 16),
+                      child: DropdownButton(
+                        isDense: true,
+                        underline: Container(
+                          color: Colors.red,
+                        ),
                         hint: new Text('Semua'),
-                        style: TextStyle(fontSize: 14.0,color: Colors.black),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
                         isExpanded: true,
                         items: statusLayanan.map((value) {
                           return new DropdownMenuItem(
@@ -143,15 +149,17 @@ class _StatusTrackingState extends State<StatusTracking> {
                         value: status,
                       ),
                     ),
-                    Divider(color: Colors.black26,),
+                    Divider(
+                      color: Colors.black26,
+                    ),
                   ],
                 ),
               ),
-              ),
-          ],),
-          Expanded(child: _buildSuggestions()),
-        ],
-
+            ),
+          ],
+        ),
+        Expanded(child: _buildSuggestions()),
+      ],
     );
   }
 
@@ -163,31 +171,28 @@ class _StatusTrackingState extends State<StatusTracking> {
         });
   }
 
-  Widget getWidget(String stat){
-    if(stat == "1") {
+  Widget getWidget(String stat) {
+    if (stat == "1") {
       return new Container(
         width: 20,
         height: 50,
         decoration: new BoxDecoration(
           color: Colors.green,
           borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
-
-          ),
+        ),
         child: IconButton(
           icon: new Icon(Icons.check_circle_outline),
           color: Colors.white,
           onPressed: () {},
         ),
       );
-
-    }else if(stat == "0"){
+    } else if (stat == "0") {
       return new Container(
         width: 20,
         height: 50,
         decoration: new BoxDecoration(
           color: Colors.orangeAccent,
           borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
-
         ),
         child: IconButton(
           icon: new Icon(Icons.alarm),
@@ -195,16 +200,13 @@ class _StatusTrackingState extends State<StatusTracking> {
           onPressed: () {},
         ),
       );
-
-    }else{
+    } else {
       return new Container(
         width: 20,
         height: 50,
         decoration: new BoxDecoration(
           color: Colors.redAccent,
-
           borderRadius: new BorderRadius.all(new Radius.circular(100.0)),
-
         ),
         child: IconButton(
           icon: new Icon(Icons.close),
@@ -212,69 +214,75 @@ class _StatusTrackingState extends State<StatusTracking> {
           onPressed: () {},
         ),
       );
-
     }
   }
 
-  void selectLayanan(LayananModel layananModel) async{
+  void selectLayanan(LayananModel layananModel) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => UploadPrimaTiga(layananModel.uid)),
+      MaterialPageRoute(
+          builder: (context) => UploadPrimaTiga(layananModel.uid)),
     );
-    if(result == true){
+    if (result == true) {
       setState(() {
-        getLayanan('%','0');
+        getLayanan('%', '0');
       });
     }
-
   }
 
-  Widget buttonUpload(LayananModel layananModel){
-    if(layananModel.kodePendaftaran == null || layananModel.kodePendaftaran == ''){
-      return new RaisedButton(onPressed: (){
-        selectLayanan(layananModel);
-      },
+  Widget buttonUpload(LayananModel layananModel) {
+    if (layananModel.kodePendaftaran == null ||
+        layananModel.kodePendaftaran == '') {
+      return new RaisedButton(
+        onPressed: () {
+          selectLayanan(layananModel);
+        },
         child: Text("Unggah Dokumen"),
       );
-    }else if(layananModel.status == '2') {
-      return new Text("Alasan Penolakan: ${layananModel.alasanPenolakan}", style: Keys().normalFontSize);
-
-    }else{
-      return new Text("Kode Pendaftaran: ${layananModel.kodePendaftaran}", style: Keys().normalFontSize);
+    } else if (layananModel.status == '2') {
+      return new Text("Alasan Penolakan: ${layananModel.alasanPenolakan}",
+          style: Keys().normalFontSize);
+    } else {
+      return new Text("Kode Pendaftaran: ${layananModel.kodePendaftaran}",
+          style: Keys().normalFontSize);
     }
   }
 
   _buildRow(LayananModel layanan, int i) {
     return ListTile(
-        title: Column(children: <Widget>[
-          Row(
-            children: <Widget>[
-              Container(
-                child: getWidget(layanan.status),
-                width: 50,
+        title: Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              child: getWidget(layanan.status),
+              width: 50,
+            ),
+            SizedBox(width: 16.0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    layanan.namaLayanan,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16.0),
+                  Text(
+                    "Tanggal Pengajuan : ${layanan.tanggalBuat}",
+                    style: Keys().normalFontSize,
+                  ),
+                  SizedBox(height: 8.0),
+                  buttonUpload(layanan),
+                  SizedBox(height: 16.0),
+                ],
               ),
-              SizedBox(width: 16.0),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      layanan.namaLayanan,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 16.0),
-                    Text("Tanggal Pengajuan : ${layanan.tanggalBuat}", style: Keys().normalFontSize,),
-                    SizedBox(height: 8.0),
-                    buttonUpload(layanan),
-                    SizedBox(height: 16.0),
-
-                  ],
-                ),
-              )
-            ],
-          ),
-          Divider(),
-        ],)
+            )
+          ],
+        ),
+        Divider(),
+      ],
+    )
 //        trailing: RaisedButton(
 //          onPressed: () {
 //            _showMaterialDialog(i);
@@ -285,6 +293,6 @@ class _StatusTrackingState extends State<StatusTracking> {
 //            size: 36,
 //          ),
 //        )
-    );
+        );
   }
 }

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MediaBodyWidget extends StatefulWidget {
   final int index;
@@ -36,17 +35,17 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
       barrierDismissible: true, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Pick Image'),
+          title: Text('Ambil Gambar'),
           actions: <Widget>[
             FlatButton(
-              child: const Text('Camera'),
+              child: const Text('Kamera'),
               onPressed: () {
                 getImage(ImageSource.camera);
                 Navigator.pop(context, '');
               },
             ),
             FlatButton(
-              child: const Text('Gallery'),
+              child: const Text('Galeri'),
               onPressed: () {
                 getImage(ImageSource.gallery);
                 Navigator.pop(context, '');
@@ -72,7 +71,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
           radius: 55.0,
           child: ClipOval(
             child: _image == null
-                ? Text(' No image ')
+                ? Text(' No Image ')
                 : Image.file(_image,
                     width: 100, height: 100, fit: BoxFit.cover),
           )),

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,12 +26,12 @@ class _TrackingStatusScreen extends State<TrackingStatusScreen> {
   _TrackingStatusScreen(this.kode);
   final String kode;
 
-  void getLayanan() async{
+  void getLayanan() async {
     List<TrackLayananModel> data = await LayananRepo().trackLayanan(kode);
     setState(() {
-      if(data != null){
-        for(int i = 0; i < data.length; i++){
-          if(data[i].tanggalProses != null){
+      if (data != null) {
+        for (int i = 0; i < data.length; i++) {
+          if (data[i].tanggalProses != null) {
             layanan.add(data[i]);
           }
         }
@@ -48,32 +46,37 @@ class _TrackingStatusScreen extends State<TrackingStatusScreen> {
   }
 
   _buildSuggestions() {
-    if(layanan.length!= null && layanan.length>0){
+    if (layanan.length != null && layanan.length > 0) {
       return ListView.builder(
-        itemCount: layanan.length,
-        itemBuilder: (context, i) {
-          return _buildRow(layanan[i], i);
-        });
-    }else{
-      return Container(padding: EdgeInsets.all(16), child: Text("Layanan tidak ditemukan"));
+          itemCount: layanan.length,
+          itemBuilder: (context, i) {
+            return _buildRow(layanan[i], i);
+          });
+    } else {
+      return Container(
+          padding: EdgeInsets.all(16), child: Text("Layanan tidak ditemukan"));
     }
-
-    
   }
 
   _buildRow(TrackLayananModel layananModel, int i) {
     return ListTile(
-        title:
-        Card(margin: EdgeInsets.only(top: 8), child: Container(
+      title: Card(
+        margin: EdgeInsets.only(top: 8),
+        child: Container(
           padding: EdgeInsets.all(16),
           child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(layananModel.namaStatus,style: Keys().normalFontSize,),
-            Text(layananModel.tanggalProses),
-          ],
-        ),),),
-        );
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                layananModel.namaStatus,
+                style: Keys().normalFontSize,
+              ),
+              Text(layananModel.tanggalProses),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -82,7 +85,7 @@ class _TrackingStatusScreen extends State<TrackingStatusScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Tracking Layanan",style: TextStyle(color: Colors.white)),
+        title: Text("Tracking Layanan", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(

@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/last_page.dart';
-import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class SurveiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       home: SplashScreen(),
@@ -19,7 +16,6 @@ class SurveiScreen extends StatelessWidget {
 class SplashScreen extends StatefulWidget {
   @override
   SplashScreenState createState() {
-    // TODO: implement createState
     return SplashScreenState();
   }
 }
@@ -57,7 +53,6 @@ class SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _animateController = AnimationController(
@@ -125,7 +120,6 @@ class SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _animateController.dispose();
     _secondStepController.dispose();
     _thirdStepController.dispose();
@@ -138,12 +132,6 @@ class SplashScreenState extends State<SplashScreen>
     try {
       await _animateController.forward().orCancel;
       setState(() {});
-    } on TickerCanceled {}
-  }
-
-  Future _startLongPressAnimation() async {
-    try {
-      await _longPressController.forward().orCancel;
     } on TickerCanceled {}
   }
 
@@ -170,7 +158,6 @@ class SplashScreenState extends State<SplashScreen>
     final ui.Size logicalSize = MediaQuery.of(context).size;
     final double _width = logicalSize.width;
 
-    // TODO: implement build
     return Scaffold(
       body: Center(
         child: Container(
@@ -178,41 +165,41 @@ class SplashScreenState extends State<SplashScreen>
           child: _animateController.isCompleted
               ? getPages(_width)
               : AnimationBox(
-            controller: _animateController,
-            screenWidth: _width - 32.0,
-            onStartAnimation: () {
-              _startAnimation();
-            },
-          ),
+                  controller: _animateController,
+                  screenWidth: _width - 32.0,
+                  onStartAnimation: () {
+                    _startAnimation();
+                  },
+                ),
         ),
       ),
       bottomNavigationBar: _animateController.isCompleted
           ? BottomAppBar(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
-            height: 50.0,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  curIndex += 1;
-                  if (curIndex == 1) {
-                    _startSecondStepAnimation();
-                  } else if (curIndex == 2) {
-                    _startThirdStepAnimation();
-                  } else if (curIndex == 3) {
-                    _startFourStepAnimation();
-                  }
-                });
-              },
-              child: Center(
-                  child: Text(
-                    curIndex < 3 ? 'Continue' : 'Finish',
-                    style: TextStyle(fontSize: 20.0, color: Colors.cyan),
-                  )),
-            ),
-          ))
+              child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
+              height: 50.0,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    curIndex += 1;
+                    if (curIndex == 1) {
+                      _startSecondStepAnimation();
+                    } else if (curIndex == 2) {
+                      _startThirdStepAnimation();
+                    } else if (curIndex == 3) {
+                      _startFourStepAnimation();
+                    }
+                  });
+                },
+                child: Center(
+                    child: Text(
+                  curIndex < 3 ? 'Continue' : 'Finish',
+                  style: TextStyle(fontSize: 20.0, color: Colors.cyan),
+                )),
+              ),
+            ))
           : null,
     );
   }
@@ -246,8 +233,8 @@ class SplashScreenState extends State<SplashScreen>
         curIndex == 0
             ? _getFirstStep()
             : curIndex == 1
-            ? _getSecondStep()
-            : curIndex == 2 ? _getThirdStep() : _getFourStep(),
+                ? _getSecondStep()
+                : curIndex == 2 ? _getThirdStep() : _getFourStep(),
       ],
     );
   }
@@ -408,8 +395,7 @@ class SplashScreenState extends State<SplashScreen>
                 Text('Pertanyaan 4'),
                 Container(
                     margin: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                        'Bagaimana kecepatan layanan ini?')),
+                    child: Text('Bagaimana kecepatan layanan ini?')),
                 Expanded(
                   child: Center(
                     child: Container(
@@ -427,15 +413,14 @@ class SplashScreenState extends State<SplashScreen>
                                 Column(
                                   children: <Widget>[
                                     GestureDetector(
-
                                       onTapUp: (detail) {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType: 'Unhappy',
-                                                    )));
+                                                        LastPage(
+                                                          statusType: 'Unhappy',
+                                                        )));
                                       },
                                       child: Transform.scale(
                                           scale: longPressAnimation.value,
@@ -457,28 +442,19 @@ class SplashScreenState extends State<SplashScreen>
                                 Column(
                                   children: <Widget>[
                                     GestureDetector(
-//                              onTapU
-//                        onLongPress: () {
-//                          _startLongPressAnimation();
-//                          },
-//                                onTapUp: (detail) {
-//                          print(detail);
-//                         _longPressController.reset();
-//                      },
                                       onTapUp: (detail) {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType: 'Neutral',
-                                                    )));
+                                                        LastPage(
+                                                          statusType: 'Neutral',
+                                                        )));
                                       },
                                       child: Hero(
                                         tag: 'Neutral',
                                         child: Transform.scale(
                                             scale: longPressAnimation.value,
-
                                             child: Image.asset(
                                               'assets/star.png',
                                               width: 50.0,
@@ -495,16 +471,15 @@ class SplashScreenState extends State<SplashScreen>
                                 Column(
                                   children: <Widget>[
                                     GestureDetector(
-
                                       onTapUp: (detail) {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType:
-                                                      'Satisfied',
-                                                    )));
+                                                        LastPage(
+                                                          statusType:
+                                                              'Satisfied',
+                                                        )));
                                       },
                                       child: Transform.scale(
                                           scale: longPressAnimation.value,
@@ -564,18 +539,18 @@ class AnimationBox extends StatelessWidget {
   AnimationBox(
       {Key key, this.controller, this.screenWidth, this.onStartAnimation})
       : width = Tween<double>(
-    begin: screenWidth,
-    end: 40.0,
-  ).animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: Interval(
-        0.1,
-        0.3,
-        curve: Curves.fastOutSlowIn,
-      ),
-    ),
-  ),
+          begin: screenWidth,
+          end: 40.0,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Interval(
+              0.1,
+              0.3,
+              curve: Curves.fastOutSlowIn,
+            ),
+          ),
+        ),
         alignment = Tween<AlignmentDirectional>(
           begin: AlignmentDirectional.bottomCenter,
           end: AlignmentDirectional.topStart,
@@ -683,7 +658,6 @@ class AnimationBox extends StatelessWidget {
   final double overral = 3.0;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return AnimatedBuilder(
       animation: controller,
       builder: (BuildContext context, Widget child) {
@@ -695,7 +669,6 @@ class AnimationBox extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-//                color: Colors.blue,
                     margin: EdgeInsets.only(top: 30.0),
                     height: 10.0,
                     child: Row(
@@ -704,11 +677,11 @@ class AnimationBox extends StatelessWidget {
                       children: List.generate(numberOfStep.value, (int index) {
                         return Container(
                           decoration: BoxDecoration(
-//                    color: Colors.orangeAccent,
-                            color:
-                            index == 0 ? Colors.lightBlueAccent : Colors.grey,
+                            color: index == 0
+                                ? Colors.lightBlueAccent
+                                : Colors.grey,
                             borderRadius:
-                            BorderRadius.all(Radius.circular(2.0)),
+                                BorderRadius.all(Radius.circular(2.0)),
                           ),
                           height: 10.0,
                           width: (screenWidth - 15.0) / 5.0,
@@ -729,8 +702,8 @@ class AnimationBox extends StatelessWidget {
                           Text('Pertanyaan 1'),
                           Container(
                               margin: EdgeInsets.only(top: 16.0),
-                              child: Text(
-                                  'Bagaimana tampilan aplikasi mobile?')),
+                              child:
+                                  Text('Bagaimana tampilan aplikasi mobile?')),
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 50.0),
                             child: Text(
@@ -751,11 +724,10 @@ class AnimationBox extends StatelessWidget {
             ),
             Opacity(
               opacity:
-              controller.status == AnimationStatus.dismissed ? 1.0 : 0.0,
+                  controller.status == AnimationStatus.dismissed ? 1.0 : 0.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-
                   Text(
                     'Pendapat Anda dalam 3 Menit.',
                     style: TextStyle(
@@ -788,15 +760,14 @@ class AnimationBox extends StatelessWidget {
                       child: Container(
                         height: height.value,
                         decoration: BoxDecoration(
-                            color: Colors.cyan,
-                            borderRadius: radius.value),
+                            color: Colors.cyan, borderRadius: radius.value),
                         child: Center(
                           child: controller.status == AnimationStatus.dismissed
                               ? Text(
-                            'Ikuti Survey',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20.0),
-                          )
+                                  'Ikuti Survey',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20.0),
+                                )
                               : null,
                         ),
                       ),

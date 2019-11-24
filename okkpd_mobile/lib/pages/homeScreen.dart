@@ -33,8 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 3,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Colors.white,
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           actions: <Widget>[
             new IconButton(
               icon: new Icon(Icons.notifications),
@@ -52,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Home')),
+                icon: Icon(Icons.home), title: Text('Beranda')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.track_changes), title: Text('Track')),
             BottomNavigationBarItem(
@@ -60,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance), title: Text('Usaha')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.account_box), title: Text('User')),
+                icon: Icon(Icons.account_box), title: Text('Akun')),
           ],
           currentIndex: selectedIndex,
           fixedColor: Colors.blue,
@@ -76,13 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
       if (index == 0) {
         appBarTitle = "OKKPD Jateng";
       } else if (index == 1) {
-        appBarTitle = "Track";
+        appBarTitle = "Status Layanan";
       } else if (index == 2) {
         appBarTitle = "Media";
       } else if (index == 3) {
-        appBarTitle = "Profil Usaha";
+        appBarTitle = "Identitas Usaha";
       } else if (index == 4) {
-        appBarTitle = "Profil User";
+        appBarTitle = "Profil Akun";
       }
     });
   }
@@ -100,11 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
+                child: new Text('Tidak'),
               ),
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: new Text('Yes'),
+                child: new Text('Ya'),
               ),
             ],
           ),

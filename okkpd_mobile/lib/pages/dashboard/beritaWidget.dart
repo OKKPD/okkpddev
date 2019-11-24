@@ -3,7 +3,6 @@ import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
 import 'package:okkpd_mobile/pages/dashboard/beritaScreen.dart';
-import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class BeritaWidget extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class BeritaWidget extends StatefulWidget {
 }
 
 class _BeritaWidget extends State<BeritaWidget> {
-
   final List<BeritaModel> berita = [];
 
   @override
@@ -20,7 +18,7 @@ class _BeritaWidget extends State<BeritaWidget> {
     getPrevBerita();
   }
 
-  void getPrevBerita() async{
+  void getPrevBerita() async {
     List<BeritaModel> beritas = await BeritaRepo().getPreview();
     setState(() {
       berita.addAll(beritas);
@@ -39,52 +37,64 @@ class _BeritaWidget extends State<BeritaWidget> {
 
   _buildRow(BeritaModel beritaModel, int i) {
     return ListTile(
-        title:
-            GestureDetector(
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BeritaScreen(beritaModel.idBerita)),
-                );
-              },
-              child: Card(margin: EdgeInsets.only(top: 8), child: Column(
-                children: <Widget>[
-                  Container(height: 100,color: Color.fromRGBO(239, 239, 239, 100),),
-                  Container(padding: EdgeInsets.all(16), child: Column(children: <Widget>[
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        beritaModel.judulBerita,
-                        style: TextStyle(fontSize: 14, color: Colors.black,fontWeight: FontWeight.bold),
-//                  style: Keys().normalFontSize,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        beritaModel.tanggalBuat,
-                        style: Keys().smallFontSize,
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
-                    Divider(height: 1,),
-                    SizedBox(height: 16.0),
-
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        beritaModel.previewBerita,
-                        style: Keys().normalFontSize,
-                      ),
-                    ),
-
-                  ],),)
-                ],
-              ),),
-            )
+        title: GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BeritaScreen(beritaModel.idBerita)),
         );
+      },
+      child: Card(
+        margin: EdgeInsets.only(top: 8),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 100,
+              color: Color.fromRGBO(239, 239, 239, 100),
+            ),
+            Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      beritaModel.judulBerita,
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+//                  style: Keys().normalFontSize,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      beritaModel.tanggalBuat,
+                      style: Keys().smallFontSize,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  Divider(
+                    height: 1,
+                  ),
+                  SizedBox(height: 16.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      beritaModel.previewBerita,
+                      style: Keys().normalFontSize,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    ));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -93,19 +103,20 @@ class _BeritaWidget extends State<BeritaWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 8),
+              padding: EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 16.0, bottom: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     "Berita Terbaru",
-                    style: new TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    style: new TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                 ],
               )),
           //Text("asdasd")
           _buildSuggestions(),
-
         ],
       ),
     );

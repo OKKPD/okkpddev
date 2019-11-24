@@ -88,16 +88,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final daftarKomoditas =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Identitas Komoditas dan Lahan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 20, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-    ]);
-
     final namaKomoditas =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Text(

@@ -14,52 +14,50 @@ class LoginWidget extends StatefulWidget {
   LoginWidgetState createState() => LoginWidgetState();
 }
 
-class LoginWidgetState extends State<LoginWidget>{
+class LoginWidgetState extends State<LoginWidget> {
   var _usernameController = TextEditingController();
   var _passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {//ProgressDialog pr;
+  Widget build(BuildContext context) {
+    //ProgressDialog pr;
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 
     Future loginProcess() async {
-
-      if(_usernameController.text.isEmpty || _passwordController.text.isEmpty){
+      if (_usernameController.text.isEmpty ||
+          _passwordController.text.isEmpty) {
         FunctionDart().setToast("Username atau password masih kosong");
-      }else{
+      } else {
         pr.show();
-        List<UserModel> resultLogin = await LoginRepo().loginUserProses(_usernameController.text, _passwordController.text);
-        if(resultLogin != null || resultLogin.length > 0){
+        List<UserModel> resultLogin = await LoginRepo().loginUserProses(
+            _usernameController.text, _passwordController.text);
+        if (resultLogin != null || resultLogin.length > 0) {
           pr.dismiss();
-          if(resultLogin.length == 1){
-            if(await LoginRepo().verification(resultLogin[0])){
+          if (resultLogin.length == 1) {
+            if (await LoginRepo().verification(resultLogin[0])) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => HomeScreen()),
               );
             }
-          }else{
+          } else {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PilihRoleScreen(resultLogin)),
+              MaterialPageRoute(
+                  builder: (context) => PilihRoleScreen(resultLogin)),
             );
-            //Dilempar ke tampilan lain
           }
-        }else{
+        } else {
           pr.dismiss();
         }
-
-
       }
-
     }
 
     final logo = Hero(
       tag: 'hero',
       child: Image(height: 70, image: AssetImage('assets/logo.png')),
     );
-
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
@@ -70,8 +68,7 @@ class LoginWidgetState extends State<LoginWidget>{
         fillColor: Colors.white,
         border: new OutlineInputBorder(
           borderRadius: new BorderRadius.circular(8.0),
-          borderSide: new BorderSide(
-          ),
+          borderSide: new BorderSide(),
         ),
       ),
     );
@@ -85,8 +82,7 @@ class LoginWidgetState extends State<LoginWidget>{
         fillColor: Colors.white,
         border: new OutlineInputBorder(
           borderRadius: new BorderRadius.circular(8.0),
-          borderSide: new BorderSide(
-          ),
+          borderSide: new BorderSide(),
         ),
       ),
     );
@@ -108,43 +104,44 @@ class LoginWidgetState extends State<LoginWidget>{
 
     final forgotLabel = FlatButton(
       child: Text(
-        'Forgot password?',
+        'Lupa Kata Sandi?',
         style: TextStyle(color: Colors.black54),
       ),
       onPressed: () {},
     );
     final signupLabel = FlatButton(
       child: Text(
-        'Sign Up',
+        'Daftar',
         style: TextStyle(color: Colors.black54),
       ),
       onPressed: () {},
     );
 
-    return
-      SafeArea(
-        child: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.only(left: 24.0, right: 24.0),
-            children: <Widget>[
-              logo,
-              SizedBox(height: 48.0),
-              Align(child:
-                Text("LOGIN",style: Keys().bigBoldFontSiza,),
+    return SafeArea(
+      child: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          children: <Widget>[
+            logo,
+            SizedBox(height: 48.0),
+            Align(
+              child: Text(
+                "LOGIN",
+                style: Keys().bigBoldFontSiza,
               ),
-              SizedBox(height: 24.0),
-
-              email,
-              SizedBox(height: 16.0),
-              password,
-              SizedBox(height: 8.0),
-              loginButton,
-              forgotLabel,
-              signupLabel
-            ],
-          ),
+            ),
+            SizedBox(height: 24.0),
+            email,
+            SizedBox(height: 16.0),
+            password,
+            SizedBox(height: 8.0),
+            loginButton,
+            forgotLabel,
+            signupLabel
+          ],
         ),
-      );
+      ),
+    );
   }
 }

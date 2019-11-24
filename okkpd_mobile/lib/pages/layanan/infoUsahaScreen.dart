@@ -14,7 +14,6 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   String alamatUsaha = "-";
   String namaPemohon = "-";
 
-
   @override
   void initState() {
     super.initState();
@@ -35,19 +34,34 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 16.0, right: 16.0, top:16.0),
+      padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Informasi Usaha", style: TextStyle(fontSize: 18,color: Colors.black54,fontFamily: "NeoSansBold"),),
+          Text(
+            "Informasi Usaha",
+            style: TextStyle(
+                fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+          ),
           SizedBox(height: 24.0),
-          TextDetailWidget(title: "Informasi Usaha",content: "$namaUsaha",),
-          TextDetailWidget(title: "Alamat",content: "$alamatUsaha",),
-          TextDetailWidget(title: "Nama Pemohon",content: "$namaPemohon",),
-          Divider(color: Colors.grey,),
+          TextDetailWidget(
+            title: "Informasi Usaha",
+            content: "$namaUsaha",
+          ),
+          TextDetailWidget(
+            title: "Alamat",
+            content: "$alamatUsaha",
+          ),
+          TextDetailWidget(
+            title: "Nama Pemohon",
+            content: "$namaPemohon",
+          ),
+          Divider(
+            color: Colors.grey,
+          ),
         ],
       ),
-    ); 
+    );
   }
 }
 
@@ -61,9 +75,17 @@ class TextDetailWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("$title", style: TextStyle(fontSize: 12,color: Colors.black45,fontFamily: "NeoSansBold"),),
+        Text(
+          "$title",
+          style: TextStyle(
+              fontSize: 12, color: Colors.black45, fontFamily: "NeoSansBold"),
+        ),
         SizedBox(height: 8.0),
-        Text("$content", style: TextStyle(fontSize: 14,color: Colors.black,fontFamily: "NeoSansBold"),),
+        Text(
+          "$content",
+          style: TextStyle(
+              fontSize: 14, color: Colors.black, fontFamily: "NeoSansBold"),
+        ),
         SizedBox(height: 16.0),
       ],
     );

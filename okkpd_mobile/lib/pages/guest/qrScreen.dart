@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:okkpd_mobile/constants/key.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class QrScreen extends StatefulWidget {
@@ -19,36 +16,26 @@ void _portraitModeOnly() {
   ]);
 }
 
-
-
 class _QrScreen extends State<QrScreen> {
-  String  _barcodeScanRes,_scanBarcode;
+  String barcodeScanRes, scanBarcode;
 
   Future scanBarcodeNormal() async {
-    String _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+    String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.BARCODE);
 
     setState(() {
-      _scanBarcode = _barcodeScanRes;
+      scanBarcode = barcodeScanRes;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     _portraitModeOnly();
     return Scaffold(
-
       body: Center(
-
-
         child: Column(
-
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-
             Text(
               'Scan Sertifikat',
             ),
@@ -58,7 +45,6 @@ class _QrScreen extends State<QrScreen> {
 //            ),
 
             FloatingActionButton(
-
               onPressed: scanBarcodeNormal,
               tooltip: 'Increment',
               child: Icon(Icons.settings_overscan),
@@ -66,8 +52,7 @@ class _QrScreen extends State<QrScreen> {
           ],
         ),
       ),
-       // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
-

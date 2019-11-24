@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/exportModel.dart';
-import 'package:okkpd_mobile/model/kelompokKomoditasModel.dart';
-import 'package:okkpd_mobile/model/komoditasModel.dart';
 import 'package:okkpd_mobile/model/repository/exportRepo.dart';
-import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
-import 'package:okkpd_mobile/model/sektorKomoditasModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 

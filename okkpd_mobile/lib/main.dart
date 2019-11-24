@@ -11,12 +11,10 @@ import 'package:okkpd_mobile/pages/layanan/hcScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/primaDuaScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/rumahKemasScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
-// import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 import 'package:flutter/services.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
-import 'package:okkpd_mobile/pages/surveiPelanggan/last_page.dart';
 import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
 
 void main() => runApp(MyApp());
@@ -43,9 +41,9 @@ class MyApp extends StatelessWidget {
         '/primaTigascreen': (BuildContext context) => new PrimatigaScreen(),
         '/rumahKemas': (BuildContext context) => new Rumahkemas(),
         '/mediaScreen': (BuildContext context) => new Mediascreen(),
-        '/homeGuest' : (BuildContext context) => new HomeGuestScreen(),
-        '/kontak' : (BuildContext context) => new KontakScreen(),
-        '/surveiPelanggan' : (BuildContext context) => new SurveiScreen(),
+        '/homeGuest': (BuildContext context) => new HomeGuestScreen(),
+        '/kontak': (BuildContext context) => new KontakScreen(),
+        '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
         // '/mediaBody': (BuildContext context) => new MediaBody("asd"),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
@@ -65,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return new Timer(_duration, navigationPage);
   }
 
-  void navigationAwal(){
+  void navigationAwal() {
     Navigator.of(context).pushReplacementNamed('/homescreen');
   }
 
