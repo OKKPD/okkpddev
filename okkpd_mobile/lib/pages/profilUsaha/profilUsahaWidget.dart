@@ -89,7 +89,6 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
-    //#1
     final jenisUsaha =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Align(
@@ -128,7 +127,6 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
       ),
     ]);
 
-//#3
     final jabatan =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Align(
@@ -147,7 +145,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
             fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
-//#4
+
     final noKtp =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Align(
@@ -166,7 +164,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
             fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
-//#5
+
     final noNpwp =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Align(
