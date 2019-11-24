@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/beritaModel.dart';
+import 'package:okkpd_mobile/model/responseModel.dart';
 
 class BeritaRepo {
 
@@ -19,6 +20,17 @@ class BeritaRepo {
         _postList.add(berita);
       }
       return _postList;
+    }
+  }
+
+  Future viewBerita(String idBerita) async {
+    var url = '${Keys.APIURL}berita/view/'+idBerita;
+    var response = await http.get(url);
+    var resp = ResponseModel.fromJson(json.decode(response.body));
+    if(response.statusCode != 200){
+      return null;
+    }else{
+      return BeritaModel.fromJson(resp.data);
     }
   }
 

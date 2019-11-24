@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
+import 'package:okkpd_mobile/pages/dashboard/beritaScreen.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class BeritaWidget extends StatefulWidget {
   @override
@@ -27,6 +29,7 @@ class _BeritaWidget extends State<BeritaWidget> {
 
   _buildSuggestions() {
     return ListView.builder(
+        shrinkWrap: true,
         physics: new NeverScrollableScrollPhysics(),
         itemCount: berita.length,
         itemBuilder: (context, i) {
@@ -37,40 +40,48 @@ class _BeritaWidget extends State<BeritaWidget> {
   _buildRow(BeritaModel beritaModel, int i) {
     return ListTile(
         title:
-        Card(margin: EdgeInsets.only(top: 8), child: Column(
-          children: <Widget>[
-            Container(height: 100,color: Color.fromRGBO(239, 239, 239, 100),),
-            Container(padding: EdgeInsets.all(16), child: Column(children: <Widget>[
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  beritaModel.judulBerita,
-                  style: TextStyle(fontSize: 14, color: Colors.black,fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BeritaScreen(beritaModel.idBerita)),
+                );
+              },
+              child: Card(margin: EdgeInsets.only(top: 8), child: Column(
+                children: <Widget>[
+                  Container(height: 100,color: Color.fromRGBO(239, 239, 239, 100),),
+                  Container(padding: EdgeInsets.all(16), child: Column(children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        beritaModel.judulBerita,
+                        style: TextStyle(fontSize: 14, color: Colors.black,fontWeight: FontWeight.bold),
 //                  style: Keys().normalFontSize,
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  beritaModel.tanggalBuat,
-                  style: Keys().smallFontSize,
-                ),
-              ),
-              SizedBox(height: 16.0),
-              Divider(height: 1,),
-              SizedBox(height: 16.0),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        beritaModel.tanggalBuat,
+                        style: Keys().smallFontSize,
+                      ),
+                    ),
+                    SizedBox(height: 16.0),
+                    Divider(height: 1,),
+                    SizedBox(height: 16.0),
 
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  beritaModel.previewBerita,
-                  style: Keys().normalFontSize,
-                ),
-              ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        beritaModel.previewBerita,
+                        style: Keys().normalFontSize,
+                      ),
+                    ),
 
-            ],),)
-          ],
-        ),),
+                  ],),)
+                ],
+              ),),
+            )
         );
   }
 
@@ -93,7 +104,7 @@ class _BeritaWidget extends State<BeritaWidget> {
                 ],
               )),
           //Text("asdasd")
-          Expanded(child: _buildSuggestions()),
+          _buildSuggestions(),
 
         ],
       ),

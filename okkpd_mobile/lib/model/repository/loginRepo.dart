@@ -33,6 +33,41 @@ class LoginRepo {
     }
   }
 
+  Future loginUserProses(String username, String password) async {
+    var url = '${Keys.APIURL}login_user';
+    List<UserModel> _postList = [];
+
+    var response = await http.post(url,
+        body: {'username': username, 'password': password});
+    var message = "Login Sukses";
+//    var resp = ResponseModel.fromJson(json.decode(response.body));
+
+    final values = json.decode(response.body);
+
+    if(response.statusCode != 200){
+      message = values['MESSAGE'];
+      FunctionDart().setToast("$message Eror code :${response.statusCode}");
+      return null;
+    }else{
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var sektor = UserModel.fromJson(values['DATA'][i]);
+        _postList.add(sektor);
+      }
+      return _postList;
+    }
+  }
+
+  Future<bool> verification(UserModel user) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('loginFolder', user.folder);
+    await prefs.setString('loginId', user.idUser);
+    await prefs.setString('loginidUsaha', user.idIdentitasUsaha);
+    await prefs.setString('loginNama', user.namaLengkap);
+    await prefs.setString('loginEmail', user.username);
+    await prefs.setString('loginRole', user.kodeRole);
+    return Future.value(true);
+  }
+
   void logoutProcess() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('loginFolder');

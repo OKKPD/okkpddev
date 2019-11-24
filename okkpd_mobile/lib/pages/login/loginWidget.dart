@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
+import 'package:okkpd_mobile/model/userModel.dart';
+import 'package:okkpd_mobile/pages/login/pilihRoleScreen.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
@@ -27,16 +29,28 @@ class LoginWidgetState extends State<LoginWidget>{
         FunctionDart().setToast("Username atau password masih kosong");
       }else{
         pr.show();
-        Future<bool> resultLogin = LoginRepo().loginProcess(_usernameController.text, _passwordController.text);
-        if(await resultLogin == true){
+        List<UserModel> resultLogin = await LoginRepo().loginUserProses(_usernameController.text, _passwordController.text);
+        if(resultLogin != null || resultLogin.length > 0){
           pr.dismiss();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
+          if(resultLogin.length == 1){
+            if(await LoginRepo().verification(resultLogin[0])){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            }
+          }else{
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PilihRoleScreen(resultLogin)),
+            );
+            //Dilempar ke tampilan lain
+          }
         }else{
           pr.dismiss();
         }
+
+
       }
 
     }

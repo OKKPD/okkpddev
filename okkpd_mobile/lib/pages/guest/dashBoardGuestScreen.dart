@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/pages/dashboard/beritaWidget.dart';
 import 'package:okkpd_mobile/pages/guest/trackingStatusScreen.dart';
 
 class DashboarGuestScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                   fontSize: 20.0),),
           ),
 
-          new Padding(padding: EdgeInsets.only(top: 20.0)),
+          new Padding(padding: EdgeInsets.only(top: 16.0)),
           TextFormField(
             controller: _kodeController,
             decoration: new InputDecoration(
@@ -166,19 +167,22 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
 //    _portraitModeOnly();
     return Scaffold(
         backgroundColor: Colors.white,
-//        appBar: AppBar(
-//        title: Text("",style: TextStyle(color: Colors.white)),
-//    ),
     body: Center(
       child: ListView(
-       padding: EdgeInsets.only(left: 30.0, right: 30.0),
           children: <Widget>[
             SizedBox(height: 20.0),
-            kodeRegistrasi,
-            saveButton ,
-            SizedBox(height: 48.0),
-            beritaScreen,
-            SizedBox(height: 58.0),
+            Container(
+              padding: EdgeInsets.only(left: 16,right: 16),
+              child: kodeRegistrasi,
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 16,right: 16,bottom: 24),
+              child: saveButton ,
+            ),
+            SizedBox(height: 8.0),
+
+            BeritaWidget(),
+            SizedBox(height: 16.0),
                       ],
                 ),
               ),
