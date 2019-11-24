@@ -119,7 +119,6 @@ class _StatusWidgetState extends State<StatusWidget> {
 
     return ListView(
       children: <Widget>[
-//            header,
         SizedBox(height: 10.0),
         SingleChildScrollView(
             padding: EdgeInsets.only(left: 10.0, right: 10.0),

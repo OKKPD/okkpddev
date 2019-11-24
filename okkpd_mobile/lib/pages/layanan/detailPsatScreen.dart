@@ -55,7 +55,6 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
     });
   }
 
-  // final saveButtons =
   void _showMaterialDialog(int i) {
     showDialog(
         context: context,
@@ -167,7 +166,6 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
                       )),
                 ],
               )),
-          //Text("asdasd")
           Expanded(child: _buildSuggestions()),
           Container(
               padding:

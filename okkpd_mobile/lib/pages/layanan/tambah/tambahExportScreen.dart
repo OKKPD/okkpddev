@@ -33,17 +33,7 @@ class _TambahExportScreen extends State<TambahExportScreen> {
   var _pelabuhanTransit = TextEditingController();
   var _transportasiTransit = TextEditingController();
 
-  // List getSektor = [];
-  // List getKelompok = [];
-  // List getKomoditas = [];
-  // List<SektorKomoditasModel> sektor = [];
-  // List<KelompokKomoditasModel> kelompok = [];
   List<ExportModel> export = [];
-  // String idSektor;
-  // String idKelompok;
-  // String idKomoditas;
-  // String namaLatin;
-  // String nmKomoditas;
 
   void simpanExport() async {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);

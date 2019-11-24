@@ -69,11 +69,7 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
       selectedIndex = index;
       if (index == 0) {
         appBarTitle = "Home";
-      }
-//     else if (index == 1) {
-//       appBarTitle = "Layanan";
-//     }
-      else if (index == 1) {
+      } else if (index == 1) {
         appBarTitle = "QR";
       } else if (index == 2) {
         appBarTitle = "Kontak";

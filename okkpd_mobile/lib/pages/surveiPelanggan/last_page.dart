@@ -91,7 +91,6 @@ class LastPageState extends State<LastPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-//                color: Colors.blue,
           margin: EdgeInsets.only(top: 30.0),
           height: 10.0,
           child: Row(
@@ -100,7 +99,6 @@ class LastPageState extends State<LastPage> {
             children: List.generate(4, (int index) {
               return Container(
                 decoration: BoxDecoration(
-//                    color: Colors.orangeAccent,
                   color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.all(Radius.circular(2.0)),
                 ),
@@ -156,7 +154,6 @@ class LastPageState extends State<LastPage> {
                               onTapUp: (detail) {
                                 setState(() {
                                   question.isSelected = !question.isSelected;
-//                                  isFairly = !isFairly;
                                 });
                               },
                               child: Container(
@@ -170,7 +167,6 @@ class LastPageState extends State<LastPage> {
                                         activeColor: Colors.lightBlueAccent,
                                         value: question.isSelected,
                                         onChanged: (bool value) {
-//                                          print(value);
                                           setState(() {
                                             question.isSelected = value;
                                           });
@@ -195,7 +191,6 @@ class LastPageState extends State<LastPage> {
         ),
       ),
     );
-//    return ;
   }
 }
 

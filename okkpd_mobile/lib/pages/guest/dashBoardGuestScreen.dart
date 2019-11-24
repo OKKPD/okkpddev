@@ -22,13 +22,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               height: 100,
               alignment: AlignmentDirectional(2.0, 0.0),
               child: Image(image: AssetImage('assets/logo.png'))),
-//          Container(
-//              width: 50,
-//              height: 50,
-//              alignment: Alignment.center,
-//              child: Image(image: AssetImage('assets/titik.png'))
-//          ),
-
           Container(
             alignment: Alignment.center,
             child: new Text(
@@ -36,7 +29,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               style: new TextStyle(color: Colors.black, fontSize: 20.0),
             ),
           ),
-
           new Padding(padding: EdgeInsets.only(top: 16.0)),
           TextFormField(
             controller: _kodeController,
@@ -47,7 +39,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                 borderRadius: new BorderRadius.circular(8.0),
                 borderSide: new BorderSide(),
               ),
-              //fillColor: Colors.green
             ),
             keyboardType: TextInputType.text,
             style: new TextStyle(
@@ -76,10 +67,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
         ),
       ),
     );
-
-//    final beritaScreen = Container(
-//
-//    );
 
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -156,7 +143,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
       );
     });
 
-//    _portraitModeOnly();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

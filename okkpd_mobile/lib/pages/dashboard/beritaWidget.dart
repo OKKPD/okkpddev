@@ -65,7 +65,6 @@ class _BeritaWidget extends State<BeritaWidget> {
                           fontSize: 14,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
-//                  style: Keys().normalFontSize,
                     ),
                   ),
                   Align(
@@ -115,7 +114,6 @@ class _BeritaWidget extends State<BeritaWidget> {
                   ),
                 ],
               )),
-          //Text("asdasd")
           _buildSuggestions(),
         ],
       ),

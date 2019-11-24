@@ -107,7 +107,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
             fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
-//#2
+
     final namaPemohon =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       Align(

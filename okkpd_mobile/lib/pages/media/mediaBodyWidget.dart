@@ -32,7 +32,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   Future _asyncConfirmDialog() async {
     return showDialog(
       context: context,
-      barrierDismissible: true, // user must tap button for close dialog!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Ambil Gambar'),

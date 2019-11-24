@@ -142,7 +142,6 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-//            header,
             SizedBox(height: 20.0),
             nama,
             SizedBox(height: 20.0),

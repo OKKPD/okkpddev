@@ -53,7 +53,6 @@ class _StatusTrackingState extends State<StatusTracking> {
   }
 
   @override
-  // ignore: missing_return
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -64,7 +63,6 @@ class _StatusTrackingState extends State<StatusTracking> {
           children: <Widget>[
             Expanded(
               child: Container(
-                //padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                 height: 86.0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +111,6 @@ class _StatusTrackingState extends State<StatusTracking> {
             ),
             Expanded(
               child: Container(
-                //padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
                 height: 86.0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,17 +279,6 @@ class _StatusTrackingState extends State<StatusTracking> {
         ),
         Divider(),
       ],
-    )
-//        trailing: RaisedButton(
-//          onPressed: () {
-//            _showMaterialDialog(i);
-//          },
-//          child: Icon(
-//            Icons.remove,
-//            color: Colors.blueAccent,
-//            size: 36,
-//          ),
-//        )
-        );
+    ));
   }
 }

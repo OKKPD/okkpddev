@@ -53,7 +53,6 @@ class _DetailHcScreen extends State<DetailHcScreen> {
     });
   }
 
-  // final saveButtons =
   void _showMaterialDialog(int i) {
     showDialog(
         context: context,
@@ -164,7 +163,6 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                       )),
                 ],
               )),
-          //Text("asdasd")
           Expanded(child: _buildSuggestions()),
           Container(
               padding:

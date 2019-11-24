@@ -20,7 +20,6 @@ class LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //ProgressDialog pr;
     ProgressDialog pr;
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 

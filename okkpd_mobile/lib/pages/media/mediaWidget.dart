@@ -15,19 +15,20 @@ class _MediaWidget extends State<MediaWidget> {
     final track =
         FutureBuilder(builder: (BuildContext context, AsyncSnapshot res) {
       var data = [
-        {'Media': 'Surat Pernyataan Kesanggupan'},
-        {'Media': 'Dokumen Legalitas Perusahaan'},
-        {'Media': 'Struktur Organisasi'},
-        {'Media': 'Jenis Komoditas Dan Peta Lahan'},
-        {'Media': 'Sertifikat Prima 3'},
-        {'Media': 'Surat Keterangan Domisili'},
-        {'Media': 'Akta Pendirian Dan Badan Usaha'},
-        {'Media': 'Dokumen Kerjasama Dengan Pemasok'},
-        {'Media': 'SIUP'},
-        {'Media': 'Sertifikat HS'},
-        {'Media': 'Sertifikat GMP/HACPP/ISO2000'},
+        {'Media': 'Surat Pernyataan Kesanggupan', 'id': '1'},
+        {'Media': 'Dokumen Legalitas Perusahaan', 'id': '2'},
+        {'Media': 'Struktur Organisasi', 'id': '3'},
+        {'Media': 'Jenis Komoditas Dan Peta Lahan', 'id': '4'},
+        {'Media': 'Sertifikat Prima 3', 'id': '5'},
+        {'Media': 'Surat Keterangan Domisili', 'id': '6'},
+        {'Media': 'Akta Pendirian Dan Badan Usaha', 'id': '8'},
+        {'Media': 'Surat Ijin Usaha Perdagangan', 'id': '9'},
+        {'Media': 'Dokumen Kerjasama Dengan Pemasok', 'id': '10'},
+        {'Media': 'SIUP', 'id': '11'},
+        {'Media': 'Dokumen Akta Perusahaan', 'id': '12'},
+        {'Media': 'Sertifikat HS', 'id': '13'},
+        {'Media': 'Sertifikat GMP/HACPP/ISO2000', 'id': '14'},
       ];
-
       final children = <Widget>[];
       for (var datas in data) {
         children.add(new Card(
@@ -40,7 +41,8 @@ class _MediaWidget extends State<MediaWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => MediaBody(datas['Media'].toString())),
+                    builder: (context) =>
+                        MediaBody(datas['Media'].toString(), datas['id'])),
               );
             },
             child: Column(

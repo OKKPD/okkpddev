@@ -39,11 +39,6 @@ class _QrScreen extends State<QrScreen> {
             Text(
               'Scan Sertifikat',
             ),
-//            Text(
-//             _scanBarcode,
-//              style: Theme.of(context).textTheme.display1,
-//            ),
-
             FloatingActionButton(
               onPressed: scanBarcodeNormal,
               tooltip: 'Increment',
@@ -52,7 +47,6 @@ class _QrScreen extends State<QrScreen> {
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

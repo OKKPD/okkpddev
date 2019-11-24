@@ -37,18 +37,17 @@ class LoginRepo {
     var url = '${Keys.APIURL}login_user';
     List<UserModel> _postList = [];
 
-    var response = await http.post(url,
-        body: {'username': username, 'password': password});
+    var response = await http
+        .post(url, body: {'username': username, 'password': password});
     var message = "Login Sukses";
-//    var resp = ResponseModel.fromJson(json.decode(response.body));
 
     final values = json.decode(response.body);
 
-    if(response.statusCode != 200){
+    if (response.statusCode != 200) {
       message = values['MESSAGE'];
       FunctionDart().setToast("$message Eror code :${response.statusCode}");
       return null;
-    }else{
+    } else {
       for (int i = 0; i < values['DATA'].length; i++) {
         var sektor = UserModel.fromJson(values['DATA'][i]);
         _postList.add(sektor);
@@ -57,7 +56,7 @@ class LoginRepo {
     }
   }
 
-  Future<bool> verification(UserModel user) async{
+  Future<bool> verification(UserModel user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('loginFolder', user.folder);
     await prefs.setString('loginId', user.idUser);

@@ -44,7 +44,6 @@ class MyApp extends StatelessWidget {
         '/homeGuest': (BuildContext context) => new HomeGuestScreen(),
         '/kontak': (BuildContext context) => new KontakScreen(),
         '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
-        // '/mediaBody': (BuildContext context) => new MediaBody("asd"),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
       },

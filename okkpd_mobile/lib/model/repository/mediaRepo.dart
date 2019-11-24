@@ -39,7 +39,7 @@ class MediaRepo {
 
   Future<bool> uploadMedia(File dokumen, String kodeDokumen) async {
     Response response;
-    Dio dio = new Dio(); // with default Options
+    Dio dio = new Dio();
 
     String idUsaha = await getIdUsaha();
     String idUser = await getIdUser();

@@ -3,15 +3,17 @@ import 'package:okkpd_mobile/pages/media/mediaBodyWidget.dart';
 
 class MediaBody extends StatefulWidget {
   final String name;
-  MediaBody(this.name);
+  final String id;
+  MediaBody(this.name, this.id);
 
   @override
-  _MediaBody createState() => _MediaBody(name);
+  _MediaBody createState() => _MediaBody(name, id);
 }
 
 class _MediaBody extends State<MediaBody> {
   final String name;
-  _MediaBody(this.name);
+  final String id;
+  _MediaBody(this.name, this.id);
 
   int loop = 1;
 

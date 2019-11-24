@@ -114,12 +114,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
                 nmKomoditas = kmd.deskripsi;
               }
             }
-            // int index = int.parse(value);
-            // namaLatin = getKomoditas[index]['nama_latin'];
-            // nmKomoditas = getKomoditas[index]['deskripsi'];
-            // _idSektor.text = getKomoditas[index]['id_sektor'];
-            // _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
-            // _idKelompok.text = getKomoditas[index]['id_kelompok'];
           });
         },
         value: idKomoditas,
@@ -147,11 +141,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
           setState(() {
             idSektor = value;
             getDataKelompok(idSektor);
-            // _namaLatin.text = getKomoditas[index]['nama_latin'];
-            // _namaKomoditas.text = getKomoditas[index]['deskripsi'];
-            // _idSektor.text = getKomoditas[index]['id_sektor'];
-            // _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
-            // _idKelompok.text = getKomoditas[index]['id_kelompok'];
           });
         },
         value: idSektor,
@@ -179,12 +168,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
           setState(() {
             idKelompok = value;
             getDataKomoditas(idSektor, idKelompok);
-
-            // _namaLatin.text = getKomoditas[index]['nama_latin'];
-            // _namaKomoditas.text = getKomoditas[index]['deskripsi'];
-            // _idSektor.text = getKomoditas[index]['id_sektor'];
-            // _idKomoditas.text = getKomoditas[index]['kode_komoditas'];
-            // _idKelompok.text = getKomoditas[index]['id_kelompok'];
           });
         },
         value: idKelompok,

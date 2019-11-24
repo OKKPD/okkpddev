@@ -33,7 +33,7 @@ class _UserBodyState extends State<UserBody> {
   Future _asyncConfirmDialog() async {
     return showDialog(
       context: context,
-      barrierDismissible: true, // user must tap button for close dialog!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Ambil Gambar'),

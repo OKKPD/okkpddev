@@ -210,7 +210,6 @@ class SplashScreenState extends State<SplashScreen>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-//                color: Colors.blue,
           margin: EdgeInsets.only(top: 30.0),
           height: 10.0,
           child: Row(
@@ -219,7 +218,6 @@ class SplashScreenState extends State<SplashScreen>
             children: List.generate(4, (int index) {
               return Container(
                 decoration: BoxDecoration(
-//                    color: Colors.orangeAccent,
                   color: index <= curIndex ? Colors.cyan : Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(2.0)),
                 ),
@@ -692,9 +690,7 @@ class AnimationBox extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-//                color: Colors.blue,
                       margin: EdgeInsets.only(top: 34.0),
-//                height: 10.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -776,10 +772,6 @@ class AnimationBox extends StatelessWidget {
                 ),
               ),
             ),
-//            Opacity(
-//              opacity: 1.0 - opacity.value,
-//              child:
-//            ),
           ],
         );
       },

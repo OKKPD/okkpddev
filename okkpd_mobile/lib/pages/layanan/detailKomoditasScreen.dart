@@ -55,7 +55,6 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
     });
   }
 
-  // final saveButtons =
   void _showMaterialDialog(int i) {
     showDialog(
         context: context,
@@ -166,7 +165,6 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
                       )),
                 ],
               )),
-          //Text("asdasd")
           Expanded(child: _buildSuggestions()),
           Container(
               padding:
