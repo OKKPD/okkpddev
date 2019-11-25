@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,20 +24,6 @@ String kotaController;
 String noHpController;
 String noTelpController;
 
-Future setUser() async {
-  UserModel user = await UserRepo().getProfile();
-  if (user != null) {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('loginNama', user.namaLengkap);
-    namaPemohonController = user.namaLengkap;
-    namaPerusahaanController = user.namaUsaha;
-    jenisUsahaController = user.jenisUsaha;
-    noHpController = user.noHp;
-    noKtpController = user.noKtp;
-    alamatPerusahaanController = user.alamatLengkap;
-  }
-}
-
 class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   File imageKTP;
   File imageNPWP;
@@ -48,34 +33,18 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   Color clrNpwp = Colors.redAccent;
   Color clrKopSurat = Colors.redAccent;
 
-  Future getImage(ImageSource source, String fileName) async {
-    File image = await ImagePicker.pickImage(source: source);
-
-    setState(() {
-      if (fileName == 'KTP') {
-        imageKTP = image;
-        print(image);
-        if (image != null) {
-          clrKtp = Colors.green;
-        } else {
-          clrKtp = Colors.redAccent;
-        }
-      } else if (fileName == 'NPWP') {
-        imageNPWP = image;
-        if (image != null) {
-          clrNpwp = Colors.green;
-        } else {
-          clrNpwp = Colors.redAccent;
-        }
-      } else {
-        imageKopSurat = image;
-        if (image != null) {
-          clrKopSurat = Colors.green;
-        } else {
-          clrKopSurat = Colors.redAccent;
-        }
-      }
-    });
+  Future setUser() async {
+    UserModel user = await UserRepo().getProfile();
+    if (user != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('loginNama', user.namaLengkap);
+      namaPemohonController = user.namaLengkap;
+      namaPerusahaanController = user.namaUsaha;
+      jenisUsahaController = user.jenisUsaha;
+      noHpController = user.noHp;
+      noKtpController = user.noKtp;
+      alamatPerusahaanController = user.alamatLengkap;
+    }
   }
 
   @override

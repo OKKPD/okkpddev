@@ -37,6 +37,28 @@ class MediaRepo {
     }
   }
 
+  Future getStatusDokumen() async {
+    String idUser = await getIdUser();
+    var url = '${Keys.APIURL}user/$idUser/dokumen_media';
+    print(url);
+
+    var response = await http.get(url);
+    final values = json.decode(response.body);
+
+    List<MediaModel> _postList = [];
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var sektor = MediaModel.fromJson(values['DATA'][i]);
+        _postList.add(sektor);
+      }
+      print(_postList);
+      return _postList;
+    }
+  }
+
   Future<bool> uploadMedia(File dokumen, String kodeDokumen) async {
     Response response;
     Dio dio = new Dio();
