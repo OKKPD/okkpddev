@@ -73,7 +73,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (jenisUsahaController != null) ? jenisUsahaController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -92,7 +92,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (namaPemohonController != null) ? namaPemohonController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -111,7 +111,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (jabatanController != null) ? jabatanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -130,7 +130,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (noKtpController != null) ? noKtpController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -149,7 +149,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (noNpwpController != null) ? noNpwpController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -168,7 +168,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (alamatPerusahaanController != null) ? namaPerusahaanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -187,7 +187,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (namaPerusahaanController != null) ? alamatPerusahaanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
