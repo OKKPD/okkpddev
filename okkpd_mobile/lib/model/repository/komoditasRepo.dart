@@ -33,7 +33,7 @@ class KomoditasRepo {
     List _postList = [];
     var url = '${Keys.APIURL}komoditas/allKomoditas';
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
     if (values['DATA'].length > 0) {
       for (int i = 0; i < values['DATA'].length; i++) {
         _postList.add(values['DATA'][i]);
@@ -47,7 +47,7 @@ class KomoditasRepo {
     var url = '${Keys.APIURL}komoditas/sektor';
     print(url);
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (values['DATA'].length > 0) {
       for (int i = 0; i < values['DATA'].length; i++) {
@@ -62,7 +62,7 @@ class KomoditasRepo {
     List<KelompokKomoditasModel> _postList = [];
     var url = '${Keys.APIURL}komoditas/sektor/$id/kelompok';
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (values['DATA'].length > 0) {
       for (int i = 0; i < values['DATA'].length; i++) {
@@ -77,7 +77,7 @@ class KomoditasRepo {
     List<KomoditasModel> _postList = [];
     var url = '${Keys.APIURL}komoditas/sektor/$id/kelompok/$kelompok';
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (values['DATA'] == null) {
       return null;

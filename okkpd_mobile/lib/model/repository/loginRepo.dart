@@ -41,7 +41,7 @@ class LoginRepo {
         .post(url, body: {'username': username, 'password': password});
     var message = "Login Sukses";
 
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (response.statusCode != 200) {
       message = values['MESSAGE'];

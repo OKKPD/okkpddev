@@ -18,6 +18,7 @@ class UserRepo {
     var url = '${Keys.APIURL}user/$idUser';
     var response = await http.get(url);
     var resp = ResponseModel.fromJson(json.decode(response.body));
+    ;
 
     if (response.statusCode != 200) {
       FunctionDart().setToast("Ups! Ada kendala pada server.");
@@ -34,7 +35,7 @@ class UserRepo {
     var url = '${Keys.APIURL}user/$idUser';
     var response =
         await http.patch(url, body: {"nama_lengkap": user.namaLengkap});
-    var resp = ResponseModel.fromJson(json.decode(response.body));
+    var resp = ResponseModel.fromJson(await json.decode(response.body));
 
     if (response.statusCode != 200) {
       FunctionDart().setToast('Tidak ada data yang diubah');
@@ -51,7 +52,7 @@ class UserRepo {
     var url = '${Keys.APIURL}user/$idUser/password';
     var response = await http.patch(url,
         body: {"password": password, "password_ulang": ulangPassword});
-    var resp = ResponseModel.fromJson(json.decode(response.body));
+    var resp = ResponseModel.fromJson(await json.decode(response.body));
     FunctionDart().setToast(resp.message);
     if (response.statusCode != 200) {
       return Future.value(false);

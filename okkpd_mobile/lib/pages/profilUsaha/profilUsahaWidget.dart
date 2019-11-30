@@ -28,29 +28,33 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   File imageKTP;
   File imageNPWP;
   File imageKopSurat;
+  UserModel user;
 
   Color clrKtp = Colors.redAccent;
   Color clrNpwp = Colors.redAccent;
   Color clrKopSurat = Colors.redAccent;
 
+  bool isLoading = true;
+
   Future setUser() async {
-    UserModel user = await UserRepo().getProfile();
-    if (user != null) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('loginNama', user.namaLengkap);
-      namaPemohonController = user.namaLengkap;
-      namaPerusahaanController = user.namaUsaha;
-      jenisUsahaController = user.jenisUsaha;
-      noHpController = user.noHp;
-      noKtpController = user.noKtp;
-      alamatPerusahaanController = user.alamatLengkap;
+    user = await UserRepo().getProfile();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('loginNama', user.namaLengkap);
+    namaPemohonController = user.namaLengkap;
+    namaPerusahaanController = user.namaUsaha;
+    jenisUsahaController = user.jenisUsaha;
+    noHpController = user.noHp;
+    noKtpController = user.noKtp;
+    alamatPerusahaanController = user.alamatLengkap;
+    if (alamatPerusahaanController != '') {
+      isLoading = false;
     }
   }
 
   @override
   void initState() {
-    super.initState();
     setUser();
+    super.initState();
   }
 
   @override
@@ -73,7 +77,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (jenisUsahaController != null) ? jenisUsahaController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -92,7 +96,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (namaPemohonController != null) ? namaPemohonController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -111,7 +115,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (jabatanController != null) ? jabatanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -130,7 +134,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (noKtpController != null) ? noKtpController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -149,7 +153,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (noNpwpController != null) ? noNpwpController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -168,7 +172,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (alamatPerusahaanController != null) ? namaPerusahaanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
@@ -187,34 +191,36 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         (namaPerusahaanController != null) ? alamatPerusahaanController : '-',
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
+            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
       ),
     ]);
 
-    return Center(
-      child: ListView(
-        children: <Widget>[
-          SizedBox(height: 10.0),
-          SingleChildScrollView(
-              padding: EdgeInsets.only(left: 24.0, right: 24.0),
-              child: Column(children: <Widget>[
-                jenisUsaha,
-                SizedBox(height: 20.0),
-                namaPemohon,
-                SizedBox(height: 20.0),
-                jabatan,
-                SizedBox(height: 20.0),
-                noKtp,
-                SizedBox(height: 20.0),
-                noNpwp,
-                SizedBox(height: 20.0),
-                namaPerusahaan,
-                SizedBox(height: 20.0),
-                alamatPerusahaan,
-                SizedBox(height: 20.0)
-              ])),
-        ],
-      ),
-    );
+    return (isLoading)
+        ? Center(child: const CircularProgressIndicator())
+        : Center(
+            child: ListView(
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                SingleChildScrollView(
+                    padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                    child: Column(children: <Widget>[
+                      jenisUsaha,
+                      SizedBox(height: 20.0),
+                      namaPemohon,
+                      SizedBox(height: 20.0),
+                      jabatan,
+                      SizedBox(height: 20.0),
+                      noKtp,
+                      SizedBox(height: 20.0),
+                      noNpwp,
+                      SizedBox(height: 20.0),
+                      namaPerusahaan,
+                      SizedBox(height: 20.0),
+                      alamatPerusahaan,
+                      SizedBox(height: 20.0)
+                    ])),
+              ],
+            ),
+          );
   }
 }
