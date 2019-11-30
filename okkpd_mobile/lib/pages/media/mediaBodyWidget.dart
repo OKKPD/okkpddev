@@ -62,13 +62,12 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
 
   void deleteMedia(String id) async {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
-    // try {
-    //   pr.show();
-    //   print(id);
-    await MediaRepo().deleteMedia(id);
-    // } catch (e) {} finally {
-    //   pr.dismiss();
-    // }
+    try {
+      pr.show();
+      await MediaRepo().deleteMedia(id);
+    } catch (e) {} finally {
+      pr.dismiss();
+    }
   }
 
   @override

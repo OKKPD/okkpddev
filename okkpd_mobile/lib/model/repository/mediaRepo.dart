@@ -78,25 +78,44 @@ class MediaRepo {
     }
   }
 
-  Future<bool> deleteMedia(String data) async {
-    Response response;
-
+  Future<Object> deleteMedia(String data) async {
     String idUser = await getIdUser();
-    Dio dio = new Dio();
     var url = '${Keys.APIURL}user/$idUser/dokumen_media/delete';
 
-    FormData formData = FormData.fromMap({"id_media": data});
+    Map<String, dynamic> Object;
+    Object = {
+      'id_media': data,
+    };
+    print(data);
+    print(Uri.parse(url));
+    print(json.encode(Object));
+    final client = http.Client();
+    try {
+      final response = await client.send(http.Request("DELETE", Uri.parse(url))
+        ..headers['Content-type'] = 'application/x-www-form-urlencoded'
+        ..body = json.encode(Object));
+      //
 
-    print(url);
-    print(formData.fields);
-
-    response = await dio.post(url, data: formData);
-
-    if (response.statusCode == 200) {
-      return Future.value(true);
-    } else {
-      return Future.value(false);
+      print(response);
+      print('a');
+    } catch (e) {
+      print(e);
+    } finally {
+      print('b');
+      client.close();
     }
+
+    // FormData formData = FormData.fromMap({"id_media": data});
+
+    // print(url);
+    // print(formData.fields);
+    // var response = await http.delete(url, body: formData);
+
+    // if (response.statusCode == 200) {
+    //   return Future.value(true);
+    // } else {
+    //   return Future.value(false);
+    // }
   }
 
   Future<bool> uploadMedia(File dokumen, String kodeDokumen) async {
