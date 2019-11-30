@@ -78,17 +78,24 @@ class MediaRepo {
     }
   }
 
-  Future<String> deleteMedia(String id) async {
+  Future<bool> deleteMedia(String data) async {
     Response response;
-    Dio dio = new Dio();
-    var url = '${Keys.APIURL}layanan/$id/hapus_media';
 
-    response = await dio.delete(url);
+    String idUser = await getIdUser();
+    Dio dio = new Dio();
+    var url = '${Keys.APIURL}user/$idUser/dokumen_media/delete';
+
+    FormData formData = FormData.fromMap({"id_media": data});
+
+    print(url);
+    print(formData.fields);
+
+    response = await dio.post(url, data: formData);
 
     if (response.statusCode == 200) {
-      return 'Berhasil';
+      return Future.value(true);
     } else {
-      return 'Gagal';
+      return Future.value(false);
     }
   }
 

@@ -62,12 +62,13 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
 
   void deleteMedia(String id) async {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
-    try {
-      pr.show();
-      await MediaRepo().deleteMedia(id);
-    } catch (e) {} finally {
-      pr.dismiss();
-    }
+    // try {
+    //   pr.show();
+    //   print(id);
+    await MediaRepo().deleteMedia(id);
+    // } catch (e) {} finally {
+    //   pr.dismiss();
+    // }
   }
 
   @override
@@ -129,7 +130,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                         height: queryData.size.width / 2,
                         color: Colors.transparent,
                         child: Image.network(
-                          'https://picsum.photos/250?image=9',
+                          datas.folder + datas.namaMedia,
                         ),
                       ),
                     ],
