@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class MediaBodyWidget extends StatefulWidget {
+  String id;
+  MediaBodyWidget(this.id);
   @override
-  _MediaBodyWidget createState() => _MediaBodyWidget();
+  _MediaBodyWidget createState() => _MediaBodyWidget(id);
 }
 
 class _MediaBodyWidget extends State<MediaBodyWidget> {
+  String id;
+  _MediaBodyWidget(this.id);
   // List<MediaBodyModel> model;
   static const String View = 'View';
   static const String Delete = 'Delete';
@@ -16,10 +21,14 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
 
   final List<MediaModel> model = [];
 
+  ProgressDialog pr;
+
   bool isLoading = true;
 
   Future cekDokumen() async {
-    var getModel = await MediaRepo().getStatusDokumen();
+    var getPict = await MediaRepo().getMediaById(this.id);
+    print(getPict);
+    var getModel = await MediaRepo().getMediaById(this.id);
     setState(() {
       this.model.addAll(getModel);
     });
@@ -44,13 +53,21 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   }
 
   void choiceAction(String choice) {
-    // if (choice == Constants.Settings) {
-    //   print('Settings');
-    // } else if (choice == Constants.Subscribe) {
-    //   print('Subscribe');
-    // } else if (choice == Constants.SignOut) {
-    //   print('SignOut');
-    // }
+    var res = choice.split('~');
+
+    if (res[0] == 'Delete') {
+      deleteMedia(res[1]);
+    } else {}
+  }
+
+  void deleteMedia(String id) async {
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+    try {
+      pr.show();
+      await MediaRepo().deleteMedia(id);
+    } catch (e) {} finally {
+      pr.dismiss();
+    }
   }
 
   @override
@@ -77,7 +94,10 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text("1 Desember 2019",
+                          Text(
+                              datas.namaMedia.substring(0, 15) +
+                                  '...    ' +
+                                  datas.dateUpload,
                               style: new TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold)),
                           Container(
@@ -91,7 +111,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                                   itemBuilder: (BuildContext context) {
                                     return choices.map((String choice) {
                                       return PopupMenuItem<String>(
-                                        value: choice,
+                                        value: choice + '~' + datas.idMedia,
                                         child: Text(choice),
                                       );
                                     }).toList();
@@ -107,8 +127,10 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                       Container(
                         width: queryData.size.width / 1.219,
                         height: queryData.size.width / 2,
-                        color: Colors.grey,
-                        child: Image.asset('assets/logo.png'),
+                        color: Colors.transparent,
+                        child: Image.network(
+                          'https://picsum.photos/250?image=9',
+                        ),
                       ),
                     ],
                   ),

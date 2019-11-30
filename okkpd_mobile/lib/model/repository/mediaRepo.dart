@@ -40,7 +40,7 @@ class MediaRepo {
   Future getMediaById(String kodeDokumen) async {
     List<MediaModel> _postList = [];
     String idUser = await getIdUser();
-    var url = '${Keys.APIURL}layanan/$idUser/dokumen/$kodeDokumen';
+    var url = '${Keys.APIURL}user/$idUser/dokumen_media/jenis/$kodeDokumen';
     print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
@@ -75,6 +75,20 @@ class MediaRepo {
       }
       print(_postList);
       return _postList;
+    }
+  }
+
+  Future<String> deleteMedia(String id) async {
+    Response response;
+    Dio dio = new Dio();
+    var url = '${Keys.APIURL}layanan/$id/hapus_media';
+
+    response = await dio.delete(url);
+
+    if (response.statusCode == 200) {
+      return 'Berhasil';
+    } else {
+      return 'Gagal';
     }
   }
 

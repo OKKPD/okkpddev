@@ -28,7 +28,7 @@ class _MediaBody extends State<MediaBody> {
       appBar: AppBar(
         title: Text(this.name, style: TextStyle(color: Colors.white)),
       ),
-      body: Center(child: MediaBodyWidget()),
+      body: Center(child: MediaBodyWidget(this.id)),
     );
     // return Scaffold(
     //     appBar: AppBar(
