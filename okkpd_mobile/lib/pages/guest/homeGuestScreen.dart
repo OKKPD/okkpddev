@@ -68,7 +68,7 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
     setState(() {
       selectedIndex = index;
       if (index == 0) {
-        appBarTitle = "Home";
+        appBarTitle = "Beranda";
       } else if (index == 1) {
         appBarTitle = "QR";
       } else if (index == 2) {

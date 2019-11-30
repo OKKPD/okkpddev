@@ -11,7 +11,7 @@ class KontakScreen extends StatefulWidget {
 class _KontakScreen extends State<KontakScreen> {
   _launchURL() async {
     const url =
-        'https://api.whatsapp.com/send?phone=6285865813540&text=Halo%20Admin%20Saya%20Mau%20Tanya%20Nih';
+        'https://api.whatsapp.com/send?phone=6285725260232&text=Halo%20Admin%20Saya%20Mau%20Tanya%20Nih';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -107,7 +107,7 @@ class _KontakScreen extends State<KontakScreen> {
                 minWidth: 200.0,
                 height: 42.0,
                 onPressed: _launchURL,
-                color: Colors.blue,
+                color: Colors.lightBlueAccent,
                 child: Text('Hubungi Admin',
                     style: TextStyle(color: Colors.white, fontSize: 20.0)),
               ),

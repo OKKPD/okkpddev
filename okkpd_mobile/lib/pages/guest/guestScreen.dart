@@ -144,7 +144,7 @@ class _GuestScreen extends State<GuestScreen> {
                     minWidth: 200.0,
                     height: 42.0,
                     onPressed: scanBarcodeNormal,
-                    color: Colors.blue,
+                    color: Colors.lightBlueAccent,
                     child: Text('Scan Sertifikat', style: TextStyle(color: Colors.white, fontSize: 20.0)),
                   ),
                 ),

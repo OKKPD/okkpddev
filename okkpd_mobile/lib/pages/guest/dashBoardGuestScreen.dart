@@ -25,7 +25,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           Container(
             alignment: Alignment.center,
             child: new Text(
-              'Traking Layanan Anda',
+              'Tracking Layanan Anda',
               style: new TextStyle(color: Colors.black, fontSize: 20.0),
             ),
           ),
@@ -61,7 +61,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
                       TrackingStatusScreen(_kodeController.text)),
             );
           },
-          color: Colors.blue,
+          color: Colors.lightBlueAccent,
           child: Text('Cari',
               style: TextStyle(color: Colors.white, fontSize: 20.0)),
         ),

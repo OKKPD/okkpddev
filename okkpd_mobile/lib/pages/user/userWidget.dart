@@ -6,6 +6,7 @@ import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
 import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:okkpd_mobile/pages/surveiPelanggan/surveiTest.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 
@@ -189,7 +190,7 @@ class _UserBodyState extends State<UserBody> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SurveiScreen()),
+                    MaterialPageRoute(builder: (context) => SurveiTest()),
                   );
                 },
               ),
