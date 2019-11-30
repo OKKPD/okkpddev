@@ -22,18 +22,6 @@ class _MediaBody extends State<MediaBody> {
     super.initState();
   }
 
-  void _addCamera() {
-    setState(() {
-      loop += 1;
-    });
-  }
-
-  void _removeCamera() {
-    setState(() {
-      loop -= 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

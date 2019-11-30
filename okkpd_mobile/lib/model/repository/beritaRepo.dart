@@ -6,15 +6,14 @@ import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/responseModel.dart';
 
 class BeritaRepo {
-
   Future getBerita(String url) async {
     List<BeritaModel> _postList = [];
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
-    if(response.statusCode != 200){
-      return  null;
-    }else{
+    if (response.statusCode != 200) {
+      return null;
+    } else {
       for (int i = 0; i < values['DATA'].length; i++) {
         var berita = BeritaModel.fromJson(values['DATA'][i]);
         _postList.add(berita);
@@ -24,12 +23,12 @@ class BeritaRepo {
   }
 
   Future viewBerita(String idBerita) async {
-    var url = '${Keys.APIURL}berita/view/'+idBerita;
+    var url = '${Keys.APIURL}berita/view/' + idBerita;
     var response = await http.get(url);
     var resp = ResponseModel.fromJson(json.decode(response.body));
-    if(response.statusCode != 200){
+    if (response.statusCode != 200) {
       return null;
-    }else{
+    } else {
       return BeritaModel.fromJson(resp.data);
     }
   }
@@ -37,7 +36,6 @@ class BeritaRepo {
   Future getPreview() async {
     var url = '${Keys.APIURL}berita/prev';
     return getBerita(url);
-
   }
 
   Future getAll() async {

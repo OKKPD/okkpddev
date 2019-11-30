@@ -10,6 +10,9 @@ class _Mediascreen extends State<Mediascreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // body: _progressBarActive == true
+      //     ? Center(child: const CircularProgressIndicator())
+      //     : Center(child: MediaWidget())
       body: Center(child: MediaWidget()),
     );
   }

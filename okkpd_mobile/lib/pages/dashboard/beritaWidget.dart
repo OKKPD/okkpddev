@@ -11,6 +11,7 @@ class BeritaWidget extends StatefulWidget {
 
 class _BeritaWidget extends State<BeritaWidget> {
   final List<BeritaModel> berita = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -23,16 +24,22 @@ class _BeritaWidget extends State<BeritaWidget> {
     setState(() {
       berita.addAll(beritas);
     });
+
+    if (beritas.length > 0) {
+      isLoading = false;
+    }
   }
 
   _buildSuggestions() {
-    return ListView.builder(
-        shrinkWrap: true,
-        physics: new NeverScrollableScrollPhysics(),
-        itemCount: berita.length,
-        itemBuilder: (context, i) {
-          return _buildRow(berita[i], i);
-        });
+    return (isLoading)
+        ? Center(child: const CircularProgressIndicator())
+        : ListView.builder(
+            shrinkWrap: true,
+            physics: new NeverScrollableScrollPhysics(),
+            itemCount: berita.length,
+            itemBuilder: (context, i) {
+              return _buildRow(berita[i], i);
+            });
   }
 
   _buildRow(BeritaModel beritaModel, int i) {

@@ -25,6 +25,8 @@ class _UserBodyState extends State<UserBody> {
     });
   }
 
+  bool isLoading = true;
+
   String namaLengkap = '';
   var namaLengkapController = TextEditingController();
   var emailController = TextEditingController();
@@ -65,10 +67,14 @@ class _UserBodyState extends State<UserBody> {
   }
 
   void getProfile() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      namaLengkap = prefs.getString('loginNama');
-    });
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+        namaLengkap = prefs.getString('loginNama');
+      });
+    } catch (e) {} finally {
+      isLoading = false;
+    }
   }
 
   @override
@@ -253,26 +259,28 @@ class _UserBodyState extends State<UserBody> {
         ),
       ),
     );
-    return Center(
-      child: ListView(
-        children: <Widget>[
-          Container(
-            color: Color.fromRGBO(225, 225, 225, 100),
-            padding: EdgeInsets.only(top: 36, bottom: 36),
-            child: Column(
+    return (isLoading)
+        ? Center(child: const CircularProgressIndicator())
+        : Center(
+            child: ListView(
               children: <Widget>[
-                logo,
-                profilButton,
-                Text('$namaLengkap'),
+                Container(
+                  color: Color.fromRGBO(225, 225, 225, 100),
+                  padding: EdgeInsets.only(top: 36, bottom: 36),
+                  child: Column(
+                    children: <Widget>[
+                      logo,
+                      profilButton,
+                      Text('$namaLengkap'),
+                    ],
+                  ),
+                ),
+                informasi,
+                ubahPassword,
+                surveiPelanggan,
+                logout,
               ],
             ),
-          ),
-          informasi,
-          ubahPassword,
-          surveiPelanggan,
-          logout,
-        ],
-      ),
-    );
+          );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
-import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 
 class MediaBodyWidget extends StatefulWidget {
   @override
@@ -17,11 +16,17 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
 
   final List<MediaModel> model = [];
 
+  bool isLoading = true;
+
   Future cekDokumen() async {
     var getModel = await MediaRepo().getStatusDokumen();
     setState(() {
       this.model.addAll(getModel);
     });
+
+    if (model.length > 0) {
+      isLoading = false;
+    }
   }
 
   @override
@@ -118,15 +123,17 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
       );
     });
 
-    return ListView(
-      children: <Widget>[
-        SingleChildScrollView(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-            child: Column(children: <Widget>[
-              SizedBox(height: 24.0),
-              track,
-            ])),
-      ],
-    );
+    return (isLoading)
+        ? Center(child: const CircularProgressIndicator())
+        : ListView(
+            children: <Widget>[
+              SingleChildScrollView(
+                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: Column(children: <Widget>[
+                    SizedBox(height: 24.0),
+                    track,
+                  ])),
+            ],
+          );
   }
 }

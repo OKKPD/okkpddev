@@ -37,7 +37,7 @@ class LayananRepo {
         '${Keys.APIURL}layanan/$idUsaha/list?layanan=$kodeLayanan&status=$status';
     print(url);
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (response.statusCode != 200) {
       return null;
@@ -54,7 +54,7 @@ class LayananRepo {
     TrackSertifikatModel _postList;
     var url = '${Keys.APIURL}tracking/sertifikat';
     var response = await http.post(url, body: {'tracking_data': kodeTracking});
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     if (response.statusCode != 200) {
       return null;
@@ -71,7 +71,7 @@ class LayananRepo {
     List<TrackLayananModel> _postList = [];
     var url = '${Keys.APIURL}tracking/layanan';
     var response = await http.post(url, body: {'tracking_data': kodeTracking});
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
     print(url);
 
     if (response.statusCode != 200) {
@@ -90,7 +90,7 @@ class LayananRepo {
     String idUsaha = await getIdUsaha();
     var url = '${Keys.APIURL}layanan/$idUsaha/simpan_dokumen';
     var response = await http.post(url, body: {'id_layanan': kodeLayanan});
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
     FunctionDart().setToast(values['MESSAGE']);
 
     if (response.statusCode != 200) {

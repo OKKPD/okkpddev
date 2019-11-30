@@ -24,7 +24,26 @@ class MediaRepo {
     var url = '${Keys.APIURL}layanan/$idUsaha/dokumen/$kodeLayanan/$jenis';
     print(url);
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var sektor = MediaModel.fromJson(values['DATA'][i]);
+        _postList.add(sektor);
+      }
+      return _postList;
+    }
+  }
+
+  Future getMediaById(String kodeDokumen) async {
+    List<MediaModel> _postList = [];
+    String idUser = await getIdUser();
+    var url = '${Keys.APIURL}layanan/$idUser/dokumen/$kodeDokumen';
+    print(url);
+    var response = await http.get(url);
+    final values = await json.decode(response.body);
 
     if (response.statusCode != 200) {
       return null;
@@ -43,7 +62,7 @@ class MediaRepo {
     print(url);
 
     var response = await http.get(url);
-    final values = json.decode(response.body);
+    final values = await json.decode(response.body);
 
     List<MediaModel> _postList = [];
 

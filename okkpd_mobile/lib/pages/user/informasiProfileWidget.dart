@@ -17,6 +17,8 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
   var _jabatanController = TextEditingController();
   String idUser;
 
+  bool isLoading = true;
+
   Future setUser() async {
     UserModel user = await UserRepo().getProfile();
     if (user != null) {
@@ -27,6 +29,8 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       _emailController.text = prefs.getString('loginEmail');
       _jabatanController.text = prefs.getString('loginRole');
     }
+
+    isLoading = false;
   }
 
   @override
@@ -138,21 +142,23 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       appBar: AppBar(
         title: Text("Informasi Profil", style: TextStyle(color: Colors.white)),
       ),
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            nama,
-            SizedBox(height: 20.0),
-            email,
-            SizedBox(height: 20.0),
-            jabatan,
-            SizedBox(height: 20.0),
-            saveButton,
-          ],
-        ),
-      ),
+      body: (isLoading)
+          ? Center(child: const CircularProgressIndicator())
+          : Center(
+              child: ListView(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                children: <Widget>[
+                  SizedBox(height: 20.0),
+                  nama,
+                  SizedBox(height: 20.0),
+                  email,
+                  SizedBox(height: 20.0),
+                  jabatan,
+                  SizedBox(height: 20.0),
+                  saveButton,
+                ],
+              ),
+            ),
     );
   }
 }
