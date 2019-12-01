@@ -13,7 +13,7 @@ class BeritaWidget extends StatefulWidget {
 
 class _BeritaWidget extends State<BeritaWidget> {
   final List<BeritaModel> berita = [];
-  bool isLoading = true;
+  var isLoading = true;
   var haveData = true;
 
   @override
@@ -33,22 +33,9 @@ class _BeritaWidget extends State<BeritaWidget> {
       }
       isLoading = false;
     });
-
-    if (beritas.length > 0) {
-      isLoading = false;
-    }
   }
 
   _buildSuggestions() {
-//    return (isLoading)
-//        ? Center(child: const CircularProgressIndicator())
-//        : ListView.builder(
-//            shrinkWrap: true,
-//            physics: new NeverScrollableScrollPhysics(),
-//            itemCount: berita.length,
-//            itemBuilder: (context, i) {
-//              return _buildRow(berita[i], i);
-//            });
     if(isLoading){
       return CustomWidget().loadingWidget();
     }else{
@@ -65,6 +52,7 @@ class _BeritaWidget extends State<BeritaWidget> {
       }
 
     }
+
   }
 
   _buildRow(BeritaModel beritaModel, int i) {

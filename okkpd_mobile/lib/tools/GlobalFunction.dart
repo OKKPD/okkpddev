@@ -19,7 +19,7 @@ class FunctionDart{
 
   String getExpirationDate(){
     var now = new DateTime.now();
-    var expired = now.add(new Duration(minutes: 2));
+    var expired = now.add(new Duration(days: 1));
     String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(expired);
     return formattedDate;
   }

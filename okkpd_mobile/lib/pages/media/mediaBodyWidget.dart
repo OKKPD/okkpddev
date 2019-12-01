@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class MediaBodyWidget extends StatefulWidget {
@@ -24,18 +26,23 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   ProgressDialog pr;
 
   bool isLoading = true;
+  bool isHaveData = false;
 
   Future cekDokumen() async {
     var getPict = await MediaRepo().getMediaById(this.id);
     print(getPict);
     var getModel = await MediaRepo().getMediaById(this.id);
     setState(() {
-      this.model.addAll(getModel);
+      isLoading = false;
+
+      if (getModel != null) {
+        this.model.addAll(getModel);
+        isHaveData = true;
+      }
+
     });
 
-    if (model.length > 0) {
-      isLoading = false;
-    }
+
   }
 
   @override
@@ -64,9 +71,43 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
     try {
       pr.show();
-      await MediaRepo().deleteMedia(id);
-    } catch (e) {} finally {
+      bool isSuccess = true;
+      isSuccess = await MediaRepo().deleteMedia(id);
+      if(isSuccess){
+        cekDokumen();
+        FunctionDart().setToast("Dokumen berhasil dihapus");
+      }else{
+        FunctionDart().setToast("Dokumen gagal");
+
+      }
+    } catch (e) {
+      print(e.toString());
+    } finally {
+
       pr.dismiss();
+    }
+  }
+
+  Widget dataMedia(FutureBuilder track){
+    if(isLoading){
+      return Center(child: const CircularProgressIndicator());
+    }else{
+      if(isHaveData){
+
+        return ListView(
+          children: <Widget>[
+            SingleChildScrollView(
+                padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Column(children: <Widget>[
+                  SizedBox(height: 24.0),
+                  track,
+                ])),
+          ],
+        );
+
+      }else{
+        return Text("Tidak ada media");
+      }
     }
   }
 
@@ -121,15 +162,16 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                         ])),
                 Padding(
                   padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 20.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: queryData.size.width / 1.219,
-                        height: queryData.size.width / 2,
+                        alignment: Alignment.center,
                         color: Colors.transparent,
                         child: Image.network(
                           datas.folder + datas.namaMedia,
+                          fit: BoxFit.fill,
+
                         ),
                       ),
                     ],
@@ -145,17 +187,6 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
       );
     });
 
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : ListView(
-            children: <Widget>[
-              SingleChildScrollView(
-                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                  child: Column(children: <Widget>[
-                    SizedBox(height: 24.0),
-                    track,
-                  ])),
-            ],
-          );
+    return dataMedia(track);
   }
 }

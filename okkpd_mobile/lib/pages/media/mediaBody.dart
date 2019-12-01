@@ -28,6 +28,7 @@ class _MediaBody extends State<MediaBody> {
       appBar: AppBar(
         title: Text(this.name, style: TextStyle(color: Colors.white)),
       ),
+      backgroundColor: Color.fromRGBO(239, 239, 239,1),
       body: Center(child: MediaBodyWidget(this.id)),
     );
     // return Scaffold(

@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/mediaModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MediaRepo {
@@ -78,32 +80,50 @@ class MediaRepo {
     }
   }
 
-  Future<Object> deleteMedia(String data) async {
+  Future<bool> deleteMedia(String data) async {
     String idUser = await getIdUser();
-    var url = '${Keys.APIURL}user/$idUser/dokumen_media/delete';
+    var url = "${Keys.APIURL}user/$idUser/dokumen_media/delete";
+    var response = await http
+        .post(url, body: {'id_media': data});
+    var message = "Data berhasil dihapus";
+    final values = await json.decode(response.body);
 
-    Map<String, dynamic> Object;
-    Object = {
-      'id_media': data,
-    };
-    print(data);
-    print(Uri.parse(url));
-    print(json.encode(Object));
-    final client = http.Client();
-    try {
-      final response = await client.send(http.Request("DELETE", Uri.parse(url))
-        ..headers['Content-type'] = 'application/x-www-form-urlencoded'
-        ..body = json.encode(Object));
-      //
 
-      print(response);
-      print('a');
-    } catch (e) {
-      print(e);
-    } finally {
-      print('b');
-      client.close();
+    if (response.statusCode != 200) {
+      message = values['MESSAGE'];
+      FunctionDart().setToast("$message Eror code :${response.statusCode}");
+      return Future.value(false);
+    } else {
+      return Future.value(true);
     }
+
+
+//
+//    String idUser = await getIdUser();
+//    var url = '${Keys.APIURL}user/$idUser/dokumen_media/delete';
+//
+//    Map<String, dynamic> Object;
+//    Object = {
+//      'id_media': data,
+//    };
+//    print(data);
+//    print(Uri.parse(url));
+//    print(json.encode(Object));
+//    final client = http.Client();
+//    try {
+//      final response = await client.send(http.Request("DELETE", Uri.parse(url))
+//        ..headers['Content-type'] = 'application/x-www-form-urlencoded'
+//        ..body = json.encode(Object));
+//      //
+//
+//      print(response);
+//      print('a');
+//    } catch (e) {
+//      print(e);
+//    } finally {
+//      print('b');
+//      client.close();
+//    }
 
     // FormData formData = FormData.fromMap({"id_media": data});
 

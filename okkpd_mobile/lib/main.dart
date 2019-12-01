@@ -15,7 +15,6 @@ import 'package:okkpd_mobile/pages/layanan/rumahKemasScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 import 'package:flutter/services.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
-import 'package:okkpd_mobile/pages/surveiPelanggan/surveiTest.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
@@ -49,7 +48,6 @@ class MyApp extends StatelessWidget {
         '/homeGuest': (BuildContext context) => new HomeGuestScreen(),
         '/kontak': (BuildContext context) => new KontakScreen(),
         '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
-        '/surveiTest': (BuildContext context) => new SurveiTest(),
         '/layananDiterima': (BuildContext context) => new LayananDiterimaWidget(),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
@@ -88,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacementNamed('/homeGuest');
       }
     } else {
-      Navigator.of(context).pushReplacementNamed('/homescreen');
+      Navigator.of(context).pushReplacementNamed('/homeGuest');
     }
   }
 

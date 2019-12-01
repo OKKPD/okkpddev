@@ -19,11 +19,10 @@ class _StatusTrackingState extends State<StatusTracking> {
   final List<MasterLayananModel> masterLayanan = [];
   final List<String> statusLayanan = [];
 
-  bool isLoading = true;
-
   String idLayanan;
   String status;
 
+  var isLoading = true;
   var haveData = true;
 
   @override
@@ -57,122 +56,116 @@ class _StatusTrackingState extends State<StatusTracking> {
       }else{
         haveData = false;
       }
-      if (layanans.length > 0) {
-        isLoading = false;
-      }
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : Column(
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 86.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            child: Text("Layanan", style: Keys().smallFontSize),
-                            padding: EdgeInsets.only(left: 16, top: 16),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 16, bottom: 8, top: 4, right: 16),
-                            child: DropdownButton(
-                              isDense: true,
-                              underline: Container(
-                                color: Colors.red,
-                              ),
-                              hint: new Text('Semua Layanan'),
-                              style: TextStyle(
-                                  fontSize: 14.0, color: Colors.black),
-                              isExpanded: true,
-                              items: masterLayanan.map((value) {
-                                return new DropdownMenuItem(
-                                  child: new Text(value.namaLayanan),
-                                  value: value.kodeLayanan.toString(),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  idLayanan = value;
-                                });
-                                getLayanan(idLayanan, status);
-                              },
-                              value: idLayanan,
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.black26,
-                          ),
-                        ],
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                height: 86.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      child: Text("Layanan", style: Keys().smallFontSize),
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16, bottom: 8, top: 4, right: 16),
+                      child: DropdownButton(
+                        isDense: true,
+                        underline: Container(
+                          color: Colors.red,
+                        ),
+                        hint: new Text('Semua Layanan'),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        isExpanded: true,
+                        items: masterLayanan.map((value) {
+                          return new DropdownMenuItem(
+                            child: new Text(value.namaLayanan),
+                            value: value.kodeLayanan.toString(),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            idLayanan = value;
+                          });
+                          getLayanan(idLayanan, status);
+                        },
+                        value: idLayanan,
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 1,
-                    height: 75,
-                    color: Colors.black12,
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 86.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            child: Text("Status", style: Keys().smallFontSize),
-                            padding: EdgeInsets.only(left: 16, top: 16),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 16, bottom: 8, top: 4, right: 16),
-                            child: DropdownButton(
-                              isDense: true,
-                              underline: Container(
-                                color: Colors.red,
-                              ),
-                              hint: new Text('Semua'),
-                              style: TextStyle(
-                                  fontSize: 14.0, color: Colors.black),
-                              isExpanded: true,
-                              items: statusLayanan.map((value) {
-                                return new DropdownMenuItem(
-                                  child: new Text(value),
-                                  value: value,
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  status = value;
-                                });
-
-                                getLayanan(idLayanan, status);
-                              },
-                              value: status,
-                            ),
-                          ),
-                          Divider(
-                            color: Colors.black26,
-                          ),
-                        ],
-                      ),
+                    Divider(
+                      color: Colors.black26,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Expanded(child: _buildSuggestions()),
-            ],
-          );
+            ),
+            Container(
+              width: 1,
+              height: 75,
+              color: Colors.black12,
+            ),
+            Expanded(
+              child: Container(
+                height: 86.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      child: Text("Status", style: Keys().smallFontSize),
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16, bottom: 8, top: 4, right: 16),
+                      child: DropdownButton(
+                        isDense: true,
+                        underline: Container(
+                          color: Colors.red,
+                        ),
+                        hint: new Text('Semua'),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        isExpanded: true,
+                        items: statusLayanan.map((value) {
+                          return new DropdownMenuItem(
+                            child: new Text(value),
+                            value: value,
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            status = value;
+                          });
+
+                          getLayanan(idLayanan, status);
+                        },
+                        value: status,
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.black26,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        Expanded(child: _buildSuggestions()),
+      ],
+    );
   }
 
   _buildSuggestions() {
