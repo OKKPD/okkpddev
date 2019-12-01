@@ -209,6 +209,8 @@ class _UserBodyState extends State<UserBody> {
       ],
     );
 
+
+
     final logout = Column(
       children: <Widget>[
         Padding(
@@ -231,11 +233,8 @@ class _UserBodyState extends State<UserBody> {
                 icon: Icon(Icons.arrow_forward_ios),
                 color: Colors.grey,
                 onPressed: () {
-                  LoginRepo().logoutProcess();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeGuestScreen()),
-                  );
+                  actionLogout();
+//
                 },
               ),
             ],
@@ -283,5 +282,37 @@ class _UserBodyState extends State<UserBody> {
               ],
             ),
           );
+  }
+
+  void actionLogout() async{
+    var data = await _onWillPop();
+    if(data == true){
+      LoginRepo().logoutProcess();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeGuestScreen()),
+      );
+    }
+  }
+
+  Future<bool> _onWillPop() {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Logout'),
+        content: new Text('Apakah anda yakin ingin logout?'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('Tidak'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Ya'),
+          ),
+        ],
+      ),
+    ) ??
+        Future.value(false);
   }
 }

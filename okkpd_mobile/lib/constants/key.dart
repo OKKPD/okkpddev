@@ -1,5 +1,8 @@
 
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/MenuModel.dart';
 import 'package:okkpd_mobile/model/masterLayananModel.dart';
 
 class Keys {
@@ -14,7 +17,10 @@ class Keys {
     const MasterLayananModel("psat", "PSAT","/psatscreen"),
   ];
 
-
+  static const List<MenuModel> menuManagerAdmin = const <MenuModel>[
+    const MenuModel("Layanan Diterima","/layananDiterima",Icons.file_download),
+    const MenuModel("Layanan Ditolak","/hcscreen",Icons.close),
+  ];
   //==== Theme ====
 
   //Font Size

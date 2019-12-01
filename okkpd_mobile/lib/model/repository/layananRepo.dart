@@ -3,16 +3,12 @@ import 'dart:convert';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/layananModel.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/trackLayananModel.dart';
 import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LayananRepo {
-  Future<String> getIdUsaha() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return Future.value(prefs.getString('loginidUsaha'));
-  }
 
   Future getLayanan(String kodeLayanan, String status) async {
     if (status == null) {
@@ -31,7 +27,7 @@ class LayananRepo {
       kodeLayanan = "%";
     }
 
-    String idUsaha = await getIdUsaha();
+    String idUsaha = await SharedPrefRepo().getIdUsaha();
     List<LayananModel> _postList = [];
     var url =
         '${Keys.APIURL}layanan/$idUsaha/list?layanan=$kodeLayanan&status=$status';
@@ -45,6 +41,27 @@ class LayananRepo {
       for (int i = 0; i < values['DATA'].length; i++) {
         var sektor = LayananModel.fromJson(values['DATA'][i]);
         _postList.add(sektor);
+      }
+      return _postList;
+    }
+  }
+
+  Future getLayananDiterima() async {
+
+    String role = await SharedPrefRepo().getRole();
+    List<LayananModel> _postList = [];
+    var url =
+        '${Keys.APIURL}layanan/dinas/diterima/$role';
+    print(url);
+    var response = await http.get(url);
+    final values = json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var layanan = LayananModel.fromJson(values['DATA'][i]);
+        _postList.add(layanan);
       }
       return _postList;
     }
@@ -87,7 +104,7 @@ class LayananRepo {
   }
 
   Future<bool> simpanLayanan(String kodeLayanan) async {
-    String idUsaha = await getIdUsaha();
+    String idUsaha = await SharedPrefRepo().getIdUsaha();
     var url = '${Keys.APIURL}layanan/$idUsaha/simpan_dokumen';
     var response = await http.post(url, body: {'id_layanan': kodeLayanan});
     final values = await json.decode(response.body);

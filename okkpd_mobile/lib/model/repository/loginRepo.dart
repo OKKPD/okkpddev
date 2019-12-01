@@ -64,16 +64,12 @@ class LoginRepo {
     await prefs.setString('loginNama', user.namaLengkap);
     await prefs.setString('loginEmail', user.username);
     await prefs.setString('loginRole', user.kodeRole);
+    await prefs.setString('loginNamaRole', user.namaRole);
+    FunctionDart().setExpirationDate();
     return Future.value(true);
   }
 
   void logoutProcess() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('loginFolder');
-    await prefs.remove('loginId');
-    await prefs.remove('loginidUsaha');
-    await prefs.remove('loginNama');
-    await prefs.remove('loginEmail');
-    await prefs.remove('loginRole');
+    FunctionDart().revokeAccess();
   }
 }

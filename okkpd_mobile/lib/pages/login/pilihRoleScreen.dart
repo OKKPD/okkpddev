@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
+import 'package:okkpd_mobile/pages/aktorDinas/dashboardDinasScreen.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
@@ -71,11 +72,19 @@ class _PilihRoleScreenState extends State<PilihRoleScreen> {
   }
 
   Future loginProses() async {
-    if (await LoginRepo().verification(resultLogin[0])) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+    if (await LoginRepo().verification(resultLogin[selected])) {
+      if(resultLogin[selected].kodeRole != 'pelaku'){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardDinasScreen()),
+        );
+      }else{
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      }
+
     }
   }
 

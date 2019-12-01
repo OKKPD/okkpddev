@@ -11,6 +11,7 @@ class UserModel {
   String jenisUsaha;
   String namaUsaha;
   String noHp;
+  String namaRole;
 
   UserModel(
       this.username,
@@ -24,7 +25,8 @@ class UserModel {
       this.noKtp,
       this.namaUsaha,
       this.jenisUsaha,
-      this.noHp);
+      this.noHp,
+      this.namaRole);
 
   UserModel.fromJson(Map<String, dynamic> json)
       : username = json['username'],
@@ -38,7 +40,8 @@ class UserModel {
         namaUsaha = json['nama_usaha'],
         jenisUsaha = json['jenis_usaha'],
         noHp = json['no_hp_pemohon'],
-        folder = json['folder'];
+        folder = json['folder'],
+        namaRole = json['nama_role'];
 
   Map<String, dynamic> toJson() => {
         'username': username,
@@ -53,5 +56,6 @@ class UserModel {
         'nama_usaha': namaUsaha,
         'jenis_usaha': jenisUsaha,
         'no_hp_pemohon': noHp,
+        'nama_role': namaRole,
       };
 }

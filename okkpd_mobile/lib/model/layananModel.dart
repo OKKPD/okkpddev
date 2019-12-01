@@ -8,8 +8,9 @@ class LayananModel{
   final String level;
   final String tanggalBuat;
   final String alasanPenolakan;
+  final String namaUsaha;
 
-  const LayananModel(this.uid,this.namaLayanan,this.kodeLayanan,this.idIdentitasUsaha,this.kodePendaftaran,this.status,this.level,this.tanggalBuat,this.alasanPenolakan);
+  const LayananModel(this.uid,this.namaLayanan,this.kodeLayanan,this.idIdentitasUsaha,this.kodePendaftaran,this.status,this.level,this.tanggalBuat,this.alasanPenolakan,this.namaUsaha);
 
   LayananModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
@@ -20,7 +21,8 @@ class LayananModel{
         status = json['status'],
         level = json['level'],
         tanggalBuat = json['tanggal_buat'],
-        alasanPenolakan = json['alasan_penolakan'];
+        alasanPenolakan = json['alasan_penolakan'],
+        namaUsaha = json['nama_usaha'];
 
   Map<String, dynamic> toJson() =>
       {
@@ -33,5 +35,6 @@ class LayananModel{
         'level': level,
         'tanggal_buat': tanggalBuat,
         'alasan_penolakan': alasanPenolakan,
+        'nama_usahax': namaUsaha,
       };
 }

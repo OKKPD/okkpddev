@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart' as theme;
+import 'package:okkpd_mobile/pages/aktorDinas/dashboardDinasScreen.dart';
+import 'package:okkpd_mobile/pages/aktorDinas/layananDiterimaScreen.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
@@ -14,6 +16,7 @@ import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
 import 'package:flutter/services.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiTest.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 import 'package:okkpd_mobile/pages/guest/kontakScreen.dart';
@@ -36,6 +39,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => new LoginScreen(),
         '/homescreen': (BuildContext context) => new HomeScreen(),
+        '/dashboardDinas': (BuildContext context) => new DashboardDinasScreen(),
         '/hcscreen': (BuildContext context) => new Hcscreen(),
         '/psatscreen': (BuildContext context) => new Psatscreen(),
         '/primaDuascreen': (BuildContext context) => new PrimaduaScreen(),
@@ -46,6 +50,7 @@ class MyApp extends StatelessWidget {
         '/kontak': (BuildContext context) => new KontakScreen(),
         '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
         '/surveiTest': (BuildContext context) => new SurveiTest(),
+        '/layananDiterima': (BuildContext context) => new LayananDiterimaWidget(),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
       },
@@ -69,9 +74,19 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() async {
+    bool isExpired = await FunctionDart().checkExpirationDate();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("loginId") != null) {
-      Navigator.of(context).pushReplacementNamed('/homescreen');
+      if(isExpired == false){
+        if(prefs.getString("loginRole") == 'pelaku'){
+          Navigator.of(context).pushReplacementNamed('/homescreen');
+        }else{
+          Navigator.of(context).pushReplacementNamed('/dashboardDinas');
+        }
+      }else{
+        FunctionDart().setToast("Sesi anda telah berakhir, silahkan login kembali");
+        Navigator.of(context).pushReplacementNamed('/homeGuest');
+      }
     } else {
       Navigator.of(context).pushReplacementNamed('/homescreen');
     }

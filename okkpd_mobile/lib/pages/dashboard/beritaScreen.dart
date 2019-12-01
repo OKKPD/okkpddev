@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
+import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 class BeritaScreen extends StatefulWidget {
   String idBerita;
@@ -15,6 +16,7 @@ class _BeritaScreen extends State<BeritaScreen> {
   String idBerita;
   _BeritaScreen(this.idBerita);
   BeritaModel berita = new BeritaModel("", "", "", "", "", "", "");
+  var isLoading = true;
 
 
   @override
@@ -27,10 +29,14 @@ class _BeritaScreen extends State<BeritaScreen> {
     BeritaModel beritas = await BeritaRepo().viewBerita(idBerita);
     setState(() {
       berita = beritas;
+      isLoading = false;
     });
   }
 
   Widget viewBerita(){
+    if(isLoading){
+      return CustomWidget().loadingWidget();
+    }
     return CustomScrollView(
         scrollDirection: Axis.vertical,
         shrinkWrap: false,

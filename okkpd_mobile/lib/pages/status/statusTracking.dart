@@ -6,6 +6,7 @@ import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/masterLayananModel.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/pages/layanan/upload/uploadPrimaTiga.dart';
+import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 class StatusTracking extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class _StatusTrackingState extends State<StatusTracking> {
 
   String idLayanan;
   String status;
+
+  var haveData = true;
 
   @override
   void initState() {
@@ -47,11 +50,13 @@ class _StatusTrackingState extends State<StatusTracking> {
     setState(() {
       layanans.clear();
       if (listLayanan != null) {
+        haveData = true;
         for (var datas in listLayanan) {
           layanans.add(datas);
         }
+      }else{
+        haveData = false;
       }
-
       if (layanans.length > 0) {
         isLoading = false;
       }
@@ -171,11 +176,19 @@ class _StatusTrackingState extends State<StatusTracking> {
   }
 
   _buildSuggestions() {
-    return ListView.builder(
-        itemCount: layanans.length,
-        itemBuilder: (context, i) {
-          return _buildRow(layanans[i], i);
-        });
+    if(isLoading){
+     return CustomWidget().loadingWidget();
+    }else {
+      if(haveData) {
+        return ListView.builder(
+            itemCount: layanans.length,
+            itemBuilder: (context, i) {
+              return _buildRow(layanans[i], i);
+            });
+      }else{
+        return Center(child: Text("Tidak ada data yang ditampilkan"),);
+      }
+    }
   }
 
   Widget getWidget(String stat) {

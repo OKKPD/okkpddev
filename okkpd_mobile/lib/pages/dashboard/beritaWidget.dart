@@ -3,6 +3,8 @@ import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
 import 'package:okkpd_mobile/pages/dashboard/beritaScreen.dart';
+import 'package:okkpd_mobile/tools/CustomWidget.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class BeritaWidget extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class BeritaWidget extends StatefulWidget {
 class _BeritaWidget extends State<BeritaWidget> {
   final List<BeritaModel> berita = [];
   bool isLoading = true;
+  var haveData = true;
 
   @override
   void initState() {
@@ -22,7 +25,13 @@ class _BeritaWidget extends State<BeritaWidget> {
   void getPrevBerita() async {
     List<BeritaModel> beritas = await BeritaRepo().getPreview();
     setState(() {
-      berita.addAll(beritas);
+      if(beritas.length < 1){
+        haveData = false;
+      }else{
+        haveData = true;
+        berita.addAll(beritas);
+      }
+      isLoading = false;
     });
 
     if (beritas.length > 0) {
@@ -31,15 +40,31 @@ class _BeritaWidget extends State<BeritaWidget> {
   }
 
   _buildSuggestions() {
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : ListView.builder(
-            shrinkWrap: true,
-            physics: new NeverScrollableScrollPhysics(),
-            itemCount: berita.length,
-            itemBuilder: (context, i) {
-              return _buildRow(berita[i], i);
-            });
+//    return (isLoading)
+//        ? Center(child: const CircularProgressIndicator())
+//        : ListView.builder(
+//            shrinkWrap: true,
+//            physics: new NeverScrollableScrollPhysics(),
+//            itemCount: berita.length,
+//            itemBuilder: (context, i) {
+//              return _buildRow(berita[i], i);
+//            });
+    if(isLoading){
+      return CustomWidget().loadingWidget();
+    }else{
+      if(haveData == false){
+        return Center(child: Text("Tidak ada data yang ditampilkan"),);
+      }else{
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: new NeverScrollableScrollPhysics(),
+          itemCount: berita.length,
+          itemBuilder: (context, i) {
+          return _buildRow(berita[i], i);
+          });
+      }
+
+    }
   }
 
   _buildRow(BeritaModel beritaModel, int i) {
@@ -102,6 +127,12 @@ class _BeritaWidget extends State<BeritaWidget> {
     ));
   }
 
+  Widget cobaCoba(){
+    String data = FunctionDart().getExpirationDate();
+    FunctionDart().formatStringToDate(data);
+    return Text(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -119,6 +150,7 @@ class _BeritaWidget extends State<BeritaWidget> {
                     style: new TextStyle(
                         fontSize: 14, fontWeight: FontWeight.bold),
                   ),
+                  cobaCoba(),
                 ],
               )),
           _buildSuggestions(),
