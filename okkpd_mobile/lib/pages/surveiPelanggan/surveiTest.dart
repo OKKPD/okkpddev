@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class SurveiTest extends StatefulWidget {
   @override
@@ -28,6 +29,10 @@ class _SurveiTest extends State<SurveiTest> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+        appBar: AppBar(
+          title: Text("Back", style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.lightBlueAccent,
+        ),
         body: Container(
           child: Column(
             children: <Widget>[
@@ -53,36 +58,148 @@ class _SurveiTest extends State<SurveiTest> {
                           ),
                           children: [
                             _buildTableRow("Bagaimana tampilan aplikasi ?, "),
+
+                          ],
+                        ),
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
+
+                          ]
+
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        child: Table(
+                          border: TableBorder(
+                            horizontalInside: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                            verticalInside: BorderSide(
+                              color: Colors.white,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                          ),
+                          children: [
                             _buildTableRow("Bagaimana kemudahan penggunaan aplikasi ?, "),
+
+                          ],
+                        ),
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            for ( var q in _Gambar ) _buildSuggestions2(q['id']),
+
+                          ]
+
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        child: Table(
+                          border: TableBorder(
+                            horizontalInside: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                            verticalInside: BorderSide(
+                              color: Colors.white,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                          ),
+                          children: [
                             _buildTableRow("Bagaimana kelengkapan informasi aplikasi ?, "),
+
+                          ],
+                        ),
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
+
+                          ]
+
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        child: Table(
+                          border: TableBorder(
+                            horizontalInside: BorderSide(
+                              color: Colors.black,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                            verticalInside: BorderSide(
+                              color: Colors.white,
+                              style: BorderStyle.solid,
+                              width: 0.0,
+                            ),
+                          ),
+                          children: [
                             _buildTableRow("Bagaimana kecepatan layanan menggunakan aplikasi ?, "),
 
                           ],
                         ),
                       ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
+
+                          ]
+
+                      ),
                     ],
                   )),
+
               Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-
-
-                    Padding(
+                      Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
+                        child: TextFormField(
+                          //controller: _textEditConName,
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.next,
+                          //validator: _validateUserName,
+//                          onFieldSubmitted: (String value) {
+//                            FocusScope.of(context).requestFocus(_passwordEmail);
+//                          },
+                          decoration: InputDecoration(
+                              labelText: 'Kritik Dan Saran',
+                              icon: Icon(Icons.add_comment)),
+                        ),
 
                     ),
                   ],
                 ),
               ),
-
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    for ( var i in _Gambar ) _buildSuggestions(i['id']),
-
-                  ]
-
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Material(
+                  child: MaterialButton(
+                    minWidth: 200.0,
+                    height: 42.0,
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
+                    color: Colors.lightBlueAccent,
+                    child: Text('Kirim',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                  ),
+                ),
               ),
 
             ],
@@ -97,8 +214,8 @@ class _SurveiTest extends State<SurveiTest> {
       children: listOfNames.split(',').map((name) {
         return Container(
           alignment: Alignment.topLeft,
-          child: Text(name, style: TextStyle(fontSize: 10.0)),
-          padding: EdgeInsets.all(16.0),
+          child: Text(name, style: TextStyle(fontSize: 16.0)),
+          padding: EdgeInsets.all(0.0),
         );
       }).toList(),
     );
@@ -125,6 +242,29 @@ class _SurveiTest extends State<SurveiTest> {
           });
         },
       );
+//    }
+  }
+
+  _buildSuggestions2(int q) {
+//    for (var i = 0; i < 5; i++) {
+    print(_Gambar[q-1]);
+    return IconButton(
+      color: Colors.orange ,
+      icon: _Gambar[q-1]['active']==true?Icon(Icons.star):Icon(Icons.star_border),
+      tooltip: 'Increase volume by 10',
+      onPressed: () {
+        for(var a=0; a<_Gambar.length; a++) {
+          if(a<q){
+            _Gambar[a]['active'] = true;
+          }else{
+            _Gambar[a]['active'] = false;
+          }
+        }
+        setState(() {
+
+        });
+      },
+    );
 //    }
   }
 }

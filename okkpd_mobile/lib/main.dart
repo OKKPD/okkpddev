@@ -86,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacementNamed('/homeGuest');
       }
     } else {
-      Navigator.of(context).pushReplacementNamed('/homeGuest');
+      Navigator.of(context).pushReplacementNamed('/homescreen');
     }
   }
 
