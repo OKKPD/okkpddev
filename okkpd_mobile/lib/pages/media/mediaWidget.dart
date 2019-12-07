@@ -100,19 +100,17 @@ class _MediaWidget extends State<MediaWidget> {
         children: children,
       );
     });
-
-    if (isLoading) {
-      return CustomWidget().loadingWidget();
-    }
-    return ListView(
-      children: <Widget>[
-        SingleChildScrollView(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-            child: Column(children: <Widget>[
-              SizedBox(height: 24.0),
-              track,
-            ])),
-      ],
-    );
+    return (isLoading)
+        ? CustomWidget().loadingWidget()
+        : ListView(
+            children: <Widget>[
+              SingleChildScrollView(
+                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: Column(children: <Widget>[
+                    SizedBox(height: 24.0),
+                    track,
+                  ])),
+            ],
+          );
   }
 }

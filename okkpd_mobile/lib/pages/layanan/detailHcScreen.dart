@@ -108,7 +108,11 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                 export.negaraTujuan,
                 style: _smallFont,
               ),
-            )
+            ),
+            Divider(
+              height: 1,
+              color: Colors.black,
+            ),
           ],
         ),
         trailing: RaisedButton(

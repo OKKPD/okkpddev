@@ -43,95 +43,36 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
-    final beratBersih =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Berat Bersih",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _beratBersih,
-        keyboardType: TextInputType.number,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
+    final beratBersih = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FunctionDart.textFormField(
+              _beratBersih, TextInputType.number, 'Berat Bersih')
+        ]);
 
-    final jenisKemasan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Jenis Kemasan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jenisKemasan,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
+    final jenisKemasan = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FunctionDart.textFormField(
+              _jenisKemasan, TextInputType.text, 'Jenis Kemasan')
+        ]);
 
     final namaDagang =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Dagang",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaDagang,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
+      FunctionDart.textFormField(_namaDagang, TextInputType.text, 'Nama Dagang')
     ]);
 
     final namaProduk =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Produk",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaProduk,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
+      FunctionDart.textFormField(_namaProduk, TextInputType.text, 'Nama Produk')
     ]);
 
-    final satuanKemasan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Satuan Kemasan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _satuanKemasan,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
+    final satuanKemasan = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FunctionDart.textFormField(
+              _satuanKemasan, TextInputType.text, 'Satuan Kemasan')
+        ]);
 
     final saveButton = Padding(
       padding: EdgeInsets.only(

@@ -110,7 +110,11 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
                 "${komoditas.luasLahan} Ha",
                 style: _smallFont,
               ),
-            )
+            ),
+            Divider(
+              height: 1,
+              color: Colors.black,
+            ),
           ],
         ),
         trailing: RaisedButton(
