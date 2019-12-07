@@ -5,6 +5,8 @@ import 'package:okkpd_mobile/pages/layanan/tambah/tambahExportScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../homeScreen.dart';
+
 class DetailHcScreen extends StatefulWidget {
   final String jenis;
   DetailHcScreen(this.jenis);
@@ -35,7 +37,10 @@ class _DetailHcScreen extends State<DetailHcScreen> {
       await ExportRepo().postExport(hcs, 'hc');
     } catch (e) {} finally {
       pr.dismiss();
-      Navigator.pop(context, null);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen('1')),
+      );
     }
   }
 

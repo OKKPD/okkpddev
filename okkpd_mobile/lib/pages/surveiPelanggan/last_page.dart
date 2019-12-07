@@ -73,7 +73,7 @@ class LastPageState extends State<LastPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => HomeScreen('0')),
               );
             },
             color: Colors.blue,

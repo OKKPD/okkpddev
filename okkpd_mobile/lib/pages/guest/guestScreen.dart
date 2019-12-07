@@ -18,39 +18,32 @@ void _portraitModeOnly() {
   ]);
 }
 
-
-
-
 class _GuestScreen extends State<GuestScreen> {
-  String  _barcodeScanRes ="";
-  String noSertikat ="";
-  String tanggalKaduluarsa ="";
+  String _barcodeScanRes = "";
+  String noSertikat = "";
+  String tanggalKaduluarsa = "";
   String statusAktif = "";
   String namaProduk = "";
   String keterangan = "";
   String namaUsaha = "";
 
-
-
   Future scanBarcodeNormal() async {
     _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.QR);
 
-   // print(_barcodeScanRes);
-    TrackSertifikatModel result = await  LayananRepo().trackSertifikat(_barcodeScanRes);
+    // print(_barcodeScanRes);
+    TrackSertifikatModel result =
+        await LayananRepo().trackSertifikat(_barcodeScanRes);
 
-    setState(()  {
+    setState(() {
       // _scanBarcode = _barcodeScanRes;
-        noSertikat = result.nomorSertifikat;
-        tanggalKaduluarsa = result.tanggalAkhir;
-        namaProduk = result.namaProduk;
-        keterangan = "(${result.keterangan})";
-        namaUsaha = result.namaUsaha;
-        statusAktif = result.statusAktif;
+      noSertikat = result.nomorSertifikat;
+      tanggalKaduluarsa = result.tanggalAkhir;
+      namaProduk = result.namaProduk;
+      keterangan = "(${result.keterangan})";
+      namaUsaha = result.namaUsaha;
+      statusAktif = result.statusAktif;
     });
-
-
-
 
 //   if(_barcodeScanRes != "") {
 //    // print(_barcodeScanRes);
@@ -73,85 +66,82 @@ class _GuestScreen extends State<GuestScreen> {
     _portraitModeOnly();
     return Scaffold(
         body: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                  color: Color.fromRGBO(239, 239, 239, 100),
-                  child: Column(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 16, top: 16),
-                          child: Text("Status",
-                              style: new TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 16, top: 16),
-                          child: Text(statusAktif,
-                              style: new TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        child: Table(
-                          border: TableBorder(
-                            horizontalInside: BorderSide(
-                              color: Colors.black,
-                              style: BorderStyle.solid,
-                              width: 0.0,
-                            ),
-                            verticalInside: BorderSide(
-                              color: Colors.white,
-                              style: BorderStyle.solid,
-                              width: 0.0,
-                            ),
-                          ),
-                          children: [
-                            _buildTableRow("No Sertifikat, $noSertikat"),
-                            _buildTableRow("Pelaku Usaha, $namaUsaha"),
-                            _buildTableRow("Nama Produk, $namaProduk $keterangan"),
-                            _buildTableRow("Tanggal Kaduluarsa, $tanggalKaduluarsa"),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-
-
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
-
+      child: Column(
+        children: <Widget>[
+          Container(
+              color: Color.fromRGBO(239, 239, 239, 100),
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                      child: Text("Status",
+                          style: new TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
-                  ],
-                ),
-              ),
-
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-
-                child: Material(
-                  child: MaterialButton(
-                    minWidth: 200.0,
-                    height: 42.0,
-                    onPressed: scanBarcodeNormal,
-                    color: Colors.lightBlueAccent,
-                    child: Text('Scan Sertifikat', style: TextStyle(color: Colors.white, fontSize: 20.0)),
                   ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 16, top: 16),
+                      child: Text(statusAktif,
+                          style: new TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    child: Table(
+                      border: TableBorder(
+                        horizontalInside: BorderSide(
+                          color: Colors.black,
+                          style: BorderStyle.solid,
+                          width: 0.0,
+                        ),
+                        verticalInside: BorderSide(
+                          color: Colors.white,
+                          style: BorderStyle.solid,
+                          width: 0.0,
+                        ),
+                      ),
+                      children: [
+                        _buildTableRow("No Sertifikat, $noSertikat"),
+                        _buildTableRow("Pelaku Usaha, $namaUsaha"),
+                        _buildTableRow("Nama Produk, $namaProduk $keterangan"),
+                        _buildTableRow(
+                            "Tanggal Kaduluarsa, $tanggalKaduluarsa"),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ));
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: Material(
+              child: MaterialButton(
+                minWidth: 200.0,
+                height: 42.0,
+                onPressed: scanBarcodeNormal,
+                color: Colors.lightBlueAccent,
+                child: Text('Scan Sertifikat',
+                    style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 
   TableRow _buildTableRow(String listOfNames) {
@@ -166,4 +156,3 @@ class _GuestScreen extends State<GuestScreen> {
     );
   }
 }
-

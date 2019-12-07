@@ -8,14 +8,18 @@ import 'package:okkpd_mobile/pages/user/userScreen.dart';
 import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/status/statusScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
-import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String setIndex;
+  HomeScreen(this.setIndex);
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState(this.setIndex);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final String setIndex;
+  _HomeScreenState(this.setIndex);
+
   String appBarTitle = "OKKPD Jateng";
 
   int totalNotif = 0;
@@ -33,6 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getNotif();
+    setStartIndex();
+  }
+
+  void setStartIndex() {
+    this.selectedIndex =
+        (int.parse(this.setIndex) > 0) ? int.parse(this.setIndex) : 0;
+    widgetOptions.elementAt(selectedIndex);
   }
 
   void getNotif() async {

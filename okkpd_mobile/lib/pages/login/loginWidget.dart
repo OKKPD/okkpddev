@@ -36,15 +36,16 @@ class LoginWidgetState extends State<LoginWidget> {
           pr.dismiss();
           if (resultLogin.length == 1) {
             if (await LoginRepo().verification(resultLogin[0])) {
-              if(resultLogin[0].kodeRole != 'pelaku'){
+              if (resultLogin[0].kodeRole != 'pelaku') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DashboardDinasScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => DashboardDinasScreen()),
                 );
-              }else{
+              } else {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen('0')),
                 );
               }
             }

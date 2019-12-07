@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/komoditasModel.dart';
 import 'package:okkpd_mobile/model/repository/komoditasRepo.dart';
+import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -37,7 +38,10 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
       print("Error Insert");
     } finally {
       pr.dismiss();
-      Navigator.pop(context, null);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen('1')),
+      );
     }
   }
 

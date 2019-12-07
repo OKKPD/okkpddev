@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => new LoginScreen(),
-        '/homescreen': (BuildContext context) => new HomeScreen(),
+        '/homescreen': (BuildContext context) => new HomeScreen('0'),
         '/dashboardDinas': (BuildContext context) => new DashboardDinasScreen(),
         '/hcscreen': (BuildContext context) => new Hcscreen(),
         '/psatscreen': (BuildContext context) => new Psatscreen(),
@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
         '/homeGuest': (BuildContext context) => new HomeGuestScreen(),
         '/kontak': (BuildContext context) => new KontakScreen(),
         '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
-        '/layananDiterima': (BuildContext context) => new LayananDiterimaWidget(),
+        '/layananDiterima': (BuildContext context) =>
+            new LayananDiterimaWidget(),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
       },
@@ -75,14 +76,15 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isExpired = await FunctionDart().checkExpirationDate();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getString("loginId") != null) {
-      if(isExpired == false){
-        if(prefs.getString("loginRole") == 'pelaku'){
+      if (isExpired == false) {
+        if (prefs.getString("loginRole") == 'pelaku') {
           Navigator.of(context).pushReplacementNamed('/homescreen');
-        }else{
+        } else {
           Navigator.of(context).pushReplacementNamed('/dashboardDinas');
         }
-      }else{
-        FunctionDart().setToast("Sesi anda telah berakhir, silahkan login kembali");
+      } else {
+        FunctionDart()
+            .setToast("Sesi anda telah berakhir, silahkan login kembali");
         Navigator.of(context).pushReplacementNamed('/homeGuest');
       }
     } else {

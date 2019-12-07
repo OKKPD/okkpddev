@@ -73,18 +73,17 @@ class _PilihRoleScreenState extends State<PilihRoleScreen> {
 
   Future loginProses() async {
     if (await LoginRepo().verification(resultLogin[selected])) {
-      if(resultLogin[selected].kodeRole != 'pelaku'){
+      if (resultLogin[selected].kodeRole != 'pelaku') {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => DashboardDinasScreen()),
         );
-      }else{
+      } else {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => HomeScreen('0')),
         );
       }
-
     }
   }
 

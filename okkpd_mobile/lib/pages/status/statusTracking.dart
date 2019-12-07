@@ -53,7 +53,7 @@ class _StatusTrackingState extends State<StatusTracking> {
         for (var datas in listLayanan) {
           layanans.add(datas);
         }
-      }else{
+      } else {
         haveData = false;
       }
       isLoading = false;
@@ -169,17 +169,19 @@ class _StatusTrackingState extends State<StatusTracking> {
   }
 
   _buildSuggestions() {
-    if(isLoading){
-     return CustomWidget().loadingWidget();
-    }else {
-      if(haveData) {
+    if (isLoading) {
+      return CustomWidget().loadingWidget();
+    } else {
+      if (haveData) {
         return ListView.builder(
             itemCount: layanans.length,
             itemBuilder: (context, i) {
               return _buildRow(layanans[i], i);
             });
-      }else{
-        return Center(child: Text("Tidak ada data yang ditampilkan"),);
+      } else {
+        return Center(
+          child: Text("Tidak ada data yang ditampilkan"),
+        );
       }
     }
   }
@@ -250,7 +252,7 @@ class _StatusTrackingState extends State<StatusTracking> {
         onPressed: () {
           selectLayanan(layananModel);
         },
-        child: Text("Unggah Dokumen"),
+        child: Text("Lengkapi Dokumen"),
       );
     } else if (layananModel.status == '2') {
       return new Text("Alasan Penolakan: ${layananModel.alasanPenolakan}",

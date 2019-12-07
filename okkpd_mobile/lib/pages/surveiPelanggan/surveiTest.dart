@@ -173,7 +173,8 @@ class _SurveiTest extends State<SurveiTest> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => HomeScreen('0')),
                       );
                     },
                     color: Colors.lightBlueAccent,

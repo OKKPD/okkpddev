@@ -5,6 +5,8 @@ import 'package:okkpd_mobile/pages/layanan/tambah/tambahProdukScreen.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../homeScreen.dart';
+
 class DetailPsatScreen extends StatefulWidget {
   final String jenis;
   DetailPsatScreen(this.jenis);
@@ -37,7 +39,10 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
       print("Error Insert");
     } finally {
       pr.dismiss();
-      Navigator.pop(context, null);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen('1')),
+      );
     }
   }
 

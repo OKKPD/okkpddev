@@ -9,23 +9,20 @@ class InfoUserWidget extends StatefulWidget {
 }
 
 class _InfoUserWidgetState extends State<InfoUserWidget> {
-
   String namaUser = '';
   String roleUser = '';
   @override
   void initState() {
     super.initState();
     getInformasi();
-
   }
 
-  void getInformasi() async{
+  void getInformasi() async {
     var namaUser = await SharedPrefRepo().getNamaLengkap();
     var roleUser = await SharedPrefRepo().getNamaRole();
     setState(() {
       this.namaUser = namaUser;
       this.roleUser = roleUser;
-
     });
   }
 
@@ -55,11 +52,27 @@ class _InfoUserWidgetState extends State<InfoUserWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(child: Text(namaUser, style: TextStyle(color: Colors.white,fontSize: 18, fontWeight: FontWeight.bold),),),
-              SizedBox(height: 4,),
-              Container(child: Text(roleUser, style: TextStyle(color: Colors.white,fontSize: 12),),),
-              SizedBox(height: 16,),
-
+              Container(
+                child: Text(
+                  namaUser,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Container(
+                child: Text(
+                  roleUser,
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
               MaterialButton(
                   elevation: 3,
                   color: Colors.white,
@@ -69,17 +82,17 @@ class _InfoUserWidgetState extends State<InfoUserWidget> {
                   },
                   child: Container(
                     child: Text("Keluar"),
-                  )
-              ),
-          ],)
+                  )),
+            ],
+          )
         ],
       ),
     );
   }
 
-  void actionLogout() async{
+  void actionLogout() async {
     var data = await _onWillPop();
-    if(data == true){
+    if (data == true) {
       LoginRepo().logoutProcess();
       Navigator.push(
         context,
@@ -90,22 +103,22 @@ class _InfoUserWidgetState extends State<InfoUserWidget> {
 
   Future<bool> _onWillPop() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Logout'),
-        content: new Text('Apakah anda yakin ingin logout?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('Tidak'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Logout'),
+            content: new Text('Apakah anda yakin ingin logout?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('Tidak'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Ya'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Ya'),
-          ),
-        ],
-      ),
-    ) ??
+        ) ??
         Future.value(false);
   }
 }
