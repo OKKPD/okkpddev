@@ -461,9 +461,7 @@ class _TambahExportScreen extends State<TambahExportScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Tambah Export", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Tambah Export"),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),

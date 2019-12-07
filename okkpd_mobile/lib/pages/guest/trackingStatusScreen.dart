@@ -6,6 +6,8 @@ import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/model/trackLayananModel.dart';
 
+import '../../tools/GlobalFunction.dart';
+
 class TrackingStatusScreen extends StatefulWidget {
   TrackingStatusScreen(this.kode);
   final String kode;
@@ -84,9 +86,7 @@ class _TrackingStatusScreen extends State<TrackingStatusScreen> {
     _portraitModeOnly();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Tracking Layanan", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Tracking Layanan"),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

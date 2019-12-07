@@ -74,80 +74,41 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
     final saveButton = Padding(
       padding: EdgeInsets.only(
           left: 0.0, right: 0.0, top: queryData.size.height / 2.5, bottom: 0.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            updateProfile();
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Simpan', style: TextStyle(color: Colors.white)),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
+        minWidth: queryData.size.width,
+        height: queryData.size.height / 13,
+        onPressed: () {
+          updateProfile();
+        },
+        color: Color(0xff2ECC71),
+        child: Text('Simpan', style: TextStyle(color: Colors.white)),
       ),
     );
 
-    final nama =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Lengkap",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _namaController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
+    final nama = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FunctionDart.textFormField(
+              _namaController, TextInputType.text, 'Nama Lengkap')
+        ]);
 
     final email =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Email",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _emailController,
-        keyboardType: TextInputType.emailAddress,
-        autofocus: false,
-        readOnly: true,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
+      FunctionDart.textFormField(_emailController, TextInputType.text, 'Email')
     ]);
 
     final jabatan =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Akun",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _jabatanController,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        readOnly: true,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
+      FunctionDart.textFormField(
+          _jabatanController, TextInputType.text, 'Akun', false)
     ]);
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Informasi Profil", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Informasi Profil"),
       body: (isLoading)
           ? CustomWidget().loadingWidget()
           : Center(

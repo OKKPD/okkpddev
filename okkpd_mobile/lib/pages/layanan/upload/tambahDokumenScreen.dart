@@ -61,7 +61,6 @@ class _TambahDokumenScreen extends State<TambahDokumenScreen> {
 
   void _openImagePickerModal(BuildContext context) {
     final flatButtonColor = Theme.of(context).primaryColor;
-    print('Image Picker Modal Called');
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -122,9 +121,7 @@ class _TambahDokumenScreen extends State<TambahDokumenScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Image Upload Demo'),
-      ),
+      appBar: FunctionDart.setAppBar("Image Upload Demo"),
       body: Column(
         children: <Widget>[
           Padding(

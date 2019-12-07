@@ -163,9 +163,7 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Tambah Produk", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Pendaftaran Produk"),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),

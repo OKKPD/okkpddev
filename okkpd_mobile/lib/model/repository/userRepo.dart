@@ -65,7 +65,6 @@ class UserRepo {
   Future getNotifikasi() async {
     var idUser = await getIdProfile();
     var url = '${Keys.APIURL}user/$idUser/notifikasi';
-    print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
 
@@ -78,7 +77,6 @@ class UserRepo {
         var notif = NotifikasiModel.fromJson(values['DATA'][i]);
         _postList.add(notif);
       }
-      print(response.body);
       return _postList;
     }
   }
@@ -90,9 +88,7 @@ class UserRepo {
 
     var resp = ResponseModel.fromJson(await json.decode(response.body));
     if (response.statusCode == 200) {
-      print('${resp.data}');
       return Future.value(int.parse(resp.data['unreadNotification']));
-
     } else {
       return Future.value(0);
     }

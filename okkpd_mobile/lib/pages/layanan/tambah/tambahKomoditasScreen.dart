@@ -236,9 +236,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Tambah Komoditas", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Tambah Komoditas"),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),

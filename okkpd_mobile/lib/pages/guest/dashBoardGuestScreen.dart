@@ -84,7 +84,6 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           clipBehavior: Clip.antiAlias,
           child: new InkWell(
             onTap: () {
-              print("tapped");
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

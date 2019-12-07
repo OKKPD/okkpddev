@@ -15,19 +15,16 @@ class _SurveiTest extends State<SurveiTest> {
   var _kelengkapanCont = TextEditingController();
   var _kecepatanCont = TextEditingController();
 
-
   List _Gambar = [
-    {'id': 1, 'sts': 'Sangat tidak setuju', 'active':false},
-    {'id': 2, 'ts': 'Tidak Setuju', 'active':false},
-    {'id': 3, 'n': 'Netral', 'active':true},
-    {'id': 4, 's': 'Setuju', 'active':false},
-    {'id': 5, 'ss': 'Sangat Setuju', 'active':false}
+    {'id': 1, 'sts': 'Sangat tidak setuju', 'active': false},
+    {'id': 2, 'ts': 'Tidak Setuju', 'active': false},
+    {'id': 3, 'n': 'Netral', 'active': true},
+    {'id': 4, 's': 'Setuju', 'active': false},
+    {'id': 5, 'ss': 'Sangat Setuju', 'active': false}
   ];
-
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: Text("Back", style: TextStyle(color: Colors.white)),
@@ -40,7 +37,6 @@ class _SurveiTest extends State<SurveiTest> {
                   color: Color.fromRGBO(239, 239, 239, 100),
                   child: Column(
                     children: <Widget>[
-
                       Container(
                         padding: EdgeInsets.all(16),
                         child: Table(
@@ -58,18 +54,14 @@ class _SurveiTest extends State<SurveiTest> {
                           ),
                           children: [
                             _buildTableRow("Bagaimana tampilan aplikasi ?, "),
-
                           ],
                         ),
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
-
-                          ]
-
-                      ),
+                            for (var i in _Gambar) _buildSuggestions(i['id']),
+                          ]),
                       Container(
                         padding: EdgeInsets.all(16),
                         child: Table(
@@ -86,19 +78,16 @@ class _SurveiTest extends State<SurveiTest> {
                             ),
                           ),
                           children: [
-                            _buildTableRow("Bagaimana kemudahan penggunaan aplikasi ?, "),
-
+                            _buildTableRow(
+                                "Bagaimana kemudahan penggunaan aplikasi ?, "),
                           ],
                         ),
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            for ( var q in _Gambar ) _buildSuggestions2(q['id']),
-
-                          ]
-
-                      ),
+                            for (var q in _Gambar) _buildSuggestions2(q['id']),
+                          ]),
                       Container(
                         padding: EdgeInsets.all(16),
                         child: Table(
@@ -115,19 +104,16 @@ class _SurveiTest extends State<SurveiTest> {
                             ),
                           ),
                           children: [
-                            _buildTableRow("Bagaimana kelengkapan informasi aplikasi ?, "),
-
+                            _buildTableRow(
+                                "Bagaimana kelengkapan informasi aplikasi ?, "),
                           ],
                         ),
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
-
-                          ]
-
-                      ),
+                            for (var i in _Gambar) _buildSuggestions(i['id']),
+                          ]),
                       Container(
                         padding: EdgeInsets.all(16),
                         child: Table(
@@ -144,41 +130,36 @@ class _SurveiTest extends State<SurveiTest> {
                             ),
                           ),
                           children: [
-                            _buildTableRow("Bagaimana kecepatan layanan menggunakan aplikasi ?, "),
-
+                            _buildTableRow(
+                                "Bagaimana kecepatan layanan menggunakan aplikasi ?, "),
                           ],
                         ),
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            for ( var i in _Gambar ) _buildSuggestions(i['id']),
-
-                          ]
-
-                      ),
+                            for (var i in _Gambar) _buildSuggestions(i['id']),
+                          ]),
                     ],
                   )),
-
               Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                      Padding(
+                    Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
-                        child: TextFormField(
-                          //controller: _textEditConName,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.next,
-                          //validator: _validateUserName,
+                      child: TextFormField(
+                        //controller: _textEditConName,
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.next,
+                        //validator: _validateUserName,
 //                          onFieldSubmitted: (String value) {
 //                            FocusScope.of(context).requestFocus(_passwordEmail);
 //                          },
-                          decoration: InputDecoration(
-                              labelText: 'Kritik Dan Saran',
-                              icon: Icon(Icons.add_comment)),
-                        ),
-
+                        decoration: InputDecoration(
+                            labelText: 'Kritik Dan Saran',
+                            icon: Icon(Icons.add_comment)),
+                      ),
                     ),
                   ],
                 ),
@@ -189,7 +170,7 @@ class _SurveiTest extends State<SurveiTest> {
                   child: MaterialButton(
                     minWidth: 200.0,
                     height: 42.0,
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -201,12 +182,9 @@ class _SurveiTest extends State<SurveiTest> {
                   ),
                 ),
               ),
-
             ],
           ),
-
         ));
-
   }
 
   TableRow _buildTableRow(String listOfNames) {
@@ -221,48 +199,45 @@ class _SurveiTest extends State<SurveiTest> {
     );
   }
 
-
   _buildSuggestions(int i) {
 //    for (var i = 0; i < 5; i++) {
-      print(_Gambar[i-1]);
-      return IconButton(
-        color: Colors.orange ,
-        icon: _Gambar[i-1]['active']==true?Icon(Icons.star):Icon(Icons.star_border),
-        tooltip: 'Increase volume by 10',
-        onPressed: () {
-          for(var a=0; a<_Gambar.length; a++) {
-            if(a<i){
-              _Gambar[a]['active'] = true;
-            }else{
-              _Gambar[a]['active'] = false;
-            }
+    return IconButton(
+      color: Colors.orange,
+      icon: _Gambar[i - 1]['active'] == true
+          ? Icon(Icons.star)
+          : Icon(Icons.star_border),
+      tooltip: 'Increase volume by 10',
+      onPressed: () {
+        for (var a = 0; a < _Gambar.length; a++) {
+          if (a < i) {
+            _Gambar[a]['active'] = true;
+          } else {
+            _Gambar[a]['active'] = false;
           }
-          setState(() {
-
-          });
-        },
-      );
+        }
+        setState(() {});
+      },
+    );
 //    }
   }
 
   _buildSuggestions2(int q) {
 //    for (var i = 0; i < 5; i++) {
-    print(_Gambar[q-1]);
     return IconButton(
-      color: Colors.orange ,
-      icon: _Gambar[q-1]['active']==true?Icon(Icons.star):Icon(Icons.star_border),
+      color: Colors.orange,
+      icon: _Gambar[q - 1]['active'] == true
+          ? Icon(Icons.star)
+          : Icon(Icons.star_border),
       tooltip: 'Increase volume by 10',
       onPressed: () {
-        for(var a=0; a<_Gambar.length; a++) {
-          if(a<q){
+        for (var a = 0; a < _Gambar.length; a++) {
+          if (a < q) {
             _Gambar[a]['active'] = true;
-          }else{
+          } else {
             _Gambar[a]['active'] = false;
           }
         }
-        setState(() {
-
-        });
+        setState(() {});
       },
     );
 //    }

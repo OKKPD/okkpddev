@@ -31,8 +31,7 @@ class ProdukRepo {
   Future<bool> postProduk(List<ProdukModel> export, String jenis) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var idUsaha = prefs.getString('loginidUsaha');
-
-    print(json.encode(export));
+    
     var url = '${Keys.APIURL}layanan/$idUsaha/daftar/$jenis';
     var response = await http.post(url,
         headers: {"Content-Type": "application/json"},

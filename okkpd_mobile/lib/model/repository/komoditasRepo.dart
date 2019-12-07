@@ -14,7 +14,6 @@ class KomoditasRepo {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var idUsaha = prefs.getString('loginidUsaha');
 
-    print(json.encode(komoditas));
     var url = '${Keys.APIURL}layanan/$idUsaha/daftar/$jenis';
     var response = await http.post(url,
         headers: {"Content-Type": "application/json"},
@@ -45,7 +44,6 @@ class KomoditasRepo {
   Future getSektor() async {
     List<SektorKomoditasModel> _postList = [];
     var url = '${Keys.APIURL}komoditas/sektor';
-    print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
 

@@ -3,17 +3,15 @@ import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-class GantiPasswordscreen extends StatefulWidget{
+class GantiPasswordscreen extends StatefulWidget {
   @override
   _GantiPasswordscreen createState() => _GantiPasswordscreen();
 }
 
-class _GantiPasswordscreen extends State<GantiPasswordscreen>{
-
+class _GantiPasswordscreen extends State<GantiPasswordscreen> {
   var _passwordBaruController = TextEditingController();
   var _passwordBaru2Controller = TextEditingController();
   @override
-
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -22,89 +20,58 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen>{
     pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
 
     Future updateProfile() async {
-
-      if(_passwordBaruController.text.isEmpty || _passwordBaru2Controller.text.isEmpty){
+      if (_passwordBaruController.text.isEmpty ||
+          _passwordBaru2Controller.text.isEmpty) {
         FunctionDart().setToast("Password harus diisi");
-      }else{
+      } else {
         pr.show();
-        Future<bool> resultLogin = UserRepo().updatePassword(_passwordBaruController.text,_passwordBaru2Controller.text);
-        if(await resultLogin == true){
+        Future<bool> resultLogin = UserRepo().updatePassword(
+            _passwordBaruController.text, _passwordBaru2Controller.text);
+        if (await resultLogin == true) {
           pr.dismiss();
           _passwordBaruController.clear();
           _passwordBaru2Controller.clear();
-        }else{
+        } else {
           pr.dismiss();
         }
       }
-
     }
 
     final saveButton = Padding(
-      padding: EdgeInsets.only(left: 0.0,right: 0.0,top: queryData.size.height/1.8,bottom: 0.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            updateProfile();
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Simpan', style: TextStyle(color: Colors.white)),
+      padding: EdgeInsets.only(
+          left: 0.0,
+          right: 0.0,
+          top: queryData.size.height / 1.95,
+          bottom: 0.0),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
+        minWidth: queryData.size.width,
+        height: queryData.size.height / 13,
+        onPressed: () {
+          updateProfile();
+        },
+        color: Color(0xff2ECC71),
+        child: Text('Simpan', style: TextStyle(color: Colors.white)),
       ),
     );
 
-    final passwordBaru= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Password Baru",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _passwordBaruController,
-            obscureText:true,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
+    final passwordBaru =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      FunctionDart.textFormField(
+          _passwordBaruController, TextInputType.text, 'Password Baru')
+    ]);
 
-    final passwordBaru2= Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:<Widget>[
-          Text(
-            "Ulangi Password",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontSize: 14,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),
-          ),
-          TextFormField(
-            controller: _passwordBaru2Controller,
-            obscureText:true,
-            autofocus: false,
-            decoration: InputDecoration(
-              hintText: '',
-            ),
-          ),
-        ]
-    );
-
-
+    final passwordBaru2 =
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+      FunctionDart.textFormField(
+          _passwordBaru2Controller, TextInputType.text, 'Ulangi Password')
+    ]);
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Ubah Password",style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Ubah Password"),
       body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 16.0, right: 16.0),

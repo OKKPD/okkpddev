@@ -4,6 +4,8 @@ import 'package:okkpd_mobile/model/beritaModel.dart';
 import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
+import '../../tools/GlobalFunction.dart';
+
 class BeritaScreen extends StatefulWidget {
   String idBerita;
   BeritaScreen(this.idBerita);
@@ -18,14 +20,13 @@ class _BeritaScreen extends State<BeritaScreen> {
   BeritaModel berita = new BeritaModel("", "", "", "", "", "", "");
   var isLoading = true;
 
-
   @override
   void initState() {
     super.initState();
     getBerita();
   }
 
-  void getBerita() async{
+  void getBerita() async {
     BeritaModel beritas = await BeritaRepo().viewBerita(idBerita);
     setState(() {
       berita = beritas;
@@ -33,8 +34,8 @@ class _BeritaScreen extends State<BeritaScreen> {
     });
   }
 
-  Widget viewBerita(){
-    if(isLoading){
+  Widget viewBerita() {
+    if (isLoading) {
       return CustomWidget().loadingWidget();
     }
     return CustomScrollView(
@@ -43,48 +44,51 @@ class _BeritaScreen extends State<BeritaScreen> {
         slivers: <Widget>[
           SliverList(
               delegate: SliverChildListDelegate([
-                Container(
-                  padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(berita.judulBerita,style: Keys().mediumBoldFontSize,),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          berita.tanggalBuat,
-                          style: Keys().smallFontSize,
-                        ),
-                      ),
-                      SizedBox(height: 16.0),
-                      Divider(height: 1,),
-                      SizedBox(height: 16.0),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          berita.isiBerita,
-                          style: Keys().normalFontSize,
-                          strutStyle: StrutStyle(
-                            fontFamily: 'Roboto',
-                            height: 1.5,
-                          ),
-                        ),
-                      ),
-                    ],
+            Container(
+              padding: EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 16.0, bottom: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    berita.judulBerita,
+                    style: Keys().mediumBoldFontSize,
                   ),
-                ),
-              ])
-          )]
-    );
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      berita.tanggalBuat,
+                      style: Keys().smallFontSize,
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  Divider(
+                    height: 1,
+                  ),
+                  SizedBox(height: 16.0),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      berita.isiBerita,
+                      style: Keys().normalFontSize,
+                      strutStyle: StrutStyle(
+                        fontFamily: 'Roboto',
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]))
+        ]);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      AppBar(elevation: 3,title: Text("Berita"),),
+      appBar: FunctionDart.setAppBar("Berita"),
       body: viewBerita(),
-
     );
   }
 }

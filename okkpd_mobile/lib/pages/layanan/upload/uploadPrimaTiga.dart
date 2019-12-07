@@ -62,9 +62,7 @@ class _UploadPrimaTigaState extends State<UploadPrimaTiga> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Unggah Dokumen", style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Unggah Dokumen"),
       body: Column(
         children: <Widget>[
           Expanded(child: _buildSuggestions()),

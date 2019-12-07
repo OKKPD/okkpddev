@@ -9,50 +9,45 @@ import 'package:progress_dialog/progress_dialog.dart';
 
 ProgressDialog pr;
 
-
 class TolakLayananScreen extends StatefulWidget {
   LayananModel layanan;
   TolakLayananScreen(this.layanan);
 
   @override
-  _TolakLayananScreenState createState() => _TolakLayananScreenState(this.layanan);
+  _TolakLayananScreenState createState() =>
+      _TolakLayananScreenState(this.layanan);
 }
 
 class _TolakLayananScreenState extends State<TolakLayananScreen> {
   LayananModel layanan;
   var _alasanController = TextEditingController();
 
-
-
   _TolakLayananScreenState(this.layanan);
-
 
   @override
   Widget build(BuildContext context) {
-
-    pr = new ProgressDialog(context, type: ProgressDialogType.Normal, isDismissible: true);
+    pr = new ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: true);
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text("Tolak Layanan"),),
-        body: viewTolak()
-    );
+        appBar: FunctionDart.setAppBar("Tolak Layanan"),
+        body: viewTolak());
   }
 
-  void tolakLayanan() async{
-
-    if(_alasanController.text.isEmpty){
+  void tolakLayanan() async {
+    if (_alasanController.text.isEmpty) {
       FunctionDart().setToast("Alasan masih kosong");
-    }else{
+    } else {
       pr.show();
-      if(await LayananRepo().tolakLayanan(layanan.uid,_alasanController.text)){
+      if (await LayananRepo()
+          .tolakLayanan(layanan.uid, _alasanController.text)) {
         Navigator.pop(context);
         Navigator.pop(context);
       }
     }
-
   }
 
-  Widget viewTolak(){
+  Widget viewTolak() {
     return CustomScrollView(
       scrollDirection: Axis.vertical,
       shrinkWrap: false,
@@ -67,45 +62,55 @@ class _TolakLayananScreenState extends State<TolakLayananScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 16,),
-
-                        Text("${layanan.namaLayanan}", style: Keys().bigBoldFontSiza,),
-                        SizedBox(height: 8,),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Text(
+                          "${layanan.namaLayanan}",
+                          style: Keys().bigBoldFontSiza,
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
                         Text("Nama Usaha : ${layanan.namaUsaha}"),
-                        SizedBox(height: 8,),
-
+                        SizedBox(
+                          height: 8,
+                        ),
                         Text("Kode Pendaftaran : ${layanan.kodePendaftaran}"),
-                        SizedBox(height: 24,),
-
+                        SizedBox(
+                          height: 24,
+                        ),
                       ],
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child:
-                      Text("Alasan Penolakan", style: Keys().smallFontSize,),
+                      child: Text(
+                        "Alasan Penolakan",
+                        style: Keys().smallFontSize,
+                      ),
                     ),
-                    SizedBox(height: 8,),
+                    SizedBox(
+                      height: 8,
+                    ),
                     Container(
                       padding: EdgeInsets.all(16),
                       decoration: new BoxDecoration(
-                          color: Color.fromRGBO(230, 234, 237,100),
-                          border: new Border.all(
-                              color: Colors.grey,
-                              width: 0.0
-                          ),
-                          borderRadius: new BorderRadius.circular(4.0)
-                      ),
+                          color: Color.fromRGBO(230, 234, 237, 100),
+                          border:
+                              new Border.all(color: Colors.grey, width: 0.0),
+                          borderRadius: new BorderRadius.circular(4.0)),
                       child: TextField(
                         controller: _alasanController,
                         decoration: new InputDecoration.collapsed(
                             border: InputBorder.none,
-                            hintText: 'Alasan Penolakan'
-                        ),
+                            hintText: 'Alasan Penolakan'),
                         keyboardType: TextInputType.multiline,
                         maxLines: 10,
                       ),
                     ),
-                    SizedBox(height: 16,),
+                    SizedBox(
+                      height: 16,
+                    ),
                     Material(
                       child: MaterialButton(
                         minWidth: double.infinity,
@@ -114,22 +119,25 @@ class _TolakLayananScreenState extends State<TolakLayananScreen> {
                           tolakLayanan();
                         },
                         color: Colors.lightBlueAccent,
-                        child: Text('Tolak', style: TextStyle(color: Colors.white)),
+                        child: Text('Tolak',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ),
-                    SizedBox(height: 24,),
+                    SizedBox(
+                      height: 24,
+                    ),
                     Align(
-                      alignment:Alignment.center,
+                      alignment: Alignment.center,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: new Text("Batal", style: TextStyle(color: Colors.orange),),
+                        child: new Text(
+                          "Batal",
+                          style: TextStyle(color: Colors.orange),
+                        ),
                       ),
                     )
-
-
-
                   ],
                 ),
               ),
@@ -139,7 +147,4 @@ class _TolakLayananScreenState extends State<TolakLayananScreen> {
       ],
     );
   }
-
-
-
 }

@@ -3,6 +3,8 @@ import 'package:okkpd_mobile/pages/layanan/detailKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/infoUsahaScreen.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../../tools/GlobalFunction.dart';
+
 class Rumahkemas extends StatefulWidget {
   @override
   _Rumahkemas createState() => _Rumahkemas();
@@ -23,10 +25,7 @@ class _Rumahkemas extends State<Rumahkemas> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Pendaftaran Rumah Kemas",
-            style: TextStyle(color: Colors.white)),
-      ),
+      appBar: FunctionDart.setAppBar("Pendaftaran Rumah Kemas"),
       body: Container(
           child: Column(
         children: <Widget>[

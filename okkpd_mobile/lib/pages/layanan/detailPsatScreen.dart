@@ -136,6 +136,9 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,23 +170,43 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
                 ],
               )),
           Expanded(child: _buildSuggestions()),
-          Container(
-              padding:
-                  EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8),
-              child: new SizedBox(
-                width: double.infinity,
-                child: new RaisedButton(
-                  child: Text("Simpan"),
-                  onPressed: () {
-                    print(produks.length);
-                    if (produks.length != 0) {
-                      simpanProduk();
-                    } else {
-                      FunctionDart().setToast('Produk Tidak Boleh Kosong');
-                    }
-                  },
-                ),
-              ))
+          Padding(
+            padding: EdgeInsets.only(
+                left: 10.0, right: 10.0, top: 0.0, bottom: 20.0),
+            child: MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              minWidth: queryData.size.width,
+              height: queryData.size.height / 13,
+              onPressed: () {
+                if (produks.length != 0) {
+                  simpanProduk();
+                } else {
+                  FunctionDart().setToast('Produk Tidak Boleh Kosong');
+                }
+              },
+              color: Color(0xff2ECC71),
+              child: Text('Simpan', style: TextStyle(color: Colors.white)),
+            ),
+          )
+          // Container(
+          //     padding:
+          //         EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8),
+          //     child: new SizedBox(
+          //       width: double.infinity,
+          //       child: new RaisedButton(
+          //         child: Text("Simpan"),
+          //         onPressed: () {
+          //           print(produks.length);
+          //           if (produks.length != 0) {
+          //             simpanProduk();
+          //           } else {
+          //             FunctionDart().setToast('Produk Tidak Boleh Kosong');
+          //           }
+          //         },
+          //       ),
+          //     ))
         ],
       ),
     );

@@ -9,7 +9,6 @@ import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class LayananRepo {
-
   Future getLayanan(String kodeLayanan, String status) async {
     if (status == null) {
       status = "%";
@@ -31,7 +30,6 @@ class LayananRepo {
     List<LayananModel> _postList = [];
     var url =
         '${Keys.APIURL}layanan/$idUsaha/list?layanan=$kodeLayanan&status=$status';
-    print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
 
@@ -47,12 +45,9 @@ class LayananRepo {
   }
 
   Future getLayananDiterima() async {
-
     String role = await SharedPrefRepo().getRole();
     List<LayananModel> _postList = [];
-    var url =
-        '${Keys.APIURL}layanan/dinas/diterima/$role';
-    print(url);
+    var url = '${Keys.APIURL}layanan/dinas/diterima/$role';
     var response = await http.get(url);
     final values = json.decode(response.body);
 
@@ -89,7 +84,6 @@ class LayananRepo {
     var url = '${Keys.APIURL}tracking/layanan';
     var response = await http.post(url, body: {'tracking_data': kodeTracking});
     final values = await json.decode(response.body);
-    print(url);
 
     if (response.statusCode != 200) {
       FunctionDart().setToast(values['MESSAGE']);
@@ -120,7 +114,11 @@ class LayananRepo {
   Future<bool> tolakLayanan(String kodeLayanan, String alasanPenolakan) async {
     String idUser = await SharedPrefRepo().getIdUser();
     var url = '${Keys.APIURL}layanan/tolak';
-    var response = await http.post(url, body: {'id_layanan': kodeLayanan, "id_penolak":idUser, "alasan_penolakan" : alasanPenolakan});
+    var response = await http.post(url, body: {
+      'id_layanan': kodeLayanan,
+      "id_penolak": idUser,
+      "alasan_penolakan": alasanPenolakan
+    });
     final values = await json.decode(response.body);
     FunctionDart().setToast(values['MESSAGE']);
 

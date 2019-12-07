@@ -6,6 +6,8 @@ import 'package:okkpd_mobile/model/notifikasiModel.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
+import '../../tools/GlobalFunction.dart';
+
 class NotifikasiScreen extends StatefulWidget {
   @override
   _NotifikasiScreenState createState() => _NotifikasiScreenState();
@@ -21,7 +23,6 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
   void initState() {
     super.initState();
     getNotifikasi();
-
   }
 
   void getNotifikasi() async {
@@ -34,7 +35,7 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
         for (var datas in list) {
           listNotifikasi.add(datas);
         }
-      }else{
+      } else {
         haveData = false;
       }
       isLoading = false;
@@ -44,47 +45,42 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Notifikasi"),),
+      appBar: FunctionDart.setAppBar("Notofikasi"),
       body: _buildSuggestions(),
     );
   }
 
   _buildSuggestions() {
-    if(isLoading){
+    if (isLoading) {
       return CustomWidget().loadingWidget();
-    }else {
-      if(haveData) {
-
+    } else {
+      if (haveData) {
         return ListView.builder(
             itemCount: listNotifikasi.length,
             itemBuilder: (context, i) {
               return _buildRow(listNotifikasi[i], i);
             });
-      }else{
-        return Center(child: Text("Tidak ada data yang ditampilkan"),);
+      } else {
+        return Center(
+          child: Text("Tidak ada data yang ditampilkan"),
+        );
       }
     }
   }
 
-  BoxDecoration setDecoration(String isRead){
-    if(isRead == "1"){
+  BoxDecoration setDecoration(String isRead) {
+    if (isRead == "1") {
       return BoxDecoration(
           color: Colors.transparent,
           border: new Border.all(
-              color: Color.fromRGBO(200, 200, 200,100),
-              width: 0.0
-          ),
-          borderRadius: new BorderRadius.circular(4.0)
-      );
-    }else{
+              color: Color.fromRGBO(200, 200, 200, 100), width: 0.0),
+          borderRadius: new BorderRadius.circular(4.0));
+    } else {
       return BoxDecoration(
           color: Colors.amberAccent,
           border: new Border.all(
-              color: Color.fromRGBO(200, 200, 200,100),
-              width: 0.0
-          ),
-          borderRadius: new BorderRadius.circular(4.0)
-      );
+              color: Color.fromRGBO(200, 200, 200, 100), width: 0.0),
+          borderRadius: new BorderRadius.circular(4.0));
     }
   }
 
@@ -105,13 +101,10 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
             style: Keys().smallFontSize,
           ),
           SizedBox(height: 16.0),
-
           Text(
             "${notif.body}",
             style: Keys().normalFontSize,
           ),
-
-
         ],
       ),
     );
