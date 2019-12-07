@@ -31,6 +31,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   bool isHaveData = false;
 
   Future cekDokumen() async {
+    this.model.clear();
     var getModel = await MediaRepo().getMediaById(this.id);
     setState(() {
       isLoading = false;
@@ -68,9 +69,12 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
     try {
       pr.show();
       bool isSuccess = true;
+      this.cekDokumen();
       isSuccess = await MediaRepo().deleteMedia(id);
       if (isSuccess) {
-        cekDokumen();
+        setState(() {
+          this.isLoading = true;
+        });
         FunctionDart().setToast("Dokumen berhasil dihapus");
       } else {
         FunctionDart().setToast("Dokumen gagal");
