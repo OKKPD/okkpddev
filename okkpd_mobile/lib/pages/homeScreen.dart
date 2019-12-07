@@ -35,23 +35,21 @@ class _HomeScreenState extends State<HomeScreen> {
     getNotif();
   }
 
-
-  void getNotif() async{
+  void getNotif() async {
     Future<int> total = UserRepo().countNotifikasi();
-    if(await total > 0){
+    if (await total > 0) {
       setState(() {
         totalNotif = 2;
       });
-    }else{
+    } else {
       setState(() {
         totalNotif = 0;
       });
     }
-
   }
 
-  Widget notifIcon(){
-    if(totalNotif > 0){
+  Widget notifIcon() {
+    if (totalNotif > 0) {
       return new IconButton(
         icon: new Icon(Icons.notifications_active),
         color: Colors.blue,
@@ -62,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       );
-    }else{
+    } else {
       return new IconButton(
         icon: new Icon(Icons.notifications),
         onPressed: () {

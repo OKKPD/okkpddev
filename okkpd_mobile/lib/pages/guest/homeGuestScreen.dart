@@ -31,12 +31,12 @@ class _HomeGuestScreen extends State<HomeGuestScreen> {
           elevation: 0,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Color.fromRGBO(255, 255, 255, 50),
-          actions: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.notifications),
-              onPressed: () {},
-            ),
-          ],
+          // actions: <Widget>[
+          //   new IconButton(
+          //     icon: new Icon(Icons.notifications),
+          //     onPressed: () {},
+          //   ),
+          // ],
           leading: new Container(),
           title: Text(appBarTitle, style: TextStyle(color: Colors.black87)),
           centerTitle: true,

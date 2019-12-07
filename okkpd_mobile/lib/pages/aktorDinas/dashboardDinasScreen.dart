@@ -9,7 +9,6 @@ class DashboardDinasScreen extends StatefulWidget {
 }
 
 class _DashboardDinasScreenState extends State<DashboardDinasScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +30,8 @@ class _DashboardDinasScreenState extends State<DashboardDinasScreen> {
               child: Image(image: AssetImage('assets/logo.png'))),
           centerTitle: true,
         ),
-        body: Column(children: <Widget>[
-          InfoUserWidget(),
-          MenuWidget()
-        ],)
-        );
+        body: Column(
+          children: <Widget>[InfoUserWidget(), MenuWidget()],
+        ));
   }
 }
