@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
+import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 class LayananDiterimaWidget extends StatefulWidget {
@@ -90,6 +91,12 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                           ),
                           SizedBox(height: 8.0),
                           Text(
+                            "Nama Perusahaan : ${layanan.namaUsaha}",
+                            style: Keys().normalFontSize,
+                          ),
+                          SizedBox(height: 8.0),
+
+                          Text(
                             "Tanggal Pengajuan : ${layanan.tanggalBuat}",
                             style: Keys().normalFontSize,
                           ),
@@ -119,6 +126,10 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                     child: MaterialButton(
                       height: 42.0,
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TolakLayananScreen(layanan)),
+                        );
                       },
                       color: Colors.amberAccent,
                       child: Text('Tolak', style: TextStyle(color: Colors.white)),

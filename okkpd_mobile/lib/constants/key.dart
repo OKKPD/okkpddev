@@ -18,8 +18,8 @@ class Keys {
   ];
 
   static const List<MenuModel> menuManagerAdmin = const <MenuModel>[
-    const MenuModel("Layanan Diterima","/layananDiterima",Icons.file_download),
-    const MenuModel("Layanan Ditolak","/hcscreen",Icons.close),
+    const MenuModel("Layanan Diterima","/layananDiterima",AssetImage('assets/accepted.png')),
+    const MenuModel("Layanan Ditolak","/hcscreen",AssetImage('assets/rejected.png')),
   ];
   //==== Theme ====
 

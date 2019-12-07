@@ -59,6 +59,10 @@ flutter:
   - assets/angry.gif
   - assets/hearteyes.gif
   - assets/star.png
+  - assets/accepted.png
+  - assets/favorite.png
+  - assets/rejected.png
+  - assets/tugas.png
 
 
   # To add assets to your application, add an assets section, like this:

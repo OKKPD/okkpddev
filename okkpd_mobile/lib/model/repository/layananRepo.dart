@@ -116,4 +116,18 @@ class LayananRepo {
       return Future.value(true);
     }
   }
+
+  Future<bool> tolakLayanan(String kodeLayanan, String alasanPenolakan) async {
+    String idUser = await SharedPrefRepo().getIdUser();
+    var url = '${Keys.APIURL}layanan/tolak';
+    var response = await http.post(url, body: {'id_layanan': kodeLayanan, "id_penolak":idUser, "alasan_penolakan" : alasanPenolakan});
+    final values = await json.decode(response.body);
+    FunctionDart().setToast(values['MESSAGE']);
+
+    if (response.statusCode != 200) {
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
+  }
 }

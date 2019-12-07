@@ -115,10 +115,13 @@ class _BeritaWidget extends State<BeritaWidget> {
     ));
   }
 
-  Widget cobaCoba(){
-    String data = FunctionDart().getExpirationDate();
-    FunctionDart().formatStringToDate(data);
-    return Text(data);
+  Widget textLainnya(){
+    return new GestureDetector(
+      onTap: () {
+        FunctionDart().setToast("HALOOO");
+      },
+      child: new Text("Lihat Semua", style: TextStyle(color: Colors.blueAccent),),
+    );
   }
 
   @override
@@ -138,7 +141,7 @@ class _BeritaWidget extends State<BeritaWidget> {
                     style: new TextStyle(
                         fontSize: 14, fontWeight: FontWeight.bold),
                   ),
-                  cobaCoba(),
+                  textLainnya(),
                 ],
               )),
           _buildSuggestions(),

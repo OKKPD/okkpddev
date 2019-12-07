@@ -45,7 +45,8 @@ class _MenuWidgetState extends State<MenuWidget> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Icon(menu.icon,size: 36,),
+
+                    Image(image: menu.icon, width: 56,),
                     SizedBox(height: 16,),
                     Center(
                       child: Text(

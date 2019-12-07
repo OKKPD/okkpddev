@@ -17,6 +17,11 @@ class FunctionDart{
         );
   }
 
+  Future<String> getIdProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return Future.value(prefs.getString('loginId'));
+  }
+
   String getExpirationDate(){
     var now = new DateTime.now();
     var expired = now.add(new Duration(days: 1));

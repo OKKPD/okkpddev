@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
+import 'package:okkpd_mobile/model/notifikasiModel.dart';
 import 'package:okkpd_mobile/model/responseModel.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
@@ -58,6 +59,53 @@ class UserRepo {
       return Future.value(false);
     } else {
       return Future.value(true);
+    }
+  }
+
+  Future getNotifikasi() async {
+    var idUser = await getIdProfile();
+    var url = '${Keys.APIURL}user/$idUser/notifikasi';
+    print(url);
+    var response = await http.get(url);
+    final values = await json.decode(response.body);
+
+    List<NotifikasiModel> _postList = [];
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var notif = NotifikasiModel.fromJson(values['DATA'][i]);
+        _postList.add(notif);
+      }
+      print(response.body);
+      return _postList;
+    }
+  }
+
+  Future<int> countNotifikasi() async {
+    var idUser = await getIdProfile();
+    var url = '${Keys.APIURL}user/$idUser/countNotifikasi';
+    var response = await http.get(url);
+
+    var resp = ResponseModel.fromJson(await json.decode(response.body));
+    if (response.statusCode == 200) {
+      print('${resp.data}');
+      return Future.value(int.parse(resp.data['unreadNotification']));
+
+    } else {
+      return Future.value(0);
+    }
+  }
+
+  Future<bool> readAllNotif() async {
+    var idUser = await getIdProfile();
+    var url = '${Keys.APIURL}user/$idUser/readAllNotif';
+    var response = await http.post(url);
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
     }
   }
 }

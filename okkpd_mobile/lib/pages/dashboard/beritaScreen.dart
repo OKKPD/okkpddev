@@ -64,6 +64,10 @@ class _BeritaScreen extends State<BeritaScreen> {
                         child: Text(
                           berita.isiBerita,
                           style: Keys().normalFontSize,
+                          strutStyle: StrutStyle(
+                            fontFamily: 'Roboto',
+                            height: 1.5,
+                          ),
                         ),
                       ),
                     ],
