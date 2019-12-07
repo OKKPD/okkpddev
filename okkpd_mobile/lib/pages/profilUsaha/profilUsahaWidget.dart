@@ -25,6 +25,7 @@ String rwController;
 String kotaController;
 String noHpController;
 String noTelpController;
+String titikKoordinat;
 
 class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   File imageKTP;
@@ -37,6 +38,20 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   Color clrKopSurat = Colors.redAccent;
 
   bool isLoading = true;
+
+  // var location = new Location();
+
+  // Map<String, double> userLocation;
+
+  // Future<Map<String, double>> _getLocation() async {
+  //   var currentLocation = <String, double>{};
+  //   try {
+  //     currentLocation = await location.getLocation();
+  //   } catch (e) {
+  //     currentLocation = null;
+  //   }
+  //   return currentLocation;
+  // }
 
   Future setUser() async {
     user = await UserRepo().getProfile();
@@ -198,6 +213,33 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
       ),
     ]);
 
+    // final koordinat =
+    //     Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+    //   userLocation == null
+    //       ? CircularProgressIndicator()
+    //       : Text("Location:" +
+    //           userLocation["latitude"].toString() +
+    //           " " +
+    //           userLocation["longitude"].toString()),
+    //   Padding(
+    //     padding: const EdgeInsets.all(8.0),
+    //     child: RaisedButton(
+    //       onPressed: () {
+    //         _getLocation().then((value) {
+    //           setState(() {
+    //             userLocation = value;
+    //           });
+    //         });
+    //       },
+    //       color: Colors.blue,
+    //       child: Text(
+    //         "Get Location",
+    //         style: TextStyle(color: Colors.white),
+    //       ),
+    //     ),
+    //   ),
+    // ]);
+
     if (isLoading) {
       return CustomWidget().loadingWidget();
     } else {
@@ -221,7 +263,8 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
                   namaPerusahaan,
                   SizedBox(height: 20.0),
                   alamatPerusahaan,
-                  SizedBox(height: 20.0)
+                  SizedBox(height: 20.0),
+                  // koordinat
                 ])),
           ],
         ),

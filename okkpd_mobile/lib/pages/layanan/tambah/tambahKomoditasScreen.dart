@@ -30,6 +30,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   String nmKomoditas;
 
   Future getDataSektor() async {
+    sektor.clear();
     getSektor = await KomoditasRepo().getSektor();
     setState(() {
       for (var datas in getSektor) {
@@ -39,6 +40,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   }
 
   Future getDataKelompok(String idSektor) async {
+    kelompok.clear();
     getKelompok = await KomoditasRepo().getKelompok(idSektor);
     setState(() {
       for (var datas in getKelompok) {
@@ -48,6 +50,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   }
 
   Future getDataKomoditas(String idSektor, String idKelompok) async {
+    komoditas.clear();
     getKomoditas = await KomoditasRepo().getKomoditas(idSektor, idKelompok);
     if (getKomoditas != null) {
       setState(() {
@@ -57,7 +60,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
       });
     } else {
       FunctionDart().setToast('Belum Ada Komoditas');
-      Navigator.pop(context, null);
+      // Navigator.pop(context, null);
     }
   }
 
