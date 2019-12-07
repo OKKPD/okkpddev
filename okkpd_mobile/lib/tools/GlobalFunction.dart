@@ -10,9 +10,9 @@ class FunctionDart {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
-        backgroundColor: Colors.white,
-        textColor: Colors.black,
-        fontSize: 16.0);
+        backgroundColor: Colors.redAccent,
+        textColor: Colors.white,
+        fontSize: 14.0);
   }
 
   Future<String> getIdProfile() async {

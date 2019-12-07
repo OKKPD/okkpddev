@@ -121,7 +121,7 @@ class _StatusWidgetState extends State<StatusWidget> {
       children: <Widget>[
         SizedBox(height: 10.0),
         SingleChildScrollView(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: Column(children: <Widget>[
               track,
             ])),

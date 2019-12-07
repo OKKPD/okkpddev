@@ -171,7 +171,7 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
           Expanded(child: _buildSuggestions()),
           Padding(
             padding: EdgeInsets.only(
-                left: 10.0, right: 10.0, top: 0.0, bottom: 20.0),
+                left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
             child: MaterialButton(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),

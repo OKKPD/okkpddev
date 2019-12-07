@@ -88,17 +88,19 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
     final namaKomoditas =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Komoditas",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      DropdownButton(
-        hint: new Text('Pilih Komoditas'),
-        isExpanded: true,
+      DropdownButtonFormField(
+        decoration: InputDecoration(
+          labelText: 'Nama Sektor',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(8.0),
+            borderSide: new BorderSide(),
+          ),
+        ),
         items: komoditas.map((value) {
           return new DropdownMenuItem(
             child: new Text(value.deskripsi),
@@ -122,15 +124,14 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
     final namaSektor =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Sektor",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      DropdownButton(
-        hint: new Text('Pilih Sektor'),
-        isExpanded: true,
+      DropdownButtonFormField(
+        decoration: InputDecoration(
+          labelText: 'Nama Sektor',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(8.0),
+            borderSide: new BorderSide(),
+          ),
+        ),
         items: sektor.map((value) {
           return new DropdownMenuItem(
             child: new Text(value.namaSektorKomoditas),
@@ -149,15 +150,14 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
 
     final namaKelompok =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Nama Kelompok",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      DropdownButton(
-        hint: new Text('Pilih Kelompok'),
-        isExpanded: true,
+      DropdownButtonFormField(
+        decoration: InputDecoration(
+          labelText: 'Nama Kelompok',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(8.0),
+            borderSide: new BorderSide(),
+          ),
+        ),
         items: kelompok.map((value) {
           return new DropdownMenuItem(
             child: new Text(value.namaKelompok),
@@ -174,23 +174,24 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
       ),
     ]);
 
-    final luasLahan =
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-      Text(
-        "Luas Lahan",
-        textAlign: TextAlign.left,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
-      ),
-      TextFormField(
-        controller: _luasLahan,
-        keyboardType: TextInputType.text,
-        autofocus: false,
-        decoration: InputDecoration(
-          hintText: '',
-        ),
-      ),
-    ]);
+    final luasLahan = FunctionDart.textFormField(
+        _luasLahan, TextInputType.number, 'Luas Lahan');
+    //     Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+    //   Text(
+    //     "Luas Lahan",
+    //     textAlign: TextAlign.left,
+    //     style: TextStyle(
+    //         fontSize: 14, color: Colors.black54, fontFamily: "NeoSansBold"),
+    //   ),
+    //   TextFormField(
+    //     controller: _luasLahan,
+    //     keyboardType: TextInputType.text,
+    //     autofocus: false,
+    //     decoration: InputDecoration(
+    //       hintText: '',
+    //     ),
+    //   ),
+    // ]);
 
     final spasiforjarak =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
@@ -203,36 +204,62 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
     ]);
 
     final saveButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            KomoditasModel kmd = KomoditasModel(
-                null,
-                nmKomoditas,
-                "",
-                idSektor,
-                idKomoditas,
-                idKelompok,
-                _luasLahan.text,
-                nmKomoditas,
-                namaLatin);
-            if (idSektor == null ||
-                idKomoditas == null ||
-                idKelompok == null ||
-                _luasLahan.text.length == 0) {
-              FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
-            } else {
-              Navigator.pop(context, kmd);
-            }
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Tambah', style: TextStyle(color: Colors.white)),
+      padding: EdgeInsets.only(
+          left: 0.0, right: 0.0, top: queryData.size.height / 3.7, bottom: 0.0),
+      child: MaterialButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
         ),
+        minWidth: queryData.size.width,
+        height: queryData.size.height / 13,
+        onPressed: () {
+          KomoditasModel kmd = KomoditasModel(null, nmKomoditas, "", idSektor,
+              idKomoditas, idKelompok, _luasLahan.text, nmKomoditas, namaLatin);
+          if (idSektor == null ||
+              idKomoditas == null ||
+              idKelompok == null ||
+              _luasLahan.text.length == 0) {
+            FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
+          } else {
+            Navigator.pop(context, kmd);
+          }
+        },
+        color: Color(0xff2ECC71),
+        child: Text('Tambah Data', style: TextStyle(color: Colors.white)),
       ),
     );
+
+    // final saveButton = Padding(
+    //   padding: EdgeInsets.symmetric(vertical: 0.0),
+    //   child: Material(
+    //     child: MaterialButton(
+    //       minWidth: 200.0,
+    //       height: 42.0,
+    //       onPressed: () {
+    //         KomoditasModel kmd = KomoditasModel(
+    //             null,
+    //             nmKomoditas,
+    //             "",
+    //             idSektor,
+    //             idKomoditas,
+    //             idKelompok,
+    //             _luasLahan.text,
+    //             nmKomoditas,
+    //             namaLatin);
+    //         if (idSektor == null ||
+    //             idKomoditas == null ||
+    //             idKelompok == null ||
+    //             _luasLahan.text.length == 0) {
+    //           FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
+    //         } else {
+    //           Navigator.pop(context, kmd);
+    //         }
+    //       },
+    //       color: Colors.lightBlueAccent,
+    //       child: Text('Tambah', style: TextStyle(color: Colors.white)),
+    //     ),
+    //   ),
+    // );
 
     return Scaffold(
       backgroundColor: Colors.white,
