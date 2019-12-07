@@ -45,6 +45,7 @@ class ListKomoditasState extends State<ListKomoditas> {
           ],
         ),
         trailing: RaisedButton(
+          color: Colors.redAccent,
           onPressed: () {
             setState(() {
               komoditases.remove(komoditas);
@@ -52,7 +53,7 @@ class ListKomoditasState extends State<ListKomoditas> {
           },
           child: Icon(
             Icons.remove,
-            color: Colors.blueAccent,
+            color: Colors.white,
             size: 36,
           ),
         ));

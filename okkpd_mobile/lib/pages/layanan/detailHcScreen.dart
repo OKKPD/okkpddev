@@ -112,12 +112,13 @@ class _DetailHcScreen extends State<DetailHcScreen> {
           ],
         ),
         trailing: RaisedButton(
+          color: Colors.redAccent,
           onPressed: () {
             _showMaterialDialog(i);
           },
           child: Icon(
             Icons.remove,
-            color: Colors.blueAccent,
+            color: Colors.white,
             size: 36,
           ),
         ));
@@ -155,12 +156,13 @@ class _DetailHcScreen extends State<DetailHcScreen> {
                   Align(
                       alignment: Alignment.centerRight,
                       child: RaisedButton(
+                        color: Colors.greenAccent,
                         onPressed: () {
                           _tambahHc(context);
                         },
                         child: Icon(
                           Icons.add,
-                          color: Colors.blueAccent,
+                          color: Colors.white,
                           size: 28,
                         ),
                       )),

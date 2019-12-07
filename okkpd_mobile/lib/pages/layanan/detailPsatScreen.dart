@@ -158,12 +158,13 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
                   Align(
                       alignment: Alignment.centerRight,
                       child: RaisedButton(
+                        color: Colors.greenAccent,
                         onPressed: () {
                           _tambahProduk(context);
                         },
                         child: Icon(
                           Icons.add,
-                          color: Colors.blueAccent,
+                          color: Colors.white,
                           size: 28,
                         ),
                       )),

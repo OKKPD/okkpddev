@@ -35,6 +35,7 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+      color: Color(0xffFBFBFB),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -57,7 +58,7 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
             content: "$namaPemohon",
           ),
           Divider(
-            color: Colors.grey,
+            color: Colors.white10,
           ),
         ],
       ),
