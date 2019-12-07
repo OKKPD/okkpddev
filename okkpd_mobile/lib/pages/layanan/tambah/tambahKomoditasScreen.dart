@@ -20,9 +20,9 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   List getSektor = [];
   List getKelompok = [];
   List getKomoditas = [];
-  List<SektorKomoditasModel> sektor = [];
-  List<KelompokKomoditasModel> kelompok = [];
-  List<KomoditasModel> komoditas = [];
+  List sektor = [];
+  List kelompok = [];
+  List komoditas = [];
   String idSektor;
   String idKelompok;
   String idKomoditas;
@@ -30,42 +30,65 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
   String nmKomoditas;
 
   Future getDataSektor() async {
-    sektor.clear();
-    getSektor = await KomoditasRepo().getSektor();
-    setState(() {
-      for (var datas in getSektor) {
-        sektor.add(datas);
-      }
-    });
+    try {
+      getSektor = await KomoditasRepo().getSektor();
+      sektor.clear();
+      komoditas.clear();
+      kelompok.clear();
+      setState(() {
+        for (var datas in getSektor) {
+          sektor.add(datas);
+        }
+      });
+    } catch (e) {
+      FunctionDart().setToast('Belum Ada Komoditas');
+    }
   }
 
   Future getDataKelompok(String idSektor) async {
-    kelompok.clear();
-    getKelompok = await KomoditasRepo().getKelompok(idSektor);
-    setState(() {
-      for (var datas in getKelompok) {
+    try {
+      getKelompok = await KomoditasRepo().getKelompok(idSektor);
+      if (getKelompok != null) {
+        setState(() {
+          komoditas.clear();
+          kelompok.clear();
+
+          idKomoditas = null;
+          idKelompok = null;
+          for (var datas in getKelompok) {
+            kelompok.add(datas);
+          }
+        });
+      } else {
+        var datas = {'idKelompok': 0, 'namaKelompok': 'Nama Kelompok'};
         kelompok.add(datas);
       }
-    });
+    } catch (e) {
+      FunctionDart().setToast('Belum Ada Kelompok Dalam Sektor');
+    }
   }
 
   Future getDataKomoditas(String idSektor, String idKelompok) async {
-    komoditas.clear();
-    getKomoditas = await KomoditasRepo().getKomoditas(idSektor, idKelompok);
-    if (getKomoditas != null) {
-      setState(() {
-        for (var datas in getKomoditas) {
-          komoditas.add(datas);
-        }
-      });
-    } else {
-      FunctionDart().setToast('Belum Ada Komoditas');
-      // Navigator.pop(context, null);
+    try {
+      getKomoditas = await KomoditasRepo().getKomoditas(idSektor, idKelompok);
+      if (getKomoditas != null) {
+        setState(() {
+          komoditas.clear();
+          idKomoditas = null;
+          for (var datas in getKomoditas) {
+            komoditas.add(datas);
+          }
+        });
+      } else {
+        FunctionDart().setToast('Belum Ada Komoditas Dalam Kelompok');
+      }
+    } catch (e) {
+      FunctionDart().setToast('Belum Ada Komoditas Dalam Kelompok');
     }
   }
 
   Future setInit() async {
-    getDataSektor();
+    await getDataSektor();
   }
 
   void simpanKomoditas() async {
@@ -98,7 +121,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       DropdownButtonFormField(
         decoration: InputDecoration(
-          labelText: 'Nama Sektor',
+          labelText: 'Nama Komoditas',
           border: new OutlineInputBorder(
             borderRadius: new BorderRadius.circular(8.0),
             borderSide: new BorderSide(),
@@ -121,7 +144,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             }
           });
         },
-        value: idKomoditas,
+        value: idKomoditas ?? null,
       ),
     ]);
 
@@ -147,7 +170,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             getDataKelompok(idSektor);
           });
         },
-        value: idSektor,
+        value: idSektor ?? null,
       ),
     ]);
 
@@ -173,7 +196,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             getDataKomoditas(idSektor, idKelompok);
           });
         },
-        value: idKelompok,
+        value: idKelompok ?? null,
       ),
     ]);
 
