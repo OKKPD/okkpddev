@@ -3,6 +3,8 @@ import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../../tools/CustomWidget.dart';
+
 class InfoUsahaScreen extends StatefulWidget {
   @override
   _InfoUsahaScreen createState() => _InfoUsahaScreen();
@@ -13,6 +15,8 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   String namaUsaha = "-";
   String alamatUsaha = "-";
   String namaPemohon = "-";
+
+  var isLoading = true;
 
   @override
   void initState() {
@@ -27,6 +31,7 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
         namaUsaha = user.namaUsaha;
         alamatUsaha = user.alamatLengkap;
         namaPemohon = user.namaLengkap;
+        isLoading = false;
       });
     }
   }
@@ -36,32 +41,36 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
     return Container(
       padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
       color: Color(0xffFBFBFB),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Informasi Usaha",
-            style: TextStyle(
-                fontSize: 18, color: Colors.black54, fontFamily: "NeoSansBold"),
-          ),
-          SizedBox(height: 24.0),
-          TextDetailWidget(
-            title: "Informasi Usaha",
-            content: "$namaUsaha",
-          ),
-          TextDetailWidget(
-            title: "Alamat",
-            content: "$alamatUsaha",
-          ),
-          TextDetailWidget(
-            title: "Nama Pemohon",
-            content: "$namaPemohon",
-          ),
-          Divider(
-            color: Colors.white10,
-          ),
-        ],
-      ),
+      child: (isLoading)
+          ? CustomWidget().loadingWidget()
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Informasi Usaha",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black54,
+                      fontFamily: "NeoSansBold"),
+                ),
+                SizedBox(height: 24.0),
+                TextDetailWidget(
+                  title: "Informasi Usaha",
+                  content: "$namaUsaha",
+                ),
+                TextDetailWidget(
+                  title: "Alamat",
+                  content: "$alamatUsaha",
+                ),
+                TextDetailWidget(
+                  title: "Nama Pemohon",
+                  content: "$namaPemohon",
+                ),
+                Divider(
+                  color: Colors.white10,
+                ),
+              ],
+            ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/media/mediaBodyWidget.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class MediaBody extends StatefulWidget {
   final String name;
@@ -25,10 +26,11 @@ class _MediaBody extends State<MediaBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(this.name, style: TextStyle(color: Colors.white)),
-      ),
-      backgroundColor: Color.fromRGBO(239, 239, 239,1),
+      appBar: FunctionDart.setAppBar(this.name),
+      // AppBar(
+      //   title: Text(this.name, style: TextStyle(color: Colors.white)),
+      // ),
+      backgroundColor: Color.fromRGBO(239, 239, 239, 1),
       body: Center(child: MediaBodyWidget(this.id)),
     );
     // return Scaffold(
