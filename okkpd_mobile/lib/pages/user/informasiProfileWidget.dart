@@ -6,6 +6,8 @@ import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../tools/CustomWidget.dart';
+
 class InformasiProfilescreen extends StatefulWidget {
   @override
   _InformasiProfilescreen createState() => _InformasiProfilescreen();
@@ -28,9 +30,13 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       _namaController.text = user.namaLengkap;
       _emailController.text = prefs.getString('loginEmail');
       _jabatanController.text = prefs.getString('loginRole');
-    }
 
-    isLoading = false;
+      setState(() {
+        if (_namaController.text != '') {
+          isLoading = false;
+        }
+      });
+    }
   }
 
   @override
@@ -53,7 +59,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       } else {
         pr.show();
         UserModel user =
-            new UserModel('', '', '', '', '', '', '', '', '', '', '', '','');
+            new UserModel('', '', '', '', '', '', '', '', '', '', '', '', '');
         user.namaLengkap = _namaController.text;
         Future<bool> resultLogin = UserRepo().updateProfile(user);
         if (await resultLogin == true) {
@@ -143,7 +149,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
         title: Text("Informasi Profil", style: TextStyle(color: Colors.white)),
       ),
       body: (isLoading)
-          ? Center(child: const CircularProgressIndicator())
+          ? CustomWidget().loadingWidget()
           : Center(
               child: ListView(
                 padding: EdgeInsets.only(left: 24.0, right: 24.0),

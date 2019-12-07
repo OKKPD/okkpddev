@@ -5,6 +5,8 @@ import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
+import '../../tools/CustomWidget.dart';
+
 class MediaBodyWidget extends StatefulWidget {
   String id;
   MediaBodyWidget(this.id);
@@ -29,20 +31,14 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
   bool isHaveData = false;
 
   Future cekDokumen() async {
-    var getPict = await MediaRepo().getMediaById(this.id);
-    print(getPict);
     var getModel = await MediaRepo().getMediaById(this.id);
     setState(() {
       isLoading = false;
-
       if (getModel != null) {
         this.model.addAll(getModel);
         isHaveData = true;
       }
-
     });
-
-
   }
 
   @override
@@ -73,27 +69,24 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
       pr.show();
       bool isSuccess = true;
       isSuccess = await MediaRepo().deleteMedia(id);
-      if(isSuccess){
+      if (isSuccess) {
         cekDokumen();
         FunctionDart().setToast("Dokumen berhasil dihapus");
-      }else{
+      } else {
         FunctionDart().setToast("Dokumen gagal");
-
       }
     } catch (e) {
       print(e.toString());
     } finally {
-
       pr.dismiss();
     }
   }
 
-  Widget dataMedia(FutureBuilder track){
-    if(isLoading){
-      return Center(child: const CircularProgressIndicator());
-    }else{
-      if(isHaveData){
-
+  Widget dataMedia(FutureBuilder track) {
+    if (isLoading) {
+      return CustomWidget().loadingWidget();
+    } else {
+      if (isHaveData) {
         return ListView(
           children: <Widget>[
             SingleChildScrollView(
@@ -104,8 +97,7 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                 ])),
           ],
         );
-
-      }else{
+      } else {
         return Text("Tidak ada media");
       }
     }
@@ -171,7 +163,6 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                         child: Image.network(
                           datas.folder + datas.namaMedia,
                           fit: BoxFit.fill,
-
                         ),
                       ),
                     ],

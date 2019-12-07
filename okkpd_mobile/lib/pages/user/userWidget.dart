@@ -7,8 +7,9 @@ import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
 import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:okkpd_mobile/pages/surveiPelanggan/surveiTest.dart';
-import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
+
+import '../../tools/CustomWidget.dart';
 
 class UserBody extends StatefulWidget {
   @override
@@ -209,8 +210,6 @@ class _UserBodyState extends State<UserBody> {
       ],
     );
 
-
-
     final logout = Column(
       children: <Widget>[
         Padding(
@@ -259,34 +258,36 @@ class _UserBodyState extends State<UserBody> {
         ),
       ),
     );
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : Center(
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  color: Color.fromRGBO(225, 225, 225, 100),
-                  padding: EdgeInsets.only(top: 36, bottom: 36),
-                  child: Column(
-                    children: <Widget>[
-                      logo,
-                      profilButton,
-                      Text('$namaLengkap'),
-                    ],
-                  ),
-                ),
-                informasi,
-                ubahPassword,
-                surveiPelanggan,
-                logout,
-              ],
+    if (isLoading) {
+      return CustomWidget().loadingWidget();
+    } else {
+      return Center(
+        child: ListView(
+          children: <Widget>[
+            Container(
+              color: Color.fromRGBO(225, 225, 225, 100),
+              padding: EdgeInsets.only(top: 36, bottom: 36),
+              child: Column(
+                children: <Widget>[
+                  logo,
+                  profilButton,
+                  Text('$namaLengkap'),
+                ],
+              ),
             ),
-          );
+            informasi,
+            ubahPassword,
+            surveiPelanggan,
+            logout,
+          ],
+        ),
+      );
+    }
   }
 
-  void actionLogout() async{
+  void actionLogout() async {
     var data = await _onWillPop();
-    if(data == true){
+    if (data == true) {
       LoginRepo().logoutProcess();
       Navigator.push(
         context,
@@ -297,23 +298,22 @@ class _UserBodyState extends State<UserBody> {
 
   Future<bool> _onWillPop() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Logout'),
-        content: new Text('Apakah anda yakin ingin logout?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('Tidak'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Logout'),
+            content: new Text('Apakah anda yakin ingin logout?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('Tidak'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Ya'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Ya'),
-          ),
-        ],
-      ),
-    ) ??
+        ) ??
         Future.value(false);
   }
-
 }

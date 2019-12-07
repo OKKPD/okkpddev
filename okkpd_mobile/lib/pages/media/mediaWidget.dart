@@ -3,6 +3,8 @@ import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
 import 'package:okkpd_mobile/pages/media/mediaBody.dart';
 
+import '../../tools/CustomWidget.dart';
+
 class MediaWidget extends StatefulWidget {
   @override
   _MediaWidget createState() => _MediaWidget();
@@ -99,17 +101,18 @@ class _MediaWidget extends State<MediaWidget> {
       );
     });
 
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : ListView(
-            children: <Widget>[
-              SingleChildScrollView(
-                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                  child: Column(children: <Widget>[
-                    SizedBox(height: 24.0),
-                    track,
-                  ])),
-            ],
-          );
+    if (isLoading) {
+      return CustomWidget().loadingWidget();
+    }
+    return ListView(
+      children: <Widget>[
+        SingleChildScrollView(
+            padding: EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Column(children: <Widget>[
+              SizedBox(height: 24.0),
+              track,
+            ])),
+      ],
+    );
   }
 }

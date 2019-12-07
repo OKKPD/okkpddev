@@ -6,6 +6,8 @@ import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../tools/CustomWidget.dart';
+
 class ProfilUsahaBody extends StatefulWidget {
   @override
   _ProfilUsahaBody createState() => _ProfilUsahaBody();
@@ -38,17 +40,18 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
 
   Future setUser() async {
     user = await UserRepo().getProfile();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('loginNama', user.namaLengkap);
     namaPemohonController = user.namaLengkap;
     namaPerusahaanController = user.namaUsaha;
     jenisUsahaController = user.jenisUsaha;
     noHpController = user.noHp;
     noKtpController = user.noKtp;
     alamatPerusahaanController = user.alamatLengkap;
-    if (alamatPerusahaanController != '') {
-      isLoading = false;
-    }
+    setState(() {
+      print(user.namaLengkap);
+      if (user.namaLengkap != '') {
+        isLoading = false;
+      }
+    });
   }
 
   @override
@@ -195,32 +198,34 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
       ),
     ]);
 
-    return (isLoading)
-        ? Center(child: const CircularProgressIndicator())
-        : Center(
-            child: ListView(
-              children: <Widget>[
-                SizedBox(height: 10.0),
-                SingleChildScrollView(
-                    padding: EdgeInsets.only(left: 24.0, right: 24.0),
-                    child: Column(children: <Widget>[
-                      jenisUsaha,
-                      SizedBox(height: 20.0),
-                      namaPemohon,
-                      SizedBox(height: 20.0),
-                      jabatan,
-                      SizedBox(height: 20.0),
-                      noKtp,
-                      SizedBox(height: 20.0),
-                      noNpwp,
-                      SizedBox(height: 20.0),
-                      namaPerusahaan,
-                      SizedBox(height: 20.0),
-                      alamatPerusahaan,
-                      SizedBox(height: 20.0)
-                    ])),
-              ],
-            ),
-          );
+    if (isLoading) {
+      return CustomWidget().loadingWidget();
+    } else {
+      return Center(
+        child: ListView(
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            SingleChildScrollView(
+                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(children: <Widget>[
+                  jenisUsaha,
+                  SizedBox(height: 20.0),
+                  namaPemohon,
+                  SizedBox(height: 20.0),
+                  jabatan,
+                  SizedBox(height: 20.0),
+                  noKtp,
+                  SizedBox(height: 20.0),
+                  noNpwp,
+                  SizedBox(height: 20.0),
+                  namaPerusahaan,
+                  SizedBox(height: 20.0),
+                  alamatPerusahaan,
+                  SizedBox(height: 20.0)
+                ])),
+          ],
+        ),
+      );
+    }
   }
 }
