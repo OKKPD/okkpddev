@@ -96,9 +96,9 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       appBar: FunctionDart.setAppBar("Informasi Profil"),
       body: (isLoading)
           ? CustomWidget().loadingWidget()
-          : Center(
-              child: ListView(
-                padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          : Padding(
+              padding: EdgeInsets.only(left: 24.0, right: 24.0),
+              child: Column(
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   nama,
@@ -106,7 +106,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
                   email,
                   SizedBox(height: 20.0),
                   jabatan,
-                  SizedBox(height: 20.0),
+                  Spacer(),
                   saveButton,
                 ],
               ),

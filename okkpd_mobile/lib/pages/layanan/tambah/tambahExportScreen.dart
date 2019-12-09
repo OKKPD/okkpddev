@@ -204,8 +204,7 @@ class _TambahExportScreen extends State<TambahExportScreen> {
             SizedBox(height: 16.0),
             transportasiTransit,
             SizedBox(height: 16.0),
-            saveButton,
-            SizedBox(height: 48.0),
+            saveButton
           ],
         ),
       ),

@@ -54,15 +54,16 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: FunctionDart.setAppBar("Ubah Password"),
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0),
+      body: Padding(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: Column(
           children: <Widget>[
             SizedBox(height: 20.0),
             passwordBaru,
             SizedBox(height: 20.0),
             passwordBaru2,
             SizedBox(height: 20.0),
+            Spacer(),
             saveButton,
           ],
         ),

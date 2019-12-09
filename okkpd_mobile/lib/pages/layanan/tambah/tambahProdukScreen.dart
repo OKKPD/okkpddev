@@ -99,9 +99,9 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: FunctionDart.setAppBar("Pendaftaran Produk"),
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+      body: Padding(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: Column(
           children: <Widget>[
             SizedBox(height: 16.0),
             namaProduk,
@@ -113,9 +113,8 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
             beratBersih,
             SizedBox(height: 16.0),
             satuanKemasan,
-            SizedBox(height: 16.0),
+            Spacer(),
             saveButton,
-            SizedBox(height: 48.0),
           ],
         ),
       ),

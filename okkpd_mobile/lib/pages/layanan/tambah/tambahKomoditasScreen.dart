@@ -245,9 +245,9 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: FunctionDart.setAppBar("Tambah Komoditas"),
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+      body: Padding(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: Column(
           children: <Widget>[
             SizedBox(height: 16.0),
             namaSektor,
@@ -259,9 +259,8 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             luasLahan,
             SizedBox(height: 16.0),
             spasiforjarak,
-            SizedBox(height: 16.0),
+            Spacer(),
             saveButton,
-            SizedBox(height: 48.0),
           ],
         ),
       ),

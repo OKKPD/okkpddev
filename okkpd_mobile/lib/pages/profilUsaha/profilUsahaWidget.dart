@@ -37,20 +37,6 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
 
   bool isLoading = true;
 
-  // var location = new Location();
-
-  // Map<String, double> userLocation;
-
-  // Future<Map<String, double>> _getLocation() async {
-  //   var currentLocation = <String, double>{};
-  //   try {
-  //     currentLocation = await location.getLocation();
-  //   } catch (e) {
-  //     currentLocation = null;
-  //   }
-  //   return currentLocation;
-  // }
-
   Future setUser() async {
     user = await UserRepo().getProfile();
     namaPemohonController = user.namaLengkap;
