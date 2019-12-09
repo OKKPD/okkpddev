@@ -9,24 +9,34 @@ class DashboardLayananWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Card(
         color: Colors.white,
         child: new InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamed(layanan.route);
-            },
-            child: Center(
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: Text(
-                        layanan.namaLayanan,
-                        textAlign: TextAlign.center,
-                      ),
-                    )
-                  ]),
-            )));
+          onTap: () {
+            Navigator.of(context).pushNamed(layanan.route);
+          },
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: Image.asset(layanan.path),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                  child: Text(
+                    layanan.namaLayanan,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 9,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                ),
+              ]),
+        ));
   }
 }

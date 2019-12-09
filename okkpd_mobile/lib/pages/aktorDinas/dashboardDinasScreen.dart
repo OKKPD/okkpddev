@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/infoUserWidget.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/layananDiterimaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/menuWidget.dart';
 
 class DashboardDinasScreen extends StatefulWidget {

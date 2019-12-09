@@ -165,41 +165,41 @@ class SplashScreenState extends State<SplashScreen>
           child: _animateController.isCompleted
               ? getPages(_width)
               : AnimationBox(
-            controller: _animateController,
-            screenWidth: _width - 32.0,
-            onStartAnimation: () {
-              _startAnimation();
-            },
-          ),
+                  controller: _animateController,
+                  screenWidth: _width - 32.0,
+                  onStartAnimation: () {
+                    _startAnimation();
+                  },
+                ),
         ),
       ),
       bottomNavigationBar: _animateController.isCompleted
           ? BottomAppBar(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
-            height: 50.0,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  curIndex += 1;
-                  if (curIndex == 1) {
-                    _startSecondStepAnimation();
-                  } else if (curIndex == 2) {
-                    _startThirdStepAnimation();
-                  } else if (curIndex == 3) {
-                    _startFourStepAnimation();
-                  }
-                });
-              },
-              child: Center(
-                  child: Text(
-                    curIndex < 3 ? 'Continue' : 'Finish',
-                    style: TextStyle(fontSize: 20.0, color: Colors.cyan),
-                  )),
-            ),
-          ))
+              child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [BoxShadow(color: Colors.grey.withAlpha(200))]),
+              height: 50.0,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    curIndex += 1;
+                    if (curIndex == 1) {
+                      _startSecondStepAnimation();
+                    } else if (curIndex == 2) {
+                      _startThirdStepAnimation();
+                    } else if (curIndex == 3) {
+                      _startFourStepAnimation();
+                    }
+                  });
+                },
+                child: Center(
+                    child: Text(
+                  curIndex < 3 ? 'Continue' : 'Finish',
+                  style: TextStyle(fontSize: 20.0, color: Colors.cyan),
+                )),
+              ),
+            ))
           : null,
     );
   }
@@ -231,8 +231,8 @@ class SplashScreenState extends State<SplashScreen>
         curIndex == 0
             ? _getFirstStep()
             : curIndex == 1
-            ? _getSecondStep()
-            : curIndex == 2 ? _getThirdStep() : _getFourStep(),
+                ? _getSecondStep()
+                : curIndex == 2 ? _getThirdStep() : _getFourStep(),
       ],
     );
   }
@@ -416,15 +416,14 @@ class SplashScreenState extends State<SplashScreen>
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType: 'Unhappy',
-                                                    )));
+                                                        LastPage(
+                                                          statusType: 'Unhappy',
+                                                        )));
                                       },
                                       child: Transform.scale(
                                           scale: longPressAnimation.value,
                                           child: Hero(
                                             tag: 'Unhappy',
-
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color: Colors.orange,
@@ -435,12 +434,6 @@ class SplashScreenState extends State<SplashScreen>
                                                 height: 50.0,
                                               ),
                                             ),
-
-//                                            child: Image.asset(
-//                                              'assets/star.png',
-//                                              width: 50.0,
-//                                              height: 50.0,
-//                                            ),
                                           )),
                                     ),
                                     Padding(
@@ -457,9 +450,9 @@ class SplashScreenState extends State<SplashScreen>
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType: 'Neutral',
-                                                    )));
+                                                        LastPage(
+                                                          statusType: 'Neutral',
+                                                        )));
                                       },
                                       child: Hero(
                                         tag: 'Neutral',
@@ -486,10 +479,10 @@ class SplashScreenState extends State<SplashScreen>
                                             MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                    LastPage(
-                                                      statusType:
-                                                      'Satisfied',
-                                                    )));
+                                                        LastPage(
+                                                          statusType:
+                                                              'Satisfied',
+                                                        )));
                                       },
                                       child: Transform.scale(
                                           scale: longPressAnimation.value,
@@ -549,18 +542,18 @@ class AnimationBox extends StatelessWidget {
   AnimationBox(
       {Key key, this.controller, this.screenWidth, this.onStartAnimation})
       : width = Tween<double>(
-    begin: screenWidth,
-    end: 40.0,
-  ).animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: Interval(
-        0.1,
-        0.3,
-        curve: Curves.fastOutSlowIn,
-      ),
-    ),
-  ),
+          begin: screenWidth,
+          end: 40.0,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Interval(
+              0.1,
+              0.3,
+              curve: Curves.fastOutSlowIn,
+            ),
+          ),
+        ),
         alignment = Tween<AlignmentDirectional>(
           begin: AlignmentDirectional.bottomCenter,
           end: AlignmentDirectional.topStart,
@@ -691,7 +684,7 @@ class AnimationBox extends StatelessWidget {
                                 ? Colors.lightBlueAccent
                                 : Colors.grey,
                             borderRadius:
-                            BorderRadius.all(Radius.circular(2.0)),
+                                BorderRadius.all(Radius.circular(2.0)),
                           ),
                           height: 10.0,
                           width: (screenWidth - 15.0) / 5.0,
@@ -711,7 +704,7 @@ class AnimationBox extends StatelessWidget {
                           Container(
                               margin: EdgeInsets.only(top: 16.0),
                               child:
-                              Text('Bagaimana tampilan aplikasi mobile?')),
+                                  Text('Bagaimana tampilan aplikasi mobile?')),
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 50.0),
                             child: Text(
@@ -732,7 +725,7 @@ class AnimationBox extends StatelessWidget {
             ),
             Opacity(
               opacity:
-              controller.status == AnimationStatus.dismissed ? 1.0 : 0.0,
+                  controller.status == AnimationStatus.dismissed ? 1.0 : 0.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
@@ -772,10 +765,10 @@ class AnimationBox extends StatelessWidget {
                         child: Center(
                           child: controller.status == AnimationStatus.dismissed
                               ? Text(
-                            'Ikuti Survey',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20.0),
-                          )
+                                  'Ikuti Survey',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20.0),
+                                )
                               : null,
                         ),
                       ),

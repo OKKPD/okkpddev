@@ -198,21 +198,6 @@ class _DetailHcScreen extends State<DetailHcScreen> {
               child: Text('Simpan', style: TextStyle(color: Colors.white)),
             ),
           )
-          // padding:
-          //     EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8),
-          // child: new SizedBox(
-          //   width: double.infinity,
-          //   child: new RaisedButton(
-          //     child: Text("Simpan"),
-          //     onPressed: () {
-          //       if (hcs.length != 0) {
-          //         simpanHc();
-          //       } else {
-          //         FunctionDart().setToast('HC Tidak Boleh Kosong');
-          //       }
-          //     },
-          //   ),
-          // ))
         ],
       ),
     );

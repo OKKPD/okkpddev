@@ -11,7 +11,6 @@ class MediaWidget extends StatefulWidget {
 }
 
 class _MediaWidget extends State<MediaWidget> {
-  // List<MediaModel> model;
   final List<MediaModel> model = [];
   bool isLoading = true;
 

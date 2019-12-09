@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   location: ^1.4.1
@@ -54,7 +54,6 @@ flutter:
   uses-material-design: true
   assets:
   - assets/logo.png
-  - assets/user.png
   - assets/titik.png
   - assets/kontak.png
   - assets/angry.gif
@@ -64,6 +63,11 @@ flutter:
   - assets/favorite.png
   - assets/rejected.png
   - assets/tugas.png
+  - assets/psat.jpeg
+  - assets/hc.jpeg
+  - assets/p3.jpeg
+  - assets/p2.jpeg
+  - assets/kemas.jpeg
 
 
   # To add assets to your application, add an assets section, like this:

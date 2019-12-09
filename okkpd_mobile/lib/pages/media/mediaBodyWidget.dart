@@ -17,7 +17,6 @@ class MediaBodyWidget extends StatefulWidget {
 class _MediaBodyWidget extends State<MediaBodyWidget> {
   String id;
   _MediaBodyWidget(this.id);
-  // List<MediaBodyModel> model;
   static const String View = 'View';
   static const String Delete = 'Delete';
 

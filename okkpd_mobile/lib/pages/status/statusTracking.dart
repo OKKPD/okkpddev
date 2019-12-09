@@ -31,12 +31,12 @@ class _StatusTrackingState extends State<StatusTracking> {
 
     getLayanan('%', '0');
 
-    masterLayanan.add(MasterLayananModel("all", "Semua Layanan", ""));
-    masterLayanan.add(MasterLayananModel("prima_3", "Prima 3", ""));
-    masterLayanan.add(MasterLayananModel("prima_2", "Prima 2", ""));
-    masterLayanan.add(MasterLayananModel("psat", "PSAT", ""));
-    masterLayanan.add(MasterLayananModel("kemas", "Rumah Kemas", ""));
-    masterLayanan.add(MasterLayananModel("hc", "Health Certificate", ""));
+    masterLayanan.add(MasterLayananModel("all", "Semua Layanan", "", ""));
+    masterLayanan.add(MasterLayananModel("prima_3", "Prima 3", "", ""));
+    masterLayanan.add(MasterLayananModel("prima_2", "Prima 2", "", ""));
+    masterLayanan.add(MasterLayananModel("psat", "PSAT", "", ""));
+    masterLayanan.add(MasterLayananModel("kemas", "Rumah Kemas", "", ""));
+    masterLayanan.add(MasterLayananModel("hc", "Health Certificate", "", ""));
 
     statusLayanan.add("Semua");
     statusLayanan.add("Menunggu");

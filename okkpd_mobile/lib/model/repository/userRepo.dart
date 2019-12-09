@@ -19,7 +19,6 @@ class UserRepo {
     var url = '${Keys.APIURL}user/$idUser';
     var response = await http.get(url);
     var resp = ResponseModel.fromJson(json.decode(response.body));
-    ;
 
     if (response.statusCode != 200) {
       FunctionDart().setToast("Ups! Ada kendala pada server.");

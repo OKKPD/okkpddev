@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../tools/CustomWidget.dart';
 
 class ProfilUsahaBody extends StatefulWidget {

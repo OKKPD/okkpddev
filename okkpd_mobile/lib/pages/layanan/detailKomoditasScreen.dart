@@ -199,22 +199,6 @@ class _DetailKomoditasScreen extends State<DetailKomoditasScreen> {
               child: Text('Simpan', style: TextStyle(color: Colors.white)),
             ),
           )
-          // Container(
-          //     padding:
-          //         EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8),
-          //     child: new SizedBox(
-          //       width: double.infinity,
-          //       child: new RaisedButton(
-          //         child: Text("Simpan"),
-          //         onPressed: () {
-          //           if (komoditases.length != 0) {
-          //             simpanKomoditas();
-          //           } else {
-          //             FunctionDart().setToast('Komoditas Tidak Boleh Kosong');
-          //           }
-          //         },
-          //       ),
-          //     ))
         ],
       ),
     );

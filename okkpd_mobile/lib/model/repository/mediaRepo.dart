@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/mediaModel.dart';
@@ -83,11 +82,9 @@ class MediaRepo {
   Future<bool> deleteMedia(String data) async {
     String idUser = await getIdUser();
     var url = "${Keys.APIURL}user/$idUser/dokumen_media/delete";
-    var response = await http
-        .post(url, body: {'id_media': data});
+    var response = await http.post(url, body: {'id_media': data});
     var message = "Data berhasil dihapus";
     final values = await json.decode(response.body);
-
 
     if (response.statusCode != 200) {
       message = values['MESSAGE'];
@@ -96,7 +93,6 @@ class MediaRepo {
     } else {
       return Future.value(true);
     }
-
 
 //
 //    String idUser = await getIdUser();

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 
 class SurveiTest extends StatefulWidget {
@@ -149,13 +148,8 @@ class _SurveiTest extends State<SurveiTest> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 25.0),
                       child: TextFormField(
-                        //controller: _textEditConName,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
-                        //validator: _validateUserName,
-//                          onFieldSubmitted: (String value) {
-//                            FocusScope.of(context).requestFocus(_passwordEmail);
-//                          },
                         decoration: InputDecoration(
                             labelText: 'Kritik Dan Saran',
                             icon: Icon(Icons.add_comment)),
@@ -201,7 +195,6 @@ class _SurveiTest extends State<SurveiTest> {
   }
 
   _buildSuggestions(int i) {
-//    for (var i = 0; i < 5; i++) {
     return IconButton(
       color: Colors.orange,
       icon: _Gambar[i - 1]['active'] == true
@@ -219,11 +212,9 @@ class _SurveiTest extends State<SurveiTest> {
         setState(() {});
       },
     );
-//    }
   }
 
   _buildSuggestions2(int q) {
-//    for (var i = 0; i < 5; i++) {
     return IconButton(
       color: Colors.orange,
       icon: _Gambar[q - 1]['active'] == true
@@ -241,6 +232,5 @@ class _SurveiTest extends State<SurveiTest> {
         setState(() {});
       },
     );
-//    }
   }
 }
