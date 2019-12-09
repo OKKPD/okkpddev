@@ -31,12 +31,10 @@ class _GuestScreen extends State<GuestScreen> {
     _barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#ff6666", "Cancel", true, ScanMode.QR);
 
-    // print(_barcodeScanRes);
     TrackSertifikatModel result =
         await LayananRepo().trackSertifikat(_barcodeScanRes);
 
     setState(() {
-      // _scanBarcode = _barcodeScanRes;
       noSertikat = result.nomorSertifikat;
       tanggalKaduluarsa = result.tanggalAkhir;
       namaProduk = result.namaProduk;
@@ -44,21 +42,6 @@ class _GuestScreen extends State<GuestScreen> {
       namaUsaha = result.namaUsaha;
       statusAktif = result.statusAktif;
     });
-
-//   if(_barcodeScanRes != "") {
-//    // print(_barcodeScanRes);
-//
-//     setState(() {
-//       _scanBarcode = _barcodeScanRes;
-//    });
-//   }else{
-//
-//    // print(_barcodeScanRes);
-//
-//     setState(() {
-//       _scanBarcode = "Data kosong";
-//     });
-//   }
   }
 
   @override

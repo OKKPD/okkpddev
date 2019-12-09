@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/pages/dashboard/beritaWidget.dart';
 import 'package:okkpd_mobile/pages/guest/trackingStatusScreen.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class DashboarGuestScreen extends StatefulWidget {
   @override
@@ -47,26 +48,15 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           ),
         ]);
 
-    final saveButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
-      child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      TrackingStatusScreen(_kodeController.text)),
-            );
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Cari',
-              style: TextStyle(color: Colors.white, fontSize: 20.0)),
-        ),
-      ),
-    );
+    Future saveLayanan() async {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => TrackingStatusScreen(_kodeController.text)),
+      );
+    }
+
+    final saveButton = FunctionDart.saveButton(context, saveLayanan);
 
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -83,8 +73,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
           ),
           clipBehavior: Clip.antiAlias,
           child: new InkWell(
-            onTap: () {
-            },
+            onTap: () {},
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

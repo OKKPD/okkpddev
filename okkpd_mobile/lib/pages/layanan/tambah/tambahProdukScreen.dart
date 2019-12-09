@@ -74,69 +74,27 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
               _satuanKemasan, TextInputType.text, 'Satuan Kemasan')
         ]);
 
-    final saveButton = Padding(
-      padding: EdgeInsets.only(
-          left: 0.0, right: 0.0, top: queryData.size.height / 4.2, bottom: 0.0),
-      child: MaterialButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        minWidth: queryData.size.width,
-        height: queryData.size.height / 13,
-        onPressed: () {
-          ProdukModel exp = ProdukModel(
-              null,
-              null,
-              null,
-              _jenisKemasan.text,
-              null,
-              _namaDagang.text,
-              _namaProduk.text,
-              _beratBersih.text,
-              _satuanKemasan.text,
-              null,
-              null);
-          if (exp == null) {
-            FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
-          } else {
-            Navigator.pop(context, exp);
-          }
-        },
-        color: Color(0xff2ECC71),
-        child: Text('Tambah Data', style: TextStyle(color: Colors.white)),
-      ),
-    );
+    Future addItem() async {
+      ProdukModel exp = ProdukModel(
+          null,
+          null,
+          null,
+          _jenisKemasan.text,
+          null,
+          _namaDagang.text,
+          _namaProduk.text,
+          _beratBersih.text,
+          _satuanKemasan.text,
+          null,
+          null);
+      if (exp == null) {
+        FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
+      } else {
+        Navigator.pop(context, exp);
+      }
+    }
 
-    // final saveButton = Padding(
-    //   padding: EdgeInsets.symmetric(vertical: 0.0),
-    //   child: Material(
-    //     child: MaterialButton(
-    //       minWidth: 200.0,
-    //       height: 42.0,
-    //       onPressed: () {
-    //         ProdukModel exp = ProdukModel(
-    //             null,
-    //             null,
-    //             null,
-    //             _jenisKemasan.text,
-    //             null,
-    //             _namaDagang.text,
-    //             _namaProduk.text,
-    //             _beratBersih.text,
-    //             _satuanKemasan.text,
-    //             null,
-    //             null);
-    //         if (exp == null) {
-    //           FunctionDart().setToast('Data Form Pendaftaran Tidak Lengkap');
-    //         } else {
-    //           Navigator.pop(context, exp);
-    //         }
-    //       },
-    //       color: Colors.lightBlueAccent,
-    //       child: Text('Tambah', style: TextStyle(color: Colors.white)),
-    //     ),
-    //   ),
-    // );
+    final saveButton = FunctionDart.saveButton(context, addItem);
 
     return Scaffold(
       backgroundColor: Colors.white,

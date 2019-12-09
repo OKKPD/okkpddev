@@ -23,7 +23,6 @@ class MediaRepo {
     String idUsaha = await getIdUsaha();
     List<MediaModel> _postList = [];
     var url = '${Keys.APIURL}layanan/$idUsaha/dokumen/$kodeLayanan/$jenis';
-    print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
 
@@ -42,7 +41,6 @@ class MediaRepo {
     List<MediaModel> _postList = [];
     String idUser = await getIdUser();
     var url = '${Keys.APIURL}user/$idUser/dokumen_media/jenis/$kodeDokumen';
-    print(url);
     var response = await http.get(url);
     final values = await json.decode(response.body);
 
@@ -60,8 +58,6 @@ class MediaRepo {
   Future getStatusDokumen() async {
     String idUser = await getIdUser();
     var url = '${Keys.APIURL}user/$idUser/dokumen_media';
-    print(url);
-
     var response = await http.get(url);
     final values = await json.decode(response.body);
 
@@ -74,7 +70,6 @@ class MediaRepo {
         var sektor = MediaModel.fromJson(values['DATA'][i]);
         _postList.add(sektor);
       }
-      print(_postList);
       return _postList;
     }
   }
@@ -93,45 +88,6 @@ class MediaRepo {
     } else {
       return Future.value(true);
     }
-
-//
-//    String idUser = await getIdUser();
-//    var url = '${Keys.APIURL}user/$idUser/dokumen_media/delete';
-//
-//    Map<String, dynamic> Object;
-//    Object = {
-//      'id_media': data,
-//    };
-//    print(data);
-//    print(Uri.parse(url));
-//    print(json.encode(Object));
-//    final client = http.Client();
-//    try {
-//      final response = await client.send(http.Request("DELETE", Uri.parse(url))
-//        ..headers['Content-type'] = 'application/x-www-form-urlencoded'
-//        ..body = json.encode(Object));
-//      //
-//
-//      print(response);
-//      print('a');
-//    } catch (e) {
-//      print(e);
-//    } finally {
-//      print('b');
-//      client.close();
-//    }
-
-    // FormData formData = FormData.fromMap({"id_media": data});
-
-    // print(url);
-    // print(formData.fields);
-    // var response = await http.delete(url, body: formData);
-
-    // if (response.statusCode == 200) {
-    //   return Future.value(true);
-    // } else {
-    //   return Future.value(false);
-    // }
   }
 
   Future<bool> uploadMedia(File dokumen, String kodeDokumen) async {

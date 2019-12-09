@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/loginRepo.dart';
+import 'package:okkpd_mobile/pages/surveiPelanggan/surveiScreen.dart';
 import 'package:okkpd_mobile/pages/user/gantiPasswodWidget.dart';
 import 'package:okkpd_mobile/pages/user/informasiProfileWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:okkpd_mobile/pages/surveiPelanggan/surveiTest.dart';
 import 'package:okkpd_mobile/pages/guest/homeGuestScreen.dart';
 
 import '../../tools/CustomWidget.dart';
@@ -197,7 +197,7 @@ class _UserBodyState extends State<UserBody> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SurveiTest()),
+                    MaterialPageRoute(builder: (context) => SurveiScreen()),
                   );
                 },
               ),

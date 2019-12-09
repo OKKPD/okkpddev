@@ -60,7 +60,6 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
     noKtpController = user.noKtp;
     alamatPerusahaanController = user.alamatLengkap;
     setState(() {
-      print(user.namaLengkap);
       if (user.namaLengkap != '') {
         isLoading = false;
       }

@@ -71,22 +71,7 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
       }
     }
 
-    final saveButton = Padding(
-      padding: EdgeInsets.only(
-          left: 0.0, right: 0.0, top: queryData.size.height / 2.5, bottom: 0.0),
-      child: MaterialButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        minWidth: queryData.size.width,
-        height: queryData.size.height / 13,
-        onPressed: () {
-          updateProfile();
-        },
-        color: Color(0xff2ECC71),
-        child: Text('Simpan', style: TextStyle(color: Colors.white)),
-      ),
-    );
+    final saveButton = FunctionDart.saveButton(context, updateProfile);
 
     final nama = Column(
         crossAxisAlignment: CrossAxisAlignment.start,

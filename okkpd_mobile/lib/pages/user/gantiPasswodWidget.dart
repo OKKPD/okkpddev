@@ -37,25 +37,7 @@ class _GantiPasswordscreen extends State<GantiPasswordscreen> {
       }
     }
 
-    final saveButton = Padding(
-      padding: EdgeInsets.only(
-          left: 0.0,
-          right: 0.0,
-          top: queryData.size.height / 1.95,
-          bottom: 0.0),
-      child: MaterialButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        minWidth: queryData.size.width,
-        height: queryData.size.height / 13,
-        onPressed: () {
-          updateProfile();
-        },
-        color: Color(0xff2ECC71),
-        child: Text('Simpan', style: TextStyle(color: Colors.white)),
-      ),
-    );
+    final saveButton = FunctionDart.saveButton(context, updateProfile);
 
     final passwordBaru =
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[

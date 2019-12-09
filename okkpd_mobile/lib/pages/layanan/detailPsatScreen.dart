@@ -196,23 +196,6 @@ class _DetailPsatScreen extends State<DetailPsatScreen> {
               child: Text('Simpan', style: TextStyle(color: Colors.white)),
             ),
           )
-          // Container(
-          //     padding:
-          //         EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8),
-          //     child: new SizedBox(
-          //       width: double.infinity,
-          //       child: new RaisedButton(
-          //         child: Text("Simpan"),
-          //         onPressed: () {
-          //           print(produks.length);
-          //           if (produks.length != 0) {
-          //             simpanProduk();
-          //           } else {
-          //             FunctionDart().setToast('Produk Tidak Boleh Kosong');
-          //           }
-          //         },
-          //       ),
-          //     ))
         ],
       ),
     );
