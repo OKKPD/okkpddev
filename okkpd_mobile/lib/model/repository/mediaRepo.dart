@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
+import 'package:okkpd_mobile/model/dokumenModel.dart';
 import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,25 @@ class MediaRepo {
       return _postList;
     }
   }
+
+  Future getUploadedMedia(String kodeLayanan) async {
+    List<DokumenModel> _postList = [];
+    var url = '${Keys.APIURL}layanan/dinas/dokumen/$kodeLayanan';
+    print(url);
+    var response = await http.get(url);
+    final values = await json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var media = DokumenModel.fromJson(values['DATA'][i]);
+        _postList.add(media);
+      }
+      return _postList;
+    }
+  }
+
 
   Future getMediaById(String kodeDokumen) async {
     List<MediaModel> _postList = [];

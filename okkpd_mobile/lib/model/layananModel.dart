@@ -9,8 +9,16 @@ class LayananModel{
   final String tanggalBuat;
   final String alasanPenolakan;
   final String namaUsaha;
+  final String idUSer;
+  //tambahan untuk petugas inspeksi
+  final String inspektor;
+  final String pelaksana;
+  final String ppc;
+  final String suratTugas;
 
-  const LayananModel(this.uid,this.namaLayanan,this.kodeLayanan,this.idIdentitasUsaha,this.kodePendaftaran,this.status,this.level,this.tanggalBuat,this.alasanPenolakan,this.namaUsaha);
+  const LayananModel(this.uid,this.namaLayanan,this.kodeLayanan,this.idIdentitasUsaha,this.kodePendaftaran,
+      this.status,this.level,this.tanggalBuat,this.alasanPenolakan,this.namaUsaha,this.idUSer, this.inspektor, this.pelaksana,this.ppc,
+      this.suratTugas);
 
   LayananModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
@@ -22,7 +30,12 @@ class LayananModel{
         level = json['level'],
         tanggalBuat = json['tanggal_buat'],
         alasanPenolakan = json['alasan_penolakan'],
-        namaUsaha = json['nama_usaha'];
+        namaUsaha = json['nama_usaha'],
+        idUSer = json['id_user'],
+        inspektor = json['inspektor'],
+        pelaksana = json['pelaksana'],
+        ppc = json['ppc'],
+        suratTugas = json['surat_tugas'];
 
   Map<String, dynamic> toJson() =>
       {
@@ -35,6 +48,11 @@ class LayananModel{
         'level': level,
         'tanggal_buat': tanggalBuat,
         'alasan_penolakan': alasanPenolakan,
-        'nama_usahax': namaUsaha,
+        'nama_usaha': namaUsaha,
+        'id_user': idUSer,
+        'inspektor': inspektor,
+        'pelaksana': pelaksana,
+        'ppc': ppc,
+        'surat_tugas': suratTugas,
       };
 }

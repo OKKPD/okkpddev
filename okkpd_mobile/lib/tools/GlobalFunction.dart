@@ -28,7 +28,7 @@ class FunctionDart {
   }
 
   void setExpirationDate() async {
-    String expirationDate = "";
+    String expirationDate = this.getExpirationDate();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('expirationDate', expirationDate);
   }

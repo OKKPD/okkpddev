@@ -3,54 +3,32 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
-import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/detailUsahaScreen.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/terimaLayananScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
 
-class LayananDiterimaWidget extends StatefulWidget {
+class DaftarSuratTugasScreen extends StatefulWidget {
   @override
-  _LayananDiterimaWidgetState createState() => _LayananDiterimaWidgetState();
+  _DaftarSuratTugasScreenState createState() => _DaftarSuratTugasScreenState();
 }
 
-class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
+class _DaftarSuratTugasScreenState extends State<DaftarSuratTugasScreen> {
   List listLayanan = [];
   final List<LayananModel> layanans = [];
 
   var isLoading = true;
   var haveData = true;
-  var myRole = "";
-  var titleScreen = "eldp";
-
 
   @override
   void initState() {
     super.initState();
-    getLayananDiterima();
-    getRole();
-
+    getLayananDitolak();
   }
 
-  void getRole() async{
-    String role = await SharedPrefRepo().getRole();
-    setState(() {
-      if(role == 'm_adm'){
-        titleScreen = "Layanan Diterima";
-      }else if(role == 'm_teknis'){
-        titleScreen = "Permohonan Inspeksi";
-      }else{
-        titleScreen = "Surat Tugas";
-      }
-      myRole = role;
-    });
-  }
-
-  void getLayananDiterima() async {
-    listLayanan = await LayananRepo().getLayananDiterima();
+  void getLayananDitolak() async {
+    listLayanan = await LayananRepo().getLayananDitolak();
     setState(() {
       layanans.clear();
       if (listLayanan != null) {
@@ -68,57 +46,13 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FunctionDart.setAppBar(titleScreen),
+      appBar: FunctionDart.setAppBar("Surat Tugas"),
       body: Column(
         children: <Widget>[
           Expanded(child: _buildSuggestions()),
         ],
       ),
     );
-  }
-
-  Widget buttonUser(LayananModel layanan){
-    if(myRole == 'm_adm'){
-      return Container(
-        width: double.infinity,
-        child: Material(
-          child: MaterialButton(
-            height: 42.0,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        TerimaLayananScreen(layanan)),
-              );
-            },
-            color: Colors.lightBlueAccent,
-            child: Text('Lihat Detail',
-                style: TextStyle(color: Colors.white)),
-          ),
-        ),
-      );
-    }else{
-      return Container(
-        width: double.infinity,
-        child: Material(
-          child: MaterialButton(
-            height: 42.0,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DetailUsahaScreen(layanan)),
-              );
-            },
-            color: Colors.lightBlueAccent,
-            child: Text('Lihat Detail',
-                style: TextStyle(color: Colors.white)),
-          ),
-        ),
-      );
-    }
   }
 
   _buildSuggestions() {
@@ -165,13 +99,13 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                             ),
                             SizedBox(height: 8.0),
                             Text(
-                              "Tanggal Pengajuan : ${layanan.tanggalBuat}",
+                              "Kode Pendaftaran : ${layanan.kodePendaftaran}",
                               style: Keys().normalFontSize,
                             ),
                             SizedBox(height: 8.0),
                             Text(
-                              "Kode Pendaftaran : ${layanan.kodePendaftaran}",
-                              style: Keys().normalFontSize,
+                              "Alasan Penolakan: ${layanan.alasanPenolakan}",
+                              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 16.0),
                           ],
@@ -179,11 +113,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                       ),
                     ],
                   ),
-                  buttonUser(layanan),
 
-                  SizedBox(
-                    width: 16,
-                  ),
                 ],
               ),
             )));

@@ -58,6 +58,8 @@ class LoginWidgetState extends State<LoginWidget> {
           }
         } else {
           pr.dismiss();
+          Navigator.pop(context);
+
         }
       }
     }

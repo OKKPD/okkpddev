@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/pages/layanan/detailPsatScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/infoUsahaScreen.dart';
 
@@ -10,6 +11,23 @@ class Psatscreen extends StatefulWidget {
 }
 
 class _Psatscreen extends State<Psatscreen> {
+
+  String idUser = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getIdUser();
+
+  }
+
+  void getIdUser() async{
+    String id = await SharedPrefRepo().getIdUser();
+    setState(() {
+      idUser = id;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +36,7 @@ class _Psatscreen extends State<Psatscreen> {
       body: Container(
         child: Column(
           children: <Widget>[
-            InfoUsahaScreen(),
+            InfoUsahaScreen(idUser),
             Expanded(
               child: DetailPsatScreen("Psat"),
             )

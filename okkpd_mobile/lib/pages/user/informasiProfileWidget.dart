@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
@@ -22,7 +23,8 @@ class _InformasiProfilescreen extends State<InformasiProfilescreen> {
   bool isLoading = true;
 
   Future setUser() async {
-    UserModel user = await UserRepo().getProfile();
+    String idUser = await SharedPrefRepo().getIdUser();
+    UserModel user = await UserRepo().getProfile(idUser);
     if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       idUser = prefs.getString('loginId');

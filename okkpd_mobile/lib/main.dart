@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/theme.dart' as theme;
 import 'package:okkpd_mobile/pages/aktorDinas/dashboardDinasScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/layananDiterimaScreen.dart';
+import 'package:okkpd_mobile/pages/aktorDinas/layananDitolakScreen.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
         '/surveiPelanggan': (BuildContext context) => new SurveiScreen(),
         '/layananDiterima': (BuildContext context) =>
             new LayananDiterimaWidget(),
+        '/layananDitolak': (BuildContext context) =>
+        new LayananDitolakWidget(),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
       },

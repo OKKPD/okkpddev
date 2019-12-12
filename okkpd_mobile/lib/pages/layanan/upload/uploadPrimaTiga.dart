@@ -176,6 +176,7 @@ class _UploadPrimaTigaState extends State<UploadPrimaTiga> {
             child: Row(
               children: <Widget>[
                 Container(
+                  width: 310,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

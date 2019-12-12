@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/MenuModel.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 
 class MenuWidget extends StatefulWidget {
   @override
@@ -9,6 +10,33 @@ class MenuWidget extends StatefulWidget {
 }
 
 class _MenuWidgetState extends State<MenuWidget> {
+
+  List<MenuModel> menu = List();
+
+  @override
+  void initState() {
+    super.initState();
+    getMenu();
+  }
+
+  void getMenu() async{
+    String role = await SharedPrefRepo().getRole();
+    print('HASIL : $role');
+    setState(() {
+      if(role == "inspektor" || role == 'ppc'){
+        menu = Keys.menuInspektor;
+      }else if(role == "pelaksana"){
+        menu = Keys.menuPelaksana;
+      }else if(role == "m_teknis"){
+        menu = Keys.menuManagerTeknis;
+      }else{
+        menu = Keys.menuManagerAdmin;
+
+      }
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,9 +52,9 @@ class _MenuWidgetState extends State<MenuWidget> {
         padding: EdgeInsets.only(
             left: 12, top: 16, right: 12, bottom: 12),
         crossAxisCount: 2,
-        children: List.generate(Keys.menuManagerAdmin.length, (index) {
+        children: List.generate(menu.length, (index) {
           return Center(
-            child: menuWidget(Keys.menuManagerAdmin[index]),
+            child: menuWidget(menu[index]),
           );
         }),
       ),

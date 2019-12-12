@@ -102,7 +102,7 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
           ),
           SizedBox(height: 16.0),
           Text(
-            "${notif.body}",
+            "Alasan ditolak : ${notif.body}",
             style: Keys().normalFontSize,
           ),
         ],

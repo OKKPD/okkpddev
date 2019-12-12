@@ -14,10 +14,9 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  location: ^1.4.1
   flutter_barcode_scanner: ^0.1.7
   progress_dialog: ^1.1.0+1
   shared_preferences: ^0.5.3+4
@@ -27,6 +26,8 @@ dependencies:
   dio: 3.0.4
   loading: ^1.0.2
   intl: ^0.16.0
+  flutter_downloader: ^1.3.3
+
 
   flutter:
     sdk: flutter
@@ -54,6 +55,7 @@ flutter:
   uses-material-design: true
   assets:
   - assets/logo.png
+#  - assets/user.png
   - assets/titik.png
   - assets/kontak.png
   - assets/angry.gif
@@ -63,10 +65,10 @@ flutter:
   - assets/favorite.png
   - assets/rejected.png
   - assets/tugas.png
-  - assets/psat.jpeg
   - assets/hc.jpeg
-  - assets/p3.jpeg
   - assets/p2.jpeg
+  - assets/p3.jpeg
+  - assets/psat.jpeg
   - assets/kemas.jpeg
 
 

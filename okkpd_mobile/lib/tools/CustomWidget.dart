@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loading/indicator/ball_spin_fade_loader_indicator.dart';
 import 'package:loading/loading.dart';
 import 'package:okkpd_mobile/constants/key.dart';
+import 'package:okkpd_mobile/pages/dashboard/notifikasiScreen.dart';
 
 class CustomWidget{
 
@@ -16,5 +17,30 @@ class CustomWidget{
         Text("Loading", style: Keys().normalFontSize,)
       ],
     ),);
+  }
+
+  Widget notifIcon(context,int totalNotif) {
+    if (totalNotif > 0) {
+      return new IconButton(
+        icon: new Icon(Icons.notifications_active),
+        color: Colors.blue,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NotifikasiScreen()),
+          );
+        },
+      );
+    } else {
+      return new IconButton(
+        icon: new Icon(Icons.notifications),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NotifikasiScreen()),
+          );
+        },
+      );
+    }
   }
 }

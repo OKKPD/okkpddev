@@ -22,7 +22,25 @@ class Keys {
     const MenuModel("Layanan Diterima", "/layananDiterima",
         AssetImage('assets/accepted.png')),
     const MenuModel(
-        "Layanan Ditolak", "/hcscreen", AssetImage('assets/rejected.png')),
+        "Layanan Ditolak", "/layananDitolak", AssetImage('assets/rejected.png')),
+  ];
+
+  static const List<MenuModel> menuManagerTeknis = const <MenuModel>[
+    const MenuModel("Permohonan Inspeksi", "/layananDiterima",
+        AssetImage('assets/accepted.png')),
+  ];
+
+
+  static const List<MenuModel> menuInspektor = const <MenuModel>[
+    const MenuModel("Surat Tugas", "/layananDiterima",
+        AssetImage('assets/accepted.png')),
+  ];
+
+  static const List<MenuModel> menuPelaksana = const <MenuModel>[
+    const MenuModel("Surat Tugas", "/layananDiterima",
+        AssetImage('assets/accepted.png')),
+    const MenuModel(
+        "Unggah Dokumen Inspeksi", "/layananDitolak", AssetImage('assets/tugas.png')),
   ];
   //==== Theme ====
 

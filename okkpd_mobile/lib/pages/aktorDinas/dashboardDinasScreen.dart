@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/infoUserWidget.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/menuWidget.dart';
+import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 class DashboardDinasScreen extends StatefulWidget {
   @override
@@ -8,6 +10,28 @@ class DashboardDinasScreen extends StatefulWidget {
 }
 
 class _DashboardDinasScreenState extends State<DashboardDinasScreen> {
+
+  int totalNotif = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getNotif();
+  }
+
+  void getNotif() async {
+    Future<int> total = UserRepo().countNotifikasi();
+    if (await total > 0) {
+      setState(() {
+        totalNotif = 2;
+      });
+    } else {
+      setState(() {
+        totalNotif = 0;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,10 +40,7 @@ class _DashboardDinasScreenState extends State<DashboardDinasScreen> {
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Colors.white,
           actions: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.notifications),
-              onPressed: () {},
-            ),
+            CustomWidget().notifIcon(context, totalNotif)
           ],
           leading: new Container(),
           title: Container(

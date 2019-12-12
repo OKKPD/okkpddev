@@ -12,8 +12,12 @@ class LayananRepo {
   Future getLayanan(String kodeLayanan, String status) async {
     if (status == null) {
       status = "%";
+    }else if (status == '%') {
+      status = '%';
     } else if (status == 'Semua') {
       status = '%';
+    }else if (status == 'Lengkapi Dokumen') {
+      status = '99';
     } else if (status == 'Menunggu') {
       status = '0';
     } else if (status == 'Diterima') {
@@ -48,6 +52,24 @@ class LayananRepo {
     String role = await SharedPrefRepo().getRole();
     List<LayananModel> _postList = [];
     var url = '${Keys.APIURL}layanan/dinas/diterima/$role';
+    var response = await http.get(url);
+    final values = json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var layanan = LayananModel.fromJson(values['DATA'][i]);
+        _postList.add(layanan);
+      }
+      return _postList;
+    }
+  }
+
+  Future getLayananDitolak() async {
+    String role = await SharedPrefRepo().getIdUser();
+    List<LayananModel> _postList = [];
+    var url = '${Keys.APIURL}layanan/dinas/ditolak/$role';
     var response = await http.get(url);
     final values = json.decode(response.body);
 
@@ -118,6 +140,23 @@ class LayananRepo {
       'id_layanan': kodeLayanan,
       "id_penolak": idUser,
       "alasan_penolakan": alasanPenolakan
+    });
+    final values = await json.decode(response.body);
+    FunctionDart().setToast(values['MESSAGE']);
+
+    if (response.statusCode != 200) {
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
+  }
+
+  Future<bool> terimaLayanan(String kodeLayanan) async {
+    String role = await SharedPrefRepo().getRole();
+    var url = '${Keys.APIURL}layanan/terima';
+    var response = await http.post(url, body: {
+      'id_layanan': kodeLayanan,
+      "role": role
     });
     final values = await json.decode(response.body);
     FunctionDart().setToast(values['MESSAGE']);

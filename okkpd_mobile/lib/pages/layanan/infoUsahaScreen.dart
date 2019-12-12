@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -6,8 +7,11 @@ import 'package:progress_dialog/progress_dialog.dart';
 import '../../tools/CustomWidget.dart';
 
 class InfoUsahaScreen extends StatefulWidget {
+  final String idUSer;
+  InfoUsahaScreen(this.idUSer);
+
   @override
-  _InfoUsahaScreen createState() => _InfoUsahaScreen();
+  _InfoUsahaScreen createState() => _InfoUsahaScreen(this.idUSer);
 }
 
 class _InfoUsahaScreen extends State<InfoUsahaScreen> {
@@ -15,8 +19,11 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   String namaUsaha = "-";
   String alamatUsaha = "-";
   String namaPemohon = "-";
+  String idUser = "";
 
   var isLoading = true;
+
+  _InfoUsahaScreen(this.idUser);
 
   @override
   void initState() {
@@ -25,7 +32,10 @@ class _InfoUsahaScreen extends State<InfoUsahaScreen> {
   }
 
   Future setUser() async {
-    UserModel user = await UserRepo().getProfile();
+    if(await SharedPrefRepo().getRole() == 'pelaku'){
+      idUser = await SharedPrefRepo().getIdUser();
+    }
+    UserModel user = await UserRepo().getProfile(idUser);
     if (user != null) {
       setState(() {
         namaUsaha = user.namaUsaha;

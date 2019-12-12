@@ -29,16 +29,17 @@ class _StatusTrackingState extends State<StatusTracking> {
   void initState() {
     super.initState();
 
-    getLayanan('%', '0');
+    getLayanan('%', '%');
 
-    masterLayanan.add(MasterLayananModel("all", "Semua Layanan", "", ""));
-    masterLayanan.add(MasterLayananModel("prima_3", "Prima 3", "", ""));
-    masterLayanan.add(MasterLayananModel("prima_2", "Prima 2", "", ""));
-    masterLayanan.add(MasterLayananModel("psat", "PSAT", "", ""));
-    masterLayanan.add(MasterLayananModel("kemas", "Rumah Kemas", "", ""));
-    masterLayanan.add(MasterLayananModel("hc", "Health Certificate", "", ""));
+    masterLayanan.add(MasterLayananModel("%", "Semua Layanan", "",""));
+    masterLayanan.add(MasterLayananModel("prima_3", "Prima 3", "",""));
+    masterLayanan.add(MasterLayananModel("prima_2", "Prima 2", "",""));
+    masterLayanan.add(MasterLayananModel("psat", "PSAT", "",""));
+    masterLayanan.add(MasterLayananModel("kemas", "Rumah Kemas", "",""));
+    masterLayanan.add(MasterLayananModel("hc", "Health Certificate", "",""));
 
     statusLayanan.add("Semua");
+    statusLayanan.add("Lengkapi Dokumen");
     statusLayanan.add("Menunggu");
     statusLayanan.add("Diterima");
     statusLayanan.add("Ditolak");
@@ -53,7 +54,7 @@ class _StatusTrackingState extends State<StatusTracking> {
         for (var datas in listLayanan) {
           layanans.add(datas);
         }
-      } else {
+      }else{
         haveData = false;
       }
       isLoading = false;
@@ -169,19 +170,17 @@ class _StatusTrackingState extends State<StatusTracking> {
   }
 
   _buildSuggestions() {
-    if (isLoading) {
-      return CustomWidget().loadingWidget();
-    } else {
-      if (haveData) {
+    if(isLoading){
+     return CustomWidget().loadingWidget();
+    }else {
+      if(haveData) {
         return ListView.builder(
             itemCount: layanans.length,
             itemBuilder: (context, i) {
               return _buildRow(layanans[i], i);
             });
-      } else {
-        return Center(
-          child: Text("Tidak ada data yang ditampilkan"),
-        );
+      }else{
+        return Center(child: Text("Tidak ada data yang ditampilkan"),);
       }
     }
   }
@@ -252,7 +251,7 @@ class _StatusTrackingState extends State<StatusTracking> {
         onPressed: () {
           selectLayanan(layananModel);
         },
-        child: Text("Lengkapi Dokumen"),
+        child: Text("Unggah Dokumen"),
       );
     } else if (layananModel.status == '2') {
       return new Text("Alasan Penolakan: ${layananModel.alasanPenolakan}",

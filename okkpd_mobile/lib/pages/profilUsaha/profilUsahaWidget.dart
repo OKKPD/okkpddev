@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import '../../tools/CustomWidget.dart';
@@ -38,7 +39,8 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   bool isLoading = true;
 
   Future setUser() async {
-    user = await UserRepo().getProfile();
+    String idUser = await SharedPrefRepo().getIdUser();
+    user = await UserRepo().getProfile(idUser);
     namaPemohonController = user.namaLengkap;
     namaPerusahaanController = user.namaUsaha;
     jenisUsahaController = user.jenisUsaha;

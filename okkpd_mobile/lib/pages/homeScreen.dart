@@ -8,6 +8,7 @@ import 'package:okkpd_mobile/pages/user/userScreen.dart';
 import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/status/statusScreen.dart';
 import 'package:okkpd_mobile/pages/media/mediaScreen.dart';
+import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 class HomeScreen extends StatefulWidget {
   final String setIndex;
@@ -59,30 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget notifIcon() {
-    if (totalNotif > 0) {
-      return new IconButton(
-        icon: new Icon(Icons.notifications_active),
-        color: Colors.blue,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NotifikasiScreen()),
-          );
-        },
-      );
-    } else {
-      return new IconButton(
-        icon: new Icon(Icons.notifications),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NotifikasiScreen()),
-          );
-        },
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Colors.white,
           actions: <Widget>[
-            notifIcon(),
+            CustomWidget().notifIcon(context, totalNotif)
           ],
           leading: new Container(),
           title: Text(appBarTitle, style: TextStyle(color: Colors.black87)),

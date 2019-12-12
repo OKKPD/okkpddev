@@ -14,8 +14,7 @@ class UserRepo {
     return Future.value(prefs.getString('loginId'));
   }
 
-  Future<UserModel> getProfile() async {
-    var idUser = await getIdProfile();
+  Future<UserModel> getProfile(String idUser) async {
     var url = '${Keys.APIURL}user/$idUser';
     var response = await http.get(url);
     var resp = ResponseModel.fromJson(json.decode(response.body));
