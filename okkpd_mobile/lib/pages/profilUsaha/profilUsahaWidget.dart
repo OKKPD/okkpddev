@@ -93,7 +93,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
       setState(() {
         _currentPosition = position;
         longitude = _currentPosition.longitude.toString();
-        longitude = _currentPosition.latitude.toString();
+        latitude = _currentPosition.latitude.toString();
         UserRepo.updateLocation(longitude, latitude);
       });
     }).catchError((e) {
