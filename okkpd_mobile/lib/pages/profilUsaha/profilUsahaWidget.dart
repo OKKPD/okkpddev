@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import '../../tools/CustomWidget.dart';
 
 class ProfilUsahaBody extends StatefulWidget {
@@ -36,6 +38,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   Color clrNpwp = Colors.redAccent;
   Color clrKopSurat = Colors.redAccent;
 
+  Position _currentPosition;
   bool isLoading = true;
 
   Future setUser() async {
@@ -59,6 +62,27 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
     setUser();
     super.initState();
   }
+
+  Future setLocation() async {
+    FunctionDart().setToast("LOKASI");
+    _getCurrentLocation();
+  }
+
+  _getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    }).catchError((e) {
+      print('ajsdhasd');
+      print(e);
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -249,6 +273,18 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
                   SizedBox(height: 20.0),
                   alamatPerusahaan,
                   SizedBox(height: 20.0),
+                  if (_currentPosition != null)
+                    Text(
+                        "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
+                  FlatButton(
+                    child: Text("Get location"),
+                    onPressed: () {
+                      _getCurrentLocation();
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+
+                  FunctionDart.customButton(context,setLocation,"Update Lokasi")
                   // koordinat
                 ])),
           ],

@@ -56,7 +56,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
       );
     }
 
-    final saveButton = FunctionDart.saveButton(context, saveLayanan);
+    final saveButton = FunctionDart.customButton(context, saveLayanan,"Cari Layanan");
 
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -142,7 +142,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               child: kodeRegistrasi,
             ),
             Container(
-              padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+              padding: EdgeInsets.only(left: 16, right: 16, bottom: 24,top:16),
               child: saveButton,
             ),
             SizedBox(height: 8.0),

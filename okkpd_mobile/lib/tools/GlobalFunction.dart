@@ -95,9 +95,9 @@ class FunctionDart {
   }
 
   static Align saveButton(
-    BuildContext context,
-    VoidCallback action,
-  ) {
+      BuildContext context,
+      VoidCallback action,
+      ) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
@@ -114,6 +114,32 @@ class FunctionDart {
           onPressed: () => action(),
           color: Color(0xff2ECC71),
           child: Text('Simpan', style: TextStyle(color: Colors.white)),
+        ),
+      ),
+    );
+  }
+
+  static Align customButton(
+      BuildContext context,
+      VoidCallback action,
+      String text
+      ) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: EdgeInsets.only(left: 0.0, right: 0.0, top: 0.0, bottom: 22.0),
+        child: MaterialButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          minWidth: queryData.size.width,
+          height: queryData.size.height / 13,
+          onPressed: () => action(),
+          color: Color(0xff2ECC71),
+          child: Text(text, style: TextStyle(color: Colors.white)),
         ),
       ),
     );
