@@ -45,7 +45,7 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FunctionDart.setAppBar("Notofikasi"),
+      appBar: FunctionDart.setAppBar("Notifikasi"),
       body: _buildSuggestions(),
     );
   }
@@ -102,7 +102,7 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
           ),
           SizedBox(height: 16.0),
           Text(
-            "Alasan ditolak : ${notif.body}",
+            "${notif.body}",
             style: Keys().normalFontSize,
           ),
         ],

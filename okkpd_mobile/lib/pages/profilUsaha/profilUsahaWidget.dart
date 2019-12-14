@@ -273,15 +273,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
                   SizedBox(height: 20.0),
                   alamatPerusahaan,
                   SizedBox(height: 20.0),
-                  if (_currentPosition != null)
-                    Text(
-                        "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
-                  FlatButton(
-                    child: Text("Get location"),
-                    onPressed: () {
-                      _getCurrentLocation();
-                    },
-                  ),
+
                   SizedBox(height: 20.0),
 
                   FunctionDart.customButton(context,setLocation,"Update Lokasi")

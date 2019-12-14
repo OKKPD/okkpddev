@@ -22,8 +22,7 @@ class CustomWidget{
   Widget notifIcon(context,int totalNotif) {
     if (totalNotif > 0) {
       return new IconButton(
-        icon: new Icon(Icons.notifications_active),
-        color: Colors.blue,
+        icon: Image(height: 48, image: AssetImage('assets/notification_active.png')),
         onPressed: () {
           Navigator.push(
             context,
@@ -33,7 +32,7 @@ class CustomWidget{
       );
     } else {
       return new IconButton(
-        icon: new Icon(Icons.notifications),
+        icon: Image(height: 48, image: AssetImage('assets/notification.png')),
         onPressed: () {
           Navigator.push(
             context,
