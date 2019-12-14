@@ -8,6 +8,7 @@ import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import '../../tools/CustomWidget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilUsahaBody extends StatefulWidget {
   @override
@@ -39,6 +40,8 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   Color clrKopSurat = Colors.redAccent;
 
   Position _currentPosition;
+  String longitude;
+  String latitude;
   bool isLoading = true;
 
   Future setUser() async {
@@ -50,6 +53,8 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
     noHpController = user.noHp;
     noKtpController = user.noKtp;
     alamatPerusahaanController = user.alamatLengkap;
+    longitude = user.longitude;
+    latitude = user.latitude;
     setState(() {
       if (user.namaLengkap != '') {
         isLoading = false;
@@ -64,8 +69,19 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   }
 
   Future setLocation() async {
-    FunctionDart().setToast("LOKASI");
     _getCurrentLocation();
+  }
+
+  Future openMap() async {
+    double lat = double.parse(latitude);
+    double long = double.parse(longitude);
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
   }
 
   _getCurrentLocation() {
@@ -76,13 +92,14 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
         .then((Position position) {
       setState(() {
         _currentPosition = position;
+        longitude = _currentPosition.longitude.toString();
+        longitude = _currentPosition.latitude.toString();
+        UserRepo.updateLocation(longitude, latitude);
       });
     }).catchError((e) {
-      print('ajsdhasd');
       print(e);
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -222,33 +239,6 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
       ),
     ]);
 
-    // final koordinat =
-    //     Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-    //   userLocation == null
-    //       ? CircularProgressIndicator()
-    //       : Text("Location:" +
-    //           userLocation["latitude"].toString() +
-    //           " " +
-    //           userLocation["longitude"].toString()),
-    //   Padding(
-    //     padding: const EdgeInsets.all(8.0),
-    //     child: RaisedButton(
-    //       onPressed: () {
-    //         _getLocation().then((value) {
-    //           setState(() {
-    //             userLocation = value;
-    //           });
-    //         });
-    //       },
-    //       color: Colors.blue,
-    //       child: Text(
-    //         "Get Location",
-    //         style: TextStyle(color: Colors.white),
-    //       ),
-    //     ),
-    //   ),
-    // ]);
-
     if (isLoading) {
       return CustomWidget().loadingWidget();
     } else {
@@ -273,19 +263,13 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
                   SizedBox(height: 20.0),
                   alamatPerusahaan,
                   SizedBox(height: 20.0),
-                  if (_currentPosition != null)
-                    Text(
-                        "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
-                  FlatButton(
-                    child: Text("Get location"),
-                    onPressed: () {
-                      _getCurrentLocation();
-                    },
-                  ),
+                  if (latitude != '' && longitude != '')
+                    Text("LAT:" + latitude + ", LNG:" + longitude),
                   SizedBox(height: 20.0),
-
-                  FunctionDart.customButton(context,setLocation,"Update Lokasi")
-                  // koordinat
+                  FunctionDart.customButton(
+                      context, setLocation, "Update Lokasi"),
+                  if (latitude != '' && longitude != '')
+                    FunctionDart.customButton(context, openMap, "Lihat Di Map")
                 ])),
           ],
         ),

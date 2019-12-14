@@ -9,7 +9,7 @@ import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepo {
-  Future<String> getIdProfile() async {
+  static Future<String> getIdProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return Future.value(prefs.getString('loginId'));
   }
@@ -99,6 +99,26 @@ class UserRepo {
     if (response.statusCode == 200) {
       return Future.value(true);
     } else {
+      return Future.value(false);
+    }
+  }
+
+  static Future<bool> updateLocation(String long, String lat) async {
+    var idUser = await getIdProfile();
+    var url = '${Keys.APIURL}user/$idUser/location/update';
+    var setBody = {"latitude": lat, "longitude": long};
+
+    var response = await http.post(url,
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: setBody);
+
+    var resp = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      FunctionDart().setToast(resp['MESSAGE']);
+      return Future.value(true);
+    } else {
+      FunctionDart().setToast(resp['MESSAGE']);
       return Future.value(false);
     }
   }

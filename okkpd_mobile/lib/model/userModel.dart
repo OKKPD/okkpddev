@@ -12,6 +12,8 @@ class UserModel {
   String namaUsaha;
   String noHp;
   String namaRole;
+  String longitude;
+  String latitude;
 
   UserModel(
       this.username,
@@ -26,7 +28,9 @@ class UserModel {
       this.namaUsaha,
       this.jenisUsaha,
       this.noHp,
-      this.namaRole);
+      this.namaRole,
+      this.longitude,
+      this.latitude);
 
   UserModel.fromJson(Map<String, dynamic> json)
       : username = json['username'],
@@ -41,7 +45,9 @@ class UserModel {
         jenisUsaha = json['jenis_usaha'],
         noHp = json['no_hp_pemohon'],
         folder = json['folder'],
-        namaRole = json['nama_role'];
+        namaRole = json['nama_role'],
+        longitude = json['longitude'],
+        latitude = json['latitude'];
 
   Map<String, dynamic> toJson() => {
         'username': username,
@@ -57,5 +63,7 @@ class UserModel {
         'jenis_usaha': jenisUsaha,
         'no_hp_pemohon': noHp,
         'nama_role': namaRole,
+        'longitude': longitude,
+        'latitude': latitude,
       };
 }
