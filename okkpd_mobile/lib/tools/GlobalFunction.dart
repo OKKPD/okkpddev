@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FunctionDart {
   void setToast(String kata) {
@@ -86,6 +87,18 @@ class FunctionDart {
     );
   }
 
+  static openMap(String latitude, String longitude) async {
+    double lat = double.parse(latitude);
+    double long = double.parse(longitude);
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+
   static AppBar setAppBar(String text) {
     return AppBar(
       leading: BackButton(color: Colors.black),
@@ -95,9 +108,9 @@ class FunctionDart {
   }
 
   static Align saveButton(
-      BuildContext context,
-      VoidCallback action,
-      ) {
+    BuildContext context,
+    VoidCallback action,
+  ) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
@@ -120,10 +133,7 @@ class FunctionDart {
   }
 
   static Align customButton(
-      BuildContext context,
-      VoidCallback action,
-      String text
-      ) {
+      BuildContext context, VoidCallback action, String text) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 

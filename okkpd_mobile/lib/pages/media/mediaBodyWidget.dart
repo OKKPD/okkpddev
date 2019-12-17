@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:okkpd_mobile/model/mediaModel.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
+import 'package:okkpd_mobile/pages/modal/modalImagePage.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -85,6 +86,15 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
     }
   }
 
+  void showImage(url) {
+    if (url != '') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ModalImagePage(url)),
+      );
+    }
+  }
+
   Widget dataMedia(FutureBuilder track) {
     if (isLoading) {
       return CustomWidget().loadingWidget();
@@ -163,9 +173,14 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                       Container(
                         alignment: Alignment.center,
                         color: Colors.transparent,
-                        child: Image.network(
-                          datas.folder + datas.namaMedia,
-                          fit: BoxFit.fill,
+                        child: FlatButton(
+                          onPressed: () =>
+                              showImage(datas.folder + datas.namaMedia),
+                          padding: EdgeInsets.all(0.0),
+                          child: Image.network(
+                            datas.folder + datas.namaMedia,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ],

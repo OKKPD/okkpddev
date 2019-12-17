@@ -8,9 +8,9 @@ import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
+import 'package:okkpd_mobile/pages/modal/modalImagePage.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-
 
 class TerimaLayananScreen extends StatefulWidget {
   final LayananModel layanan;
@@ -18,7 +18,8 @@ class TerimaLayananScreen extends StatefulWidget {
   TerimaLayananScreen(this.layanan);
 
   @override
-  _TerimaLayananScreenState createState() => _TerimaLayananScreenState(this.layanan);
+  _TerimaLayananScreenState createState() =>
+      _TerimaLayananScreenState(this.layanan);
 }
 
 void _portraitModeOnly() {
@@ -46,10 +47,18 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
     getUploadedMedia();
   }
 
+  void showImage(url) {
+    if (url != '') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ModalImagePage(url)),
+      );
+    }
+  }
+
   void getUploadedMedia() async {
     listDokumen = await MediaRepo().getUploadedMedia(layanan.uid);
     setState(() {
-
       dokumens.clear();
       if (listDokumen != null) {
         haveData = true;
@@ -63,75 +72,79 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
     });
   }
 
-  Widget cardDokumen(DokumenModel dokumen){
+  Widget cardDokumen(DokumenModel dokumen) {
     return Card(
         color: Colors.grey,
         child: Column(
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Image.network(
-                dokumen.folder + dokumen.file,
-                fit: BoxFit.cover,
-
+              child: FlatButton(
+                onPressed: () => showImage(dokumen.folder + dokumen.file),
+                padding: EdgeInsets.all(0.0),
+                child: Image.network(
+                  dokumen.folder + dokumen.file,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             Container(
               width: double.infinity,
               color: Colors.white,
-              padding: EdgeInsets.fromLTRB(16,8,16,8),
-              child: Text(dokumen.namaDokumen, style: Keys().normalFontSize,),
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Text(
+                dokumen.namaDokumen,
+                style: Keys().normalFontSize,
+              ),
             )
           ],
-        )
-    );
+        ));
   }
 
-  Widget createView(){
-    if(isLoading){
+  Widget createView() {
+    if (isLoading) {
       return CustomWidget().loadingWidget();
-    }else {
-      if(haveData){
+    } else {
+      if (haveData) {
         return GridView.count(
           shrinkWrap: false,
           crossAxisSpacing: 4,
           mainAxisSpacing: 4,
-          padding: EdgeInsets.only(
-              left: 12, top: 16, right: 12, bottom: 12),
+          padding: EdgeInsets.only(left: 12, top: 16, right: 12, bottom: 12),
           crossAxisCount: 2,
           children: List.generate(dokumens.length, (index) {
             return cardDokumen(dokumens[index]);
           }),
         );
-      }else{
+      } else {
         return Text("Tidak Ada Data");
       }
     }
   }
 
-  Future<bool> dialogTerima(){
+  Future<bool> dialogTerima() {
     return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Terima Dokumen'),
-        content: new Text('Apakah anda yakin untuk menerima layanan ini?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('Tidak'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Terima Dokumen'),
+            content: new Text('Apakah anda yakin untuk menerima layanan ini?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('Tidak'),
+              ),
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Ya'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Ya'),
-          ),
-        ],
-      ),
-    ) ??
+        ) ??
         false;
   }
 
-  void terimaDokumen() async{
-    if(await dialogTerima()){
+  void terimaDokumen() async {
+    if (await dialogTerima()) {
       pr.show();
       if (await LayananRepo().terimaLayanan(layanan.uid)) {
         Navigator.pop(context);
@@ -140,7 +153,7 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
     }
   }
 
-  Widget buttonTerimaTolak(){
+  Widget buttonTerimaTolak() {
     return Row(
       children: <Widget>[
         Expanded(
@@ -151,8 +164,7 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
                 terimaDokumen();
               },
               color: Colors.lightBlueAccent,
-              child: Text('Terima',
-                  style: TextStyle(color: Colors.white)),
+              child: Text('Terima', style: TextStyle(color: Colors.white)),
             ),
           ),
         ),
@@ -164,32 +176,32 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          TolakLayananScreen(layanan)),
+                      builder: (context) => TolakLayananScreen(layanan)),
                 );
               },
               color: Colors.amberAccent,
-              child: Text('Tolak',
-                  style: TextStyle(color: Colors.white)),
+              child: Text('Tolak', style: TextStyle(color: Colors.white)),
             ),
           ),
         ),
-
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    pr = new ProgressDialog(context,type: ProgressDialogType.Normal, isDismissible: true);
+    pr = new ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: true);
 
     _portraitModeOnly();
     return Scaffold(
-      appBar: AppBar(title: Text("Detail Dokumen    "),),
+      appBar: AppBar(
+        title: Text("Detail Dokumen    "),
+      ),
       body: Container(
         child: createView(),
       ),
-      bottomSheet:buttonTerimaTolak(),
+      bottomSheet: buttonTerimaTolak(),
     );
   }
 }

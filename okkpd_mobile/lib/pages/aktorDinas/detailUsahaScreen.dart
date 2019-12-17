@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
@@ -20,6 +18,8 @@ class _DetailUsahaScreen extends State<DetailUsahaScreen> {
   _DetailUsahaScreen(this.layanan);
 
   String myRole;
+  String latitude;
+  String longitude;
 
   @override
   void initState() {
@@ -27,100 +27,122 @@ class _DetailUsahaScreen extends State<DetailUsahaScreen> {
     getRole();
   }
 
-  void getRole() async{
+  void getRole() async {
     String role = await SharedPrefRepo().getRole();
     setState(() {
       myRole = role;
+      this.latitude = layanan.latitude;
+      this.longitude = layanan.longitude;
+
+      print(this.latitude);
+      print(this.longitude);
     });
   }
 
-  Widget contentUser(){
+  Future openMap() async {
+    FunctionDart.openMap(this.latitude, this.longitude);
+  }
+
+  Widget contentUser() {
     String pelaksana = layanan.pelaksana;
     String inspektor = layanan.inspektor;
     String ppc = layanan.ppc;
 
-    if(layanan.pelaksana == null){
+    if (layanan.pelaksana == null) {
       pelaksana = "-";
     }
-    if(layanan.inspektor == null){
+    if (layanan.inspektor == null) {
       inspektor = "-";
     }
-    if(layanan.ppc == null){
+    if (layanan.ppc == null) {
       ppc = "-";
     }
 
-    if(myRole == 'm_teknis'){
+    if (myRole == 'm_teknis') {
       return Container(
-        alignment:Alignment.centerLeft,
+        alignment: Alignment.centerLeft,
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text("Informasi Petugas",  style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),),
-            SizedBox(height: 16,),
+            Text(
+              "Informasi Petugas",
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black54,
+                  fontFamily: "NeoSansBold"),
+            ),
+            SizedBox(
+              height: 16,
+            ),
             Text("Inspektor : ${inspektor}"),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Text("Pelaksana : ${pelaksana}"),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Text("PPC : ${ppc}"),
           ],
         ),
       );
-    }else if(myRole == 'inspektor'  || myRole == 'pelaksana' || myRole == 'ppc'){
+    } else if (myRole == 'inspektor' ||
+        myRole == 'pelaksana' ||
+        myRole == 'ppc') {
       return Container(
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Unduh Surat Tugas",  style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontFamily: "NeoSansBold"),),
-            SizedBox(height: 16,),
+            Text(
+              "Unduh Surat Tugas",
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black54,
+                  fontFamily: "NeoSansBold"),
+            ),
+            SizedBox(
+              height: 16,
+            ),
             Container(
               width: double.infinity,
               child: Material(
                 child: MaterialButton(
                   height: 42.0,
                   onPressed: () {
-                    String url = "http://yogaadi.xyz/okkpd/upload/Dokumen_Usaha/${layanan.namaUsaha}/${layanan.kodePendaftaran}/${layanan.suratTugas}";
+                    String url =
+                        "http://yogaadi.xyz/okkpd/upload/Dokumen_Usaha/${layanan.namaUsaha}/${layanan.kodePendaftaran}/${layanan.suratTugas}";
                     unduh(url, layanan.suratTugas);
                   },
                   color: Colors.lightBlueAccent,
-                  child: Text('Unduh',
+                  child: Text('Unduh', style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: Material(
+                child: MaterialButton(
+                  height: 42.0,
+                  onPressed: () => openMap(),
+                  color: Colors.lightBlueAccent,
+                  child: Text('Lihat Di Map',
                       style: TextStyle(color: Colors.white)),
                 ),
               ),
             ),
           ],
-
         ),
       );
-
-    }else{
+    } else {
       return Text("");
     }
   }
 
-  void unduh(String url, String filename) async{
-
+  void unduh(String url, String filename) async {
     FunctionDart().setToast("Masih belum bisa download");
-//    var permissions = await Permission.getPermissionsStatus([PermissionName.Storage, PermissionName.Storage]);
-
-//    Permission.openSettings;
-
-//    HttpClient client = new HttpClient();
-//    client.getUrl(Uri.parse(url))
-//        .then((HttpClientRequest request) {
-//      return request.close();
-//    })
-//        .then((HttpClientResponse response) {
-//      response.pipe(new File('./${filename}').openWrite());
-//    });
   }
 
   @override

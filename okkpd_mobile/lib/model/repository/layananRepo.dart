@@ -12,11 +12,11 @@ class LayananRepo {
   Future getLayanan(String kodeLayanan, String status) async {
     if (status == null) {
       status = "%";
-    }else if (status == '%') {
+    } else if (status == '%') {
       status = '%';
     } else if (status == 'Semua') {
       status = '%';
-    }else if (status == 'Lengkapi Dokumen') {
+    } else if (status == 'Lengkapi Dokumen') {
       status = '99';
     } else if (status == 'Menunggu') {
       status = '0';
@@ -154,10 +154,8 @@ class LayananRepo {
   Future<bool> terimaLayanan(String kodeLayanan) async {
     String role = await SharedPrefRepo().getRole();
     var url = '${Keys.APIURL}layanan/terima';
-    var response = await http.post(url, body: {
-      'id_layanan': kodeLayanan,
-      "role": role
-    });
+    var response =
+        await http.post(url, body: {'id_layanan': kodeLayanan, "role": role});
     final values = await json.decode(response.body);
     FunctionDart().setToast(values['MESSAGE']);
 

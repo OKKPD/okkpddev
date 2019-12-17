@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
@@ -105,7 +104,8 @@ class _LayananDitolakWidgetState extends State<LayananDitolakWidget> {
                             SizedBox(height: 8.0),
                             Text(
                               "Alasan Penolakan: ${layanan.alasanPenolakan}",
-                              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 16.0),
                           ],
@@ -113,7 +113,6 @@ class _LayananDitolakWidgetState extends State<LayananDitolakWidget> {
                       ),
                     ],
                   ),
-
                 ],
               ),
             )));

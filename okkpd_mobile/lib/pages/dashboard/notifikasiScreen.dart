@@ -27,7 +27,7 @@ class _NotifikasiScreenState extends State<NotifikasiScreen> {
 
   void getNotifikasi() async {
     var list = await UserRepo().getNotifikasi();
-    var readAll = await UserRepo().readAllNotif();
+    // var readAll = await UserRepo().readAllNotif();
     setState(() {
       listNotifikasi.clear();
       if (list != null) {

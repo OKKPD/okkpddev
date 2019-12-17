@@ -1,4 +1,4 @@
-class LayananModel{
+class LayananModel {
   final String uid;
   final String kodeLayanan;
   final String namaLayanan;
@@ -15,10 +15,28 @@ class LayananModel{
   final String pelaksana;
   final String ppc;
   final String suratTugas;
+  final String latitude;
+  final String longitude;
 
-  const LayananModel(this.uid,this.namaLayanan,this.kodeLayanan,this.idIdentitasUsaha,this.kodePendaftaran,
-      this.status,this.level,this.tanggalBuat,this.alasanPenolakan,this.namaUsaha,this.idUSer, this.inspektor, this.pelaksana,this.ppc,
-      this.suratTugas);
+  const LayananModel(
+    this.uid,
+    this.namaLayanan,
+    this.kodeLayanan,
+    this.idIdentitasUsaha,
+    this.kodePendaftaran,
+    this.status,
+    this.level,
+    this.tanggalBuat,
+    this.alasanPenolakan,
+    this.namaUsaha,
+    this.idUSer,
+    this.inspektor,
+    this.pelaksana,
+    this.ppc,
+    this.suratTugas,
+    this.latitude,
+    this.longitude,
+  );
 
   LayananModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
@@ -35,10 +53,11 @@ class LayananModel{
         inspektor = json['inspektor'],
         pelaksana = json['pelaksana'],
         ppc = json['ppc'],
-        suratTugas = json['surat_tugas'];
+        suratTugas = json['surat_tugas'],
+        latitude = json['latitude'],
+        longitude = json['longitude'];
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'uid': uid,
         'nama_layanan': namaLayanan,
         'kode_layanan': kodeLayanan,
@@ -54,5 +73,7 @@ class LayananModel{
         'pelaksana': pelaksana,
         'ppc': ppc,
         'surat_tugas': suratTugas,
+        'latitude': latitude,
+        'longitude': longitude,
       };
 }

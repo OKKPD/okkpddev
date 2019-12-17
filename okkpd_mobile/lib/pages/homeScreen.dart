@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/pages/dashboard/dashboardScreen.dart';
-import 'package:okkpd_mobile/pages/dashboard/notifikasiScreen.dart';
 import 'package:okkpd_mobile/pages/user/userScreen.dart';
 import 'package:okkpd_mobile/pages/profilUsaha/profilUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/status/statusScreen.dart';
@@ -60,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(
@@ -70,9 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 3,
           iconTheme: IconThemeData(color: Color.fromRGBO(0, 0, 0, 87)),
           backgroundColor: Colors.white,
-          actions: <Widget>[
-            CustomWidget().notifIcon(context, totalNotif)
-          ],
+          actions: <Widget>[CustomWidget().notifIcon(context, totalNotif)],
           leading: new Container(),
           title: Text(appBarTitle, style: TextStyle(color: Colors.black87)),
           centerTitle: true,

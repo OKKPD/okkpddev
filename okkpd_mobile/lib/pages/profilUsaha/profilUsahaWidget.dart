@@ -8,7 +8,6 @@ import 'package:okkpd_mobile/model/repository/userRepo.dart';
 import 'package:okkpd_mobile/model/userModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import '../../tools/CustomWidget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProfilUsahaBody extends StatefulWidget {
   @override
@@ -73,15 +72,7 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   }
 
   Future openMap() async {
-    double lat = double.parse(latitude);
-    double long = double.parse(longitude);
-    String googleUrl =
-        'https://www.google.com/maps/search/?api=1&query=$lat,$long';
-    if (await canLaunch(googleUrl)) {
-      await launch(googleUrl);
-    } else {
-      throw 'Could not open the map.';
-    }
+    FunctionDart.openMap(this.latitude, this.longitude);
   }
 
   _getCurrentLocation() {
