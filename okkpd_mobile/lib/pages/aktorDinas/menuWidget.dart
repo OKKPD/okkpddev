@@ -29,6 +29,9 @@ class _MenuWidgetState extends State<MenuWidget> {
         menu = Keys.menuPelaksana;
       }else if(role == "m_teknis"){
         menu = Keys.menuManagerTeknis;
+      }else if(role == ''){
+        menu = Keys.menuManagerAdmin;
+
       }else{
         menu = Keys.menuManagerAdmin;
 

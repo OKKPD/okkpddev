@@ -5,6 +5,7 @@ import 'package:okkpd_mobile/constants/theme.dart' as theme;
 import 'package:okkpd_mobile/pages/aktorDinas/dashboardDinasScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/layananDiterimaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/layananDitolakScreen.dart';
+import 'package:okkpd_mobile/pages/aktorDinas/riwayatLayananScreen.dart';
 import 'package:okkpd_mobile/pages/homeScreen.dart';
 import 'package:okkpd_mobile/pages/layanan/tambah/tambahKomoditasScreen.dart';
 import 'package:okkpd_mobile/pages/login/loginScreen.dart';
@@ -53,6 +54,8 @@ class MyApp extends StatelessWidget {
             new LayananDiterimaWidget(),
         '/layananDitolak': (BuildContext context) =>
         new LayananDitolakWidget(),
+        '/riwayatLayanan': (BuildContext context) =>
+        new RiwayatLayananScreen(),
         '/tambahKomoditas': (BuildContext context) =>
             new TambahKomoditasScreen(),
       },
@@ -91,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacementNamed('/homeGuest');
       }
     } else {
-      Navigator.of(context).pushReplacementNamed('/homescreen');
+      Navigator.of(context).pushReplacementNamed('/homeGuest');
     }
   }
 

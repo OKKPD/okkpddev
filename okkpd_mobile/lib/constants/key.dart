@@ -4,7 +4,7 @@ import 'package:okkpd_mobile/model/masterLayananModel.dart';
 
 class Keys {
   static const String APIURL = "http://yogaadi.xyz/okkpd_api/public/api/v1/";
-//  static const String APIURL = "http://192.168.1.109:8081/api/v1/";
+//  static const String APIURL = "http://192.168.1.26:8081/api/v1/";
 
   static const List<MasterLayananModel> layanan = const <MasterLayananModel>[
     const MasterLayananModel(
@@ -19,28 +19,47 @@ class Keys {
   ];
 
   static const List<MenuModel> menuManagerAdmin = const <MenuModel>[
-    const MenuModel("Layanan Diterima", "/layananDiterima",
+    const MenuModel("Penilaian Dokumen", "/layananDiterima",
         AssetImage('assets/accepted.png')),
+    const MenuModel("Riwayat Layanan", "/riwayatLayanan",
+        AssetImage('assets/tugas.png')),
     const MenuModel(
-        "Layanan Ditolak", "/layananDitolak", AssetImage('assets/rejected.png')),
+        "Permohonan Cetak", "/layananDitolak", AssetImage('assets/rejected.png')),
   ];
 
   static const List<MenuModel> menuManagerTeknis = const <MenuModel>[
     const MenuModel("Permohonan Inspeksi", "/layananDiterima",
         AssetImage('assets/accepted.png')),
+    const MenuModel("Riwayat Layanan", "/riwayatLayanan",
+        AssetImage('assets/tugas.png')),
+    const MenuModel(
+        "Permohonan Cetak", "/layananDitolak", AssetImage('assets/rejected.png')),
   ];
 
 
   static const List<MenuModel> menuInspektor = const <MenuModel>[
-    const MenuModel("Surat Tugas", "/layananDiterima",
+    const MenuModel("Tugas Inspeksi", "/layananDiterima",
         AssetImage('assets/accepted.png')),
+    const MenuModel("Riwayat Layanan", "/riwayatLayanan",
+        AssetImage('assets/tugas.png')),
   ];
 
   static const List<MenuModel> menuPelaksana = const <MenuModel>[
-    const MenuModel("Surat Tugas", "/layananDiterima",
+    const MenuModel("Tugas Inspeksi", "/layananDiterima",
         AssetImage('assets/accepted.png')),
-    const MenuModel(
-        "Unggah Dokumen Inspeksi", "/layananDitolak", AssetImage('assets/tugas.png')),
+    const MenuModel("Riwayat Layanan", "/riwayatLayanan",
+        AssetImage('assets/tugas.png')),
+//    const MenuModel(
+//        "Unggah Dokumen Inspeksi", "/layananDiterima", AssetImage('assets/file.png')),
+  ];
+
+  static const List<MenuModel> menuKomtek = const <MenuModel>[
+    const MenuModel("Permohonan Verifikasi", "/layananDiterima",
+        AssetImage('assets/accepted.png')),
+    const MenuModel("Riwayat Layanan", "/riwayatLayanan",
+        AssetImage('assets/tugas.png')),
+    const MenuModel("Layanan Ditolak", "/layananDitolak",
+        AssetImage('assets/rejected.png')),
   ];
   //==== Theme ====
 

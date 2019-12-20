@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:okkpd_mobile/constants/key.dart';
 import 'package:http/http.dart' as http;
 import 'package:okkpd_mobile/model/layananModel.dart';
@@ -7,6 +9,8 @@ import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/trackLayananModel.dart';
 import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+
+import '../dokumenInspeksiModel.dart';
 
 class LayananRepo {
   Future getLayanan(String kodeLayanan, String status) async {
@@ -50,8 +54,30 @@ class LayananRepo {
 
   Future getLayananDiterima() async {
     String role = await SharedPrefRepo().getRole();
+    String idUser = await SharedPrefRepo().getIdUser();
     List<LayananModel> _postList = [];
-    var url = '${Keys.APIURL}layanan/dinas/diterima/$role';
+    var url = '${Keys.APIURL}layanan/dinas/diterima/$role/$idUser';
+    print('URL : $url');
+    var response = await http.get(url);
+    final values = json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var layanan = LayananModel.fromJson(values['DATA'][i]);
+        _postList.add(layanan);
+      }
+      return _postList;
+    }
+  }
+
+  Future getRiwayatLayanan() async {
+    String role = await SharedPrefRepo().getRole();
+    String idUser = await SharedPrefRepo().getIdUser();
+    List<LayananModel> _postList = [];
+    var url = '${Keys.APIURL}layanan/dinas/riwayat/$role/$idUser';
+    print('URL : $url');
     var response = await http.get(url);
     final values = json.decode(response.body);
 
@@ -159,6 +185,75 @@ class LayananRepo {
     final values = await json.decode(response.body);
     FunctionDart().setToast(values['MESSAGE']);
 
+    if (response.statusCode != 200) {
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
+  }
+
+  Future getDokumenUpload(String idLayanan) async {
+    List<DokumenInspeksiModel> _postList = [];
+    var url = '${Keys.APIURL}layanan/dinas/dokumen_inspeksi/$idLayanan';
+    var response = await http.get(url);
+    final values = await json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      FunctionDart().setToast(values['MESSAGE']);
+      return null;
+    } else {
+      for (int i = 0; i < values['DATA'].length; i++) {
+        var dokumen = DokumenInspeksiModel.fromJson(values['DATA'][i]);
+        _postList.add(dokumen);
+      }
+      return _postList;
+    }
+  }
+
+  Future getGambar(String idLayanan,String idGambar) async {
+    DokumenInspeksiModel _postList;
+    var url = '${Keys.APIURL}layanan/dinas/dokumen_inspeksi/$idLayanan/gambar/$idGambar';
+    var response = await http.get(url);
+    final values = await json.decode(response.body);
+
+    if (response.statusCode != 200) {
+      FunctionDart().setToast(values['MESSAGE']);
+      return null;
+    } else {
+        var dokumen = DokumenInspeksiModel.fromJson(values['DATA']);
+        _postList = dokumen;
+      return _postList;
+    }
+  }
+  Future<bool> uploadDokumenInspeksi(File dokumen, String idLayanan,String idGambar, int isNew) async {
+    Response response;
+    Dio dio = new Dio();
+    List<String> nama = dokumen.path.split("/");
+    var url = '${Keys.APIURL}layanan/dinas/dokumen_inspeksi/$idLayanan/unggah';
+
+    FormData formData = FormData.fromMap({
+      "id_gambar": idGambar,
+      "is_new": isNew,
+      "gambar": await MultipartFile.fromFile(dokumen.path,
+          filename: nama[nama.length - 1])
+    });
+    try{
+      response = await dio.post(url, data: formData);
+      if (response.statusCode == 200) {
+        print("HASIL : $response");
+        return Future.value(true);
+      } else {
+        return Future.value(false);
+      }
+    }catch(e){
+      print("ERROR : ${response.statusMessage}");
+    }
+
+  }
+
+  Future<bool> simpanDokumenInspeksi(String idLayanan) async {
+    var url = '${Keys.APIURL}layanan/dinas/dokumen_inspeksi/$idLayanan/simpan';
+    var response = await http.post(url);
     if (response.statusCode != 200) {
       return Future.value(false);
     } else {

@@ -13,12 +13,12 @@ import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
 
-class LayananDiterimaWidget extends StatefulWidget {
+class RiwayatLayananScreen extends StatefulWidget {
   @override
-  _LayananDiterimaWidgetState createState() => _LayananDiterimaWidgetState();
+  _RiwayatLayananScreenState createState() => _RiwayatLayananScreenState();
 }
 
-class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
+class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
   List listLayanan = [];
   final List<LayananModel> layanans = [];
 
@@ -32,25 +32,18 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
     super.initState();
     getLayananDiterima();
     getRole();
-
+    titleScreen = "Riwayat Layanan Diterima";
   }
 
   void getRole() async{
     String role = await SharedPrefRepo().getRole();
     setState(() {
-      if(role == 'm_adm'){
-        titleScreen = "Penilaian Dokumen";
-      }else if(role == 'm_teknis'){
-        titleScreen = "Permohonan Inspeksi";
-      }else{
-        titleScreen = "Surat Tugas";
-      }
       myRole = role;
     });
   }
 
   void getLayananDiterima() async {
-    listLayanan = await LayananRepo().getLayananDiterima();
+    listLayanan = await LayananRepo().getRiwayatLayanan();
     setState(() {
       layanans.clear();
       if (listLayanan != null) {
@@ -124,48 +117,6 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                 style: TextStyle(color: Colors.white)),
           ),
         ),
-      );
-    }else if(myRole == 'pelaksana'){
-      return Row(
-        children: <Widget>[
-          Expanded(
-            child: Material(
-              child: MaterialButton(
-                height: 42.0,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DetailUsahaScreen(layanan)),
-                  );
-                },
-                color: Colors.lightBlueAccent,
-                child: Text('Informasi Usaha',
-                    style: TextStyle(color: Colors.white)),
-              ),
-            ),
-          ),
-          SizedBox(width: 16,),
-          Expanded(
-            child: Material(
-              child: MaterialButton(
-                height: 42.0,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DaftarDokumenPelaksanaScreen(layanan)),
-                  );
-                },
-                color: Colors.lightBlueAccent,
-                child: Text('Dokumen Inspeksi',
-                    style: TextStyle(color: Colors.white)),
-              ),
-            ),
-          ),
-        ],
       );
     }else{
       return Container(
