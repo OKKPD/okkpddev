@@ -19,6 +19,16 @@ class CustomWidget{
     ),);
   }
 
+  Widget imageError(){
+
+    return Container(
+      width: 56,
+      child:
+      Image.asset("assets/broken.png")
+      ,
+    );
+  }
+
   Widget notifIcon(context,int totalNotif) {
     if (totalNotif > 0) {
       return new IconButton(

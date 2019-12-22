@@ -49,11 +49,17 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
         ]);
 
     Future saveLayanan() async {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => TrackingStatusScreen(_kodeController.text)),
-      );
+
+      if(_kodeController.text == ""){
+        FunctionDart().setToast("Masukkan nomor dokumen yang akan dicari terlebih dahulu");
+      }else{
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TrackingStatusScreen(_kodeController.text)),
+        );  
+      }
+      
     }
 
     final saveButton = FunctionDart.customButton(context, saveLayanan,"Cari Layanan");
@@ -146,7 +152,7 @@ class _DashboarGuestScreen extends State<DashboarGuestScreen> {
               child: saveButton,
             ),
             SizedBox(height: 8.0),
-            BeritaWidget(),
+            BeritaWidget("prev"),
             SizedBox(height: 16.0),
           ],
         ),

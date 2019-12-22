@@ -95,6 +95,7 @@ class FunctionDart {
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
     } else {
+      FunctionDart().setToast("Lokasi belum ditentukan");
       throw 'Could not open the map.';
     }
   }

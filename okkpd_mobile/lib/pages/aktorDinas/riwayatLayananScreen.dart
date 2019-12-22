@@ -5,10 +5,8 @@ import 'package:okkpd_mobile/constants/key.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/daftarDokumenPelaksanaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/detailUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/terimaLayananScreen.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
@@ -98,27 +96,6 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
   }
 
   Widget buttonUser(LayananModel layanan){
-    if(myRole == 'm_adm'){
-      return Container(
-        width: double.infinity,
-        child: Material(
-          child: MaterialButton(
-            height: 42.0,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        TerimaLayananScreen(layanan)),
-              );
-            },
-            color: Colors.lightBlueAccent,
-            child: Text('Detail Dokumen',
-                style: TextStyle(color: Colors.white)),
-          ),
-        ),
-      );
-    }else{
       return Container(
         width: double.infinity,
         child: Material(
@@ -138,7 +115,6 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
           ),
         ),
       );
-    }
   }
 
   _buildSuggestions() {

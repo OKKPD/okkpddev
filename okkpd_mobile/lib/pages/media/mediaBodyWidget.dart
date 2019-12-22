@@ -107,7 +107,8 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                 child: Column(children: <Widget>[
                   SizedBox(height: 24.0),
                   track,
-                ])),
+                ])
+            ),
           ],
         );
       } else {
@@ -140,9 +141,14 @@ class _MediaBodyWidget extends State<MediaBodyWidget> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
+                          datas.namaMedia.length > 15 ? Text(
                               datas.namaMedia.substring(0, 15) +
                                   '...    ' +
+                                  datas.dateUpload,
+                              style: new TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold)
+                          ): Text(
+                              datas.namaMedia + " " +
                                   datas.dateUpload,
                               style: new TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.bold)),

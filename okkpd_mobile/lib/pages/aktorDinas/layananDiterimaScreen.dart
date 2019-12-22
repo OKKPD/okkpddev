@@ -106,25 +106,55 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
 
   Widget buttonUser(LayananModel layanan){
     if(myRole == 'm_adm'){
-      return Container(
-        width: double.infinity,
-        child: Material(
-          child: MaterialButton(
-            height: 42.0,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        TerimaLayananScreen(layanan)),
-              );
-            },
-            color: Colors.lightBlueAccent,
-            child: Text('Detail Dokumen',
-                style: TextStyle(color: Colors.white)),
+      return Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              child: Material(
+                child: MaterialButton(
+                  height: 42.0,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailUsahaScreen(layanan)),
+                    );
+                  },
+                  color: Colors.lightBlueAccent,
+                  child: Text('Informasi Usaha',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ),
           ),
-        ),
+          SizedBox(width: 16,),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              child: Material(
+                child: MaterialButton(
+                  height: 42.0,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              TerimaLayananScreen(layanan)),
+                    );
+                  },
+                  color: Colors.lightBlueAccent,
+                  child: Text('Detail Dokumen',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ),
+          )
+        ],
       );
+
+
     }else if(myRole == 'pelaksana'){
       return Row(
         children: <Widget>[

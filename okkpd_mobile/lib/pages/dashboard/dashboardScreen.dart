@@ -63,7 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ],
                     )),
                 Container(
-                  child: BeritaWidget(),
+                  child: BeritaWidget("prev"),
                 ),
                 SizedBox(
                   height: 16,

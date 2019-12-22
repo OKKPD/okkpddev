@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/pages/layanan/infoUsahaScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../tools/GlobalFunction.dart';
 
@@ -33,9 +34,6 @@ class _DetailUsahaScreen extends State<DetailUsahaScreen> {
       myRole = role;
       this.latitude = layanan.latitude;
       this.longitude = layanan.longitude;
-
-      print(this.latitude);
-      print(this.longitude);
     });
   }
 
@@ -112,9 +110,10 @@ class _DetailUsahaScreen extends State<DetailUsahaScreen> {
                 child: MaterialButton(
                   height: 42.0,
                   onPressed: () {
+
                     String url =
                         "http://yogaadi.xyz/okkpd/upload/Dokumen_Usaha/${layanan.namaUsaha}/${layanan.kodePendaftaran}/${layanan.suratTugas}";
-                    unduh(url, layanan.suratTugas);
+                    _openSuratTugas(url);
                   },
                   color: Colors.lightBlueAccent,
                   child: Text('Unduh', style: TextStyle(color: Colors.white)),
@@ -136,14 +135,41 @@ class _DetailUsahaScreen extends State<DetailUsahaScreen> {
           ],
         ),
       );
+    } else if(myRole == 'm_adm'){
+      return Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Material(
+                child: MaterialButton(
+                  height: 42.0,
+                  onPressed: () => openMap(),
+                  color: Colors.lightBlueAccent,
+                  child: Text('Lihat Di Map',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     } else {
       return Text("");
     }
   }
 
-  void unduh(String url, String filename) async {
-    FunctionDart().setToast("Masih belum bisa download");
+
+  _openSuratTugas(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {

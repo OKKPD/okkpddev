@@ -15,8 +15,9 @@ class _ModalImagePage extends State<ModalImagePage> {
   @override
   void initState() {
     super.initState();
-    print(this.url);
   }
+
+
 
   Widget build(BuildContext context) {
     return PhotoView(
