@@ -44,21 +44,23 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
   bool isLoading = true;
 
   Future setUser() async {
-    String idUser = await SharedPrefRepo().getIdUser();
-    user = await UserRepo().getProfile(idUser);
-    namaPemohonController = user.namaLengkap;
-    namaPerusahaanController = user.namaUsaha;
-    jenisUsahaController = user.jenisUsaha;
-    noHpController = user.noHp;
-    noKtpController = user.noKtp;
-    alamatPerusahaanController = user.alamatLengkap;
-    longitude = user.longitude;
-    latitude = user.latitude;
-    setState(() {
-      if (user.namaLengkap != '') {
-        isLoading = false;
-      }
-    });
+    try {
+      String idUser = await SharedPrefRepo().getIdUser();
+      user = await UserRepo().getProfile(idUser);
+      namaPemohonController = user.namaLengkap;
+      namaPerusahaanController = user.namaUsaha;
+      jenisUsahaController = user.jenisUsaha;
+      noHpController = user.noHp;
+      noKtpController = user.noKtp;
+      alamatPerusahaanController = user.alamatLengkap;
+      longitude = user.longitude;
+      latitude = user.latitude;
+      setState(() {
+        if (user.namaLengkap != '') {
+          isLoading = false;
+        }
+      });
+    } catch (e) {}
   }
 
   @override
@@ -254,12 +256,12 @@ class _ProfilUsahaBody extends State<ProfilUsahaBody> {
                   SizedBox(height: 20.0),
                   alamatPerusahaan,
                   SizedBox(height: 20.0),
-                  if (latitude != '' && longitude != '')
+                  if (latitude != null && longitude != null)
                     Text("LAT:" + latitude + ", LNG:" + longitude),
                   SizedBox(height: 20.0),
                   FunctionDart.customButton(
                       context, setLocation, "Update Lokasi"),
-                  if (latitude != '' && longitude != '')
+                  if (latitude != null && longitude != null)
                     FunctionDart.customButton(context, openMap, "Lihat Di Map")
                 ])),
           ],
