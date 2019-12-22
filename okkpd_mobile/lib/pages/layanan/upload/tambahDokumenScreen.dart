@@ -151,7 +151,7 @@ class _TambahDokumenScreen extends State<TambahDokumenScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FunctionDart.setAppBar("Image Upload Demo"),
+      appBar: FunctionDart.setAppBar("Image Upload"),
       body: (_isUploading)
           ? CustomWidget().loadingWidget()
           : Column(
