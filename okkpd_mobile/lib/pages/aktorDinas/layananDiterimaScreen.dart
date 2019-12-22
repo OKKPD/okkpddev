@@ -8,7 +8,6 @@ import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/daftarDokumenPelaksanaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/detailUsahaScreen.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/terimaLayananScreen.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
@@ -32,17 +31,16 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
     super.initState();
     getLayananDiterima();
     getRole();
-
   }
 
-  void getRole() async{
+  void getRole() async {
     String role = await SharedPrefRepo().getRole();
     setState(() {
-      if(role == 'm_adm'){
+      if (role == 'm_adm') {
         titleScreen = "Penilaian Dokumen";
-      }else if(role == 'm_teknis'){
+      } else if (role == 'm_teknis') {
         titleScreen = "Permohonan Inspeksi";
-      }else{
+      } else {
         titleScreen = "Surat Tugas";
       }
       myRole = role;
@@ -77,8 +75,8 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
     );
   }
 
-  Widget buttonUpload(LayananModel layanan){
-    if(myRole == 'pelaksana'){
+  Widget buttonUpload(LayananModel layanan) {
+    if (myRole == 'pelaksana') {
       return Container(
         width: double.infinity,
         child: Material(
@@ -88,24 +86,21 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        DetailUsahaScreen(layanan)),
+                    builder: (context) => DetailUsahaScreen(layanan)),
               );
             },
             color: Colors.lightBlueAccent,
-            child: Text('Lihat Detail',
-                style: TextStyle(color: Colors.white)),
+            child: Text('Lihat Detail', style: TextStyle(color: Colors.white)),
           ),
         ),
       );
-
-    }else{
+    } else {
       return Text("");
     }
   }
 
-  Widget buttonUser(LayananModel layanan){
-    if(myRole == 'm_adm'){
+  Widget buttonUser(LayananModel layanan) {
+    if (myRole == 'm_adm') {
       return Row(
         children: <Widget>[
           Expanded(
@@ -118,8 +113,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              DetailUsahaScreen(layanan)),
+                          builder: (context) => DetailUsahaScreen(layanan)),
                     );
                   },
                   color: Colors.lightBlueAccent,
@@ -129,7 +123,9 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
               ),
             ),
           ),
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           Expanded(
             child: Container(
               width: double.infinity,
@@ -140,8 +136,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              TerimaLayananScreen(layanan)),
+                          builder: (context) => TerimaLayananScreen(layanan)),
                     );
                   },
                   color: Colors.lightBlueAccent,
@@ -153,9 +148,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
           )
         ],
       );
-
-
-    }else if(myRole == 'pelaksana'){
+    } else if (myRole == 'pelaksana') {
       return Row(
         children: <Widget>[
           Expanded(
@@ -166,8 +159,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            DetailUsahaScreen(layanan)),
+                        builder: (context) => DetailUsahaScreen(layanan)),
                   );
                 },
                 color: Colors.lightBlueAccent,
@@ -176,7 +168,9 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
               ),
             ),
           ),
-          SizedBox(width: 16,),
+          SizedBox(
+            width: 16,
+          ),
           Expanded(
             child: Material(
               child: MaterialButton(
@@ -197,7 +191,7 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
           ),
         ],
       );
-    }else{
+    } else {
       return Container(
         width: double.infinity,
         child: Material(
@@ -207,13 +201,12 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        DetailUsahaScreen(layanan)),
+                    builder: (context) => DetailUsahaScreen(layanan)),
               );
             },
             color: Colors.lightBlueAccent,
-            child: Text('Informasi Usaha',
-                style: TextStyle(color: Colors.white)),
+            child:
+                Text('Informasi Usaha', style: TextStyle(color: Colors.white)),
           ),
         ),
       );
@@ -282,7 +275,6 @@ class _LayananDiterimaWidgetState extends State<LayananDiterimaWidget> {
                   SizedBox(
                     width: 16,
                   ),
-
                 ],
               ),
             )));

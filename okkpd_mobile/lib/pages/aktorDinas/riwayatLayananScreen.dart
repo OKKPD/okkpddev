@@ -6,7 +6,6 @@ import 'package:okkpd_mobile/model/layananModel.dart';
 import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/pages/aktorDinas/detailUsahaScreen.dart';
-import 'package:okkpd_mobile/pages/aktorDinas/terimaLayananScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 
 import '../../tools/GlobalFunction.dart';
@@ -33,7 +32,7 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
     titleScreen = "Riwayat Layanan Diterima";
   }
 
-  void getRole() async{
+  void getRole() async {
     String role = await SharedPrefRepo().getRole();
     setState(() {
       myRole = role;
@@ -68,8 +67,8 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
     );
   }
 
-  Widget buttonUpload(LayananModel layanan){
-    if(myRole == 'pelaksana'){
+  Widget buttonUpload(LayananModel layanan) {
+    if (myRole == 'pelaksana') {
       return Container(
         width: double.infinity,
         child: Material(
@@ -79,42 +78,37 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        DetailUsahaScreen(layanan)),
+                    builder: (context) => DetailUsahaScreen(layanan)),
               );
             },
             color: Colors.lightBlueAccent,
-            child: Text('Lihat Detail',
-                style: TextStyle(color: Colors.white)),
+            child: Text('Lihat Detail', style: TextStyle(color: Colors.white)),
           ),
         ),
       );
-
-    }else{
+    } else {
       return Text("");
     }
   }
 
-  Widget buttonUser(LayananModel layanan){
-      return Container(
-        width: double.infinity,
-        child: Material(
-          child: MaterialButton(
-            height: 42.0,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DetailUsahaScreen(layanan)),
-              );
-            },
-            color: Colors.lightBlueAccent,
-            child: Text('Informasi Usaha',
-                style: TextStyle(color: Colors.white)),
-          ),
+  Widget buttonUser(LayananModel layanan) {
+    return Container(
+      width: double.infinity,
+      child: Material(
+        child: MaterialButton(
+          height: 42.0,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailUsahaScreen(layanan)),
+            );
+          },
+          color: Colors.lightBlueAccent,
+          child: Text('Informasi Usaha', style: TextStyle(color: Colors.white)),
         ),
-      );
+      ),
+    );
   }
 
   _buildSuggestions() {
@@ -179,7 +173,6 @@ class _RiwayatLayananScreenState extends State<RiwayatLayananScreen> {
                   SizedBox(
                     width: 16,
                   ),
-
                 ],
               ),
             )));

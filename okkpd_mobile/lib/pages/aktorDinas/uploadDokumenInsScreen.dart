@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
-import 'package:okkpd_mobile/model/repository/mediaRepo.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class UploadDokumenInsScreen extends StatefulWidget {
@@ -11,10 +10,11 @@ class UploadDokumenInsScreen extends StatefulWidget {
   final String idLayanan;
   final String nama;
   final int isNew;
-  UploadDokumenInsScreen(this.idLayanan,this.idGambar,this.nama,this.isNew);
+  UploadDokumenInsScreen(this.idLayanan, this.idGambar, this.nama, this.isNew);
 
   @override
-  _UploadDokumenInsScreen createState() => _UploadDokumenInsScreen(idLayanan,idGambar,nama,isNew);
+  _UploadDokumenInsScreen createState() =>
+      _UploadDokumenInsScreen(idLayanan, idGambar, nama, isNew);
 }
 
 class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
@@ -22,7 +22,7 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
   final String idLayanan;
   final String nama;
   final int isNew;
-  _UploadDokumenInsScreen(this.idLayanan,this.idGambar,this.nama,this.isNew);
+  _UploadDokumenInsScreen(this.idLayanan, this.idGambar, this.nama, this.isNew);
 
   File _imageFile;
   bool _isUploading = false;
@@ -30,7 +30,6 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
   @override
   void initState() {
     super.initState();
-
   }
 
   void _getImage(BuildContext context, ImageSource source) async {
@@ -46,7 +45,8 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
       _isUploading = true;
     });
 
-    Future<bool> result = LayananRepo().uploadDokumenInspeksi(image, idLayanan,idGambar,isNew);
+    Future<bool> result =
+        LayananRepo().uploadDokumenInspeksi(image, idLayanan, idGambar, isNew);
 
     _resetState();
     return await result;
@@ -141,7 +141,7 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
             child: OutlineButton(
               onPressed: () => _openImagePickerModal(context),
               borderSide:
-              BorderSide(color: Theme.of(context).accentColor, width: 1.0),
+                  BorderSide(color: Theme.of(context).accentColor, width: 1.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -157,17 +157,15 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
           _imageFile == null
               ? Text('Pilih gambar')
               : Image.file(
-            _imageFile,
-            fit: BoxFit.cover,
-            height: 300.0,
-            alignment: Alignment.topCenter,
-            width: MediaQuery.of(context).size.width,
-          ),
+                  _imageFile,
+                  fit: BoxFit.cover,
+                  height: 300.0,
+                  alignment: Alignment.topCenter,
+                  width: MediaQuery.of(context).size.width,
+                ),
           _buildUploadBtn(),
         ],
       ),
     );
   }
-
-
 }

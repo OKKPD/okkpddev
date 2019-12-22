@@ -5,7 +5,6 @@ import 'package:okkpd_mobile/model/repository/beritaRepo.dart';
 import 'package:okkpd_mobile/pages/dashboard/beritaAllScreen.dart';
 import 'package:okkpd_mobile/pages/dashboard/beritaScreen.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
-import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class BeritaWidget extends StatefulWidget {
   final String jenis;
@@ -30,15 +29,15 @@ class _BeritaWidget extends State<BeritaWidget> {
 
   void getPrevBerita() async {
     List<BeritaModel> beritas;
-    if(jenis == "prev"){
+    if (jenis == "prev") {
       beritas = await BeritaRepo().getPreview();
-    }else{
+    } else {
       beritas = await BeritaRepo().getAll();
     }
     setState(() {
-      if(beritas.length < 1){
+      if (beritas.length < 1) {
         haveData = false;
-      }else{
+      } else {
         haveData = true;
         berita.addAll(beritas);
       }
@@ -49,9 +48,9 @@ class _BeritaWidget extends State<BeritaWidget> {
   void getAllBerita() async {
     List<BeritaModel> beritas = await BeritaRepo().getAll();
     setState(() {
-      if(beritas.length < 1){
+      if (beritas.length < 1) {
         haveData = false;
-      }else{
+      } else {
         haveData = true;
         berita.addAll(beritas);
       }
@@ -60,19 +59,23 @@ class _BeritaWidget extends State<BeritaWidget> {
   }
 
   _buildSuggestions() {
-    if(isLoading){
+    if (isLoading) {
       return CustomWidget().loadingWidget();
-    }else{
-      if(haveData == false){
-        return Center(child: Text("Tidak ada data yang ditampilkan"),);
-      }else{
+    } else {
+      if (haveData == false) {
+        return Center(
+          child: Text("Tidak ada data yang ditampilkan"),
+        );
+      } else {
         return ListView.builder(
-          shrinkWrap: true,
-          physics: jenis == "prev" ? new NeverScrollableScrollPhysics(): new AlwaysScrollableScrollPhysics(),
-          itemCount: berita.length,
-          itemBuilder: (context, i) {
-          return _buildRow(berita[i], i);
-          });
+            shrinkWrap: true,
+            physics: jenis == "prev"
+                ? new NeverScrollableScrollPhysics()
+                : new AlwaysScrollableScrollPhysics(),
+            itemCount: berita.length,
+            itemBuilder: (context, i) {
+              return _buildRow(berita[i], i);
+            });
       }
     }
   }
@@ -137,18 +140,21 @@ class _BeritaWidget extends State<BeritaWidget> {
     ));
   }
 
-  Widget textLainnya(){
-    return jenis == "prev" ?
-    new GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => BeritaAllScreen()),
-        );
-      },
-      child: new Text("Lihat Semua", style: TextStyle(color: Colors.blueAccent),),
-    ) : Text("");
+  Widget textLainnya() {
+    return jenis == "prev"
+        ? new GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BeritaAllScreen()),
+              );
+            },
+            child: new Text(
+              "Lihat Semua",
+              style: TextStyle(color: Colors.blueAccent),
+            ),
+          )
+        : Text("");
   }
 
   @override
@@ -157,23 +163,24 @@ class _BeritaWidget extends State<BeritaWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          jenis == "prev" ?
-          Container(
-              padding: EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 16.0, bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-
-                  Text(
-                    "Berita Terbaru",
-                    style: new TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  textLainnya(),
-                ],
-              )
-          ): SizedBox(height: 0,),
+          jenis == "prev"
+              ? Container(
+                  padding: EdgeInsets.only(
+                      left: 16.0, right: 16.0, top: 16.0, bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Berita Terbaru",
+                        style: new TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      textLainnya(),
+                    ],
+                  ))
+              : SizedBox(
+                  height: 0,
+                ),
           _buildSuggestions(),
         ],
       ),

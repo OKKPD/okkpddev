@@ -129,7 +129,7 @@ class _UploadPrimaTigaState extends State<UploadPrimaTiga> {
 
     return SizedBox(
       height: tinggi,
-      width: 300,
+      // width: 350,
       child: new ListView.builder(
         physics: new NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
@@ -143,7 +143,9 @@ class _UploadPrimaTigaState extends State<UploadPrimaTiga> {
                     child: Text("${index + 1}"),
                     width: 26,
                   ),
-                  Text(listMedia[index].namaMedia)
+                  Text(listMedia[index].namaMedia.length >= 25
+                      ? listMedia[index].namaMedia.substring(0, 25) + '...'
+                      : listMedia[index].namaMedia)
                 ],
               ));
         },

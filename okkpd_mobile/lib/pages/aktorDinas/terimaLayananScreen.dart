@@ -12,7 +12,6 @@ import 'package:okkpd_mobile/pages/aktorDinas/tolakLayananScreen.dart';
 import 'package:okkpd_mobile/pages/modal/modalImagePage.dart';
 import 'package:okkpd_mobile/tools/CustomWidget.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class TerimaLayananScreen extends StatefulWidget {
   final LayananModel layanan;
@@ -74,8 +73,6 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
     });
   }
 
-
-
   Widget cardDokumen(DokumenModel dokumen, int index) {
     return Card(
         color: Colors.grey,
@@ -83,30 +80,34 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: dokumen.file != "" ? Center(
-                child: CachedNetworkImage(
-                  imageUrl : dokumen.folder + dokumen.file,
-                  imageBuilder: (context, imageProvider) => FlatButton(
-                    onPressed: (){
-                      if(dokumen.folder != ""){
-                        showImage(dokumen.folder + dokumen.file);
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                            colorFilter:
-                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+              child: dokumen.file != ""
+                  ? Center(
+                      child: CachedNetworkImage(
+                        imageUrl: dokumen.folder + dokumen.file,
+                        imageBuilder: (context, imageProvider) => FlatButton(
+                          onPressed: () {
+                            if (dokumen.folder != "") {
+                              showImage(dokumen.folder + dokumen.file);
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                  colorFilter: ColorFilter.mode(
+                                      Colors.red, BlendMode.colorBurn)),
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            CustomWidget().imageError(),
+                        fit: BoxFit.fill,
                       ),
-                    ),
-                  ),
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => CustomWidget().imageError(),
-                  fit: BoxFit.fill,
-                ),
-              ): CustomWidget().imageError(),
+                    )
+                  : CustomWidget().imageError(),
             ),
             Container(
               width: double.infinity,
@@ -128,17 +129,16 @@ class _TerimaLayananScreenState extends State<TerimaLayananScreen> {
       if (haveData) {
         return Container(
           margin: EdgeInsets.only(bottom: 48),
-          child:
-            GridView.count(
-              shrinkWrap: false,
-              crossAxisSpacing: 4,
-              mainAxisSpacing: 4,
-              padding: EdgeInsets.only(left: 12, top: 16, right: 12, bottom: 12),
-              crossAxisCount: 2,
-              children: List.generate(dokumens.length, (index) {
-                return cardDokumen(dokumens[index], index);
-              }),
-            ),
+          child: GridView.count(
+            shrinkWrap: false,
+            crossAxisSpacing: 4,
+            mainAxisSpacing: 4,
+            padding: EdgeInsets.only(left: 12, top: 16, right: 12, bottom: 12),
+            crossAxisCount: 2,
+            children: List.generate(dokumens.length, (index) {
+              return cardDokumen(dokumens[index], index);
+            }),
+          ),
         );
       } else {
         return Text("Tidak Ada Data");
