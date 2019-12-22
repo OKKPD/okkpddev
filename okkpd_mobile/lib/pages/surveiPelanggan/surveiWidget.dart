@@ -203,14 +203,13 @@ class _SurveiWidget extends State<SurveiWidget> {
       appBar: FunctionDart.setAppBar("Survey Kepuasan"),
       body: Padding(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Column(
+          child: ListView(
             children: <Widget>[
               tampilan,
               kemudahan,
               kelengkapan,
               kecepatan,
               komentar,
-              Spacer(),
               saveButton,
             ],
           )),
