@@ -34,6 +34,7 @@ dependencies:
   cached_network_image: ^1.1.3
   flutter_plugin_pdf_viewer: ^1.0.7
   file_picker: ^1.4.3+2
+  flutter_launcher_icons: "^0.7.3"
 
   flutter:
     sdk: flutter
@@ -43,6 +44,13 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.2.5
   image_picker: ^0.6.1+4
+
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "assets/app_icon.png"
+
+  # untuk update icon :=> flutter pub pub run flutter_launcher_icons:main
 
 dev_dependencies:
   flutter_test:
