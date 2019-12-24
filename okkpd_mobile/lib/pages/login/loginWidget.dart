@@ -59,7 +59,6 @@ class LoginWidgetState extends State<LoginWidget> {
         } else {
           pr.dismiss();
           Navigator.pop(context);
-
         }
       }
     }
@@ -100,15 +99,16 @@ class LoginWidgetState extends State<LoginWidget> {
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            loginProcess();
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Log In', style: TextStyle(color: Colors.white)),
-        ),
+        child: FunctionDart.customButton(context, loginProcess, "Log In"),
+        // MaterialButton(
+        //   minWidth: 200.0,
+        //   height: 42.0,
+        //   onPressed: () {
+        //     loginProcess();
+        //   },
+        //   color: Colors.lightBlueAccent,
+        //   child: Text('Log In', style: TextStyle(color: Colors.white)),
+        // ),
       ),
     );
 

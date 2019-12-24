@@ -101,7 +101,7 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
       appBar: FunctionDart.setAppBar("Pendaftaran Produk"),
       body: Padding(
         padding: EdgeInsets.only(left: 24.0, right: 24.0),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             SizedBox(height: 16.0),
             namaProduk,
@@ -113,7 +113,7 @@ class _TambahProdukScreen extends State<TambahProdukScreen> {
             beratBersih,
             SizedBox(height: 16.0),
             satuanKemasan,
-            Spacer(),
+            Padding(padding: EdgeInsets.only(top: queryData.size.height / 4)),
             saveButton,
           ],
         ),

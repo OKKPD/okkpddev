@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 
 class GuestScreen extends StatefulWidget {
   @override
@@ -110,16 +111,18 @@ class _GuestScreen extends State<GuestScreen> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.all(16),
             child: Material(
-              child: MaterialButton(
-                minWidth: 200.0,
-                height: 42.0,
-                onPressed: scanBarcodeNormal,
-                color: Colors.lightBlueAccent,
-                child: Text('Scan Sertifikat',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0)),
-              ),
+              child: FunctionDart.customButton(
+                  context, scanBarcodeNormal, "Scan Sertifikat"),
+              // child: MaterialButton(
+              //   minWidth: 200.0,
+              //   height: 42.0,
+              //   onPressed: scanBarcodeNormal,
+              //   color: Colors.lightBlueAccent,
+              //   child: Text('Scan Sertifikat',
+              //       style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              // ),
             ),
           ),
         ],

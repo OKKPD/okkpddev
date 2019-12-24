@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:okkpd_mobile/tools/GlobalFunction.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class KontakScreen extends StatefulWidget {
@@ -84,7 +85,7 @@ class _KontakScreen extends State<KontakScreen> {
                         onPressed: () {},
                       ),
                       Container(
-                        width: 250,
+                        width: 310,
                         child: Text(
                           "Web : http://okkpd.dishanpan.jatengprov.go.id/",
                           textAlign: TextAlign.justify,
@@ -101,16 +102,18 @@ class _KontakScreen extends State<KontakScreen> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.all(16),
             child: Material(
-              child: MaterialButton(
-                minWidth: 200.0,
-                height: 42.0,
-                onPressed: _launchURL,
-                color: Colors.lightBlueAccent,
-                child: Text('Hubungi Admin',
-                    style: TextStyle(color: Colors.white, fontSize: 20.0)),
-              ),
+              child: FunctionDart.customButton(
+                  context, _launchURL, "Hubungi Admin"),
+              // MaterialButton(
+              //   minWidth: 200.0,
+              //   height: 42.0,
+              //   onPressed: _launchURL,
+              //   color: Colors.lightBlueAccent,
+              //   child: Text('Hubungi Admin',
+              //       style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              // ),
             ),
           ),
         ],

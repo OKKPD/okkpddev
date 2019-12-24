@@ -243,6 +243,7 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
     final saveButton = FunctionDart.saveButton(context, addItem);
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Colors.white,
       appBar: FunctionDart.setAppBar("Tambah Komoditas"),
       body: Padding(
@@ -257,8 +258,6 @@ class _TambahKomoditasScreen extends State<TambahKomoditasScreen> {
             namaKomoditas,
             SizedBox(height: 16.0),
             luasLahan,
-            SizedBox(height: 16.0),
-            spasiforjarak,
             Spacer(),
             saveButton,
           ],
