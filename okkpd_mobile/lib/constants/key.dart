@@ -33,7 +33,7 @@ class Keys {
     const MenuModel("Riwayat Layanan", "/riwayatLayanan",
         AssetImage('assets/tugas.png')),
     const MenuModel(
-        "Permohonan Cetak", "/layananDitolak", AssetImage('assets/rejected.png')),
+        "Permohonan Ditolak", "/layananDitolak", AssetImage('assets/rejected.png')),
   ];
 
 
