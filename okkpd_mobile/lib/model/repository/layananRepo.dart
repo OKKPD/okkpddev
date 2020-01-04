@@ -9,6 +9,7 @@ import 'package:okkpd_mobile/model/repository/SharedPrefRepo.dart';
 import 'package:okkpd_mobile/model/trackLayananModel.dart';
 import 'package:okkpd_mobile/model/trackSertifikatModel.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 import '../dokumenInspeksiModel.dart';
 
@@ -225,16 +226,21 @@ class LayananRepo {
       return _postList;
     }
   }
+
+
+
   Future<bool> uploadDokumenInspeksi(File dokumen, String idLayanan,String idGambar, int isNew) async {
     Response response;
     Dio dio = new Dio();
     List<String> nama = dokumen.path.split("/");
     var url = '${Keys.APIURL}layanan/dinas/dokumen_inspeksi/$idLayanan/unggah';
 
+    File compressedFile = await FunctionDart().testCompressAndGetFile(dokumen, dokumen.path);
+
     FormData formData = FormData.fromMap({
       "id_gambar": idGambar,
       "is_new": isNew,
-      "gambar": await MultipartFile.fromFile(dokumen.path,
+      "gambar": await MultipartFile.fromFile(compressedFile.path,
           filename: nama[nama.length - 1])
     });
     try{

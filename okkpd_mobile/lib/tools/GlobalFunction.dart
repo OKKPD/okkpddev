@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class FunctionDart {
   void setToast(String kata) {
@@ -26,6 +29,19 @@ class FunctionDart {
     var expired = now.add(new Duration(days: 1));
     String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(expired);
     return formattedDate;
+  }
+
+  Future<File> testCompressAndGetFile(File file, String targetPath) async {
+    var result = await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path, targetPath,
+      quality: 88,
+      rotate: 0,
+    );
+
+    print(file.lengthSync());
+    print(result.lengthSync());
+
+    return result;
   }
 
   void setExpirationDate() async {

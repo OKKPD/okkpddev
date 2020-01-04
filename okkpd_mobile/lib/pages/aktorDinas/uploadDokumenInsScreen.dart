@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:okkpd_mobile/model/repository/layananRepo.dart';
 import 'package:okkpd_mobile/tools/GlobalFunction.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class UploadDokumenInsScreen extends StatefulWidget {
   final String idGambar;
@@ -24,12 +25,15 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
   final int isNew;
   _UploadDokumenInsScreen(this.idLayanan, this.idGambar, this.nama, this.isNew);
 
+  ProgressDialog pr;
+
   File _imageFile;
   bool _isUploading = false;
 
   @override
   void initState() {
     super.initState();
+
   }
 
   void _getImage(BuildContext context, ImageSource source) async {
@@ -41,9 +45,7 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
   }
 
   Future<bool> _uploadImage(File image) async {
-    setState(() {
-      _isUploading = true;
-    });
+
 
     Future<bool> result =
         LayananRepo().uploadDokumenInspeksi(image, idLayanan, idGambar, isNew);
@@ -53,13 +55,19 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
   }
 
   void _startUploading() async {
+    setState(() {
+      _isUploading = true;
+    });
+
     bool result = await _uploadImage(_imageFile);
     if (result == true) {
-      _resetState();
       FunctionDart().setToast("Dokumen berhasil diunggah");
+      _resetState();
+      pr.dismiss();
       Navigator.pop(context, true);
     } else {
       _resetState();
+      pr.dismiss();
       FunctionDart().setToast("Dokumen gagal diunggah");
     }
   }
@@ -120,6 +128,7 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
         child: RaisedButton(
           child: Text('Unggah'),
           onPressed: () {
+            pr.show();
             _startUploading();
           },
           color: Colors.pinkAccent,
@@ -132,6 +141,12 @@ class _UploadDokumenInsScreen extends State<UploadDokumenInsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    pr = new ProgressDialog(context, type: ProgressDialogType.Normal);
+    if(_isUploading){
+      print('jahsdkjashdkjashd');
+      pr.show();
+    }
+
     return Scaffold(
       appBar: FunctionDart.setAppBar("Unggah Gambar $nama"),
       body: Column(
