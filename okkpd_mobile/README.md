@@ -1,6 +1,6 @@
 # okkpd_mobile
 
-A new Flutter application.
+OKKPD Jateng application.
 
 ## Getting Started
 
